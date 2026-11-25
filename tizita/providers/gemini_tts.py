@@ -5,18 +5,21 @@ from __future__ import annotations
 
 from tizita.providers.base import Provider, Request, Result, pcm16_to_wav, wav_duration_s
 from tizita.providers.errors import Transient
-from tizita.providers.gemini_text import check_blocked, classify_gemini, gemini_client
+from tizita.providers.gemini_text import call_rotating, check_blocked
 
 SAMPLE_RATE = 24000
 
 
 class GeminiTTS(Provider):
     def call(self, req: Request) -> Result:
-        from google.genai import errors, types
+        from google.genai import types
 
         voice = req.inputs.get("voice") or self.params.get("voice_name", "Kore")
         style = req.inputs.get("style_instruction")
-        contents = f"{style}:\n{req.prompt}" if style else req.prompt
+        # Measured 2026-11-25: with a style prefix the model reads (part of) the instruction aloud
+        # (a 2.7 s line became 9-10 s). Default off; `style_mode: prefix` opts back in.
+        prefixed = style and self.params.get("style_mode") == "prefix"
+        contents = f"{style}: {req.prompt}" if prefixed else req.prompt
         cfg = types.GenerateContentConfig(
             response_modalities=["AUDIO"],
             speech_config=types.SpeechConfig(
@@ -25,12 +28,10 @@ class GeminiTTS(Provider):
                 )
             ),
         )
-        try:
-            resp = gemini_client(
-                self.env, self.cfg.get("env", ["GEMINI_API_KEY"])[0]
-            ).models.generate_content(model=self.model, contents=contents, config=cfg)
-        except errors.APIError as e:
-            raise classify_gemini(e) from e
+        resp = call_rotating(
+            self,
+            lambda c: c.models.generate_content(model=self.model, contents=contents, config=cfg),
+        )
         check_blocked(resp)
         try:
             pcm = resp.candidates[0].content.parts[0].inline_data.data

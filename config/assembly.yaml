@@ -1,4 +1,31 @@
-# Assembly settings (SPEC §10). M2 adds ducking, loudness, grade and transitions.
+# Assembly settings (SPEC §10). Every value here is hashed into the stages that read it.
+timing:
+  lead_s: 0.4            # silence before each narration take inside its slot
+  tail_s: 0.6            # silence after it
+  crossfade_s: 0.4       # slot overlap for crossfade / fade_black transitions
+  fps: 24
 subtitles:
   max_chars_per_line: 40
   max_lines: 2
+  min_cue_s: 0.8
+  font: Noto Sans
+  fonts_dir: assets/fonts
+  # 9:16 clears platform UI (~22% bottom margin); 16:9 sits near the bottom (~8%).
+  styles:
+    "9x16": { play_res: [1080, 1920], font_size: 58, margin_v_pct: 22, margin_h: 80, outline: 3, shadow: 1 }
+    "16x9": { play_res: [1920, 1080], font_size: 46, margin_v_pct: 8, margin_h: 160, outline: 3, shadow: 1 }
+audio:
+  working_lufs: -16      # per-source pre-normalisation before the mix
+  duck: { threshold: 0.02, ratio: 6, attack_ms: 300, release_ms: 1500 }
+  pad_gain_db: -10       # synth pad level before ducking
+  final: { lufs: -14, tp: -1, lra: 11, aac_kbps: 192, rate: 48000 }
+video:
+  preset: veryfast
+  crf: 18
+pad:
+  # D minor ambient pad (SPEC §5.1 music.key): D3 F3 A3 D4, slow tremolo, low-pass, long fades.
+  freqs: [146.83, 174.61, 220.0, 293.66]
+  tremolo_hz: 0.18
+  lowpass_hz: 900
+  fade_in_s: 2
+  fade_out_s: 3

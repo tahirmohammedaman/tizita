@@ -107,7 +107,7 @@ def cli_sink(console: Any) -> Sink:
                 f"{event.get('reset_at') or 'end of run'} ({event.get('error_class')})[/]",
                 highlight=False,
             )
-        elif t == "provider_moved":
+        elif t == "privacy_notice" or t == "provider_moved":
             console.print(f"[yellow]⚠ {event.get('message')}[/]", highlight=False)
 
     return _sink

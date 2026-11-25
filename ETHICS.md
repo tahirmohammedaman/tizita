@@ -40,6 +40,6 @@ Every real person shown or voiced needs an entry in `ethics/consents.yaml` **bef
 |---|---|---|---|
 | Approved narration script | Gemini TTS | free tier may train on inputs | only the approved text |
 | Storyboard prompts (no private details) | Gemini text, Workers AI | | the director warns first |
-| Private photos (`refs/private/`) | only providers with `accepts_private_media: true` | | never Gemini free tier; never committed |
+| Private photos (`refs/private/`) | only providers with `accepts_private_media: true`: Cloudflare Workers AI (hosted), local FLUX (a repo clone runs local) | Cloudflare states Workers AI inputs are not used for training | never Gemini free tier; never committed. **Decision (Tahir, 2026-11-25):** uploading photos to Cloudflare is accepted. Every upload path (frontend and CLI) must show a warning before the first private photo is sent: the photo goes to Cloudflare, only people who consented may appear, and it is not stored in the repo. |
 | Generated keyframes | Kaggle (dataset), HF Spaces (fallback) | | |
 <!-- TODO(agent, M1/M3): complete once providers are wired. -->

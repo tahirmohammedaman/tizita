@@ -4,10 +4,10 @@
 
 ## Audience and intent (written **before** any generation)
 
-- **Written at:** <!-- TODO(Tahir): timestamp, e.g. 2026-11-25 17:10 EAT, before the first image call -->
-- **Who will watch:** <!-- TODO(Tahir) -->
-- **Where they'll watch:** <!-- TODO(Tahir): e.g. phones, Telegram, TikTok -->
-- **What they should feel or understand at the end:** <!-- TODO(Tahir) -->
+- **Written at:** 2026-11-25 18:42 EAT, before any image call (filled in by the agent at Tahir's instruction; values from interview/answers.yaml)
+- **Who will watch:** family and friends, then the course reviewers
+- **Where they'll watch:** phones, vertical (9x16)
+- **What they should feel or understand at the end:** quiet pride and warmth: the kid in the back seat became the one everyone can count on
 - **Logline:** <!-- TODO(Tahir) -->
 
 ## Story source

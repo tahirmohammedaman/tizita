@@ -1,53 +1,102 @@
 {
   "version": 1,
   "meta": {
-    "title": "PLACEHOLDER — Tizita pipeline fixture",
-    "logline": "A placeholder storyboard used to test the pipeline; not the real story.",
+    "title": "The Seat in the Front",
+    "logline": "Growing up in the back seat watching older siblings drive, the youngest family member nervously learns the steering wheel and eventually becomes the reliable driver everyone calls at night.",
     "narration_language": "am",
     "subtitle_language": "en",
-    "target_duration_s": 75,
-    "audience": "PLACEHOLDER (DESIGN.md is the source of truth)",
-    "intent": "PLACEHOLDER (DESIGN.md is the source of truth)"
+    "target_duration_s": 73,
+    "audience": "Family, friends, and short-film reviewers watching on vertical mobile screens.",
+    "intent": "Evoke quiet nostalgia, personal growth, and warm familial pride."
   },
   "style": {
     "style_block": "warm painterly illustration, visible gouache and oil brush texture, soft golden-hour light, gentle film grain, muted earthy palette with warm ochres and deep greens, cinematic composition, subject centred for vertical framing",
     "character_defaults": "Ethiopian, warm brown skin tones, natural features, everyday contemporary clothing",
-    "characters": {
-      "elder": {
-        "description": "PLACEHOLDER fictional elder, grey hair, calm expression",
-        "wardrobe": "white netela shawl",
-        "reference_id": "ref_elder"
-      }
-    },
     "negative": "text, letters, watermark, logo, extra fingers, deformed hands, pale skin, western stock-photo look",
-    "seed_base": 1000
+    "seed_base": 1000,
+    "characters": {
+      "youngest_sibling": {
+        "description": "A gentle young Ethiopian adult with soft eyes and natural curly hair.",
+        "wardrobe": "Warm knit dark brown sweater over a simple collared shirt.",
+        "reference_id": "ref_youngest_sibling"
+      },
+      "older_brother": {
+        "description": "A tall older Ethiopian brother with calm, reassuring facial features.",
+        "wardrobe": "Casual navy denim jacket over a grey t-shirt.",
+        "reference_id": "ref_older_brother"
+      },
+      "mother": {
+        "description": "A middle-aged Ethiopian mother with a warm, caring facial expression.",
+        "wardrobe": "Soft cream-colored traditional woven shawl over everyday clothing.",
+        "reference_id": "ref_mother"
+      }
+    }
   },
   "references": [
     {
-      "id": "ref_elder",
+      "id": "family_car_ref",
+      "kind": "object",
+      "real_person": false,
+      "consent_id": null,
+      "photos": [],
+      "description": "Interior of a cozy vintage family sedan with worn fabric seats and warm dashboard illumination.",
+      "sheet": {
+        "candidates": 4,
+        "chosen": null,
+        "seed": 1300
+      }
+    },
+    {
+      "id": "ref_youngest_sibling",
       "kind": "person",
       "real_person": false,
       "consent_id": null,
       "photos": [],
-      "description": "PLACEHOLDER fictional elder (text-only reference, no photos)",
+      "description": "A gentle young Ethiopian adult with soft eyes and natural curly hair.",
       "sheet": {
         "candidates": 4,
         "chosen": null,
-        "seed": 1100
+        "seed": 1400
+      }
+    },
+    {
+      "id": "ref_older_brother",
+      "kind": "person",
+      "real_person": false,
+      "consent_id": null,
+      "photos": [],
+      "description": "A tall older Ethiopian brother with calm, reassuring facial features.",
+      "sheet": {
+        "candidates": 4,
+        "chosen": null,
+        "seed": 1500
+      }
+    },
+    {
+      "id": "ref_mother",
+      "kind": "person",
+      "real_person": false,
+      "consent_id": null,
+      "photos": [],
+      "description": "A middle-aged Ethiopian mother with a warm, caring facial expression.",
+      "sheet": {
+        "candidates": 4,
+        "chosen": null,
+        "seed": 1600
       }
     }
   ],
   "voice": {
     "provider_pref": "gemini_tts",
     "voice_name": "Kore",
-    "style_instruction": "warm, slow, unhurried, like an elder telling a story",
+    "style_instruction": "warm, quiet, a little shy, like telling a story to someone close",
     "pace_wps_limit": 2.3
   },
   "music": {
-    "caption": "gentle instrumental, soft strings and warm pads, sparse krar-like plucks, no lead melody, calm, nostalgic",
-    "bpm": 70,
-    "key": "D minor",
-    "duration_s": 80,
+    "caption": "Nostalgic acoustic ensemble featuring soft synth pads, delicate strings, and subtle krar plucks.",
+    "bpm": 68,
+    "key": "G Major",
+    "duration_s": 73,
     "instrumental": true,
     "candidates": 3,
     "seed": 3000,
@@ -55,63 +104,78 @@
     "chosen_reason": null,
     "cues": [
       {
-        "id": "intro",
+        "id": "cue_01",
         "at_s": 0,
-        "intent": "calm opening"
+        "intent": "Nostalgic ambient pad with sparse plucks reflecting childhood memory."
       },
       {
-        "id": "outro",
-        "at_s": 37.5,
-        "intent": "warm resolution"
+        "id": "cue_02",
+        "at_s": 21,
+        "intent": "Warm cello and acoustic rhythm building gentle anticipation during driving lesson."
+      },
+      {
+        "id": "cue_03",
+        "at_s": 42,
+        "intent": "Full warm string harmonic swell bringing emotional fulfillment and pride."
       }
     ]
   },
   "shots": [
     {
       "id": "s01",
-      "reason": "PLACEHOLDER shot 1: exercises the pipeline until the real story lands in M2.",
-      "shot_size": "extreme_wide",
-      "duration_s": 7.5,
-      "characters": [],
-      "references": [],
+      "reason": "Establishes the narrator's early life perspective always watching from the back seat.",
+      "shot_size": "medium_close",
+      "duration_s": 7.0,
+      "characters": [
+        "youngest_sibling"
+      ],
+      "references": [
+        "family_car_ref",
+        "ref_youngest_sibling"
+      ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "PLACEHOLDER composition 1: a quiet courtyard with a coffee pot on a low stool",
+        "prompt": "Young Ethiopian boy sitting quietly in the rear car seat looking forward between front headrests, warm interior glow, soft evening sunlight.",
         "seed": 1001,
         "candidates": 1,
         "approved": false
       },
       "motion": {
         "mode": "i2v",
-        "prompt": "slow push in, soft light drifts",
+        "prompt": "Slow push forward toward the young boy watching intently.",
         "seed": 2001,
         "max_attempts": 3,
         "kenburns": {
           "zoom_from": 1.0,
-          "zoom_to": 1.1,
+          "zoom_to": 1.0,
           "pan": "none"
         },
         "approved": false
       },
       "narration": {
-        "text_am": "ይህ የሙከራ ትረካ ቁጥር 1 ነው።",
-        "text_en": "This is placeholder narration line 1."
+        "text_am": "ሁልጊዜ ከጀርባ ወንበር ላይ ተቀመጥኩ ነበር።",
+        "text_en": "I always sat in the back seat growing up."
       },
-      "music_cue": "intro",
+      "music_cue": "cue_01",
       "transition_in": "fade_black"
     },
     {
       "id": "s02",
-      "reason": "PLACEHOLDER shot 2: exercises the pipeline until the real story lands in M2.",
-      "shot_size": "wide",
-      "duration_s": 7.5,
-      "characters": [],
-      "references": [],
+      "reason": "Captures the cozy warmth of childhood car rides with family in motion.",
+      "shot_size": "medium",
+      "duration_s": 7.0,
+      "characters": [
+        "older_brother"
+      ],
+      "references": [
+        "family_car_ref",
+        "ref_older_brother"
+      ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "PLACEHOLDER composition 2: a quiet courtyard with a coffee pot on a low stool",
+        "prompt": "Over-the-shoulder view from back seat towards older brother driving, golden hour blurred city lights through windshield, cozy ambiance.",
         "seed": 1002,
         "candidates": 1,
         "approved": false
@@ -124,30 +188,33 @@
         "kenburns": {
           "zoom_from": 1.0,
           "zoom_to": 1.1,
-          "pan": "none"
+          "pan": "right"
         },
         "approved": false
       },
       "narration": {
-        "text_am": "ይህ የሙከራ ትረካ ቁጥር 2 ነው።",
-        "text_en": "This is placeholder narration line 2."
+        "text_am": "የቤተሰቤን ጨዋታና ሳቅ እሰማ ነበር።",
+        "text_en": "Listening to my family laugh and talk."
       },
-      "music_cue": "intro",
+      "music_cue": "cue_01",
       "transition_in": "crossfade"
     },
     {
       "id": "s03",
-      "reason": "PLACEHOLDER shot 3: exercises the pipeline until the real story lands in M2.",
-      "shot_size": "medium",
-      "duration_s": 7.5,
+      "reason": "Focuses on the art of driving as seen through an observant younger child's eyes.",
+      "shot_size": "close",
+      "duration_s": 7.0,
       "characters": [
-        "elder"
+        "older_brother"
       ],
-      "references": [],
+      "references": [
+        "family_car_ref",
+        "ref_older_brother"
+      ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "PLACEHOLDER composition 3: a quiet courtyard with a coffee pot on a low stool",
+        "prompt": "Close-up of experienced hands comfortably steering a car wheel, amber dashboard backlight illuminating smooth leather.",
         "seed": 1003,
         "candidates": 1,
         "approved": false
@@ -159,71 +226,72 @@
         "max_attempts": 3,
         "kenburns": {
           "zoom_from": 1.0,
-          "zoom_to": 1.1,
-          "pan": "none"
+          "zoom_to": 1.08,
+          "pan": "up"
         },
         "approved": false
       },
       "narration": {
-        "text_am": "ይህ የሙከራ ትረካ ቁጥር 3 ነው።",
-        "text_en": "This is placeholder narration line 3."
+        "text_am": "ታላላቆቼ መኪና ሲነዱ ለማየት እጓጓ ነበር።",
+        "text_en": "Watching my older siblings take the wheel."
       },
-      "music_cue": "intro",
-      "transition_in": "crossfade"
+      "music_cue": "cue_01",
+      "transition_in": "cut"
     },
     {
       "id": "s04",
-      "reason": "PLACEHOLDER shot 4: exercises the pipeline until the real story lands in M2.",
-      "shot_size": "medium_close",
-      "duration_s": 7.5,
+      "reason": "Marks the narrative turning point where narrator steps into the driver's seat.",
+      "shot_size": "medium",
+      "duration_s": 7.0,
       "characters": [
-        "elder"
+        "youngest_sibling"
       ],
       "references": [
-        "ref_elder"
+        "family_car_ref",
+        "ref_youngest_sibling"
       ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "PLACEHOLDER composition 4: a quiet courtyard with a coffee pot on a low stool",
+        "prompt": "Young Ethiopian adult sitting nervous in the driver's seat on a quiet empty suburban road, cool dusk lighting.",
         "seed": 1004,
         "candidates": 1,
         "approved": false
       },
       "motion": {
         "mode": "i2v",
-        "prompt": "slow push in, soft light drifts",
+        "prompt": "Slow camera pull back revealing the driver alone behind the wheel.",
         "seed": 2004,
         "max_attempts": 3,
         "kenburns": {
           "zoom_from": 1.0,
-          "zoom_to": 1.1,
+          "zoom_to": 1.0,
           "pan": "none"
         },
         "approved": false
       },
       "narration": {
-        "text_am": "ይህ የሙከራ ትረካ ቁጥር 4 ነው።",
-        "text_en": "This is placeholder narration line 4."
+        "text_am": "አንድ ቀን እኔም መሪውን ያዝኩት።",
+        "text_en": "Then came the day I sat in the driver's seat."
       },
-      "music_cue": "intro",
+      "music_cue": "cue_02",
       "transition_in": "crossfade"
     },
     {
       "id": "s05",
-      "reason": "PLACEHOLDER shot 5: exercises the pipeline until the real story lands in M2.",
+      "reason": "Highlights the vulnerability and physical tension of learning to drive.",
       "shot_size": "close",
-      "duration_s": 7.5,
+      "duration_s": 7.0,
       "characters": [
-        "elder"
+        "youngest_sibling"
       ],
       "references": [
-        "ref_elder"
+        "ref_youngest_sibling"
       ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "PLACEHOLDER composition 5: a quiet courtyard with a coffee pot on a low stool",
+        "prompt": "Extreme close-up of tense young hands gripping steering wheel tight at ten-and-two position, dusk shadows across dashboard.",
         "seed": 1005,
         "candidates": 1,
         "approved": false
@@ -235,162 +303,218 @@
         "max_attempts": 3,
         "kenburns": {
           "zoom_from": 1.0,
-          "zoom_to": 1.1,
-          "pan": "none"
+          "zoom_to": 1.12,
+          "pan": "down"
         },
         "approved": false
       },
       "narration": {
-        "text_am": "ይህ የሙከራ ትረካ ቁጥር 5 ነው።",
-        "text_en": "This is placeholder narration line 5."
+        "text_am": "እጆቼ በፍርሃት ተንቀጠቀጡ።",
+        "text_en": "My hands gripped the wheel so tight."
       },
-      "music_cue": "intro",
-      "transition_in": "crossfade"
+      "music_cue": "cue_02",
+      "transition_in": "cut"
     },
     {
       "id": "s06",
-      "reason": "PLACEHOLDER shot 6: exercises the pipeline until the real story lands in M2.",
-      "shot_size": "insert",
-      "duration_s": 7.5,
-      "characters": [],
-      "references": [],
+      "reason": "Shows growing self-awareness and careful responsibility behind the wheel.",
+      "shot_size": "close",
+      "duration_s": 7.0,
+      "characters": [
+        "youngest_sibling"
+      ],
+      "references": [
+        "family_car_ref",
+        "ref_youngest_sibling"
+      ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "PLACEHOLDER composition 6: a quiet courtyard with a coffee pot on a low stool",
+        "prompt": "Framed reflection in interior rear-view mirror showing determined dark eyes adjusting position, soft dim cabin lighting.",
         "seed": 1006,
         "candidates": 1,
         "approved": false
       },
       "motion": {
-        "mode": "still",
+        "mode": "kenburns",
         "prompt": "slow push in, soft light drifts",
         "seed": 2006,
         "max_attempts": 3,
         "kenburns": {
           "zoom_from": 1.0,
-          "zoom_to": 1.1,
+          "zoom_to": 1.09,
           "pan": "none"
         },
         "approved": false
       },
       "narration": {
-        "text_am": "ይህ የሙከራ ትረካ ቁጥር 6 ነው።",
-        "text_en": "This is placeholder narration line 6."
+        "text_am": "በመስታወቱ ውስጥ መንገዱን በፀጥታ አየሁ።",
+        "text_en": "Checking the mirror over and over."
       },
-      "music_cue": "outro",
+      "music_cue": "cue_02",
       "transition_in": "crossfade"
     },
     {
       "id": "s07",
-      "reason": "PLACEHOLDER shot 7: exercises the pipeline until the real story lands in M2.",
-      "shot_size": "medium",
-      "duration_s": 7.5,
-      "characters": [
-        "elder"
+      "reason": "Signals the present day transition where the family relies on the narrator.",
+      "shot_size": "insert",
+      "duration_s": 7.0,
+      "characters": [],
+      "references": [
+        "family_car_ref"
       ],
-      "references": [],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "PLACEHOLDER composition 7: a quiet courtyard with a coffee pot on a low stool",
+        "prompt": "Smartphone resting on passenger seat lighting up brightly in dark car interior, blurred night city lights outside window.",
         "seed": 1007,
         "candidates": 1,
         "approved": false
       },
       "motion": {
-        "mode": "kenburns",
-        "prompt": "slow push in, soft light drifts",
+        "mode": "i2v",
+        "prompt": "Gentle camera tilt down toward glowing phone screen.",
         "seed": 2007,
         "max_attempts": 3,
         "kenburns": {
           "zoom_from": 1.0,
-          "zoom_to": 1.1,
+          "zoom_to": 1.0,
           "pan": "none"
         },
         "approved": false
       },
       "narration": {
-        "text_am": "ይህ የሙከራ ትረካ ቁጥር 7 ነው።",
-        "text_en": "This is placeholder narration line 7."
+        "text_am": "አሁን ደግሞ ስልኬ ማታ ይደውላል።",
+        "text_en": "Now, late at night, my phone lights up."
       },
-      "music_cue": "outro",
+      "music_cue": "cue_03",
       "transition_in": "crossfade"
     },
     {
       "id": "s08",
-      "reason": "PLACEHOLDER shot 8: exercises the pipeline until the real story lands in M2.",
+      "reason": "Illustrates late-night reliability and navigating dark roads with confidence.",
       "shot_size": "wide",
-      "duration_s": 7.5,
-      "characters": [],
-      "references": [],
+      "duration_s": 7.0,
+      "characters": [
+        "youngest_sibling"
+      ],
+      "references": [
+        "family_car_ref",
+        "ref_youngest_sibling"
+      ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "PLACEHOLDER composition 8: a quiet courtyard with a coffee pot on a low stool",
+        "prompt": "Exterior view of car headlights cutting through dark asphalt street at night, warm yellow streetlamps casting long bokeh lights.",
         "seed": 1008,
         "candidates": 1,
         "approved": false
       },
       "motion": {
-        "mode": "i2v",
+        "mode": "kenburns",
         "prompt": "slow push in, soft light drifts",
         "seed": 2008,
         "max_attempts": 3,
         "kenburns": {
           "zoom_from": 1.0,
-          "zoom_to": 1.1,
+          "zoom_to": 1.15,
+          "pan": "left"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "ሁሉም ሰው የእኔን እርዳታ ይፈልጋል።",
+        "text_en": "Everyone calls me when they need a lift."
+      },
+      "music_cue": "cue_03",
+      "transition_in": "cut"
+    },
+    {
+      "id": "s09",
+      "reason": "Depicts the emotional payoff of helping loved ones and earning their trust.",
+      "shot_size": "medium_close",
+      "duration_s": 7.0,
+      "characters": [
+        "mother",
+        "youngest_sibling"
+      ],
+      "references": [
+        "family_car_ref",
+        "ref_mother",
+        "ref_youngest_sibling"
+      ],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "Ethiopian mother entering front passenger door at night, smiling warmly at narrator, warm glowing cabin dome light.",
+        "seed": 1009,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "i2v",
+        "prompt": "Slow pan right from driver to smiling mother closing car door.",
+        "seed": 2009,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.0,
           "pan": "none"
         },
         "approved": false
       },
       "narration": {
-        "text_am": "ይህ የሙከራ ትረካ ቁጥር 8 ነው።",
-        "text_en": "This is placeholder narration line 8."
+        "text_am": "ከጀርባ ወንበር የነበረው ልጅ አሁን አፌዝኩ።",
+        "text_en": "The quiet kid from the back seat..."
       },
-      "music_cue": "outro",
+      "music_cue": "cue_03",
       "transition_in": "crossfade"
     },
     {
-      "id": "s09",
-      "reason": "PLACEHOLDER shot 9: exercises the pipeline until the real story lands in M2.",
-      "shot_size": "extreme_wide",
-      "duration_s": 7.5,
-      "characters": [],
-      "references": [],
+      "id": "s10",
+      "reason": "Concludes on full resolution of personal transformation and familial pride.",
+      "shot_size": "close",
+      "duration_s": 7.0,
+      "characters": [
+        "youngest_sibling"
+      ],
+      "references": [
+        "family_car_ref",
+        "ref_youngest_sibling"
+      ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "PLACEHOLDER composition 9: a quiet courtyard with a coffee pot on a low stool",
-        "seed": 1009,
+        "prompt": "Side mirror reflection showing confident young driver smiling softly as distant city streetlights streak smoothly past.",
+        "seed": 1010,
         "candidates": 1,
         "approved": false
       },
       "motion": {
         "mode": "kenburns",
         "prompt": "slow push in, soft light drifts",
-        "seed": 2009,
+        "seed": 2010,
         "max_attempts": 3,
         "kenburns": {
           "zoom_from": 1.0,
           "zoom_to": 1.1,
-          "pan": "none"
+          "pan": "right"
         },
         "approved": false
       },
       "narration": {
-        "text_am": "ይህ የሙከራ ትረካ ቁጥር 9 ነው።",
-        "text_en": "This is placeholder narration line 9."
+        "text_am": "የቤተሰቤ መኪና አሽከርካሪ እኔ ነኝ።",
+        "text_en": "...is the one who brings everyone home."
       },
-      "music_cue": "outro",
-      "transition_in": "fade_black"
+      "music_cue": "cue_03",
+      "transition_in": "crossfade"
     }
   ],
   "end_card": {
     "text_en": "Made with AI",
-    "text_am": "በሰው ሰራሽ አስተውሎት የተሰራ",
+    "text_am": "ከጀርባ ወንበር እስከ መሪው ድረስ።",
     "credits": [
-      "PLACEHOLDER credits"
+      "Story and narration: TODO(Tahir) your name"
     ],
     "duration_s": 3
   }

@@ -119,16 +119,89 @@ def models_status() -> None:
 
 
 # ---------------------------------------------------------------- pipeline (stubs)
-@app.command(context_settings=_PASSTHROUGH)
-def smoke() -> None:
-    """Call each configured provider once; log latency to runs.jsonl."""
-    _pending("smoke", "M1")
+@app.command()
+def providers(
+    profile: ProfileOpt = None,
+    provider: ProviderOpt = None,
+    capability: Annotated[str | None, typer.Option("--capability", "-c")] = None,
+) -> None:
+    """List providers with tier, status, quota pool, licence and chain position."""
+    project = _project()
+    router = _router(project, profile, provider, quiet=True)
+    reg = router.registry
+    sel = router.sel
+    paid = "on" if sel.paid_ok else "off (needs allow_paid + budget_usd)"
+    console.print(f"profile [bold]{sel.profile}[/] · paid {paid}")
+    for cap, ids in reg.chains.items():
+        if capability and cap != capability:
+            continue
+        active = router.chain_ids(cap)
+        table = Table(title=f"[bold]{cap}[/]", title_justify="left")
+        table.add_column("#")
+        table.add_column("provider", no_wrap=True)
+        for col in ("tier", "status", "quota pool", "model", "private", "licence"):
+            table.add_column(col, overflow="fold")
+        for pid in ids:
+            p = reg.get(pid)
+            ok, reason, hint = router.usable(pid)
+            colour = "green" if ok else ("dim" if reason.startswith("planned") else "yellow")
+            status = f"[{colour}]{reason}[/]" + (f" ({hint})" if hint and not ok else "")
+            pos = str(active.index(pid) + 1) if pid in active else "—"
+            table.add_row(
+                pos,
+                f"{p.label}\n[dim]{pid}[/]",
+                p.tier,
+                status,
+                p.quota_pool,
+                p.model or "",
+                "yes" if p.accepts_private_media else "no",
+                p.licence,
+            )
+        console.print(table)
+    for issue in reg.lint(router.active_chains()):
+        console.print(f"[yellow]{issue.level}[/] {issue.code} {issue.path}: {issue.message}")
 
 
-@app.command(context_settings=_PASSTHROUGH)
-def providers() -> None:
-    """List providers with tier, status, quota pool and licence."""
-    _pending("providers", "M1")
+@app.command()
+def smoke(
+    profile: ProfileOpt = None,
+    only: Annotated[
+        list[str] | None, typer.Option("--only", help="Provider id(s) to smoke.")
+    ] = None,
+    no_discover: Annotated[
+        bool, typer.Option("--no-discover", help="Skip the model-catalogue check.")
+    ] = False,
+) -> None:
+    """One real call per configured provider; each call writes a runs.jsonl line."""
+    from tizita.providers.smoke import discover, run_smoke
+
+    project = _project()
+    router = _router(project, profile)
+    console.print(f"smoke run [bold]{router.runlog.run_id}[/] (profile {router.sel.profile})")
+    if not no_discover:
+        for f in discover(router):
+            colour = {"ok": "green", "moved": "yellow"}.get(f["status"], "red")
+            extra = f["message"] if "message" in f else f.get("model", "")
+            console.print(f"  catalogue [{colour}]{f['status']}[/] {f['provider']}: {extra}")
+            if f["status"] == "moved" and f.get("candidates"):
+                console.print(f"    candidates: {', '.join(f['candidates'])}")
+    rows = run_smoke(router, set(only) if only else None)
+    table = Table("provider", "capability", "model", "status", "latency", "detail")
+    for r in rows:
+        colour = "green" if r.status == "ok" else ("yellow" if r.status == "skipped" else "red")
+        table.add_row(
+            r.provider,
+            r.capability,
+            r.model,
+            f"[{colour}]{r.status}[/]",
+            f"{r.latency_ms} ms" if r.latency_ms is not None else "",
+            r.detail,
+        )
+    console.print(table)
+    n_ok = sum(r.status == "ok" for r in rows)
+    console.print(f"{n_ok}/{len(rows)} ok; runs.jsonl lines tagged run_id {router.runlog.run_id}")
+    if any(r.status.startswith("error") for r in rows):
+        raise typer.Exit(code=1)
 
 
 @app.command(context_settings=_PASSTHROUGH)
@@ -215,19 +288,41 @@ def lint(
         raise typer.Exit(code=1)
 
 
+ProfileOpt = Annotated[
+    str | None,
+    typer.Option("--profile", help="free | free+local | local-first | paid | custom"),
+]
+ProviderOpt = Annotated[
+    list[str] | None,
+    typer.Option("--provider", help="Per-capability override: image=cf_flux2_klein[:model]"),
+]
+
+
+def _router(project: Project, profile=None, overrides=None, quiet: bool = False):
+    from tizita.providers.session import make_router
+
+    try:
+        return make_router(project, profile, overrides, console=None if quiet else console)
+    except ValueError as e:
+        err_console.print(f"[red]{e}[/]")
+        raise typer.Exit(code=2) from e
+
+
 def _extra_lint(project: Project) -> list:
-    """Hook for non-storyboard lint (provider chains); filled in by the providers package."""
-    return []
+    """Provider-config lint: unknown ids, capability mismatch, same-pool first fallback."""
+    router = _router(project, quiet=True)
+    return router.registry.lint(router.active_chains())
 
 
-def _resolver(project: Project):
-    """Planned-provider resolver for `tizita plan`; filled in by the providers package."""
-    return None
+def _resolver(project: Project, profile=None, overrides=None):
+    return _router(project, profile, overrides, quiet=True).plan_provider
 
 
 @app.command()
 def plan(
     storyboard: StoryboardOpt = None,
+    profile: ProfileOpt = None,
+    provider: ProviderOpt = None,
     check: Annotated[bool, typer.Option("--check", help="Exit 1 if anything is dirty.")] = False,
 ) -> None:
     """Dry run: which units are cached, dirty, missing or fallback-upgradable."""
@@ -237,7 +332,7 @@ def plan(
 
     project = _project()
     _, sb = _load(project, storyboard)
-    rows = run_plan(sb, project, resolver=_resolver(project))
+    rows = run_plan(sb, project, resolver=_resolver(project, profile, provider))
     colours = {
         "cached": "green",
         "dirty": "yellow",

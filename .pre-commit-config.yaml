@@ -7,9 +7,9 @@ repos:
         args: ["--maxkb=5120"]
         exclude: ^docs/challenge/
       - id: end-of-file-fixer
-        exclude: \.(jsonl|pdf|ttf)$
+        exclude: (\.(jsonl|pdf|ttf)$|^assets/fonts/)
       - id: trailing-whitespace
-        exclude: \.(jsonl|pdf|ttf|md)$
+        exclude: (\.(jsonl|pdf|ttf|md)$|^assets/fonts/)
       - id: check-yaml
       - id: check-toml
   - repo: https://github.com/astral-sh/ruff-pre-commit

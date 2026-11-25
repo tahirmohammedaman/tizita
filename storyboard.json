@@ -1,0 +1,397 @@
+{
+  "version": 1,
+  "meta": {
+    "title": "PLACEHOLDER — Tizita pipeline fixture",
+    "logline": "A placeholder storyboard used to test the pipeline; not the real story.",
+    "narration_language": "am",
+    "subtitle_language": "en",
+    "target_duration_s": 75,
+    "audience": "PLACEHOLDER (DESIGN.md is the source of truth)",
+    "intent": "PLACEHOLDER (DESIGN.md is the source of truth)"
+  },
+  "style": {
+    "style_block": "warm painterly illustration, visible gouache and oil brush texture, soft golden-hour light, gentle film grain, muted earthy palette with warm ochres and deep greens, cinematic composition, subject centred for vertical framing",
+    "character_defaults": "Ethiopian, warm brown skin tones, natural features, everyday contemporary clothing",
+    "characters": {
+      "elder": {
+        "description": "PLACEHOLDER fictional elder, grey hair, calm expression",
+        "wardrobe": "white netela shawl",
+        "reference_id": "ref_elder"
+      }
+    },
+    "negative": "text, letters, watermark, logo, extra fingers, deformed hands, pale skin, western stock-photo look",
+    "seed_base": 1000
+  },
+  "references": [
+    {
+      "id": "ref_elder",
+      "kind": "person",
+      "real_person": false,
+      "consent_id": null,
+      "photos": [],
+      "description": "PLACEHOLDER fictional elder (text-only reference, no photos)",
+      "sheet": {
+        "candidates": 4,
+        "chosen": null,
+        "seed": 1100
+      }
+    }
+  ],
+  "voice": {
+    "provider_pref": "gemini_tts",
+    "voice_name": "Kore",
+    "style_instruction": "warm, slow, unhurried, like an elder telling a story",
+    "pace_wps_limit": 2.3
+  },
+  "music": {
+    "caption": "gentle instrumental, soft strings and warm pads, sparse krar-like plucks, no lead melody, calm, nostalgic",
+    "bpm": 70,
+    "key": "D minor",
+    "duration_s": 80,
+    "instrumental": true,
+    "candidates": 3,
+    "seed": 3000,
+    "chosen": null,
+    "chosen_reason": null,
+    "cues": [
+      {
+        "id": "intro",
+        "at_s": 0,
+        "intent": "calm opening"
+      },
+      {
+        "id": "outro",
+        "at_s": 37.5,
+        "intent": "warm resolution"
+      }
+    ]
+  },
+  "shots": [
+    {
+      "id": "s01",
+      "reason": "PLACEHOLDER shot 1: exercises the pipeline until the real story lands in M2.",
+      "shot_size": "extreme_wide",
+      "duration_s": 7.5,
+      "characters": [],
+      "references": [],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "PLACEHOLDER composition 1: a quiet courtyard with a coffee pot on a low stool",
+        "seed": 1001,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "i2v",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2001,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.1,
+          "pan": "none"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "ይህ የሙከራ ትረካ ቁጥር 1 ነው።",
+        "text_en": "This is placeholder narration line 1."
+      },
+      "music_cue": "intro",
+      "transition_in": "fade_black"
+    },
+    {
+      "id": "s02",
+      "reason": "PLACEHOLDER shot 2: exercises the pipeline until the real story lands in M2.",
+      "shot_size": "wide",
+      "duration_s": 7.5,
+      "characters": [],
+      "references": [],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "PLACEHOLDER composition 2: a quiet courtyard with a coffee pot on a low stool",
+        "seed": 1002,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "kenburns",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2002,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.1,
+          "pan": "none"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "ይህ የሙከራ ትረካ ቁጥር 2 ነው።",
+        "text_en": "This is placeholder narration line 2."
+      },
+      "music_cue": "intro",
+      "transition_in": "crossfade"
+    },
+    {
+      "id": "s03",
+      "reason": "PLACEHOLDER shot 3: exercises the pipeline until the real story lands in M2.",
+      "shot_size": "medium",
+      "duration_s": 7.5,
+      "characters": [
+        "elder"
+      ],
+      "references": [],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "PLACEHOLDER composition 3: a quiet courtyard with a coffee pot on a low stool",
+        "seed": 1003,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "kenburns",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2003,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.1,
+          "pan": "none"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "ይህ የሙከራ ትረካ ቁጥር 3 ነው።",
+        "text_en": "This is placeholder narration line 3."
+      },
+      "music_cue": "intro",
+      "transition_in": "crossfade"
+    },
+    {
+      "id": "s04",
+      "reason": "PLACEHOLDER shot 4: exercises the pipeline until the real story lands in M2.",
+      "shot_size": "medium_close",
+      "duration_s": 7.5,
+      "characters": [
+        "elder"
+      ],
+      "references": [
+        "ref_elder"
+      ],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "PLACEHOLDER composition 4: a quiet courtyard with a coffee pot on a low stool",
+        "seed": 1004,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "i2v",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2004,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.1,
+          "pan": "none"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "ይህ የሙከራ ትረካ ቁጥር 4 ነው።",
+        "text_en": "This is placeholder narration line 4."
+      },
+      "music_cue": "intro",
+      "transition_in": "crossfade"
+    },
+    {
+      "id": "s05",
+      "reason": "PLACEHOLDER shot 5: exercises the pipeline until the real story lands in M2.",
+      "shot_size": "close",
+      "duration_s": 7.5,
+      "characters": [
+        "elder"
+      ],
+      "references": [
+        "ref_elder"
+      ],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "PLACEHOLDER composition 5: a quiet courtyard with a coffee pot on a low stool",
+        "seed": 1005,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "kenburns",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2005,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.1,
+          "pan": "none"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "ይህ የሙከራ ትረካ ቁጥር 5 ነው።",
+        "text_en": "This is placeholder narration line 5."
+      },
+      "music_cue": "intro",
+      "transition_in": "crossfade"
+    },
+    {
+      "id": "s06",
+      "reason": "PLACEHOLDER shot 6: exercises the pipeline until the real story lands in M2.",
+      "shot_size": "insert",
+      "duration_s": 7.5,
+      "characters": [],
+      "references": [],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "PLACEHOLDER composition 6: a quiet courtyard with a coffee pot on a low stool",
+        "seed": 1006,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "still",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2006,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.1,
+          "pan": "none"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "ይህ የሙከራ ትረካ ቁጥር 6 ነው።",
+        "text_en": "This is placeholder narration line 6."
+      },
+      "music_cue": "outro",
+      "transition_in": "crossfade"
+    },
+    {
+      "id": "s07",
+      "reason": "PLACEHOLDER shot 7: exercises the pipeline until the real story lands in M2.",
+      "shot_size": "medium",
+      "duration_s": 7.5,
+      "characters": [
+        "elder"
+      ],
+      "references": [],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "PLACEHOLDER composition 7: a quiet courtyard with a coffee pot on a low stool",
+        "seed": 1007,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "kenburns",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2007,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.1,
+          "pan": "none"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "ይህ የሙከራ ትረካ ቁጥር 7 ነው።",
+        "text_en": "This is placeholder narration line 7."
+      },
+      "music_cue": "outro",
+      "transition_in": "crossfade"
+    },
+    {
+      "id": "s08",
+      "reason": "PLACEHOLDER shot 8: exercises the pipeline until the real story lands in M2.",
+      "shot_size": "wide",
+      "duration_s": 7.5,
+      "characters": [],
+      "references": [],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "PLACEHOLDER composition 8: a quiet courtyard with a coffee pot on a low stool",
+        "seed": 1008,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "i2v",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2008,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.1,
+          "pan": "none"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "ይህ የሙከራ ትረካ ቁጥር 8 ነው።",
+        "text_en": "This is placeholder narration line 8."
+      },
+      "music_cue": "outro",
+      "transition_in": "crossfade"
+    },
+    {
+      "id": "s09",
+      "reason": "PLACEHOLDER shot 9: exercises the pipeline until the real story lands in M2.",
+      "shot_size": "extreme_wide",
+      "duration_s": 7.5,
+      "characters": [],
+      "references": [],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "PLACEHOLDER composition 9: a quiet courtyard with a coffee pot on a low stool",
+        "seed": 1009,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "kenburns",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2009,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.1,
+          "pan": "none"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "ይህ የሙከራ ትረካ ቁጥር 9 ነው።",
+        "text_en": "This is placeholder narration line 9."
+      },
+      "music_cue": "outro",
+      "transition_in": "fade_black"
+    }
+  ],
+  "end_card": {
+    "text_en": "Made with AI",
+    "text_am": "በሰው ሰራሽ አስተውሎት የተሰራ",
+    "credits": [
+      "PLACEHOLDER credits"
+    ],
+    "duration_s": 3
+  }
+}

@@ -1,0 +1,4 @@
+# Assembly settings (SPEC §10). M2 adds ducking, loudness, grade and transitions.
+subtitles:
+  max_chars_per_line: 40
+  max_lines: 2

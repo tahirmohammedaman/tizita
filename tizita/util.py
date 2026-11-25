@@ -49,6 +49,7 @@ def atomic_write_bytes(path: Path, data: bytes) -> None:
             fh.write(data)
             fh.flush()
             os.fsync(fh.fileno())
+        os.chmod(tmp, 0o644)  # mkstemp creates 0600; artifacts are committed and served
         os.replace(tmp, path)
     except BaseException:
         Path(tmp).unlink(missing_ok=True)

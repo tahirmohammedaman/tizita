@@ -1,0 +1,24 @@
+# Provider profiles (SPEC §7.2). Choose with --profile, TIZITA_PROFILE, or per capability with
+# --provider image=cf_flux2_klein (an override goes first; the rest of the chain stays behind it).
+default: free
+
+# The paid guard needs BOTH allow_paid and a positive budget_usd. The env overrides these:
+# TIZITA_ALLOW_PAID / ALLOW_PAID and TIZITA_BUDGET_USD / PAID_BUDGET_USD.
+allow_paid: false
+budget_usd: null
+
+profiles:
+  free:          # default: free hosted → deterministic; local only for the tiny CPU models
+    tiers: [free_hosted, local, deterministic]
+    local_allow: [mms_tts_local, local_clip, local_whisper]
+  free+local:
+    tiers: [free_hosted, local, deterministic]
+  local-first:
+    tiers: [local, free_hosted, deterministic]
+  paid:          # also requires allow_paid + budget_usd
+    tiers: [paid, free_hosted, local, deterministic]
+  custom:        # per-capability ordered lists; unlisted capabilities use the free order
+    tiers: [free_hosted, local, deterministic]
+    local_allow: [mms_tts_local, local_clip]
+    chains:
+      tts: [mms_tts_local, gemini_tts, previous_take]

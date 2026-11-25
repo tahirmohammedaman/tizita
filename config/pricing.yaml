@@ -1,0 +1,43 @@
+# List-price assumptions for COSTS.md (SPEC §8.3). ESTIMATES, each with a source and the date
+# it was read. `usd: null` = not published per call / not verified yet (cost shows as unknown).
+# unit: call | image | second | m_tokens (USD per million tokens, input+output blended).
+prices:
+  free:
+    usd: 0
+    unit: call
+    note: free tier or local CPU
+  cloudflare.gpt_oss_120b:
+    usd: 0.75          # output rate; input is 0.35/M (blended conservatively at the output rate)
+    unit: m_tokens
+    source: "Workers AI catalogue API, model property `price` (GET /ai/models/search)"
+    read_on: 2026-11-25
+  cloudflare.whisper_large_v3_turbo:
+    usd: 0.00000855     # = 0.000513 per audio minute / 60
+    unit: second
+    per_minute_usd: 0.000513
+    source: "Workers AI catalogue API, model property `price`"
+    read_on: 2026-11-25
+  cloudflare.flux2_klein_4b:
+    usd: null
+    unit: image
+    source: "not listed in the catalogue API; billed in neurons (USD 0.011 per 1,000 neurons above 10,000 free/day, https://developers.cloudflare.com/workers-ai/platform/pricing/)"
+    read_on: 2026-11-25
+    todo: "read neurons per image from the CF dashboard after the M1 smoke"
+  cloudflare.flux1_schnell:
+    usd: null
+    unit: image
+    source: "same as flux2_klein_4b"
+    read_on: 2026-11-25
+  gemini.flash_text:
+    usd: null
+    unit: m_tokens
+    source: "https://ai.google.dev/gemini-api/docs/pricing (not read yet: no key at M1)"
+    todo: "fill in when the Gemini key lands"
+  gemini.flash_lite_text:
+    usd: null
+    unit: m_tokens
+    source: "https://ai.google.dev/gemini-api/docs/pricing"
+  gemini.flash_tts:
+    usd: null
+    unit: m_tokens
+    source: "https://ai.google.dev/gemini-api/docs/pricing"

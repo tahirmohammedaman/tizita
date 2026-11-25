@@ -62,6 +62,7 @@ class RunLog:
         self.run_id = run_id or new_run_id()
         self.profile = profile
         self._n = 0
+        self.last: dict | None = None
 
     def next_call_id(self) -> str:
         self._n += 1
@@ -82,6 +83,7 @@ class RunLog:
         if errors:
             raise ValueError(f"runs.jsonl line fails schema: {errors[0].message}")
         append_jsonl(self.path, line)
+        self.last = line
         return line
 
 

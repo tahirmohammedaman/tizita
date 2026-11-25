@@ -74,7 +74,7 @@ def failures_sink(path: Path) -> Sink:
     """Draft FAILURES.md entries; Tahir curates them."""
 
     def _sink(event: Event) -> None:
-        if event["type"] not in ("fallback", "provider_moved", "circuit_open"):
+        if event["type"] not in ("fallback", "provider_moved"):
             return
         append_jsonl(
             path,

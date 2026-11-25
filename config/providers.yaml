@@ -1,0 +1,387 @@
+# Provider catalogue and fallback chains (SPEC §7.2). Profiles (config/profiles.yaml) pick which
+# tiers of each chain are used and in what order; within a tier, the order below is kept.
+#
+# Verified on 2026-11-25 (M1 smoke):
+#   Cloudflare ids via GET /accounts/{id}/ai/models/search + /ai/models/schema.
+#   Gemini ids are UNVERIFIED (no GEMINI_API_KEY at M1); `tizita smoke` checks them against
+#   models.list and logs anything moved to logs/failures_auto.jsonl.
+#
+# Fields: adapter (null = not built yet; see lands_in), capability, tier, quota_pool, model,
+# env (required keys), weights (dir under $MODELS_DIR), accepts_private_media, licence,
+# cost_basis (key in pricing.yaml), params (defaults merged under request params).
+
+quota_pools:
+  "gemini-free:flash":      { reset: daily_pacific }
+  "gemini-free:flash-lite": { reset: daily_pacific }
+  "gemini-free:tts":        { reset: daily_pacific }
+  "cloudflare:neurons":     { reset: daily_utc, note: "10,000 free neurons/day shared by every Workers AI model" }
+  "groq:free":              { reset: daily_utc }
+  "openrouter:free":        { reset: daily_utc }
+  "hf:spaces":              { reset: "hours:24" }
+  "hf:zerogpu":             { reset: "hours:24" }
+  "hf:inference":           { reset: "hours:720" }
+  "kaggle:gpu":             { reset: "hours:168", note: "weekly GPU quota" }
+
+providers:
+  # ---------------------------------------------------------------- text
+  gemini_flash:
+    label: Gemini 3.8 Flash
+    adapter: gemini_text
+    capability: text
+    tier: free_hosted
+    quota_pool: "gemini-free:flash"
+    model: gemini-3.8-flash            # UNVERIFIED
+    verified: false
+    env: [GEMINI_API_KEY]
+    accepts_private_media: false        # free tier: inputs may be used to improve Google products
+    licence: Gemini API Additional Terms (free tier)
+    cost_basis: gemini.flash_text
+  gemini_flash_lite:
+    label: Gemini 3.8 Flash-Lite
+    adapter: gemini_text
+    capability: text
+    tier: free_hosted
+    quota_pool: "gemini-free:flash-lite"
+    model: gemini-3.8-flash-lite       # UNVERIFIED
+    verified: false
+    env: [GEMINI_API_KEY]
+    accepts_private_media: false
+    licence: Gemini API Additional Terms (free tier)
+    cost_basis: gemini.flash_lite_text
+  cf_text:
+    label: gpt-oss-120b (Workers AI)
+    adapter: cf_workers_ai
+    capability: text
+    tier: free_hosted
+    quota_pool: "cloudflare:neurons"
+    model: "@cf/openai/gpt-oss-120b"
+    verified: true
+    env: [CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN]
+    accepts_private_media: true         # Workers AI: customer inputs not used for training
+    licence: apache-2.0 (model); Cloudflare Workers AI terms
+    cost_basis: cloudflare.gpt_oss_120b
+    params: { max_tokens: 1024 }
+  groq_text:
+    label: gpt-oss-120b (Groq free)
+    adapter: openai_compat
+    capability: text
+    tier: free_hosted
+    quota_pool: "groq:free"
+    model: openai/gpt-oss-120b          # UNVERIFIED (no GROQ_API_KEY at M1)
+    verified: false
+    base_url: https://api.groq.com/openai/v1
+    env: [GROQ_API_KEY]
+    accepts_private_media: false
+    licence: Groq terms
+    cost_basis: free
+  openrouter_text:
+    label: OpenRouter free model
+    adapter: openai_compat
+    capability: text
+    tier: free_hosted
+    quota_pool: "openrouter:free"
+    model: "meta-llama/llama-3.3-70b-instruct:free"   # UNVERIFIED (no OPENROUTER_API_KEY at M1)
+    verified: false
+    base_url: https://openrouter.ai/api/v1
+    env: [OPENROUTER_API_KEY]
+    accepts_private_media: false
+    licence: OpenRouter terms + model licence
+    cost_basis: free
+  gemini_paid_text:
+    label: Gemini 3.8 Flash (paid / org lane)
+    adapter: gemini_text
+    capability: text
+    tier: paid
+    quota_pool: "gemini-paid"
+    model: gemini-3.8-flash             # UNVERIFIED
+    verified: false
+    env: [GEMINI_ORG_API_KEY]
+    accepts_private_media: true          # paid tier: not used to improve products
+    licence: Gemini API paid terms
+    cost_basis: gemini.flash_text
+  storyboard_manual:
+    label: hand-edited storyboard
+    adapter: null
+    lands_in: "n/a: edit storyboard.json by hand"
+    capability: text
+    tier: deterministic
+    quota_pool: "none"
+
+  # ---------------------------------------------------------------- tts
+  gemini_tts:
+    label: Gemini 3.8 Flash TTS
+    adapter: gemini_tts
+    capability: tts
+    tier: free_hosted
+    quota_pool: "gemini-free:tts"
+    model: gemini-3.8-flash-tts         # UNVERIFIED
+    verified: false
+    env: [GEMINI_API_KEY]
+    accepts_private_media: false
+    licence: Gemini API Additional Terms (free tier); prebuilt voices
+    cost_basis: gemini.flash_tts
+  mms_tts_space:
+    label: MMS-TTS Amharic (HF Space)
+    adapter: null
+    lands_in: M2
+    capability: tts
+    tier: free_hosted
+    quota_pool: "hf:spaces"
+    env: [HF_TOKEN]
+    licence: CC-BY-NC-4.0
+  mms_tts_local:
+    label: MMS-TTS Amharic (local CPU)
+    adapter: mms_tts
+    capability: tts
+    tier: local
+    quota_pool: "local:cpu"
+    model: facebook/mms-tts-amh@e366aee5e22a
+    verified: true
+    weights: mms-tts-amh
+    download_item: mms-tts-amh
+    accepts_private_media: true
+    licence: CC-BY-NC-4.0
+    cost_basis: free
+  gemini_tts_paid:
+    label: Gemini TTS (paid / org lane)
+    adapter: null
+    lands_in: M5
+    capability: tts
+    tier: paid
+    quota_pool: "gemini-paid"
+    env: [GEMINI_ORG_API_KEY]
+    accepts_private_media: true
+  previous_take:
+    label: previous cached take
+    adapter: null
+    lands_in: M2
+    capability: tts
+    tier: deterministic
+    quota_pool: "none"
+
+  # ---------------------------------------------------------------- image
+  cf_flux2_klein:
+    label: FLUX.2 klein 4B (cloudflare)
+    adapter: cf_workers_ai
+    capability: image
+    tier: free_hosted
+    quota_pool: "cloudflare:neurons"
+    model: "@cf/black-forest-labs/flux-2-klein-4b"
+    verified: true
+    input_format: multipart              # prompt, width, height, steps, seed, input_image_0..3
+    env: [CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN]
+    accepts_private_media: true
+    licence: apache-2.0 (FLUX.2 klein 4B); BFL + Cloudflare terms
+    cost_basis: cloudflare.flux2_klein_4b
+    params: { width: 576, height: 1024, steps: 4 }   # 9:16 draft; finals go higher
+  hf_flux:
+    label: FLUX (HF Inference Providers)
+    adapter: null
+    lands_in: M3
+    capability: image
+    tier: free_hosted
+    quota_pool: "hf:inference"
+    env: [HF_TOKEN]
+  cf_flux1_schnell:
+    label: FLUX.1 schnell (cloudflare, no ref conditioning)
+    adapter: cf_workers_ai
+    capability: image
+    tier: free_hosted
+    quota_pool: "cloudflare:neurons"
+    model: "@cf/black-forest-labs/flux-1-schnell"
+    verified: true
+    input_format: json                   # schema: prompt + steps only (no seed, no size)
+    supports_seed: false
+    degraded_consistency: true
+    env: [CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN]
+    accepts_private_media: true
+    licence: apache-2.0 (FLUX.1 schnell); Cloudflare terms
+    cost_basis: cloudflare.flux1_schnell
+    params: { steps: 4 }
+  local_flux:
+    label: FLUX.2 klein 4B (local G14, untested)
+    adapter: null
+    lands_in: "M5 (optional; weights on demand)"
+    capability: image
+    tier: local
+    quota_pool: "local:g14"
+    weights: flux2-klein-4b
+    download_item: flux
+    accepts_private_media: true
+    licence: apache-2.0
+  fal_image:
+    label: FLUX.2 klein (fal.ai, paid)
+    adapter: null
+    lands_in: M5
+    capability: image
+    tier: paid
+    quota_pool: "fal:paid"
+    env: [FAL_KEY]
+    accepts_private_media: true
+  previous_keyframe:
+    label: previous approved keyframe
+    adapter: null
+    lands_in: M3
+    capability: image
+    tier: deterministic
+    quota_pool: "none"
+
+  # ---------------------------------------------------------------- i2v
+  kaggle_wan22:
+    label: Wan 2.2 TI2V-5B (Kaggle 2×T4)
+    adapter: null
+    lands_in: M4
+    capability: i2v
+    tier: free_hosted
+    quota_pool: "kaggle:gpu"
+    env: [KAGGLE_USERNAME, KAGGLE_KEY]
+    accepts_private_media: true
+    licence: apache-2.0
+  hf_wan_space:
+    label: Wan 2.2 (HF ZeroGPU Space)
+    adapter: null
+    lands_in: M4
+    capability: i2v
+    tier: free_hosted
+    quota_pool: "hf:zerogpu"
+    env: [HF_TOKEN]
+  local_wan:
+    label: Wan 2.2 5B (local G14, untested)
+    adapter: null
+    lands_in: "M5 (optional)"
+    capability: i2v
+    tier: local
+    quota_pool: "local:g14"
+    weights: wan22-ti2v-5b
+    download_item: wan
+    accepts_private_media: true
+  fal_i2v:
+    label: Wan 2.2 (fal.ai, paid)
+    adapter: null
+    lands_in: M5
+    capability: i2v
+    tier: paid
+    quota_pool: "fal:paid"
+    env: [FAL_KEY]
+  kenburns:
+    label: Ken Burns (FFmpeg)
+    adapter: null
+    lands_in: M3
+    capability: i2v
+    tier: deterministic
+    quota_pool: "none"
+
+  # ---------------------------------------------------------------- music
+  kaggle_ace:
+    label: ACE-Step 1.5 (Kaggle)
+    adapter: null
+    lands_in: M4
+    capability: music
+    tier: free_hosted
+    quota_pool: "kaggle:gpu"
+    env: [KAGGLE_USERNAME, KAGGLE_KEY]
+    licence: MIT
+  hf_ace_space:
+    label: ACE-Step (HF Space)
+    adapter: null
+    lands_in: M4
+    capability: music
+    tier: free_hosted
+    quota_pool: "hf:zerogpu"
+    env: [HF_TOKEN]
+  local_ace:
+    label: ACE-Step 1.5 (local G14, untested)
+    adapter: null
+    lands_in: "M5 (optional)"
+    capability: music
+    tier: local
+    quota_pool: "local:g14"
+    weights: ace-step-1.5
+    download_item: ace
+  fal_music:
+    label: ACE-Step / Stable Audio (fal.ai, paid)
+    adapter: null
+    lands_in: M5
+    capability: music
+    tier: paid
+    quota_pool: "fal:paid"
+    env: [FAL_KEY]
+  synth_pad:
+    label: FFmpeg ambient pad
+    adapter: null
+    lands_in: M2
+    capability: music
+    tier: deterministic
+    quota_pool: "none"
+
+  # ---------------------------------------------------------------- embed
+  local_clip:
+    label: CLIP ViT-B/32 + DINOv2-small (local CPU)
+    adapter: local_clip
+    capability: embed
+    tier: local
+    quota_pool: "local:cpu"
+    model: "timm/vit_base_patch32_clip_224.openai@a6f597a30f7b + facebook/dinov2-small"
+    verified: true
+    weights: clip-vit-b32
+    dino_weights: dinov2-small
+    download_item: clip-vit-b32
+    accepts_private_media: true
+    licence: MIT (CLIP), apache-2.0 (DINOv2)
+    cost_basis: free
+  skip_embed:
+    label: skip consistency check (warning)
+    adapter: null
+    lands_in: M3
+    capability: embed
+    tier: deterministic
+    quota_pool: "none"
+
+  # ---------------------------------------------------------------- asr (benchmark only)
+  gemini_asr:
+    label: Gemini 3.8 Flash (audio in)
+    adapter: null
+    lands_in: M6
+    capability: asr
+    tier: free_hosted
+    quota_pool: "gemini-free:flash"
+    env: [GEMINI_API_KEY]
+  cf_whisper:
+    label: Whisper large-v3-turbo (Workers AI)
+    adapter: cf_workers_ai
+    capability: asr
+    tier: free_hosted
+    quota_pool: "cloudflare:neurons"
+    model: "@cf/openai/whisper-large-v3-turbo"
+    verified: true
+    env: [CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN]
+    accepts_private_media: true
+    licence: MIT (Whisper); Cloudflare terms
+    cost_basis: cloudflare.whisper_large_v3_turbo
+  groq_whisper:
+    label: Whisper (Groq)
+    adapter: null
+    lands_in: M6
+    capability: asr
+    tier: free_hosted
+    quota_pool: "groq:free"
+    env: [GROQ_API_KEY]
+  local_whisper:
+    label: faster-whisper small (local, optional)
+    adapter: null
+    lands_in: "M6 (optional)"
+    capability: asr
+    tier: local
+    quota_pool: "local:cpu"
+    weights: faster-whisper-small
+    download_item: whisper
+
+chains:
+  text:       [gemini_flash, gemini_flash_lite, cf_text, groq_text, openrouter_text, gemini_paid_text, storyboard_manual]
+  tts:        [gemini_tts, mms_tts_space, mms_tts_local, gemini_tts_paid, previous_take]
+  image:      [cf_flux2_klein, hf_flux, cf_flux1_schnell, local_flux, fal_image, previous_keyframe]
+  image_edit: [cf_flux2_klein, hf_flux, local_flux, fal_image, previous_keyframe]
+  i2v:        [kaggle_wan22, hf_wan_space, local_wan, fal_i2v, kenburns]
+  music:      [kaggle_ace, hf_ace_space, local_ace, fal_music, synth_pad]
+  embed:      [local_clip, skip_embed]
+  asr:        [gemini_asr, cf_whisper, groq_whisper, local_whisper]

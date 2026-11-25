@@ -324,6 +324,7 @@ def plan(
     storyboard: StoryboardOpt = None,
     profile: ProfileOpt = None,
     provider: ProviderOpt = None,
+    stage: Annotated[list[str] | None, typer.Option("--stage", help="Only these stages.")] = None,
     check: Annotated[bool, typer.Option("--check", help="Exit 1 if anything is dirty.")] = False,
 ) -> None:
     """Dry run: which units are cached, dirty, missing or fallback-upgradable."""
@@ -334,6 +335,8 @@ def plan(
     project = _project()
     _, sb = _load(project, storyboard)
     rows = run_plan(sb, project, resolver=_resolver(project, profile, provider))
+    if stage:
+        rows = [r for r in rows if r.stage in stage]
     colours = {
         "cached": "green",
         "dirty": "yellow",
@@ -428,10 +431,16 @@ def run(
     _run_stages(set(stage) if stage else None, unit, profile, provider, force, upgrade_fallbacks)
 
 
-@app.command("radio-cut", context_settings=_PASSTHROUGH)
-def radio_cut() -> None:
-    """Narration + placeholder pad + burned subtitles on black."""
-    _pending("radio-cut", "M2")
+@app.command("radio-cut")
+def radio_cut(profile: ProfileOpt = None, provider: ProviderOpt = None) -> None:
+    """Narration + placeholder pad + burned subtitles on black (outputs/radio_cut/<key>.mp4)."""
+    _run_stages({"narration", "timing", "subtitles", "radio_cut"}, None, profile, provider)
+    from tizita.cache import Manifest
+
+    project = _project()
+    e = Manifest.load(project.manifest).get("radio_cut", "project")
+    if e:
+        console.print(f"radio cut: [bold]{e.path}[/]")
 
 
 @app.command(context_settings=_PASSTHROUGH)

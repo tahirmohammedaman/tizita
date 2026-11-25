@@ -30,12 +30,13 @@ class Outcome:
 
 
 def _handlers() -> dict[str, Callable[[Ctx, Any, str], Outcome]]:
-    from tizita.stages import narration, subtitles, timing
+    from tizita.stages import narration, radio_cut, subtitles, timing
 
     return {
         "narration": narration.run,
         "timing": timing.run,
         "subtitles": subtitles.run,
+        "radio_cut": radio_cut.run,
     }
 
 

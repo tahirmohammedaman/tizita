@@ -1,0 +1,97 @@
+[project]
+name = "tizita"
+version = "0.1.0"
+description = "Tizita Studio: a storyboard-driven AI short-film pipeline"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = { text = "MIT" }
+authors = [{ name = "Tahir A. Mohammedaman" }]
+dependencies = [
+  "typer>=0.12",
+  "rich>=13.7",
+  "pydantic>=2.7",
+  "jsonschema>=4.22",
+  "httpx>=0.27",
+  "pyyaml>=6.0",
+  "python-dotenv>=1.0",
+  "pillow>=10.4",
+  "google-genai>=1.0",
+  "gradio-client>=1.3",
+  "huggingface-hub>=0.26",
+  "kaggle>=1.6",
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+  "sqlmodel>=0.0.22",
+]
+
+[project.optional-dependencies]
+# CPU ML (default install): CLIP / DINOv2 embeddings, MMS-TTS, CER benchmark.
+ml = [
+  "torch>=2.5",
+  "torchvision>=0.20",
+  "open-clip-torch>=2.29",
+  "transformers>=4.46",
+  "jiwer>=3.0",
+  "soundfile>=0.12",
+  "numpy>=1.26",
+]
+# Local GPU (opt-in only, SPEC §19): CUDA torch + diffusers. Conflicts with `ml`.
+gpu = [
+  "torch>=2.5",
+  "torchvision>=0.20",
+  "diffusers>=0.32",
+  "accelerate>=1.0",
+  "open-clip-torch>=2.29",
+  "transformers>=4.46",
+  "jiwer>=3.0",
+  "soundfile>=0.12",
+  "numpy>=1.26",
+]
+
+[project.scripts]
+tizita = "tizita.cli:app"
+
+[dependency-groups]
+dev = ["pytest>=8.3", "ruff>=0.7", "pre-commit>=4.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tizita"]
+
+[tool.uv]
+conflicts = [[{ extra = "ml" }, { extra = "gpu" }]]
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cpu", extra = "ml" },
+  { index = "pytorch-cu128", extra = "gpu" },
+]
+torchvision = [
+  { index = "pytorch-cpu", extra = "ml" },
+  { index = "pytorch-cu128", extra = "gpu" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["frontend", "build"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

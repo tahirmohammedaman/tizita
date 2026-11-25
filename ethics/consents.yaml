@@ -1,0 +1,15 @@
+# Consent registry (SPEC §11.3). Entries are written by Tahir only, never by the agent.
+# Evidence files (voice notes, videos, signed text) stay private; commit only their SHA-256.
+#
+# Template:
+# - id: C-001
+#   person: "<name or relation>"
+#   relation: grandmother
+#   scope: [likeness, story]      # likeness | voice | story
+#   recorded_on: 2026-11-25
+#   method: "voice note"          # voice note | video | written
+#   evidence_sha256: "<sha256 of the private evidence file>"
+#   words_approved: true
+#
+# TODO(Tahir): add the real consent record(s) before any image of a real person is generated.
+[]

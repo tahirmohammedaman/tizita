@@ -1,0 +1,13 @@
+title = "tizita gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Template and generated files that hold no secrets"
+paths = [
+  '''\.env\.example$''',
+  '''uv\.lock$''',
+  '''frontend/package-lock\.json$''',
+  '''docs/challenge/.*\.pdf$''',
+]

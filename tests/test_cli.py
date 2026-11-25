@@ -16,7 +16,7 @@ def test_help_lists_spec_commands():
 
 
 def test_stub_exits_2_with_milestone():
-    result = runner.invoke(app, ["plan", "--check"])
+    result = runner.invoke(app, ["run"])
     assert result.exit_code == 2
 
 
@@ -47,3 +47,14 @@ def test_cli_import_is_light():
     )
     proc = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True)
     assert proc.returncode == 0, proc.stdout
+
+
+def test_validate_lint_plan_on_fixture(project, monkeypatch):
+    monkeypatch.setenv("TIZITA_ROOT", str(project.root))
+    assert runner.invoke(app, ["validate"]).exit_code == 0
+    res = runner.invoke(app, ["lint", "--json"])
+    assert res.exit_code == 0 and '"ok": true' in res.output
+    res = runner.invoke(app, ["plan"])
+    assert res.exit_code == 0 and "narration" in res.output
+    assert runner.invoke(app, ["plan", "--check"]).exit_code == 1
+    assert (project.root / "logs" / "events.jsonl").exists()

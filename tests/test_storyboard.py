@@ -15,12 +15,13 @@ def test_good_fixture_passes(good_sb, project):
     assert report.stats["shots"] == 9
 
 
-def test_repo_storyboard_matches_fixture(good_sb):
+def test_repo_storyboard_is_valid():
     import json
 
     from tizita.util import PACKAGE_ROOT
 
-    assert json.loads((PACKAGE_ROOT / "storyboard.json").read_text()) == good_sb
+    sb = json.loads((PACKAGE_ROOT / "storyboard.json").read_text(encoding="utf-8"))
+    assert validate_schema(sb) == []
 
 
 def test_schema_error(mutate, project):

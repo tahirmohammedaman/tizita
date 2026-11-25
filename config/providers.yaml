@@ -154,8 +154,7 @@ providers:
     accepts_private_media: true
   previous_take:
     label: previous cached take
-    adapter: null
-    lands_in: M2 (feat/radio-cut)
+    adapter: previous_take
     capability: tts
     tier: deterministic
     quota_pool: "none"
@@ -309,8 +308,7 @@ providers:
     env: [FAL_KEY]
   synth_pad:
     label: FFmpeg ambient pad
-    adapter: null
-    lands_in: M2 (feat/radio-cut)
+    adapter: synth_pad
     capability: music
     tier: deterministic
     quota_pool: "none"

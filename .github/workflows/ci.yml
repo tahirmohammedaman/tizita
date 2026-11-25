@@ -42,6 +42,8 @@ jobs:
 
       - name: tizita validate
         run: uv run tizita validate
+      - name: tizita plan --check (stages with committed outputs must report 0 dirty)
+        run: uv run tizita plan --check --stage narration --stage timing --stage subtitles --stage radio_cut
       # `tizita plan --check` is added once committed outputs exist (M2+); on an empty
       # cache it exits 1 by design.
 

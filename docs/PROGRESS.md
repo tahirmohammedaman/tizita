@@ -47,7 +47,7 @@
 - **GitHub branch protection is unavailable while the repo is private** (Free plan, 403). `scripts/protect_main.sh` applies it (require `ci`, PR, 0 reviews, no force-push, enforce admins). Run it right after making the repo public.
 - `gitleaks/gitleaks-action@v2` got a 403 listing PR commits even with `pull-requests: read`. CI runs the pinned binary instead.
 - `.env` uses `ALLOW_PAID` / `PAID_BUDGET_USD`; `.env.example` says `TIZITA_ALLOW_PAID` / `TIZITA_BUDGET_USD`. **Both are accepted**; the TIZITA_ names win.
-- `tizita plan --check` is **not** in CI yet: on an empty cache it exits 1 by design. Add it once outputs are committed (end of M2 for narration/timing/radio_cut, full only after M5).
+
 - Narration seeds: the storyboard has none, so the router logs `seed: null` for Gemini TTS and the MMS run uses whatever the stage passes. M2's narration stage should pass `style.seed_base + shot index` to MMS for reproducibility.
 - Retry seeds: attempt 1 uses the storyboard seed; retry n uses `seed + (n-1)*1000`.
 - Rich tables wrap at 80 columns when piped. Provider ids are `no_wrap`.

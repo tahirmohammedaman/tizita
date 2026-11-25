@@ -129,16 +129,14 @@ def discover(router: Router) -> list[dict]:
     gem = [
         p
         for p in reg.providers.values()
-        if (p.cfg.get("adapter") or "").startswith("gemini") and env.get(p.cfg["env"][0])
+        if (p.cfg.get("adapter") or "").startswith("gemini") and p.api_keys()
     ]
     if gem:
         try:
             from tizita.providers.gemini_text import gemini_client
 
-            names = sorted(
-                m.name.removeprefix("models/")
-                for m in gemini_client(env, gem[0].cfg["env"][0]).models.list()
-            )
+            client = gemini_client(env, gem[0].api_keys()[0])  # keep a reference while iterating
+            names = sorted(m.name.removeprefix("models/") for m in client.models.list())
         except Exception as e:  # discovery must never break the smoke run
             findings.append({"provider": "gemini", "status": "error", "message": str(e)[:200]})
         else:

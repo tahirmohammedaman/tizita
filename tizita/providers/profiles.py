@@ -62,8 +62,8 @@ def load_selection(
     if name not in profiles:
         raise ValueError(f"unknown profile {name!r}; choose one of {', '.join(profiles)}")
     p = profiles[name]
-    allow_env = env.get("TIZITA_ALLOW_PAID") or env.get("ALLOW_PAID")
-    budget_env = env.get("TIZITA_BUDGET_USD") or env.get("PAID_BUDGET_USD")
+    allow_env = env.get("ALLOW_PAID")
+    budget_env = env.get("PAID_BUDGET_USD")
     allow = _truthy(allow_env) if allow_env is not None else bool(cfg.get("allow_paid", False))
     budget = _float_or_none(budget_env) if budget_env is not None else cfg.get("budget_usd")
     return Selection(

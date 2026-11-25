@@ -3,7 +3,7 @@
 #
 # Verified on 2026-11-25 (M1 smoke):
 #   Cloudflare ids via GET /accounts/{id}/ai/models/search + /ai/models/schema.
-#   Gemini ids are UNVERIFIED (no GEMINI_API_KEY at M1); `tizita smoke` checks them against
+#   Gemini ids are UNVERIFIED (no GEMINI_API_KEY_n at M1); `tizita smoke` checks them against
 #   models.list and logs anything moved to logs/failures_auto.jsonl.
 #
 # Fields: adapter (null = not built yet; see lands_in), capability, tier, quota_pool, model,
@@ -30,21 +30,21 @@ providers:
     capability: text
     tier: free_hosted
     quota_pool: "gemini-free:flash"
-    model: gemini-3.8-flash            # UNVERIFIED
-    verified: false
-    env: [GEMINI_API_KEY]
+    model: gemini-3.8-flash            # catalogue ok 2026-11-25 (503 'high demand' on first smoke)
+    verified: true
+    env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3]  # separate projects = separate quotas; rotated on 429
     accepts_private_media: false        # free tier: inputs may be used to improve Google products
     licence: Gemini API Additional Terms (free tier)
     cost_basis: gemini.flash_text
   gemini_flash_lite:
-    label: Gemini 3.8 Flash-Lite
+    label: Gemini 3.5 Flash-Lite
     adapter: gemini_text
     capability: text
     tier: free_hosted
     quota_pool: "gemini-free:flash-lite"
-    model: gemini-3.8-flash-lite       # UNVERIFIED
-    verified: false
-    env: [GEMINI_API_KEY]
+    model: gemini-3.5-flash-lite       # 3.8 has no lite text id (catalogue 2026-11-25)
+    verified: true
+    env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3]  # separate projects = separate quotas; rotated on 429
     accepts_private_media: false
     licence: Gemini API Additional Terms (free tier)
     cost_basis: gemini.flash_lite_text
@@ -114,9 +114,10 @@ providers:
     capability: tts
     tier: free_hosted
     quota_pool: "gemini-free:tts"
-    model: gemini-3.8-flash-tts         # UNVERIFIED
-    verified: false
-    env: [GEMINI_API_KEY]
+    model: gemini-3.8-flash-tts         # verified 2026-11-25 (catalogue + live call)
+    verified: true
+    params: { voice_name: Kore, style_mode: none }   # 'prefix' makes the model read the style aloud
+    env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3]  # separate projects = separate quotas; rotated on 429
     accepts_private_media: false
     licence: Gemini API Additional Terms (free tier); prebuilt voices
     cost_basis: gemini.flash_tts
@@ -154,7 +155,7 @@ providers:
   previous_take:
     label: previous cached take
     adapter: null
-    lands_in: M2
+    lands_in: M2 (feat/radio-cut)
     capability: tts
     tier: deterministic
     quota_pool: "none"
@@ -309,7 +310,7 @@ providers:
   synth_pad:
     label: FFmpeg ambient pad
     adapter: null
-    lands_in: M2
+    lands_in: M2 (feat/radio-cut)
     capability: music
     tier: deterministic
     quota_pool: "none"
@@ -345,7 +346,7 @@ providers:
     capability: asr
     tier: free_hosted
     quota_pool: "gemini-free:flash"
-    env: [GEMINI_API_KEY]
+    env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3]  # separate projects = separate quotas; rotated on 429
   cf_whisper:
     label: Whisper large-v3-turbo (Workers AI)
     adapter: cf_workers_ai

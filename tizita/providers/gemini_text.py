@@ -16,10 +16,40 @@ from tizita.providers.errors import (
 )
 
 
-def gemini_client(env: dict[str, str], key_name: str = "GEMINI_API_KEY"):
+def gemini_client(env: dict[str, str], key_name: str):
     from google import genai
 
-    return genai.Client(api_key=env[key_name])
+    # v1beta: TTS (speechConfig) and preview models are only served there.
+    return genai.Client(api_key=env[key_name], http_options={"api_version": "v1beta"})
+
+
+# Key names that hit a quota/rate limit in this process; skipped until every key is spent.
+_SPENT: set[str] = set()
+
+
+def call_rotating(provider: Provider, fn):
+    """Run `fn(client)` with the provider's keys in order. A 429/quota on one key (one Google
+    project = its own free quota) moves to the next key; when all are spent, the last error
+    propagates so the router's circuit/fallback takes over. Key *names* only are ever logged."""
+    from google.genai import errors
+
+    names = provider.api_keys()
+    live = [k for k in names if k not in _SPENT] or names
+    if len(live) == len(names) and _SPENT.issuperset(names):
+        _SPENT.clear()
+    last: ProviderError | None = None
+    for name in live:
+        try:
+            return fn(gemini_client(provider.env, name))
+        except errors.APIError as e:
+            err = classify_gemini(e)
+            if isinstance(err, RateLimited | QuotaExhausted):
+                _SPENT.add(name)
+                last = err
+                continue
+            raise err from e
+    assert last is not None
+    raise last
 
 
 def classify_gemini(e: Exception) -> ProviderError:
@@ -50,9 +80,8 @@ def check_blocked(resp) -> None:
 
 class GeminiText(Provider):
     def call(self, req: Request) -> Result:
-        from google.genai import errors, types
+        from google.genai import types
 
-        client = gemini_client(self.env, self.cfg.get("env", ["GEMINI_API_KEY"])[0])
         params = {**self.params, **req.params}
         cfg = types.GenerateContentConfig(
             system_instruction=req.inputs.get("system"),
@@ -61,10 +90,10 @@ class GeminiText(Provider):
             seed=req.seed,
             response_mime_type=params.get("response_mime_type"),
         )
-        try:
-            resp = client.models.generate_content(model=self.model, contents=req.prompt, config=cfg)
-        except errors.APIError as e:
-            raise classify_gemini(e) from e
+        resp = call_rotating(
+            self,
+            lambda c: c.models.generate_content(model=self.model, contents=req.prompt, config=cfg),
+        )
         check_blocked(resp)
         usage = getattr(resp, "usage_metadata", None)
         metrics = {}

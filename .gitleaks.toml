@@ -5,6 +5,9 @@ useDefault = true
 
 [allowlist]
 description = "Template and generated files that hold no secrets"
+# Cache keys are 16-hex content hashes in runs.jsonl / events.jsonl / manifest.json, not secrets.
+regexTarget = "line"
+regexes = ['''"(cache_key|key)":\s*"[0-9a-f]{16}"''']
 paths = [
   '''\.env\.example$''',
   '''uv\.lock$''',

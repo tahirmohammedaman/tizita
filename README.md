@@ -49,11 +49,11 @@ ffmpeg -hide_banner -filters | grep -E "subtitles|loudnorm|sidechaincompress|zoo
 
 | Variable | Needed for | Free? |
 |---|---|---|
-| `GEMINI_API_KEY` | director, narration (TTS), ASR | free tier (may train on inputs) |
+| `GEMINI_API_KEY_1`..`_3` (rotated on quota; one is enough) | director, narration (TTS), ASR | free tier (may train on inputs) |
 | `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN` | keyframes (FLUX on Workers AI) | daily free allowance |
 | `KAGGLE_USERNAME`, `KAGGLE_KEY` | moving shots (Wan 2.2) + music (ACE-Step) | ~30 GPU h/week |
 | `HF_TOKEN`, `GROQ_API_KEY`, `OPENROUTER_API_KEY` | optional free fallbacks | free |
-| `FAL_KEY`, `REPLICATE_API_TOKEN` | optional paid providers (need `TIZITA_ALLOW_PAID=true` and a budget) | paid |
+| `FAL_KEY`, `REPLICATE_API_TOKEN` | optional paid providers (need `ALLOW_PAID=true` and a budget) | paid |
 
 Secrets live only in `.env` (gitignored). gitleaks runs in pre-commit and CI.
 

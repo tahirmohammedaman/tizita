@@ -3,7 +3,7 @@
 default: free
 
 # The paid guard needs BOTH allow_paid and a positive budget_usd. The env overrides these:
-# TIZITA_ALLOW_PAID / ALLOW_PAID and TIZITA_BUDGET_USD / PAID_BUDGET_USD.
+# ALLOW_PAID and PAID_BUDGET_USD.
 allow_paid: false
 budget_usd: null
 

@@ -269,11 +269,12 @@ def lint(
     as_json: Annotated[bool, typer.Option("--json", help="Machine-readable report.")] = False,
 ) -> None:
     """Semantic lint report (--json for the API/frontend). Exit 1 on errors."""
+    from tizita.stages.timing import measured_for_lint
     from tizita.storyboard import lint as run_lint
 
     project = _project()
     _, sb = _load(project, storyboard)
-    report = run_lint(sb, project)
+    report = run_lint(sb, project, measured=measured_for_lint(project))
     extra = _extra_lint(project)
     report.issues.extend(extra)
     if as_json:
@@ -381,10 +382,50 @@ def plan(
         raise typer.Exit(code=1)
 
 
-@app.command(context_settings=_PASSTHROUGH)
-def run() -> None:
+def _run_stages(
+    stages: set[str] | None,
+    unit: str | None,
+    profile,
+    provider,
+    force: bool = False,
+    upgrade: bool = False,
+) -> None:
+    from tizita.dag import execute
+
+    project = _project()
+    _, sb = _load(project, None)
+    router = _router(project, profile, provider)
+    res = execute(
+        sb,
+        project,
+        router,
+        stages=stages,
+        unit_id=unit,
+        force=force,
+        upgrade_fallbacks=upgrade,
+    )
+    for u in res.ran:
+        console.print(f"  [green]✓[/] {u}")
+    for msg in res.skipped:
+        console.print(f"  [dim]- {msg}[/]")
+    for u, msg in res.failed:
+        console.print(f"  [red]✗ {u}:[/] {msg}")
+    console.print(res.line())
+    if res.failed:
+        raise typer.Exit(code=1)
+
+
+@app.command()
+def run(
+    stage: Annotated[list[str] | None, typer.Option("--stage", help="Repeatable.")] = None,
+    unit: Annotated[str | None, typer.Option("--unit")] = None,
+    force: Annotated[bool, typer.Option("--force", help="Re-run even if cached.")] = False,
+    upgrade_fallbacks: Annotated[bool, typer.Option("--upgrade-fallbacks")] = False,
+    profile: ProfileOpt = None,
+    provider: ProviderOpt = None,
+) -> None:
     """Run the stage graph, regenerating only dirty units."""
-    _pending("run", "M2")
+    _run_stages(set(stage) if stage else None, unit, profile, provider, force, upgrade_fallbacks)
 
 
 @app.command("radio-cut", context_settings=_PASSTHROUGH)

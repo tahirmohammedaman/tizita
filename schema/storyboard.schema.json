@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tizita.tahiraman.me/schema/storyboard.schema.json",
+  "title": "Tizita storyboard (SPEC §5)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "meta", "style", "references", "voice", "music", "shots", "end_card"],
+  "properties": {
+    "version": { "const": 1 },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "logline", "narration_language", "subtitle_language", "target_duration_s"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "logline": { "type": "string", "minLength": 1 },
+        "narration_language": { "type": "string", "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$" },
+        "subtitle_language": { "type": "string", "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$" },
+        "target_duration_s": { "type": "number", "minimum": 60, "maximum": 90 },
+        "audience": { "type": "string" },
+        "intent": { "type": "string" }
+      }
+    },
+    "style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["style_block", "character_defaults", "characters", "negative", "seed_base"],
+      "properties": {
+        "style_block": { "type": "string", "minLength": 1 },
+        "character_defaults": { "type": "string" },
+        "characters": {
+          "type": "object",
+          "propertyNames": { "$ref": "#/$defs/id" },
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["description"],
+            "properties": {
+              "description": { "type": "string", "minLength": 1 },
+              "wardrobe": { "type": ["string", "null"] },
+              "reference_id": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "negative": { "type": "string" },
+        "seed_base": { "$ref": "#/$defs/seed" }
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "real_person", "description", "sheet"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "kind": { "enum": ["person", "place", "object"] },
+          "real_person": { "type": "boolean" },
+          "consent_id": { "type": ["string", "null"] },
+          "photos": { "type": "array", "items": { "type": "string" } },
+          "description": { "type": "string", "minLength": 1 },
+          "sheet": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["candidates", "seed"],
+            "properties": {
+              "candidates": { "type": "integer", "minimum": 1, "maximum": 8 },
+              "chosen": { "type": ["integer", "null"], "minimum": 0 },
+              "seed": { "$ref": "#/$defs/seed" }
+            }
+          }
+        }
+      }
+    },
+    "voice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider_pref", "voice_name", "style_instruction", "pace_wps_limit"],
+      "properties": {
+        "provider_pref": { "type": "string" },
+        "voice_name": { "type": "string" },
+        "style_instruction": { "type": "string" },
+        "pace_wps_limit": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "music": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["caption", "duration_s", "instrumental", "candidates", "seed", "cues"],
+      "properties": {
+        "caption": { "type": "string", "minLength": 1 },
+        "bpm": { "type": ["integer", "null"], "minimum": 30, "maximum": 240 },
+        "key": { "type": ["string", "null"] },
+        "duration_s": { "type": "number", "exclusiveMinimum": 0, "maximum": 240 },
+        "instrumental": { "type": "boolean" },
+        "candidates": { "type": "integer", "minimum": 1, "maximum": 6 },
+        "seed": { "$ref": "#/$defs/seed" },
+        "chosen": { "type": ["integer", "null"], "minimum": 0 },
+        "chosen_reason": { "type": ["string", "null"] },
+        "cues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "at_s"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id" },
+              "at_s": { "type": "number", "minimum": 0 },
+              "intent": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "shots": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/shot" }
+    },
+    "end_card": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text_en", "duration_s"],
+      "properties": {
+        "text_en": { "type": "string" },
+        "text_am": { "type": "string" },
+        "credits": { "type": "array", "items": { "type": "string" } },
+        "duration_s": { "type": "number", "minimum": 0, "maximum": 10 }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "seed": { "type": "integer", "minimum": 0, "maximum": 4294967295 },
+    "shot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "reason", "shot_size", "duration_s", "keyframe", "motion", "narration", "transition_in"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "reason": { "type": "string" },
+        "shot_size": {
+          "enum": ["extreme_wide", "wide", "medium", "medium_close", "close", "extreme_close", "insert"]
+        },
+        "duration_s": { "type": "number", "exclusiveMinimum": 0, "maximum": 20 },
+        "characters": { "type": "array", "items": { "type": "string" } },
+        "references": { "type": "array", "items": { "type": "string" } },
+        "keyframe": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source", "prompt", "seed"],
+          "properties": {
+            "source": { "enum": ["generate", "upload"] },
+            "upload_path": { "type": ["string", "null"] },
+            "prompt": { "type": "string", "minLength": 1 },
+            "seed": { "$ref": "#/$defs/seed" },
+            "candidates": { "type": "integer", "minimum": 1, "maximum": 4 },
+            "approved": { "type": "boolean" }
+          }
+        },
+        "motion": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mode", "seed"],
+          "properties": {
+            "mode": { "enum": ["i2v", "kenburns", "still"] },
+            "prompt": { "type": "string" },
+            "seed": { "$ref": "#/$defs/seed" },
+            "max_attempts": { "type": "integer", "minimum": 1, "maximum": 3 },
+            "kenburns": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "zoom_from": { "type": "number", "minimum": 1, "maximum": 2 },
+                "zoom_to": { "type": "number", "minimum": 1, "maximum": 2 },
+                "pan": { "enum": ["none", "left", "right", "up", "down"] }
+              }
+            },
+            "approved": { "type": "boolean" }
+          }
+        },
+        "narration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["text_am", "text_en"],
+          "properties": {
+            "text_am": { "type": "string" },
+            "text_en": { "type": "string" }
+          }
+        },
+        "music_cue": { "type": ["string", "null"] },
+        "transition_in": { "enum": ["cut", "crossfade", "fade_black"] }
+      }
+    }
+  }
+}

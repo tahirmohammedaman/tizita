@@ -1,0 +1,22 @@
+# Pipeline thresholds and plan estimates (SPEC §5.2, §6.3). Tune from real runs; see COSTS.md.
+shots: { min: 8, max: 12 }
+duration_s: { min: 60, max: 90 }          # shots + end card, planned and measured
+
+gpu:
+  # Kaggle 2×T4 Wan 2.2 TI2V-5B at 480p: estimate until M4 measures it.
+  minutes_per_i2v_shot: 6
+  max_i2v_shots: 6                         # SPEC §9: hero shots only; the rest are Ken Burns
+  budget_minutes: 60
+
+# Per-unit estimates printed by `tizita plan` (seconds of wall clock, GPU minutes).
+stage_estimates:
+  narration:  { latency_s: 8 }
+  timing:     { latency_s: 1 }
+  radio_cut:  { latency_s: 20 }
+  references: { latency_s: 12 }            # per candidate
+  keyframes:  { latency_s: 10 }
+  shots:      { latency_s: 2, i2v_latency_s: 360 }
+  music:      { latency_s: 120, gpu_minutes: 4 }
+  subtitles:  { latency_s: 1 }
+  assemble:   { latency_s: 90 }
+  qa:         { latency_s: 15 }

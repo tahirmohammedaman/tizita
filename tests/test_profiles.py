@@ -33,9 +33,9 @@ def test_real_config_has_no_lint_errors(project):
 
 
 def test_paid_needs_allow_and_budget(project):
-    no_allow = router(project, {"TIZITA_BUDGET_USD": "5"}, profile="paid")
+    no_allow = router(project, {"PAID_BUDGET_USD": "5"}, profile="paid")
     assert all(no_allow.registry.get(p).tier != "paid" for p in no_allow.chain_ids("text"))
-    no_budget = router(project, {"TIZITA_ALLOW_PAID": "true"}, profile="paid")
+    no_budget = router(project, {"ALLOW_PAID": "true"}, profile="paid")
     assert all(no_budget.registry.get(p).tier != "paid" for p in no_budget.chain_ids("text"))
     ok = router(project, {"ALLOW_PAID": "true", "PAID_BUDGET_USD": "5"}, profile="paid")
     assert ok.registry.get(ok.chain_ids("text")[0]).tier == "paid"
@@ -87,3 +87,38 @@ def test_privacy_filter_on_real_config(project):
     for pid in r.chain_ids("text", private_media=True):
         assert r.registry.get(pid).accepts_private_media
     assert "gemini_flash" not in r.chain_ids("text", private_media=True)
+
+
+def test_gemini_key_rotation_moves_to_next_key_on_quota():
+    from google.genai import errors
+
+    from tizita.providers import gemini_text
+    from tizita.providers.gemini_text import GeminiText, call_rotating
+
+    gemini_text._SPENT.clear()
+    p = GeminiText(
+        "g",
+        {"capability": "text", "tier": "free_hosted", "env_any": ["K1", "K2", "K3"]},
+        env={"K1": "a", "K2": "b"},
+        models_dir=None,
+    )
+    assert p.api_keys() == ["K1", "K2"] and p.missing_env() == []
+    used = []
+
+    def fn(client):
+        used.append(client._api_client.api_key)
+        if len(used) == 1:
+            raise errors.ClientError(
+                429, {"error": {"status": "RESOURCE_EXHAUSTED", "message": "x"}}
+            )
+        return "ok"
+
+    assert call_rotating(p, fn) == "ok" and used == ["a", "b"]
+    gemini_text._SPENT.clear()
+    q = GeminiText(
+        "g",
+        {"capability": "text", "tier": "free_hosted", "env_any": ["K1"]},
+        env={},
+        models_dir=None,
+    )
+    assert q.missing_env() == ["K1"]

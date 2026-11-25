@@ -88,7 +88,15 @@ class Provider:
 
     # -- configuration -------------------------------------------------
     def missing_env(self) -> list[str]:
-        return [k for k in self.cfg.get("env", []) if not self.env.get(k)]
+        miss = [k for k in self.cfg.get("env", []) if not self.env.get(k)]
+        any_of = self.cfg.get("env_any") or []
+        if any_of and not any(self.env.get(k) for k in any_of):
+            miss.append(" | ".join(any_of))
+        return miss
+
+    def api_keys(self) -> list[str]:
+        """Names of the configured keys in `env_any` (rotation order)."""
+        return [k for k in self.cfg.get("env_any", []) if self.env.get(k)]
 
     def weights_path(self) -> Path | None:
         w = self.cfg.get("weights")

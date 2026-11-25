@@ -1,0 +1,521 @@
+{
+  "version": 1,
+  "meta": {
+    "title": "The Seat in the Front",
+    "logline": "Growing up in the back seat watching older siblings drive, the youngest family member nervously learns the steering wheel and eventually becomes the reliable driver everyone calls at night.",
+    "narration_language": "am",
+    "subtitle_language": "en",
+    "target_duration_s": 73,
+    "audience": "Family, friends, and short-film reviewers watching on vertical mobile screens.",
+    "intent": "Evoke quiet nostalgia, personal growth, and warm familial pride."
+  },
+  "style": {
+    "style_block": "warm painterly illustration, visible gouache and oil brush texture, soft golden-hour light, gentle film grain, muted earthy palette with warm ochres and deep greens, cinematic composition, subject centred for vertical framing",
+    "character_defaults": "Ethiopian, warm brown skin tones, natural features, everyday contemporary clothing",
+    "negative": "text, letters, watermark, logo, extra fingers, deformed hands, pale skin, western stock-photo look",
+    "seed_base": 1000,
+    "characters": {
+      "youngest_sibling": {
+        "description": "A gentle young Ethiopian adult with soft eyes and natural curly hair.",
+        "wardrobe": "Warm knit dark brown sweater over a simple collared shirt.",
+        "reference_id": "ref_youngest_sibling"
+      },
+      "older_brother": {
+        "description": "A tall older Ethiopian brother with calm, reassuring facial features.",
+        "wardrobe": "Casual navy denim jacket over a grey t-shirt.",
+        "reference_id": "ref_older_brother"
+      },
+      "mother": {
+        "description": "A middle-aged Ethiopian mother with a warm, caring facial expression.",
+        "wardrobe": "Soft cream-colored traditional woven shawl over everyday clothing.",
+        "reference_id": "ref_mother"
+      }
+    }
+  },
+  "references": [
+    {
+      "id": "family_car_ref",
+      "kind": "object",
+      "real_person": false,
+      "consent_id": null,
+      "photos": [],
+      "description": "Interior of a cozy vintage family sedan with worn fabric seats and warm dashboard illumination.",
+      "sheet": {
+        "candidates": 4,
+        "chosen": null,
+        "seed": 1300
+      }
+    },
+    {
+      "id": "ref_youngest_sibling",
+      "kind": "person",
+      "real_person": false,
+      "consent_id": null,
+      "photos": [],
+      "description": "A gentle young Ethiopian adult with soft eyes and natural curly hair.",
+      "sheet": {
+        "candidates": 4,
+        "chosen": null,
+        "seed": 1400
+      }
+    },
+    {
+      "id": "ref_older_brother",
+      "kind": "person",
+      "real_person": false,
+      "consent_id": null,
+      "photos": [],
+      "description": "A tall older Ethiopian brother with calm, reassuring facial features.",
+      "sheet": {
+        "candidates": 4,
+        "chosen": null,
+        "seed": 1500
+      }
+    },
+    {
+      "id": "ref_mother",
+      "kind": "person",
+      "real_person": false,
+      "consent_id": null,
+      "photos": [],
+      "description": "A middle-aged Ethiopian mother with a warm, caring facial expression.",
+      "sheet": {
+        "candidates": 4,
+        "chosen": null,
+        "seed": 1600
+      }
+    }
+  ],
+  "voice": {
+    "provider_pref": "gemini_tts",
+    "voice_name": "Kore",
+    "style_instruction": "warm, quiet, a little shy, like telling a story to someone close",
+    "pace_wps_limit": 2.3
+  },
+  "music": {
+    "caption": "Nostalgic acoustic ensemble featuring soft synth pads, delicate strings, and subtle krar plucks.",
+    "bpm": 68,
+    "key": "G Major",
+    "duration_s": 73,
+    "instrumental": true,
+    "candidates": 3,
+    "seed": 3000,
+    "chosen": null,
+    "chosen_reason": null,
+    "cues": [
+      {
+        "id": "cue_01",
+        "at_s": 0,
+        "intent": "Nostalgic ambient pad with sparse plucks reflecting childhood memory."
+      },
+      {
+        "id": "cue_02",
+        "at_s": 21,
+        "intent": "Warm cello and acoustic rhythm building gentle anticipation during driving lesson."
+      },
+      {
+        "id": "cue_03",
+        "at_s": 42,
+        "intent": "Full warm string harmonic swell bringing emotional fulfillment and pride."
+      }
+    ]
+  },
+  "shots": [
+    {
+      "id": "s01",
+      "reason": "Establishes the narrator's early life perspective always watching from the back seat.",
+      "shot_size": "medium_close",
+      "duration_s": 7.0,
+      "characters": [
+        "youngest_sibling"
+      ],
+      "references": [
+        "family_car_ref",
+        "ref_youngest_sibling"
+      ],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "Young Ethiopian boy sitting quietly in the rear car seat looking forward between front headrests, warm interior glow, soft evening sunlight.",
+        "seed": 1001,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "i2v",
+        "prompt": "Slow push forward toward the young boy watching intently.",
+        "seed": 2001,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.0,
+          "pan": "none"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "ሁልጊዜ ከጀርባ ወንበር ላይ ተቀመጥኩ ነበር።",
+        "text_en": "I always sat in the back seat growing up."
+      },
+      "music_cue": "cue_01",
+      "transition_in": "fade_black"
+    },
+    {
+      "id": "s02",
+      "reason": "Captures the cozy warmth of childhood car rides with family in motion.",
+      "shot_size": "medium",
+      "duration_s": 7.0,
+      "characters": [
+        "older_brother"
+      ],
+      "references": [
+        "family_car_ref",
+        "ref_older_brother"
+      ],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "Over-the-shoulder view from back seat towards older brother driving, golden hour blurred city lights through windshield, cozy ambiance.",
+        "seed": 1002,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "kenburns",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2002,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.1,
+          "pan": "right"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "የቤተሰቤን ጨዋታና ሳቅ እሰማ ነበር።",
+        "text_en": "Listening to my family laugh and talk."
+      },
+      "music_cue": "cue_01",
+      "transition_in": "crossfade"
+    },
+    {
+      "id": "s03",
+      "reason": "Focuses on the art of driving as seen through an observant younger child's eyes.",
+      "shot_size": "close",
+      "duration_s": 7.0,
+      "characters": [
+        "older_brother"
+      ],
+      "references": [
+        "family_car_ref",
+        "ref_older_brother"
+      ],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "Close-up of experienced hands comfortably steering a car wheel, amber dashboard backlight illuminating smooth leather.",
+        "seed": 1003,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "kenburns",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2003,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.08,
+          "pan": "up"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "ታላላቆቼ መኪና ሲነዱ ለማየት እጓጓ ነበር።",
+        "text_en": "Watching my older siblings take the wheel."
+      },
+      "music_cue": "cue_01",
+      "transition_in": "cut"
+    },
+    {
+      "id": "s04",
+      "reason": "Marks the narrative turning point where narrator steps into the driver's seat.",
+      "shot_size": "medium",
+      "duration_s": 7.0,
+      "characters": [
+        "youngest_sibling"
+      ],
+      "references": [
+        "family_car_ref",
+        "ref_youngest_sibling"
+      ],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "Young Ethiopian adult sitting nervous in the driver's seat on a quiet empty suburban road, cool dusk lighting.",
+        "seed": 1004,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "i2v",
+        "prompt": "Slow camera pull back revealing the driver alone behind the wheel.",
+        "seed": 2004,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.0,
+          "pan": "none"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "አንድ ቀን እኔም መሪውን ያዝኩት።",
+        "text_en": "Then came the day I sat in the driver's seat."
+      },
+      "music_cue": "cue_02",
+      "transition_in": "crossfade"
+    },
+    {
+      "id": "s05",
+      "reason": "Highlights the vulnerability and physical tension of learning to drive.",
+      "shot_size": "close",
+      "duration_s": 7.0,
+      "characters": [
+        "youngest_sibling"
+      ],
+      "references": [
+        "ref_youngest_sibling"
+      ],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "Extreme close-up of tense young hands gripping steering wheel tight at ten-and-two position, dusk shadows across dashboard.",
+        "seed": 1005,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "kenburns",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2005,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.12,
+          "pan": "down"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "እጆቼ በፍርሃት ተንቀጠቀጡ።",
+        "text_en": "My hands gripped the wheel so tight."
+      },
+      "music_cue": "cue_02",
+      "transition_in": "cut"
+    },
+    {
+      "id": "s06",
+      "reason": "Shows growing self-awareness and careful responsibility behind the wheel.",
+      "shot_size": "close",
+      "duration_s": 7.0,
+      "characters": [
+        "youngest_sibling"
+      ],
+      "references": [
+        "family_car_ref",
+        "ref_youngest_sibling"
+      ],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "Framed reflection in interior rear-view mirror showing determined dark eyes adjusting position, soft dim cabin lighting.",
+        "seed": 1006,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "kenburns",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2006,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.09,
+          "pan": "none"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "በመስታወቱ ውስጥ መንገዱን በፀጥታ አየሁ።",
+        "text_en": "Checking the mirror over and over."
+      },
+      "music_cue": "cue_02",
+      "transition_in": "crossfade"
+    },
+    {
+      "id": "s07",
+      "reason": "Signals the present day transition where the family relies on the narrator.",
+      "shot_size": "insert",
+      "duration_s": 7.0,
+      "characters": [],
+      "references": [
+        "family_car_ref"
+      ],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "Smartphone resting on passenger seat lighting up brightly in dark car interior, blurred night city lights outside window.",
+        "seed": 1007,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "i2v",
+        "prompt": "Gentle camera tilt down toward glowing phone screen.",
+        "seed": 2007,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.0,
+          "pan": "none"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "አሁን ደግሞ ስልኬ ማታ ይደውላል።",
+        "text_en": "Now, late at night, my phone lights up."
+      },
+      "music_cue": "cue_03",
+      "transition_in": "crossfade"
+    },
+    {
+      "id": "s08",
+      "reason": "Illustrates late-night reliability and navigating dark roads with confidence.",
+      "shot_size": "wide",
+      "duration_s": 7.0,
+      "characters": [
+        "youngest_sibling"
+      ],
+      "references": [
+        "family_car_ref",
+        "ref_youngest_sibling"
+      ],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "Exterior view of car headlights cutting through dark asphalt street at night, warm yellow streetlamps casting long bokeh lights.",
+        "seed": 1008,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "kenburns",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2008,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.15,
+          "pan": "left"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "ሁሉም ሰው የእኔን እርዳታ ይፈልጋል።",
+        "text_en": "Everyone calls me when they need a lift."
+      },
+      "music_cue": "cue_03",
+      "transition_in": "cut"
+    },
+    {
+      "id": "s09",
+      "reason": "Depicts the emotional payoff of helping loved ones and earning their trust.",
+      "shot_size": "medium_close",
+      "duration_s": 7.0,
+      "characters": [
+        "mother",
+        "youngest_sibling"
+      ],
+      "references": [
+        "family_car_ref",
+        "ref_mother",
+        "ref_youngest_sibling"
+      ],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "Ethiopian mother entering front passenger door at night, smiling warmly at narrator, warm glowing cabin dome light.",
+        "seed": 1009,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "i2v",
+        "prompt": "Slow pan right from driver to smiling mother closing car door.",
+        "seed": 2009,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.0,
+          "pan": "none"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "ከጀርባ ወንበር የነበረው ልጅ አሁን አፌዝኩ።",
+        "text_en": "The quiet kid from the back seat..."
+      },
+      "music_cue": "cue_03",
+      "transition_in": "crossfade"
+    },
+    {
+      "id": "s10",
+      "reason": "Concludes on full resolution of personal transformation and familial pride.",
+      "shot_size": "close",
+      "duration_s": 7.0,
+      "characters": [
+        "youngest_sibling"
+      ],
+      "references": [
+        "family_car_ref",
+        "ref_youngest_sibling"
+      ],
+      "keyframe": {
+        "source": "generate",
+        "upload_path": null,
+        "prompt": "Side mirror reflection showing confident young driver smiling softly as distant city streetlights streak smoothly past.",
+        "seed": 1010,
+        "candidates": 1,
+        "approved": false
+      },
+      "motion": {
+        "mode": "kenburns",
+        "prompt": "slow push in, soft light drifts",
+        "seed": 2010,
+        "max_attempts": 3,
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.1,
+          "pan": "right"
+        },
+        "approved": false
+      },
+      "narration": {
+        "text_am": "የቤተሰቤ መኪና አሽከርካሪ እኔ ነኝ።",
+        "text_en": "...is the one who brings everyone home."
+      },
+      "music_cue": "cue_03",
+      "transition_in": "crossfade"
+    }
+  ],
+  "end_card": {
+    "text_en": "Made with AI",
+    "text_am": "ከጀርባ ወንበር እስከ መሪው ድረስ።",
+    "credits": [
+      "Story and narration: TODO(Tahir) your name"
+    ],
+    "duration_s": 3
+  }
+}

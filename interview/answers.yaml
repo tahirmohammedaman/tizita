@@ -1,0 +1,25 @@
+# Director interview answers (SPEC §11.1) for `tizita new --answers interview/answers.yaml`.
+# Source: Tahir's own story brief (2026-11-25). The story is about Tahir, who has consented, and his
+# family, who have consented. No names or private details are sent to the free-tier model.
+# Lines marked AGENT-ASSUMED are working defaults, not Tahir's words: confirm or replace them
+# (they must also go into DESIGN.md, timestamped, before any image is generated).
+whose_story: >
+  My own story (the narrator is the youngest in the family, in first person), with my family's consent.
+audience_and_where: >
+  AGENT-ASSUMED: family and friends, then the course reviewers; watched on a phone, vertical.
+final_feeling: >
+  AGENT-ASSUMED: quiet pride and warmth: the kid in the back seat became the one everyone can count on.
+setting_era: >
+  Contemporary Ethiopia, mostly inside a family car: back seat, mirrors, headlights, quiet roads at
+  dusk and at night. Everyday clothes. Minor creative details are allowed.
+key_moments:
+  - Growing up as the youngest in the family, always in the back seat, watching the rest of us drive.
+  - Nervously learning to drive myself (hands tight on the wheel, mirrors, a quiet empty road).
+  - Now I am the one everyone calls when they need a ride (a phone lighting up, headlights, a late pickup).
+narration_voice: >
+  Warm, quiet, a little shy, first person, like a story told softly to someone close.
+music_mood: >
+  Gentle and nostalgic: soft pads and strings, sparse krar-like plucks, no lead melody.
+photos: >
+  No photos for now. Fictional painterly characters inspired by the story (real_person=false, text-only
+  references). Photos and likeness of real people only after consent records exist in ethics/consents.yaml.

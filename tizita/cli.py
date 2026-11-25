@@ -204,10 +204,62 @@ def smoke(
         raise typer.Exit(code=1)
 
 
-@app.command(context_settings=_PASSTHROUGH)
-def new() -> None:
-    """Director interview -> storyboard.draft.json (--write promotes it)."""
-    _pending("new", "M2")
+@app.command()
+def new(
+    answers: Annotated[
+        Path | None, typer.Option("--answers", help="YAML answers (skips the interview).")
+    ] = None,
+    write: Annotated[
+        bool,
+        typer.Option(
+            "--write",
+            help="Promote storyboard.draft.json to storyboard.json after lint (never otherwise).",
+        ),
+    ] = False,
+    profile: ProfileOpt = None,
+    provider: ProviderOpt = None,
+) -> None:
+    """Director interview -> storyboard.draft.json. `--write` promotes the draft."""
+    from tizita import director
+
+    project = _project()
+    draft_path = project.root / "storyboard.draft.json"
+    if write and answers is None and draft_path.exists():
+        ok, errs = director.promote(project)
+        if not ok:
+            for e in errs:
+                err_console.print(f"[red]✗[/] {e}")
+            raise typer.Exit(code=1)
+        console.print(
+            f"[green]✓[/] {project.rel(draft_path)} → storyboard.json (old one backed up)"
+        )
+        return
+    if answers is not None:
+        data = director.load_answers(answers)
+    else:
+        console.print(f"[yellow]⚠ {director.PRIVACY_WARNING}[/]")
+        data = director.ask_interactively(lambda q: typer.prompt(q))
+    router = _router(project, profile, provider)
+    try:
+        sb, report, prov = director.draft(router, project, data)
+    except Exception as e:  # surface any provider or lint failure
+        err_console.print(f"[red]director failed:[/] {e}")
+        raise typer.Exit(code=1) from e
+    path = director.save_draft(project, sb)
+    _print_report(report, verbose=True)
+    st = report.stats
+    console.print(
+        f"drafted by [bold]{prov.label}[/]: {st.get('shots')} shots, {st.get('planned_total_s')} s "
+        f"planned, {len(report.errors)} error(s), {len(report.warnings)} warning(s) → "
+        f"[bold]{project.rel(path)}[/]"
+    )
+    if not report.ok:
+        raise typer.Exit(code=1)
+    if write:
+        ok, errs = director.promote(project)
+        console.print("[green]✓ promoted to storyboard.json[/]" if ok else f"[red]{errs}[/]")
+    else:
+        console.print("Review the draft, then run [bold]tizita new --write[/] to promote it.")
 
 
 StoryboardOpt = Annotated[

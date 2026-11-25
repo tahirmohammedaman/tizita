@@ -41,6 +41,12 @@ RATE_LIMIT_WAIT_MAX_S = 30.0
 RETRY_SEED_STEP = 1000  # retries use seed + attempt*1000 (SPEC §6.2)
 
 
+PRIVATE_MEDIA_NOTICE = (
+    "private photo(s) will be sent to a hosted provider that accepts private media (Cloudflare "
+    "Workers AI), not to Gemini. Only people who consented may appear; nothing is kept in the repo."
+)
+
+
 class Router:
     def __init__(
         self,
@@ -65,6 +71,7 @@ class Router:
         self.sleep = sleep
         self.rng = rng
         self._spent = spent_usd(runlog.path)
+        self._notified_private = False
 
     # ------------------------------------------------------------ chains
     def chain_ids(self, capability: str, *, private_media: bool = False) -> list[str]:
@@ -118,6 +125,14 @@ class Router:
         """Returns (result, provider used, is_fallback). Raises BadRequest, SafetyBlocked,
         ConsentError or ChainExhausted."""
         require_consent(req.references, self.consents())
+        if req.private_media and not self._notified_private:
+            self._notified_private = True
+            self.bus.emit(
+                "privacy_notice",
+                stage=req.stage,
+                unit=req.unit,
+                message=PRIVATE_MEDIA_NOTICE,
+            )
         ids = self.chain_ids(req.capability, private_media=req.private_media)
         primary = ids[0] if ids else None
         failed_from: str | None = None

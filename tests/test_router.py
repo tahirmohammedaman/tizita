@@ -271,3 +271,12 @@ def test_same_pool_warning():
 )
 def test_classify_http(status, body, ra, kind):
     assert classify_http(status, body, ra).kind == kind
+
+
+def test_private_media_emits_one_privacy_notice_per_run(mk, project):
+    r = mk(Fake("a", private=True))
+    q = req(project, private_media=True)
+    r.call(q)
+    r.call(q)
+    notices = [e for e in r.bus.captured if e["type"] == "privacy_notice"]
+    assert len(notices) == 1 and "Cloudflare" in notices[0]["message"]

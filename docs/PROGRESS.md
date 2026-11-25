@@ -1,6 +1,18 @@
 # Progress log (agent-maintained)
 
-## Status: M1 done (Wed 25 Nov 2026, ~18:00 EAT, ~30 min behind the §18 window)
+## Status: M2 done except Tahir's review of the director draft (Wed 25 Nov 2026, ~18:45 EAT)
+
+### Done in M2
+- **feat/narration (PR #5):** `tizita run [--stage] [--unit] [--force] [--upgrade-fallbacks]` (`dag.execute`: skips cached units, prunes superseded artifacts, manifest with `is_fallback`/`primary_provider`, §7.4 summary line); stages `narration` (seed = `seed_base` + shot index), `timing` (§10.1 slots, advice when outside 60–90 s), `subtitles` (SRT + 9x16/16x9 ASS). `.env.example` now uses exactly the `.env` names (no aliases). **Gemini key rotation**: `GEMINI_API_KEY_1..3` via `env_any`, next key on 429/quota before the router's circuit sees an error.
+- **feat/radio-cut (PR #6, tag `radio-cut-v1`):** `tizita/ffmpeg/graphs.py` (pure builders + golden tests), `synth_pad` and `previous_take` adapters, `radio_cut` stage, `make radio-cut`, `plan --stage`, CI step `plan --check` over narration/timing/subtitles/radio_cut (0 dirty). Radio cut of the **placeholder**: 1080×1920 h264, 67.3 s.
+- **feat/director (this PR):** `tizita new [--answers FILE] [--write]` (`tizita/director.py`): the model writes a compact beat sheet, code assembles the schema-shaped storyboard (seeds, flags, house style, one person reference per character), lint + up to 2 repair rounds → `storyboard.draft.json`. `--write` alone promotes an existing draft after lint (old storyboard backed up to `.state/backup/`). `interview/answers.yaml` holds Tahir's story brief; lines marked AGENT-ASSUMED need his confirmation. Privacy notice event when private photos go to a hosted provider.
+- Tests: 100+ passing.
+
+### Findings in M2 (real runs)
+- **Gemini TTS reads a style prefix aloud**: with `"<style>: <text>"` a 2.7 s Amharic line came out at 9–10 s. `style_mode: none` is the default (plain text, voice name only). Draft in `logs/failures_auto.jsonl`. Voice `Kore` speaks Amharic acceptably to a non-native ear; **Tahir must rate it**.
+- Gemini text: `gemini-3.8-flash` and `3.7-flash` returned 503 "high demand" for hours; `gemini-3.5-flash` and `3.6-flash` answered (slow, 20 s+). Added `gemini_flash_35` to the text chain. There is no `3.8-flash-lite`; the lite id is `gemini-3.5-flash-lite`.
+- `gpt-oss-120b` (Workers AI) drafts a fine English beat sheet but writes poor, ungrammatical Amharic; prefer a Gemini draft for narration (`--provider text=gemini_flash_35`).
+- gitleaks flagged 16-hex cache keys in generated logs as API keys; `.gitleaks.toml` allowlists exactly `"cache_key"|"key": "<16 hex>"`.
 
 ### Done in M1
 - **feat/core (PR #2):** `schema/storyboard.schema.json`, `schema/runlog.schema.json`; `tizita/storyboard.py` (load, schema, every §5.2 lint rule, Ethiopic-aware word count); `tizita/consent.py`; `tizita/cache.py` (§6.2 keys, manifest with per-field hashes); `tizita/dag.py` (per-stage `fields`/`upstream` declarations in `build_units`, dirty/missing/fallback-upgradable detection, `plan`); `tizita/runlog.py` (schema-checked writer, prompt hash + 200-char head, `spent_usd`); `tizita/events.py` (bus, `FallbackEvent`, sinks: events.jsonl, failures_auto.jsonl, yellow CLI line); `tizita validate | lint [--json] | plan [--check]`; 9-shot **PLACEHOLDER** fixture (`storyboard.json` == `tests/fixtures/storyboard_good.json`).
@@ -44,65 +56,60 @@
 | Groq / OpenRouter | no keys | — | text fallback only | none |
 
 ### Gotchas
-- **GitHub branch protection is unavailable while the repo is private** (Free plan, 403). `scripts/protect_main.sh` applies it (require `ci`, PR, 0 reviews, no force-push, enforce admins). Run it right after making the repo public.
+- Branch protection on `main` applied with `scripts/protect_main.sh` after the repo went public (25 Nov).
 - `gitleaks/gitleaks-action@v2` got a 403 listing PR commits even with `pull-requests: read`. CI runs the pinned binary instead.
-- `.env` uses `ALLOW_PAID` / `PAID_BUDGET_USD`; `.env.example` says `TIZITA_ALLOW_PAID` / `TIZITA_BUDGET_USD`. **Both are accepted**; the TIZITA_ names win.
+- Env names are identical in `.env` and `.env.example` (no aliases): `ALLOW_PAID`, `PAID_BUDGET_USD`, `GEMINI_API_KEY_1..3`.
 
 - Narration seeds: the storyboard has none, so the router logs `seed: null` for Gemini TTS and the MMS run uses whatever the stage passes. M2's narration stage should pass `style.seed_base + shot index` to MMS for reproducibility.
 - Retry seeds: attempt 1 uses the storyboard seed; retry n uses `seed + (n-1)*1000`.
 - Rich tables wrap at 80 columns when piped. Provider ids are `no_wrap`.
-- `jq` is still not installed (`sudo dnf install -y jq`). Use `python3 -c` filters until then.
+- The provider cache check does not look at provider *params* (only the provider name): after changing params (e.g. `style_mode`) use `tizita run --force --stage narration`.
+- `plan --check` in CI is limited to the four stages with committed outputs; extend `--stage` as M3–M5 commit theirs.
 
 ### Open TODO(Tahir)
-- **Add `GEMINI_API_KEY` to `.env`**, then run `uv run tizita smoke --only gemini_flash --only gemini_flash_lite --only gemini_tts`. If the catalogue check says `moved`, put the right ids from the printed candidates into `config/providers.yaml` (or ask the next session to).
-- Make the GitHub repo **public**, then `bash scripts/protect_main.sh`.
-- `sudo dnf install -y jq`.
-- Read today's Workers AI neuron usage in the Cloudflare dashboard and note it here (sizes the image budget).
-- ETHICS.md data-flow table: Workers AI is marked `accepts_private_media: true` (Cloudflare states Workers AI inputs are not used for training). Confirm you accept that for photo mode, or set it to false (photo mode would then need the local FLUX path).
-- §18.1 **before M3**: story-owner interview; consent in `ethics/consents.yaml`; DESIGN.md audience + intent written and timestamped **before** any image generation; `tizita new` for the real storyboard (M2 builds it).
+- **Review `storyboard.draft.json`** (10 shots, 73 s planned, Gemini 3.5 Flash). Edit it if you like, then `uv run tizita new --write` promotes it. It replaces the placeholder storyboard, so the cached outputs go dirty by design.
+- Confirm or replace the **AGENT-ASSUMED** lines in `interview/answers.yaml` (audience, final feeling) and write them into **DESIGN.md** (audience + intent, timestamped) **before any image is generated**. Replace the credits placeholder (`TODO(Tahir) your name`) in the storyboard.
+- A native speaker must check the Amharic narration (grammar and tone) before M3 spends GPU/quota on it; the text is Gemini-written.
+- Consent: you said you and your family consent. Record it in `ethics/consents.yaml` (the agent never writes consent records). The draft uses fictional, text-only references (`real_person: false`); photos/likeness of real people need those records first.
+- **Photos (decided 25 Nov):** uploading to Cloudflare Workers AI is accepted; every upload path must warn first (CLI event `privacy_notice` exists; **the frontend upload page must show the warning**, M7). A repo clone uses the local FLUX path for private photos.
+- Test 1 (3+ people) with the real radio cut, then `git tag test1-radio-cut`.
+- Read today's Workers AI neuron usage in the Cloudflare dashboard (sizes the image budget for M3).
+- §18.1 **before M3**: story-owner interview, consent, DESIGN.md timestamped.
 
 ### Next
-M2 Narration + radio cut + director (prompt below).
+M3 References + keyframes (prompt below). Needs the real storyboard promoted first.
 
 ## Next session prompt
 
 ```
 Model: Sonnet · Effort: medium
-Read CLAUDE.md, docs/PROGRESS.md, then SPEC §6.1, §10 items 1/4/8, §11.1, §13 (radio-cut/new rows).
+Read CLAUDE.md, docs/PROGRESS.md, then SPEC §6, §7.2 (image rows), §11.2.
 
-Goal: M2 Narration + radio cut + director. Branches: feat/narration (narration, timing, subtitles
-stages + `tizita run`), feat/radio-cut (synth pad + radio cut + `make radio-cut`), feat/director
-(`tizita new`). One PR each, CI must be green (job `ci`), merge with --merge.
+Goal: M3 References + keyframes. Branches: feat/references (stage, candidates -> golden pick,
+`tizita choose reference`), feat/keyframes (stage, CLIP gate, upload repaint, HF/local adapters).
+One PR each, CI job `ci` green, merge with --merge. M2 is merged; tag radio-cut-v1 exists.
 
-Reuse (don't rebuild): tizita/dag.py build_units/plan/resolve_upstream/unit_key/manifest_path_for
-(stage field declarations already exist; keep STAGE_VERSIONS); tizita/cache.py Manifest.record;
-tizita/providers/session.make_router + Router.call (returns result, provider, is_fallback; it writes
-the artifact atomically and the runs.jsonl line); events.default_bus; storyboard.lint(measured=...).
+Pre-conditions (Tahir, do first; stop and ask if missing):
+- `uv run tizita new --write` ran, i.e. storyboard.json is the real story (check `jq .meta.title`);
+- DESIGN.md audience/intent written and timestamped; consent recorded in ethics/consents.yaml;
+- `git tag test1-radio-cut` after test 1 (3+ people) on the real radio cut (`uv run tizita run`, `make radio-cut`).
 
-Scope:
-- tizita/stages/{narration,timing,subtitles,radio_cut}.py + a small runner in dag.py (`tizita run
-  [--stage X] [--profile] [--provider]`): skip cached units, record manifest with is_fallback /
-  primary_provider, end-of-run summary line (§7.4).
-- narration: Request(capability="tts", prompt=text_am, inputs={voice, style_instruction}); MMS seed
-  = style.seed_base + shot index. Measured duration → timing; feed lint(measured=...).
-- deterministic providers `synth_pad` (FFmpeg ambient pad) and `previous_take`: give them adapters so
-  the chains end somewhere. FFmpeg filtergraphs as pure functions in tizita/ffmpeg/ with golden-string
-  tests (CLAUDE.md); `-hide_banner -loglevel error`; H.264 `-preset veryfast -crf 18`.
-- subtitles: SRT + 9x16/16x9 ASS using config/assembly.yaml + Noto Sans Ethiopic (assets/fonts).
-- radio cut: black 1080x1920 + narration + pad + burned subs → outputs/radio_cut/<key>.mp4.
-- director (`tizita new`): Gemini text via the router (falls back to cf_text) → storyboard.draft.json;
-  `--write` promotes after lint. Never overwrite storyboard.json without --write.
-- Once outputs are committed, add `tizita plan --check` to CI (it must report 0 dirty).
+Reuse (don't rebuild): dag.build_units (references/keyframes fields + UpRef chosen already declared),
+dag.execute + stages/__init__.handlers (add `references`, `keyframes` handlers), Router.call with
+capability image/image_edit (chains in config/providers.yaml), cf_workers_ai adapter (FLUX.2 klein is
+multipart; refs go in input_image_0..3; returns JPEG), local_clip adapter for the CLIP gate,
+Request.private_media + the consent gate, `privacy_notice` event.
 
-Pre-conditions (Tahir): GEMINI_API_KEY in .env + re-smoke the 3 Gemini providers (fix ids if moved);
-jq installed. Without the key, narration falls back to MMS-TTS (fine for M2, say so in the PR).
+Facts learned: Workers AI klein 4B ok (~7-10 s, 512x512, 4 steps); schnell has no seed/size (1024^2);
+neurons per image are UNKNOWN (read the CF dashboard, note it in PROGRESS); max 3 attempts per unit,
+retry seed = seed + (n-1)*1000; draft at 480p-ish sizes. The draft storyboard has fictional text-only
+references (4 sheet candidates each, ~3 person refs + 1 object): ~16 candidate images + 10 keyframes.
+Photo mode: private photos only to providers with accepts_private_media (Cloudflare, local), never Gemini.
 
-Acceptance:
-- `make radio-cut` → an MP4 (ffprobe: 1080x1920, duration within 60–90 s).
-- Edit one text_am, `uv run tizita run` → exactly 1 new tts line:
-  `tail -n 20 runs.jsonl | jq -c 'select(.capability=="tts") | {unit,provider,status}'`.
-- `make test lint` green; tag `radio-cut-v1` on main after the merge.
-Stop for Tahir: after the radio cut exists (test 1 with 3+ people, §18.1), and before `tizita new
---write` replaces the placeholder storyboard.
-Remind him of §18.1 "before M3": interview, consent, DESIGN.md audience/intent timestamped.
+Acceptance: `uv run tizita plan --stage references --stage keyframes` lists the units; candidates
+exist under outputs/references/<ref>/; STOP for Tahir to choose goldens (`tizita choose reference
+<ref> <N>`), then all keyframes generate with a CLIP score table printed; faces/hands checked by Tahir.
+make test lint green; `tizita plan --check --stage ...` extended in CI only for stages with committed outputs.
+Stop for Tahir: before spending quota if CF neurons look exhausted, at the golden pick, and after keyframes.
+Remind him: §18.1 "during M3" choose the golden; check faces and hands on every keyframe.
 ```

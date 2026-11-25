@@ -16,7 +16,7 @@ def test_help_lists_spec_commands():
 
 
 def test_stub_exits_2_with_milestone():
-    result = runner.invoke(app, ["run"])
+    result = runner.invoke(app, ["approve"])
     assert result.exit_code == 2
 
 

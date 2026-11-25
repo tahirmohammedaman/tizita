@@ -12,7 +12,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from tizita.cache import Manifest, ManifestEntry, cache_key, field_hashes, provider_ident
+from tizita.cache import Artifact, Manifest, ManifestEntry, cache_key, field_hashes, provider_ident
 from tizita.storyboard import load_config
 from tizita.util import Project, sha256_file
 
@@ -119,7 +119,7 @@ def build_units(sb: dict, project: Project) -> list[Unit]:
     units: list[Unit] = []
 
     # narration: one TTS call per shot
-    for s in shots:
+    for i, s in enumerate(shots):
         units.append(
             Unit(
                 "narration",
@@ -132,6 +132,7 @@ def build_units(sb: dict, project: Project) -> list[Unit]:
                     "voice.style_instruction": voice["style_instruction"],
                 },
                 capability="tts",
+                seed=int(style["seed_base"]) + i,  # MMS reproducibility (Gemini ignores it)
                 est_latency_s=lat("narration"),
             )
         )
@@ -142,6 +143,7 @@ def build_units(sb: dict, project: Project) -> list[Unit]:
         timing_fields[f"shots[{s['id']}].duration_s"] = s["duration_s"]
         timing_fields[f"shots[{s['id']}].transition_in"] = s["transition_in"]
     timing_fields["end_card.duration_s"] = sb["end_card"]["duration_s"]
+    timing_fields["assembly.timing"] = assembly.get("timing", {})
     units.append(Unit("timing", PROJECT, timing_fields, narr_up, est_latency_s=lat("timing")))
 
     sub_fields: dict[str, Any] = {
@@ -445,3 +447,113 @@ def manifest_path_for(project: Project, unit: Unit, key: str, ext: str) -> Path:
     if unit.unit != PROJECT:
         base = base / unit.unit
     return base / f"{key}.{ext}"
+
+
+# ---------------------------------------------------------------- runner
+
+
+def _prune(project: Project, old_rel: str) -> None:
+    """Delete a superseded artifact and its siblings (`<key>.srt` + `<key>_*.ass`)."""
+    old = project.root / old_rel
+    for f in old.parent.glob(f"{old.stem}*"):
+        if f.is_file():
+            f.unlink()
+
+
+@dataclass
+class RunSummary:
+    run_id: str
+    calls: int = 0
+    cache_hits: int = 0
+    fallbacks: int = 0
+    ran: list[str] = field(default_factory=list)
+    failed: list[tuple[str, str]] = field(default_factory=list)
+    skipped: list[str] = field(default_factory=list)
+
+    def line(self) -> str:
+        tail = " (see logs/failures_auto.jsonl)" if self.fallbacks else ""
+        bad = f", {len(self.failed)} failed" if self.failed else ""
+        return (
+            f"Run {self.run_id} done: {self.calls} calls, {self.cache_hits} cache hits, "
+            f"{self.fallbacks} fallbacks{bad}{tail}"
+        )
+
+
+def execute(
+    sb: dict,
+    project: Project,
+    router: Any,
+    *,
+    stages: set[str] | None = None,
+    unit_id: str | None = None,
+    force: bool = False,
+    upgrade_fallbacks: bool = False,
+) -> RunSummary:
+    """Run every dirty/missing unit of the selected stages (default: all implemented), in order.
+
+    Cached units are skipped; after a unit runs, the manifest is saved so an interrupted run
+    resumes. Stages without a handler yet are listed in `skipped`, never faked.
+    """
+    from tizita.consent import ConsentError
+    from tizita.providers.errors import ProviderError
+    from tizita.stages import Ctx, handlers
+
+    hmap = handlers()
+    manifest = Manifest.load(project.manifest)
+    bus = router.bus
+    ctx = Ctx(sb, project, router, manifest, bus)
+    out = RunSummary(router.runlog.run_id)
+    fresh: set[str] = set()
+    for unit in build_units(sb, project):
+        planned = router.plan_provider(unit.capability, unit) if unit.capability else None
+        shas, stale = resolve_upstream(unit, manifest, fresh)
+        entry = manifest.get(unit.stage, unit.unit)
+        status, _ = _status(unit, entry, project, shas, stale, planned)
+        selected = (not stages or unit.stage in stages) and (not unit_id or unit.unit == unit_id)
+        reusable = status == "cached" or (status == "fallback-upgradable" and not upgrade_fallbacks)
+        if reusable and not (force and selected):
+            out.cache_hits += 1 if selected else 0
+            fresh.add(unit.id)
+            continue
+        if not selected:
+            continue
+        handler = hmap.get(unit.stage)
+        if handler is None:
+            out.skipped.append(f"{unit.id}: stage not implemented yet")
+            continue
+        if stale:
+            out.skipped.append(f"{unit.id}: upstream not ready ({', '.join(stale)})")
+            continue
+        ident = provider_ident_for(planned) if planned and planned.name != "none" else None
+        key = unit_key(unit, shas, ident)
+        try:
+            res = handler(ctx, unit, key)
+        except (ProviderError, ConsentError, RuntimeError) as e:
+            out.failed.append((unit.id, str(e)[:300]))
+            bus.emit("unit_failed", stage=unit.stage, unit=unit.unit, message=str(e)[:300])
+            continue
+        art = Artifact(project.rel(res.path), sha256_file(res.path))
+        if entry is not None and entry.path != art.path:
+            _prune(project, entry.path)
+        manifest.record(
+            stage=unit.stage,
+            unit=unit.unit,
+            key=key,
+            stage_version=STAGE_VERSIONS[unit.stage],
+            artifact=art,
+            provider=res.provider,
+            is_fallback=res.is_fallback,
+            primary_provider=res.primary_provider,
+            run_id=router.runlog.run_id,
+            seed=unit.seed,
+            fields=unit.fields,
+            upstream=shas,
+        )
+        manifest.save()
+        fresh.add(unit.id)
+        out.ran.append(unit.id)
+        out.calls += res.calls
+        out.fallbacks += 1 if res.is_fallback else 0
+        bus.emit("unit_done", stage=unit.stage, unit=unit.unit, path=art.path, key=key)
+    bus.emit("run_summary", **{k: v for k, v in out.__dict__.items() if k != "run_id"})
+    return out

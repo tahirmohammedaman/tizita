@@ -58,3 +58,11 @@ def test_validate_lint_plan_on_fixture(project, monkeypatch):
     assert res.exit_code == 0 and "narration" in res.output
     assert runner.invoke(app, ["plan", "--check"]).exit_code == 1
     assert (project.root / "logs" / "events.jsonl").exists()
+
+
+def test_providers_lists_chains(project, monkeypatch):
+    monkeypatch.setenv("TIZITA_ROOT", str(project.root))
+    monkeypatch.setenv("MODELS_DIR", str(project.root / "none"))
+    res = runner.invoke(app, ["providers", "--capability", "image"])
+    assert res.exit_code == 0, res.output
+    assert "cf_flux2_klein" in res.output and "profile free" in res.output

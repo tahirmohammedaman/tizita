@@ -1,0 +1,41 @@
+# secrets
+.env
+.env.*
+!.env.example
+*.pem
+kaggle.json
+
+# python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+
+# node / frontend
+node_modules/
+frontend/dist/
+.wrangler/
+
+# runtime state and scratch
+.state/
+build/
+logs/downloads.log
+logs/tmp_*.log
+*.tmp
+
+# private media and weights (never committed)
+refs/private/*
+!refs/private/.gitkeep
+models/
+*.safetensors
+*.ckpt
+*.bin
+ethics/evidence/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/

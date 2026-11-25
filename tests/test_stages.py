@@ -8,6 +8,7 @@ import yaml
 
 from tizita.dag import execute
 from tizita.events import EventBus
+from tizita.ffmpeg.graphs import narration_mix_graph, radio_cut_cmd, synth_pad_cmd
 from tizita.providers.base import Provider, Result
 from tizita.providers.profiles import Selection
 from tizita.providers.registry import Registry
@@ -75,6 +76,48 @@ def test_srt_and_ass_golden():
     assert ",Default,,0,0,0,,Hello\\Nthere\n" in ass
     assert "Dialogue: 0,0:00:01.00,0:00:03.50" in ass
     assert ",2,80,80,422,1\n" in ass  # alignment 2, margins, MarginV = 22% of 1920
+
+
+def test_synth_pad_cmd_golden():
+    cmd = synth_pad_cmd(10, "pad.wav", ASM["pad"])
+    assert cmd[:5] == ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y"]
+    graph = cmd[cmd.index("-filter_complex") + 1]
+    assert graph == (
+        "[0:a][1:a][2:a][3:a]amix=inputs=4:normalize=0,volume=0.225,"
+        "tremolo=f=0.18:d=0.35,lowpass=f=900,aecho=0.8:0.7:420|610:0.35|0.25,"
+        "aformat=channel_layouts=stereo,afade=t=in:d=2,afade=t=out:st=7:d=3"
+    )
+    assert cmd.count("-i") == 4 and cmd[-1] == "pad.wav" and "-t" in cmd[-5:]
+
+
+def test_narration_mix_graph_golden():
+    g = narration_mix_graph([0.4, 7.5], ASM["audio"], first=1)
+    assert g.split(";")[0] == (
+        "[1:a]aresample=48000,aformat=channel_layouts=stereo,"
+        "loudnorm=I=-16:TP=-1.5:LRA=11,adelay=400|400[n0]"
+    )
+    assert "[n0][n1]amix=inputs=2:normalize=0:dropout_transition=0,asplit=2[narr][sc]" in g
+    assert "[3:a]aresample=48000,volume=-10dB[pad]" in g
+    assert "[pad][sc]sidechaincompress=threshold=0.02:ratio=6:attack=300:release=1500[ducked]" in g
+    assert g.endswith("loudnorm=I=-14:TP=-1:LRA=11[mix]")
+
+
+def test_radio_cut_cmd_uses_h264_veryfast_crf18_and_maps_streams():
+    cmd = radio_cut_cmd(
+        ["a.wav", "b.wav"], [0.4, 7.5], "pad.wav", "s.ass", "fonts", 70, "o.mp4", ASM
+    )
+    assert cmd[1:4] == ["-hide_banner", "-loglevel", "error"]
+    assert cmd[cmd.index("-preset") : cmd.index("-preset") + 4] == [
+        "-preset",
+        "veryfast",
+        "-crf",
+        "18",
+    ]
+    assert "color=c=black:s=1080x1920:r=24" in cmd
+    graph = cmd[cmd.index("-filter_complex") + 1]
+    assert graph.startswith("[0:v]ass=s.ass:fontsdir=fonts,format=yuv420p[v];[1:a]")
+    assert cmd[cmd.index("-map") + 1] == "[v]" and cmd[-1] == "o.mp4"
+    assert "+faststart" in cmd
 
 
 # ------------------------------------------------------------------ runner with a fake TTS
@@ -156,3 +199,41 @@ def test_unimplemented_stage_is_reported_not_faked(live):
     r = execute(sb, project, router, stages={"keyframes"})
     assert any("not implemented" in s for s in r.skipped) or any("upstream" in s for s in r.skipped)
     assert r.calls == 0
+
+
+def test_previous_take_reuses_the_cached_file_or_is_unavailable(tmp_path):
+    from tizita.providers.base import Request
+    from tizita.providers.errors import Unavailable
+    from tizita.providers.previous_take import PreviousTake
+
+    p = PreviousTake(
+        "previous_take",
+        {"adapter": "previous_take", "capability": "tts", "tier": "deterministic"},
+        env={},
+        models_dir=None,
+    )
+    wav = tmp_path / "old.wav"
+    wav.write_bytes(wav_bytes(1.0))
+    r = p.call(Request("tts", "narration", "s01", inputs={"previous_path": str(wav)}))
+    assert r.data == wav.read_bytes() and r.ext == "wav"
+    with pytest.raises(Unavailable):
+        p.call(Request("tts", "narration", "s01", inputs={"previous_path": str(tmp_path / "no")}))
+
+
+def test_synth_pad_renders_a_wav_of_the_requested_length(monkeypatch):
+    import shutil as sh
+
+    if sh.which("ffmpeg") is None:
+        pytest.skip("ffmpeg not installed")
+    from tizita.providers.base import Request, wav_duration_s
+    from tizita.providers.synth_pad import SynthPad
+
+    monkeypatch.setenv("TIZITA_ROOT", str(REPO))
+    p = SynthPad(
+        "synth_pad",
+        {"adapter": "synth_pad", "capability": "music", "tier": "deterministic"},
+        env={},
+        models_dir=None,
+    )
+    r = p.call(Request("music", "radio_cut", "project", params={"duration_s": 4}))
+    assert abs(wav_duration_s(r.data) - 4.0) < 0.05

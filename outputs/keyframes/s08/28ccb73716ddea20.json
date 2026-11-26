@@ -1,0 +1,61 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "path": "28ccb73716ddea20_try1.jpg",
+      "score": 0.4856,
+      "seed": 1008,
+      "sims": {
+        "clip": [
+          0.5421,
+          0.5089,
+          0.4856
+        ],
+        "dino": [
+          0.0849,
+          0.0456,
+          0.0445
+        ]
+      }
+    },
+    {
+      "attempt": 2,
+      "path": "28ccb73716ddea20_try2.jpg",
+      "score": 0.4449,
+      "seed": 2008,
+      "sims": {
+        "clip": [
+          0.5473,
+          0.5494,
+          0.4449
+        ],
+        "dino": [
+          0.1081,
+          0.1062,
+          0.0892
+        ]
+      }
+    },
+    {
+      "attempt": 3,
+      "path": "28ccb73716ddea20_try3.jpg",
+      "score": 0.5504,
+      "seed": 3008,
+      "sims": {
+        "clip": [
+          0.6015,
+          0.5504,
+          0.6185
+        ],
+        "dino": [
+          0.1714,
+          0.0899,
+          0.1583
+        ]
+      }
+    }
+  ],
+  "below_threshold": false,
+  "chosen_attempt": 3,
+  "threshold": 0.5
+}

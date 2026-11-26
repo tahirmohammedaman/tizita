@@ -27,16 +27,19 @@ class Outcome:
     is_fallback: bool = False
     primary_provider: str | None = None
     calls: int = 0  # provider calls made (0 for pure deterministic stages)
+    candidates: list[Path] | None = None  # multi-candidate artifacts (references, music)
 
 
 def _handlers() -> dict[str, Callable[[Ctx, Any, str], Outcome]]:
-    from tizita.stages import narration, radio_cut, subtitles, timing
+    from tizita.stages import keyframes, narration, radio_cut, references, subtitles, timing
 
     return {
         "narration": narration.run,
         "timing": timing.run,
         "subtitles": subtitles.run,
         "radio_cut": radio_cut.run,
+        "references": references.run,
+        "keyframes": keyframes.run,
     }
 
 

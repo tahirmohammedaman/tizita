@@ -20,3 +20,7 @@ stage_estimates:
   subtitles:  { latency_s: 1 }
   assemble:   { latency_s: 90 }
   qa:         { latency_s: 15 }
+
+# Keyframe consistency gate (SPEC §11.2): CLIP cosine to the golden person reference(s).
+# Start 0.75; calibrate from the first real keyframe table (docs/PROGRESS.md).
+consistency: { threshold: 0.5 }   # calibrated 26 Nov: scene-vs-portrait CLIP ~0.55 (s01, 3 seeds); 0.75 never passes

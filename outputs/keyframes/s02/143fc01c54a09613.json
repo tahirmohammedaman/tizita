@@ -1,0 +1,35 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "path": "143fc01c54a09613_try1.jpg",
+      "score": 0.482,
+      "seed": 1002,
+      "sims": {
+        "clip": [
+          0.482
+        ],
+        "dino": [
+          -0.068
+        ]
+      }
+    },
+    {
+      "attempt": 2,
+      "path": "143fc01c54a09613_try2.jpg",
+      "score": 0.6249,
+      "seed": 2002,
+      "sims": {
+        "clip": [
+          0.6249
+        ],
+        "dino": [
+          0.0278
+        ]
+      }
+    }
+  ],
+  "below_threshold": false,
+  "chosen_attempt": 2,
+  "threshold": 0.5
+}

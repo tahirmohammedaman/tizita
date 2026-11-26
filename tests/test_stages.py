@@ -196,7 +196,7 @@ def test_seed_is_style_seed_base_plus_shot_index(live):
 
 def test_unimplemented_stage_is_reported_not_faked(live):
     project, router, _, sb = live
-    r = execute(sb, project, router, stages={"keyframes"})
+    r = execute(sb, project, router, stages={"shots"})
     assert any("not implemented" in s for s in r.skipped) or any("upstream" in s for s in r.skipped)
     assert r.calls == 0
 

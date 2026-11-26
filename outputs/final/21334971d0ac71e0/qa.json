@@ -13,10 +13,10 @@
     },
     "duration_s": 77.208,
     "expected_frames": 1853,
-    "file": "outputs/final/b3b84d3428c317a2/film_16x9.mp4",
+    "file": "outputs/final/21334971d0ac71e0/film_16x9.mp4",
     "fps": 24.0,
     "frames": 1853,
-    "lra": 6.8,
+    "lra": 6.5,
     "lufs": -14.6,
     "pass": true,
     "profile": "High",
@@ -24,7 +24,7 @@
       1920,
       1080
     ],
-    "true_peak_db": -1.2,
+    "true_peak_db": -1.7,
     "video_codec": "h264"
   },
   "9x16": {
@@ -41,10 +41,10 @@
     },
     "duration_s": 77.208,
     "expected_frames": 1853,
-    "file": "outputs/final/b3b84d3428c317a2/film_9x16.mp4",
+    "file": "outputs/final/21334971d0ac71e0/film_9x16.mp4",
     "fps": 24.0,
     "frames": 1853,
-    "lra": 6.8,
+    "lra": 6.5,
     "lufs": -14.6,
     "pass": true,
     "profile": "High",
@@ -52,7 +52,7 @@
       1080,
       1920
     ],
-    "true_peak_db": -1.2,
+    "true_peak_db": -1.7,
     "video_codec": "h264"
   },
   "pass": true

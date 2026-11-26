@@ -254,3 +254,24 @@
 {"ts":"2026-11-26T09:09:16.529Z","type":"unit_done","run_id":"r_20261126_090820_6906","stage":"qa","unit":"project","path":"outputs/final/b3b84d3428c317a2/qa.json","key":"54de0383b5c2a3f2"}
 {"ts":"2026-11-26T09:09:16.530Z","type":"run_summary","run_id":"r_20261126_090820_6906","calls":3,"cache_hits":0,"fallbacks":1,"ran":["music/project","assemble/project","qa/project"],"failed":[],"skipped":[]}
 {"ts":"2026-11-26T09:10:18.009Z","type":"plan","run_id":null,"summary":{"units":45,"counts":{"cached":45},"to_run":0,"est_latency_s":0,"est_gpu_min":0},"dirty":[]}
+{"ts":"2026-11-26T09:27:52.134Z","type":"plan","run_id":null,"summary":{"units":1,"counts":{"cached":1},"to_run":0,"est_latency_s":0,"est_gpu_min":0},"dirty":[]}
+{"ts":"2026-11-26T09:27:57.780Z","type":"run_summary","run_id":"r_20261126_092757_ed00","calls":0,"cache_hits":1,"fallbacks":0,"ran":[],"failed":[],"skipped":[]}
+{"ts":"2026-11-26T09:28:07.930Z","type":"fallback","run_id":"r_20261126_092802_0914","stage":"music","unit":"project","to":"synth_pad","from_tier":"free_hosted","to_tier":"deterministic","error_class":"unavailable","message":"hf space error: No value provided for required argument: simple_query_input","reset_at":null,"from_label":"ACE-Step 1.5 (HF Space, ZeroGPU)","to_label":"FFmpeg ambient pad","from":"hf_ace_space"}
+{"ts":"2026-11-26T09:28:10.044Z","type":"unit_done","run_id":"r_20261126_092802_0914","stage":"music","unit":"project","path":"outputs/music/e9cc88e9362846fe_cand1.flac","key":"e9cc88e9362846fe"}
+{"ts":"2026-11-26T09:28:10.044Z","type":"run_summary","run_id":"r_20261126_092802_0914","calls":3,"cache_hits":0,"fallbacks":1,"ran":["music/project"],"failed":[],"skipped":[]}
+{"ts":"2026-11-26T09:28:23.798Z","type":"unit_done","run_id":"r_20261126_092823_a372","stage":"music","unit":"project","path":"outputs/music/e9cc88e9362846fe_cand1.flac","key":"e9cc88e9362846fe"}
+{"ts":"2026-11-26T09:28:23.799Z","type":"run_summary","run_id":"r_20261126_092823_a372","calls":0,"cache_hits":0,"fallbacks":0,"ran":["music/project"],"failed":[],"skipped":[]}
+{"ts":"2026-11-26T09:28:35.792Z","type":"fallback","run_id":"r_20261126_092829_1c04","stage":"music","unit":"project","to":"synth_pad","from_tier":"free_hosted","to_tier":"deterministic","error_class":"unavailable","message":"hf space returned no audio (Error: 'float' object cannot be interpreted as an integer)","reset_at":null,"from_label":"ACE-Step 1.5 (HF Space, ZeroGPU)","to_label":"FFmpeg ambient pad","from":"hf_ace_space"}
+{"ts":"2026-11-26T09:28:37.592Z","type":"unit_done","run_id":"r_20261126_092829_1c04","stage":"music","unit":"project","path":"outputs/music/e9cc88e9362846fe_cand1.flac","key":"e9cc88e9362846fe"}
+{"ts":"2026-11-26T09:28:37.592Z","type":"run_summary","run_id":"r_20261126_092829_1c04","calls":3,"cache_hits":0,"fallbacks":1,"ran":["music/project"],"failed":[],"skipped":[]}
+{"ts":"2026-11-26T09:33:13.893Z","type":"unit_done","run_id":"r_20261126_093124_ab46","stage":"music","unit":"project","path":"outputs/music/671f08747e5a53ea_cand1.wav","key":"671f08747e5a53ea"}
+{"ts":"2026-11-26T09:33:13.893Z","type":"run_summary","run_id":"r_20261126_093124_ab46","calls":3,"cache_hits":0,"fallbacks":1,"ran":["music/project"],"failed":[],"skipped":[]}
+{"ts":"2026-11-26T09:33:30.451Z","type":"unit_done","run_id":"r_20261126_093329_a1b0","stage":"music","unit":"project","path":"outputs/music/671f08747e5a53ea_cand1.flac","key":"671f08747e5a53ea"}
+{"ts":"2026-11-26T09:33:30.452Z","type":"run_summary","run_id":"r_20261126_093329_a1b0","calls":0,"cache_hits":0,"fallbacks":0,"ran":["music/project"],"failed":[],"skipped":[]}
+{"ts":"2026-11-26T09:33:42.884Z","type":"degraded","run_id":"r_20261126_093341_540b","stage":"assemble","unit":"project","reason":"music not chosen"}
+{"ts":"2026-11-26T09:34:30.120Z","type":"unit_done","run_id":"r_20261126_093341_540b","stage":"assemble","unit":"project","path":"outputs/final/21334971d0ac71e0/film_9x16.mp4","key":"21334971d0ac71e0"}
+{"ts":"2026-11-26T09:34:31.097Z","type":"qa_result","run_id":"r_20261126_093341_540b","stage":"qa","unit":"project","passed":true,"path":"/home/cyberhelmet/tizita/outputs/final/21334971d0ac71e0/qa.json"}
+{"ts":"2026-11-26T09:34:31.101Z","type":"unit_done","run_id":"r_20261126_093341_540b","stage":"qa","unit":"project","path":"outputs/final/21334971d0ac71e0/qa.json","key":"d1a5c3acb877ec1e"}
+{"ts":"2026-11-26T09:34:31.101Z","type":"run_summary","run_id":"r_20261126_093341_540b","calls":0,"cache_hits":0,"fallbacks":0,"ran":["assemble/project","qa/project"],"failed":[],"skipped":[]}
+{"ts":"2026-11-26T09:35:32.298Z","type":"plan","run_id":null,"summary":{"units":43,"counts":{"cached":43},"to_run":0,"est_latency_s":0,"est_gpu_min":0},"dirty":[]}
+{"ts":"2026-11-26T09:35:38.548Z","type":"plan","run_id":null,"summary":{"units":1,"counts":{"cached":1},"to_run":0,"est_latency_s":0,"est_gpu_min":0},"dirty":[]}

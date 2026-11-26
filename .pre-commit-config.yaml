@@ -5,7 +5,7 @@ repos:
       - id: check-merge-conflict
       - id: check-added-large-files
         args: ["--maxkb=5120"]
-        exclude: ^docs/challenge/
+        exclude: ^(docs/challenge/|outputs/music/)  # music candidates: ~8 MB FLAC on purpose
       - id: end-of-file-fixer
         exclude: (\.(jsonl|pdf|ttf)$|^assets/fonts/)
       - id: trailing-whitespace

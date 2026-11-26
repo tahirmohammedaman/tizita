@@ -2,7 +2,7 @@
   "entries": {
     "assemble/project": {
       "candidates": [],
-      "created_at": "2026-11-26T09:09:15.396Z",
+      "created_at": "2026-11-26T09:34:30.115Z",
       "field_hashes": {
         "assembly": "d9f7724b5fb5aa95",
         "end_card": "00ece5454e33b692",
@@ -10,22 +10,22 @@
         "shots.music_cue": "1f1f21cd714b5ef6"
       },
       "is_fallback": false,
-      "key": "b3b84d3428c317a2",
-      "path": "outputs/final/b3b84d3428c317a2/film_9x16.mp4",
+      "key": "21334971d0ac71e0",
+      "path": "outputs/final/21334971d0ac71e0/film_9x16.mp4",
       "primary_provider": null,
       "provider": {
         "model": null,
         "name": "ffmpeg",
         "params": {}
       },
-      "run_id": "r_20261126_090820_6906",
+      "run_id": "r_20261126_093341_540b",
       "seed": null,
-      "sha256": "7f2bf1bb3a66eb48a853562984c3ba9adc97642b6552772972e236fb16c46c98",
+      "sha256": "71af61800216e597655320488ad8126cd7b33c48901c74c57dba14d4ad65827c",
       "stage": "assemble",
       "stage_version": 1,
       "unit": "project",
       "upstream": {
-        "music/project": "bf8674ecfd62c41dc6b32991c4ece8d43f07f6208ca3367cc391d356bdb6df1e",
+        "music/project": "c0a81c82163faec1193a9d021a7c612f3ac216a1f1ad6cac6579f11cecf36cda",
         "narration/s01": "85ad29351e802cbd4ffe81384b79a18bb92a083612c7dc1c84f1ab48d2529a80",
         "narration/s02": "13ca9925dfea8103914875c9fa4fc283748484b03d91067387e618fa62ff086c",
         "narration/s03": "c7b490a6a07cf4f48e89a23e4388aa086fb2304d2e0cb270f62dc4135edf7986",
@@ -466,42 +466,45 @@
     "music/project": {
       "candidates": [
         {
-          "path": "outputs/music/b3d3dd1aa3c278b5_cand1.flac",
-          "sha256": "bf8674ecfd62c41dc6b32991c4ece8d43f07f6208ca3367cc391d356bdb6df1e"
+          "path": "outputs/music/671f08747e5a53ea_cand1.flac",
+          "sha256": "c0a81c82163faec1193a9d021a7c612f3ac216a1f1ad6cac6579f11cecf36cda"
         },
         {
-          "path": "outputs/music/b3d3dd1aa3c278b5_cand2.flac",
-          "sha256": "06f7271bd028f818963594a71601e2c96622ad7146ccd793654a51f8fb9bf364"
+          "path": "outputs/music/671f08747e5a53ea_cand2.flac",
+          "sha256": "724bee53fe142992175fbb73836bf7f52807892f2547542abcc88b28f9d36757"
         },
         {
-          "path": "outputs/music/b3d3dd1aa3c278b5_cand3.flac",
-          "sha256": "07ddef6606db02595578c5aa6310c0d68a009b3e52d617e1f10ab928442618b8"
+          "path": "outputs/music/671f08747e5a53ea_cand3.flac",
+          "sha256": "096cd1f6dae1bf5c72f6b0aea8406a11715f28dca3d8000723ad3c1fc3401ec2"
         }
       ],
-      "created_at": "2026-11-26T09:08:22.267Z",
+      "created_at": "2026-11-26T09:33:30.425Z",
       "field_hashes": {
         "assembly.pad_variants": "3d33268fd49b6d57",
         "music.bpm": "a21855da08cb102d",
         "music.candidates": "4e07408562bedb8b",
-        "music.caption": "2fc4d95d70999504",
+        "music.caption": "3a0ccd99e44e9fa6",
         "music.cues": "600f7613911943e1",
         "music.duration_s": "96061e92f58e4bdc",
         "music.instrumental": "b5bea41b6c623f7c",
         "music.key": "9abf298f05e8bed9",
         "music.seed": "a176eeb31e601c38"
       },
-      "is_fallback": true,
-      "key": "b3d3dd1aa3c278b5",
-      "path": "outputs/music/b3d3dd1aa3c278b5_cand1.flac",
-      "primary_provider": "kaggle_ace",
+      "is_fallback": false,
+      "key": "671f08747e5a53ea",
+      "path": "outputs/music/671f08747e5a53ea_cand1.flac",
+      "primary_provider": null,
       "provider": {
-        "model": "ffmpeg-sine-pad",
-        "name": "synth_pad",
-        "params": {}
+        "model": "ACE-Step-v1-3.5B (victor/ace-step-jam)",
+        "name": "hf_ace_space",
+        "params": {
+          "guidance_scale": 7.0,
+          "steps": 8
+        }
       },
-      "run_id": "r_20261126_090820_6906",
+      "run_id": "r_20261126_093329_a1b0",
       "seed": 3000,
-      "sha256": "bf8674ecfd62c41dc6b32991c4ece8d43f07f6208ca3367cc391d356bdb6df1e",
+      "sha256": "c0a81c82163faec1193a9d021a7c612f3ac216a1f1ad6cac6579f11cecf36cda",
       "stage": "music",
       "stage_version": 1,
       "unit": "project",
@@ -839,21 +842,21 @@
     },
     "qa/project": {
       "candidates": [],
-      "created_at": "2026-11-26T09:09:16.525Z",
+      "created_at": "2026-11-26T09:34:31.098Z",
       "field_hashes": {},
       "is_fallback": false,
-      "key": "54de0383b5c2a3f2",
-      "path": "outputs/final/b3b84d3428c317a2/qa.json",
+      "key": "d1a5c3acb877ec1e",
+      "path": "outputs/final/21334971d0ac71e0/qa.json",
       "primary_provider": null,
       "provider": null,
-      "run_id": "r_20261126_090820_6906",
+      "run_id": "r_20261126_093341_540b",
       "seed": null,
-      "sha256": "7c49badbaf588e1e2bc4790cd98841ceb85151700476c7c1ca29e51ecc63dc51",
+      "sha256": "04e807e3679ba527c51143a786714af589ac75efc8b27048c90d6dde6d361a71",
       "stage": "qa",
       "stage_version": 1,
       "unit": "project",
       "upstream": {
-        "assemble/project": "7f2bf1bb3a66eb48a853562984c3ba9adc97642b6552772972e236fb16c46c98"
+        "assemble/project": "71af61800216e597655320488ad8126cd7b33c48901c74c57dba14d4ad65827c"
       }
     },
     "radio_cut/project": {

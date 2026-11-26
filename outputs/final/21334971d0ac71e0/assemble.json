@@ -7,14 +7,14 @@
     "music: none chosen yet, using candidate 1"
   ],
   "loudnorm_pass1": {
-    "input_i": "-17.59",
-    "input_lra": "10.90",
-    "input_thresh": "-28.84",
-    "input_tp": "-1.13",
+    "input_i": "-17.61",
+    "input_lra": "9.60",
+    "input_thresh": "-28.77",
+    "input_tp": "-1.22",
     "normalization_type": "dynamic",
     "output_i": "-15.58",
-    "output_lra": "7.20",
-    "output_thresh": "-26.60",
+    "output_lra": "6.40",
+    "output_thresh": "-26.56",
     "output_tp": "-2.00",
     "target_offset": "1.58"
   },
@@ -22,9 +22,9 @@
     "Voice: gemini-3.8-flash-tts",
     "Images: flux-2-klein-4b",
     "Motion: ffmpeg-zoompan",
-    "Music: ffmpeg-sine-pad"
+    "Music: ace-step-jam)"
   ],
-  "music": "outputs/music/b3d3dd1aa3c278b5_cand1.flac",
+  "music": "outputs/music/671f08747e5a53ea_cand1.flac",
   "music_chosen": null,
   "total_s": 77.2
 }

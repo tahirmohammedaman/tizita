@@ -208,3 +208,40 @@ def test_kenburns_renders_exact_frame_count(tmp_path):
     s = json.loads(out)["streams"][0]
     assert (s["width"], s["height"], s["nb_read_frames"], s["pix_fmt"]) == (
         1080, 1920, "12", "yuv420p")  # fmt: skip
+
+
+def test_hf_ace_space_jam_decodes_data_uri_and_puts_tempo_in_tags(monkeypatch):
+    import base64
+    import sys
+    import types
+
+    from tizita.providers.base import Request
+    from tizita.providers.hf_ace_space import HFAceSpace
+
+    seen = {}
+
+    class FakeClient:
+        def __init__(self, space, token=None, verbose=False):
+            seen["space"] = space
+
+        def predict(self, **kw):
+            seen.update(kw)
+            return "data:audio/wav;base64," + base64.b64encode(b"RIFFxxxx").decode()
+
+    monkeypatch.setitem(sys.modules, "gradio_client", types.SimpleNamespace(Client=FakeClient))
+    cfg = {
+        "capability": "music",
+        "tier": "free_hosted",
+        "space": "victor/ace-step-jam",
+        "api_name": "/generate",
+        "flavor": "jam",
+        "model": "ace",
+        "params": {"steps": 8},
+    }
+    p = HFAceSpace("hf_ace_space", cfg, env={"HF_TOKEN": "t"}, models_dir=Path("."))
+    req = Request(capability="music", stage="music", unit="project", prompt="warm cello.",
+                  params={"duration_s": 83, "bpm": 68, "key": "G Major"}, seed=3001)  # fmt: skip
+    res = p.call(req)
+    assert res.data == b"RIFFxxxx" and res.ext == "wav" and res.seed_used == 3001
+    assert seen["prompt"] == "warm cello, 68 BPM, G Major, instrumental, no vocals"
+    assert seen["lyrics"] == "[instrumental]" and seen["seed"] == 3001 and seen["infer_step"] == 8

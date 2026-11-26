@@ -6,20 +6,28 @@
 - **Who will watch:** family and friends, then the course reviewers
 - **Where they'll watch:** phones, vertical (9x16)
 - **What they should feel or understand at the end:** quiet pride and warmth: the kid in the back seat became the one everyone can count on
-- **Logline:** <!-- TODO(Tahir) -->
+- **Logline:** The youngest in the family grows up in the back seat, watching everyone else drive, nervously learns to drive himself, and becomes the one everyone calls when they need a ride. A simple story, and one that feels very much like me.
 
 ## Story source
 
 Tahir's own story, told in first person as the youngest of five siblings (two older brothers, two older sisters). Details in Tahir's words (2026-11-26): he now drives his sisters home at night, drives his older parents and runs errands, and lets his small nephews and nieces sit on his lap and hold the wheel. All characters are fictional painterly stand-ins; no photos are used.
-<!-- TODO(Tahir): how you spoke with your family about the film, and what they asked you to keep or leave out. -->
+**Talking with the family:** everything went through our family group chat. I shared the storyboard
+and the radio cut there, and everyone agreed to the story being told (consents in ETHICS). They liked
+it, and their comments shaped what was kept and added: more parts of the story (the sisters, the
+parents and the little ones) and more natural Amharic after the radio cut (Test 1), then the seven
+picture and line changes after the near-final cut (Test 2).
 
 ## Test 1: radio cut (tag `test1-radio-cut`)
 
 | # | Who (relation to the audience) | When / how | What they said | What I'll change |
 |---|---|---|---|---|
-| 1 | Whole family: 4 older siblings + both parents (6 people) | Family group chat. Shared the storyboard and the v1 radio cut on the evening of 2026-11-25; everyone replied yes around 09:00 EAT on 2026-11-26, then saw the rewritten Amharic text and liked it | Reported by Tahir: everyone liked the idea and is excited to see the final video. Their comments asked for more parts in the story and for more natural Amharic. (Paraphrase by Tahir; no verbatim quotes recorded.) | Added the sisters/parents/nephews shots (now 11 shots); rewrote the Amharic with Gemini and hand edits (Tahir approved) |
-| 2 | <!-- TODO(Tahir) --> | | | |
-| 3 | <!-- TODO(Tahir) --> | | | |
+| 1 | Two older brothers | Family group chat. Storyboard and v1 radio cut shared on the evening of 2026-11-25; replied yes around 09:00 EAT on 2026-11-26, then saw the rewritten Amharic text and liked it | Liked the idea and are excited to see the final video | Added the sisters/parents/nephews shots (now 11 shots); rewrote the Amharic with Gemini and hand edits (Tahir approved) |
+| 2 | Two older sisters | Same chat, same time | Liked the idea and are excited to see the final video | as row 1 |
+| 3 | Both parents | Same chat, same time | Liked the idea and are excited to see the final video | as row 1 |
+
+All six replied in the same group chat. The comments, more parts in the story and more natural
+Amharic, came from the group as a whole and were not recorded per person. (Paraphrase by Tahir; no
+verbatim quotes recorded.)
 
 **Storyboard changes:** `git diff d483076 004855b -- storyboard.json`
 
@@ -29,7 +37,7 @@ laugh and talk." is gone; three beats are added ("I drive my sisters home at nig
 my parents on their errands.", "The little ones sit on my lap and hold the wheel."); references for
 the father and a child are added; the Amharic is rewritten. (The tag `radio-cut-v1` marks the earlier
 pipeline build with a placeholder storyboard, so a diff from that tag does not show feedback changes.)
-<!-- TODO(Tahir): confirm that d483076 is the version your family saw. -->
+Tahir confirmed that `d483076` is the version the family saw with the radio cut.
 
 ## Test 2: near-final cut (tag `test2-near-final`)
 

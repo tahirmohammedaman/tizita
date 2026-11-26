@@ -9,6 +9,7 @@ from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any
 
+from tizita.pricing import RATED_UNITS, estimated_usage, rated_cost
 from tizita.providers.errors import ProviderError, Unavailable
 
 CAPABILITIES = ("text", "tts", "image", "image_edit", "i2v", "music", "embed", "asr")
@@ -127,6 +128,9 @@ class Provider:
     def est_cost_usd(self, req: Request) -> float:
         """List-price estimate for one call (0 if unknown). Actual cost is 0 unless tier=paid."""
         e = self._list_price or {}
+        if e.get("unit") in RATED_UNITS:
+            params, metrics = estimated_usage(req.prompt, {**self.params, **req.params})
+            return rated_cost(e, self.model, params, metrics) or 0.0
         usd = e.get("usd")
         if usd is None:
             return 0.0
@@ -139,6 +143,14 @@ class Provider:
         if unit == "second":
             return float(usd) * float(req.params.get("duration_s", 5))
         return float(usd)
+
+    def measured_cost_usd(self, req: Request, result: Result) -> float | None:
+        """List price of what the call used. None if a rated price cannot be applied."""
+        e = self._list_price or {}
+        if e.get("unit") not in RATED_UNITS:
+            return self.est_cost_usd(req)
+        params = {**self.params, **req.params, **(result.params_used or {})}
+        return rated_cost(e, result.model or self.model, params, result.metrics)
 
     # -- the call -----------------------------------------------------
     def call(self, req: Request) -> Result:  # pragma: no cover - interface

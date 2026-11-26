@@ -5,7 +5,7 @@ Measured latency and GPU minutes per stage, plus a list-price equivalent. Genera
 <!-- BEGIN GENERATED -->
 Source: `runs.jsonl`, 351 lines from 2026-11-25T14:48:23.754Z to 2026-11-26T11:33:43.462Z (UTC): 264 ok, 87 failed attempts (errors and fallbacks).
 
-**Actual spend: $0.00.** List-price equivalent of the priced calls: $0.0195. **261 of 351 calls have no list price** (`usd: null` in `config/pricing.yaml`, or no entry), so that figure is a partial estimate, not the cost of the film on a paid tier.
+**Actual spend: $0.00.** List-price equivalent of the priced calls: $0.1021. **53 of 351 calls have no list price** (no published or applicable rate in `config/pricing.yaml`, or the usage was not logged), so that figure is a partial estimate, not the cost of the film on a paid tier. Rates are applied to the logged usage and are lower bounds where usage is missing: TTS counts output audio only, FLUX counts output tiles (and steps) only, not reference images, and Gemini text omits any thinking tokens (not logged).
 
 Latencies are wall-clock seconds of successful calls (nearest-rank percentiles). "GPU min" is "not logged" where a provider reports no GPU time, including the hosted ZeroGPU Space.
 
@@ -13,15 +13,15 @@ Latencies are wall-clock seconds of successful calls (nearest-rank percentiles).
 
 | stage | calls | ok | failed | p50 s | p95 s | GPU min | list price | actual |
 |---|---|---|---|---|---|---|---|---|
-| director | 33 | 8 | 25 | 31.3 | 178.8 | not logged | $0.0185 + 31 unpriced | $0.00 |
-| exp | 106 | 59 | 47 | 3.3 | 13.1 | not logged | $0.0006 + 91 unpriced | $0.00 |
-| keyframes | 45 | 45 | 0 | 4.6 | 9.2 | not logged | $0.0000 + 23 unpriced | $0.00 |
+| director | 33 | 8 | 25 | 31.3 | 178.8 | not logged | $0.0091 + 5 unpriced | $0.00 |
+| exp | 106 | 59 | 47 | 3.3 | 13.1 | not logged | $0.0213 + 35 unpriced | $0.00 |
+| keyframes | 45 | 45 | 0 | 4.6 | 9.2 | not logged | $0.0149 | $0.00 |
 | music | 24 | 19 | 5 | 0.6 | 50.1 | not logged | $0.0000 + 9 unpriced | $0.00 |
-| music_qa | 3 | 3 | 0 | 11.0 | 15.6 | not logged | $0.0001 | $0.00 |
-| narration | 65 | 64 | 1 | 3.2 | 5.0 | not logged | $0.0000 + 45 unpriced | $0.00 |
+| music_qa | 3 | 3 | 0 | 11.0 | 15.6 | not logged | unknown | $0.00 |
+| narration | 65 | 64 | 1 | 3.2 | 5.0 | not logged | $0.0404 | $0.00 |
 | radio_cut | 9 | 9 | 0 | 0.8 | 1.3 | not logged | $0.0000 | $0.00 |
-| references | 49 | 48 | 1 | 8.9 | 11.4 | not logged | unknown | $0.00 |
-| smoke | 17 | 9 | 8 | 3.7 | 10.0 | not logged | $0.0002 + 13 unpriced | $0.00 |
+| references | 49 | 48 | 1 | 8.9 | 11.4 | not logged | $0.0138 | $0.00 |
+| smoke | 17 | 9 | 8 | 3.7 | 10.0 | not logged | $0.0026 + 1 unpriced | $0.00 |
 
 `director`, `smoke`, `exp` and `music_qa` are development calls, not part of `make film`.
 
@@ -29,15 +29,15 @@ Latencies are wall-clock seconds of successful calls (nearest-rank percentiles).
 
 | provider | tier | calls | ok | failed | p50 s | p95 s | GPU min | list price | actual |
 |---|---|---|---|---|---|---|---|---|---|
-| cf_flux1_schnell | free_hosted | 1 | 1 | 0 | 2.5 | 2.5 | not logged | unknown | $0.00 |
-| cf_flux2_klein | free_hosted | 74 | 73 | 1 | 8.3 | 11.4 | not logged | unknown | $0.00 |
-| cf_text | free_hosted | 3 | 3 | 0 | 36.4 | 103.2 | not logged | $0.0187 | $0.00 |
-| cf_whisper | free_hosted | 19 | 19 | 0 | 6.4 | 21.1 | not logged | $0.0008 | $0.00 |
-| gemini_asr | free_hosted | 53 | 20 | 33 | 2.5 | 5.0 | not logged | unknown | $0.00 |
-| gemini_flash | free_hosted | 24 | 0 | 24 | — | — | not logged | unknown | $0.00 |
-| gemini_flash_35 | free_hosted | 18 | 5 | 13 | 31.3 | 178.8 | not logged | unknown | $0.00 |
-| gemini_flash_lite | free_hosted | 14 | 5 | 9 | 1.9 | 2.4 | not logged | unknown | $0.00 |
-| gemini_tts | free_hosted | 68 | 66 | 2 | 3.5 | 5.1 | not logged | unknown | $0.00 |
+| cf_flux1_schnell | free_hosted | 1 | 1 | 0 | 2.5 | 2.5 | not logged | $0.0006 | $0.00 |
+| cf_flux2_klein | free_hosted | 74 | 73 | 1 | 8.3 | 11.4 | not logged | $0.0292 | $0.00 |
+| cf_text | free_hosted | 3 | 3 | 0 | 36.4 | 103.2 | not logged | $0.0080 | $0.00 |
+| cf_whisper | free_hosted | 19 | 19 | 0 | 6.4 | 21.1 | not logged | unknown | $0.00 |
+| gemini_asr | free_hosted | 53 | 20 | 33 | 2.5 | 5.0 | not logged | $0.0000 + 20 unpriced | $0.00 |
+| gemini_flash | free_hosted | 24 | 0 | 24 | — | — | not logged | $0.0000 | $0.00 |
+| gemini_flash_35 | free_hosted | 18 | 5 | 13 | 31.3 | 178.8 | not logged | $0.0000 + 5 unpriced | $0.00 |
+| gemini_flash_lite | free_hosted | 14 | 5 | 9 | 1.9 | 2.4 | not logged | $0.0022 | $0.00 |
+| gemini_tts | free_hosted | 68 | 66 | 2 | 3.5 | 5.1 | not logged | $0.0620 | $0.00 |
 | hf_ace_space | free_hosted | 9 | 4 | 5 | 28.7 | 50.1 | not logged | unknown | $0.00 |
 | local_clip | local | 23 | 23 | 0 | 0.3 | 8.6 | not logged | $0.0000 | $0.00 |
 | mms_tts_local | local | 9 | 9 | 0 | 0.8 | 10.8 | not logged | $0.0000 | $0.00 |

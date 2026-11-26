@@ -1,43 +1,55 @@
 # List-price assumptions for COSTS.md (SPEC §8.3). ESTIMATES, each with a source and the date
 # it was read. `usd: null` = not published per call / not verified yet (cost shows as unknown).
-# unit: call | image | second | m_tokens (USD per million tokens, input+output blended).
+# unit: call | image | second | m_tokens (flat `usd`), or a rated unit applied to logged usage
+# (tizita/pricing.py): tokens_io | tts_audio | image_tiles. `model` limits a rate to that model.
 prices:
   free:
     usd: 0
     unit: call
     note: free tier or local CPU
   cloudflare.gpt_oss_120b:
-    usd: 0.75          # output rate; input is 0.35/M (blended conservatively at the output rate)
-    unit: m_tokens
-    source: "Workers AI catalogue API, model property `price` (GET /ai/models/search)"
-    read_on: 2026-11-25
+    unit: tokens_io
+    input_usd_per_m: 0.35
+    output_usd_per_m: 0.75
+    source: "https://developers.cloudflare.com/workers-ai/platform/pricing/ (page dateModified 2026-11-18)"
+    read_on: 2026-11-26
   cloudflare.whisper_large_v3_turbo:
-    usd: 0.00000855     # = 0.000513 per audio minute / 60
-    unit: second
-    per_minute_usd: 0.000513
-    source: "Workers AI catalogue API, model property `price`"
-    read_on: 2026-11-25
+    unit: audio_minutes         # the ASR adapter logs no duration yet, so these calls stay unknown
+    usd_per_minute: 0.0005      # catalogue API read 25 Nov said 0.000513
+    source: "https://developers.cloudflare.com/workers-ai/platform/pricing/ (page dateModified 2026-11-18)"
+    read_on: 2026-11-26
   cloudflare.flux2_klein_4b:
-    usd: null
-    unit: image
-    source: "not listed in the catalogue API; billed in neurons (USD 0.011 per 1,000 neurons above 10,000 free/day, https://developers.cloudflare.com/workers-ai/platform/pricing/)"
-    read_on: 2026-11-25
-    todo: "read neurons per image from the CF dashboard after the M1 smoke"
+    unit: image_tiles
+    tile_usd: 0.000287          # per output 512x512 tile
+    input_tile_usd: 0.000059    # per input 512x512 tile; not applied (input sizes not logged)
+    source: "https://developers.cloudflare.com/workers-ai/platform/pricing/ (page dateModified 2026-11-18)"
+    read_on: 2026-11-26
   cloudflare.flux1_schnell:
-    usd: null
-    unit: image
-    source: "same as flux2_klein_4b"
-    read_on: 2026-11-25
-  gemini.flash_text:
-    usd: null
-    unit: m_tokens
-    source: "https://ai.google.dev/gemini-api/docs/pricing (not read yet: no key at M1)"
-    todo: "fill in when the Gemini key lands"
+    unit: image_tiles
+    tile_usd: 0.0000528         # per 512x512 tile
+    step_usd: 0.0001056         # per step
+    fixed_px: 1024              # M1 smoke: always returns 1024x1024, ignores the requested size
+    source: "https://developers.cloudflare.com/workers-ai/platform/pricing/ (page dateModified 2026-11-18)"
+    read_on: 2026-11-26
+  gemini.flash_text:            # promotional rate to 2026-12-31; doubles on 2027-01-01
+    unit: tokens_io
+    model: gemini-3.8-flash
+    input_usd_per_m: 0.75
+    output_usd_per_m: 3.75
+    source: "https://aistudio.google.com/docs/pricing (redirect from ai.google.dev/gemini-api/docs/pricing), paid tier, standard. gemini-3.5-flash (also logged under this key) is NOT listed: stays unknown"
+    read_on: 2026-11-26
   gemini.flash_lite_text:
-    usd: null
-    unit: m_tokens
-    source: "https://ai.google.dev/gemini-api/docs/pricing"
-  gemini.flash_tts:
-    usd: null
-    unit: m_tokens
-    source: "https://ai.google.dev/gemini-api/docs/pricing"
+    unit: tokens_io
+    model: gemini-3.5-flash-lite
+    input_usd_per_m: 0.30
+    output_usd_per_m: 2.50
+    source: "https://aistudio.google.com/docs/pricing (redirect from ai.google.dev/gemini-api/docs/pricing), paid tier, standard"
+    read_on: 2026-11-26
+  gemini.flash_tts:             # promotional rate to 2026-12-31; doubles on 2027-01-01
+    unit: tts_audio
+    model: gemini-3.8-flash-tts
+    output_usd_per_m: 9.00      # audio output tokens
+    tokens_per_s: 25
+    input_usd_per_m: 0.50       # text input; not applied (tokens not logged)
+    source: "https://aistudio.google.com/docs/pricing (redirect from ai.google.dev/gemini-api/docs/pricing), paid tier, standard"
+    read_on: 2026-11-26

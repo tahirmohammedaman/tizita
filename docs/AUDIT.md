@@ -53,7 +53,7 @@ Each criterion from the brief ("How your work is assessed"), the evidence, and a
 |---|---|---|
 | Latency per stage | COSTS (generated) | ok |
 | GPU minutes per stage | no own GPU job ran, and the hosted Space reports no GPU time | **gap** (stated in COSTS) |
-| List-price cost equivalent | COSTS; most calls have no price in `config/pricing.yaml` | partial |
+| List-price cost equivalent | COSTS; published rates (read 26 Nov) applied to logged usage, lower bounds where usage is missing. Still unknown: gemini-3.5-flash (not on the pricing page), both ASR paths (usage not logged), the hosted music Space | partial |
 | Frontier comparison "where you had access" | none run | not done |
 
 ## Consent, labelling and licences (5)

@@ -12,7 +12,8 @@
 
 ## Story source
 
-<!-- TODO(Tahir): whose story, how you spoke with them, what they asked you to keep or leave out. -->
+Tahir's own story, told in first person as the youngest of five siblings (two older brothers, two older sisters). Details in Tahir's words (2026-11-26): he now drives his sisters home at night, drives his older parents and runs errands, and lets his small nephews and nieces sit on his lap and hold the wheel. All characters are fictional painterly stand-ins; no photos are used.
+<!-- TODO(Tahir): how you spoke with your family about the film, and what they asked you to keep or leave out. -->
 
 ## Test 1: radio cut (tag `test1-radio-cut`)
 

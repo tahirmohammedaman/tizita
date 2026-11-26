@@ -11,5 +11,53 @@
 #   evidence_sha256: "<sha256 of the private evidence file>"
 #   words_approved: true
 #
-# TODO(Tahir): add the real consent record(s) before any image of a real person is generated.
-[]
+# Recorded 2026-11-26 from Tahir's statement in chat: all siblings and both parents consented to the story and to their (fictional, painterly) references.
+# TODO(Tahir): fill recorded_on / method / evidence_sha256 / words_approved for each entry; the agent does not know them.
+- id: C-001
+  person: "older brother 1"
+  relation: brother
+  scope: [story, likeness]
+  recorded_on: null          # TODO(Tahir)
+  method: null               # TODO(Tahir): voice note | video | written | verbal
+  evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
+  words_approved: null       # TODO(Tahir): did they see the narration text?
+- id: C-002
+  person: "older brother 2"
+  relation: brother
+  scope: [story, likeness]
+  recorded_on: null          # TODO(Tahir)
+  method: null               # TODO(Tahir): voice note | video | written | verbal
+  evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
+  words_approved: null       # TODO(Tahir): did they see the narration text?
+- id: C-003
+  person: "older sister 1"
+  relation: sister
+  scope: [story, likeness]
+  recorded_on: null          # TODO(Tahir)
+  method: null               # TODO(Tahir): voice note | video | written | verbal
+  evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
+  words_approved: null       # TODO(Tahir): did they see the narration text?
+- id: C-004
+  person: "older sister 2"
+  relation: sister
+  scope: [story, likeness]
+  recorded_on: null          # TODO(Tahir)
+  method: null               # TODO(Tahir): voice note | video | written | verbal
+  evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
+  words_approved: null       # TODO(Tahir): did they see the narration text?
+- id: C-005
+  person: "mother"
+  relation: mother
+  scope: [story, likeness]
+  recorded_on: null          # TODO(Tahir)
+  method: null               # TODO(Tahir): voice note | video | written | verbal
+  evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
+  words_approved: null       # TODO(Tahir): did they see the narration text?
+- id: C-006
+  person: "father"
+  relation: father
+  scope: [story, likeness]
+  recorded_on: null          # TODO(Tahir)
+  method: null               # TODO(Tahir): voice note | video | written | verbal
+  evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
+  words_approved: null       # TODO(Tahir): did they see the narration text?

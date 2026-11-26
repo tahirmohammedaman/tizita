@@ -120,3 +120,4 @@
 {"ts":"2026-11-26T07:30:31.372Z","type":"run_summary","run_id":"r_20261126_072953_685c","calls":11,"cache_hits":0,"fallbacks":0,"ran":["narration/s01","narration/s02","narration/s03","narration/s04","narration/s05","narration/s06","narration/s07","narration/s08","narration/s09","narration/s10","narration/s11","timing/project","subtitles/project"],"failed":[],"skipped":[]}
 {"ts":"2026-11-26T07:30:43.797Z","type":"unit_done","run_id":"r_20261126_073034_3acd","stage":"radio_cut","unit":"project","path":"outputs/radio_cut/968f9abb6b180d97.mp4","key":"968f9abb6b180d97"}
 {"ts":"2026-11-26T07:30:43.797Z","type":"run_summary","run_id":"r_20261126_073034_3acd","calls":1,"cache_hits":13,"fallbacks":0,"ran":["radio_cut/project"],"failed":[],"skipped":[]}
+{"ts":"2026-11-26T07:31:12.655Z","type":"plan","run_id":null,"summary":{"units":12,"counts":{"cached":12},"to_run":0,"est_latency_s":0,"est_gpu_min":0},"dirty":[]}

@@ -4,7 +4,7 @@
 
 A storyboard-driven AI short-film pipeline. One file, `storyboard.json`, is the contract between every stage. `make film` validates it, regenerates only what's missing or changed, and exports a 60–90 s Amharic-narrated film with English subtitles, a ducked original score and an AI end card, in 9:16 and 16:9.
 
-**The film:** *The Seat in the Front*, 11 shots, 77.2 s, in 9:16 and 16:9: a youngest sibling who
+**The film:** *The Seat in the Front*, 11 shots, 78.8 s, in 9:16 and 16:9: a youngest sibling who
 watched from the back seat becomes the one who drives everyone home.
 
 **State (26 Nov 2026):** the pipeline runs end to end. All 11 shots are animated with Wan 2.2

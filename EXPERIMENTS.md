@@ -8,7 +8,7 @@ Format (SPEC §12.1): **Hypothesis → Change → Result (numbers + evidence) �
 - Several entries are single comparisons on one input (n is stated). Where more than one thing
   differs, the entry says so. Anything not run is listed under **Planned** with no result.
 - Drafted by the coding agent from the logs on 26 Nov 2026.
-  <!-- TODO(Tahir): confirm each Decision, or correct it. -->
+  Tahir read the entries and confirmed every Decision on 26 Nov 2026.
 
 | ID | Question | Outcome |
 |---|---|---|

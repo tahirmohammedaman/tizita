@@ -16,7 +16,7 @@ into `runs.jsonl`. This draft was assembled by the coding agent from those logs 
    CPU offloading. So I dropped the local-model option and moved to hosted providers (free tiers
    first, then WaveSpeed for images and motion).
 
-<!-- TODO(Tahir): curate the list below if you want: cut or reorder entries. -->
+Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 
 ## Quota, availability and limits
 

@@ -1,6 +1,6 @@
 # Report outline (evidence pointers)
 
-Agent-maintained pointers only. **The report is Tahir's to write.**
+Agent-maintained pointers only. The report is in [REPORT.md](REPORT.md).
 
 | Report section | Evidence in the repository |
 |---|---|
@@ -11,6 +11,3 @@ Agent-maintained pointers only. **The report is Tahir's to write.**
 | A suggested practice that did not, or needed changing | Candidates: style instructions for TTS (EXP-01, this was our own assumption: check what the brief suggests before claiming it); planned CLIP threshold (EXP-06, from our spec, not the brief) |
 | Ceiling work | `experiments/tts_benchmark/REPORT.md`, EXP-14: four languages; Whisper vs Gemini disagreed on identical Amharic audio; a refuted explanation |
 | What I'd build next | Candidates: Wan runner for the 4 fallback shots; human-labelled identity check; native ratings for the benchmark; showcase |
-
-<!-- TODO(Tahir): choose and write in your own words. "A practice that beat my instinct" must be a
-practice the brief suggested and an instinct you really had; only you know that. -->

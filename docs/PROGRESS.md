@@ -176,26 +176,26 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 - Native comments (Amharic, qualitative): Peneal Feleke, Sebrina Akmel, Sumeya Mohammed. No numeric scores; Oromo/Tigrinya/Somali unrated.
 - Walkthrough rehearsal 2 in `~/tizita-rehearsal` at e97b228: s01 one-word edit → 6 dirty, `make film` 67 s, `r_20261126_152923_48e2` (1 gemini_tts call + synth_pad), QA pass, all Wan clips stayed cached. Both rehearsals are stashed there; clone is clean (run `make film` once before recording).
 
+## Done Thu 26 Nov ~18:45 EAT
+- PR #37: owner TODOs closed on Tahir's answers (EXPERIMENTS decisions confirmed, FAILURES reviewed and kept, stale consents comment removed), AUDIT refreshed, film length 78.8 s. Only doc TODO left: YouTube label in ETHICS.
+- Walkthrough script: `~/tizita-submission/WALKTHROUGH.md` (not in git). `~/tizita-rehearsal` rendered at d740f42 (0 model calls); a dry-run plan of the s01 edit gives 41 cached, 6 dirty.
+
 ## Next session prompt
 
 ```
-Model: Sonnet · Effort: low (only checklists and small doc fixes remain)
+Model: Sonnet · Effort: low (submission checklist and one doc line remain)
 Read CLAUDE.md, docs/PROGRESS.md (Status + last "Done"). Don't reread SPEC.
 DEADLINE Thu 26 Nov 23:59 EAT; aim to submit by 21:00.
-
-STATE: main e97b228 (+ this handoff PR). Film outputs/final/f1eb451f1815c80d/ (78.83 s, QA pass,
-all clips approved). Report approved: docs/REPORT.md, PDF ~/tizita-submission/REPORT.pdf.
-WaveSpeed balance ~$0.04: no more paid runs.
-
-DO only what I ask, likely:
-1. Walkthrough help (<= 5 min, I record): ~/tizita-rehearsal is clean at main; run `make film` there
-   first. Live edit: remove ሁልጊዜ from s01 text_am → `tizita plan` (6 dirty) → `make film` (~67 s,
-   1 TTS call). Show runs.jsonl tail with jq, never cat.
-2. Public post: I write it myself. Only check it covers story, why, one lesson, AI label on.
-3. Submission checklist: repo public; report link opens logged out; film 9:16 + 16:9 uploaded
-   (YouTube, AI label on); walkthrough link; post link; every link opens in a private window.
-4. After I post: record the YouTube label confirmation in ETHICS (TODO there) on a docs/ branch, PR, merge.
-5. Remind me: revoke the WaveSpeed key; ethics/consents.yaml children TODO is mine.
+STATE: film outputs/final/f1eb451f1815c80d/ (78.8 s, QA pass; MP4s local only). Report approved:
+docs/REPORT.md, PDF ~/tizita-submission/REPORT.pdf. Script ~/tizita-submission/WALKTHROUGH.md.
+No paid runs.
+DO only what I ask:
+1. Public post: I write it. Check it covers story, why it matters, one lesson, AI label on.
+2. Checklist: assignment 1 = repo link + report. Assignment 2 = 9:16 link (main) + 16:9, walkthrough,
+   post links. Every link opens logged out.
+3. After I post: record the YouTube label confirmation in ETHICS and update the AUDIT labelling row
+   (docs/ branch, PR, merge).
+4. Remind me to revoke the WaveSpeed key.
 STOP for me: any upload, release, post or other outward-facing step; any spend.
-Acceptance: `make test lint` green; `tizita plan` on main = 0 dirty except assemble/qa (MP4s not in git).
+Acceptance: `make test lint` green; `tizita plan` on main = 0 to run.
 ```

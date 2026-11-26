@@ -22,7 +22,7 @@
     "Voice: gemini-3.8-flash-tts",
     "Images: flux-2-klein-4b",
     "Motion: ffmpeg-zoompan",
-    "Music: ace-step-jam)"
+    "Music: ACE-Step-v1-3.5B"
   ],
   "music": "outputs/music/671f08747e5a53ea_cand1.flac",
   "music_chosen": 0,

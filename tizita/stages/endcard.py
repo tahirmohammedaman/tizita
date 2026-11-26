@@ -11,6 +11,12 @@ FG = (238, 232, 220)
 DIM = (170, 164, 152)
 
 
+def short_model(model: str) -> str:
+    """'org/name@rev' or 'name (space/owner)' -> 'name'. The host note goes first: it can hold
+    a '/' of its own."""
+    return model.split(" (")[0].split("/")[-1].split("@")[0]
+
+
 def models_used(manifest) -> list[str]:
     """Short 'Role: model' lines from the provider idents recorded in the manifest."""
     roles = [
@@ -25,7 +31,7 @@ def models_used(manifest) -> list[str]:
         for e in manifest.entries.values():
             if e.stage == stage and e.provider:
                 m = e.provider.get("model") or e.provider.get("name")
-                m = str(m).split("/")[-1].split("@")[0]
+                m = short_model(str(m))
                 if m not in names:
                     names.append(m)
         if names:

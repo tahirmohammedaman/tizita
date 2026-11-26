@@ -284,3 +284,11 @@
 {"ts":"2026-11-26T10:00:12.271Z","type":"qa_result","run_id":"r_20261126_095926_5cd2","stage":"qa","unit":"project","passed":true,"path":"/home/cyberhelmet/tizita/outputs/final/7c55427dbba3e420/qa.json"}
 {"ts":"2026-11-26T10:00:12.275Z","type":"unit_done","run_id":"r_20261126_095926_5cd2","stage":"qa","unit":"project","path":"outputs/final/7c55427dbba3e420/qa.json","key":"a79abd6ec9aac62a"}
 {"ts":"2026-11-26T10:00:12.275Z","type":"run_summary","run_id":"r_20261126_095926_5cd2","calls":0,"cache_hits":0,"fallbacks":0,"ran":["assemble/project","qa/project"],"failed":[],"skipped":[]}
+{"ts":"2026-11-26T10:32:32.617Z","type":"plan","run_id":null,"summary":{"units":45,"counts":{"cached":43,"dirty":2},"to_run":2,"est_latency_s":105.0,"est_gpu_min":0.0},"dirty":["assemble/project: dirty stage_version 1→2","qa/project: dirty upstream assemble/project"]}
+{"ts":"2026-11-26T10:33:18.052Z","type":"unit_done","run_id":"r_20261126_103232_e7e5","stage":"assemble","unit":"project","path":"outputs/final/469e11c10902a93f/film_9x16.mp4","key":"469e11c10902a93f"}
+{"ts":"2026-11-26T10:33:19.046Z","type":"qa_result","run_id":"r_20261126_103232_e7e5","stage":"qa","unit":"project","passed":true,"path":"/home/cyberhelmet/tizita/outputs/final/469e11c10902a93f/qa.json"}
+{"ts":"2026-11-26T10:33:19.051Z","type":"unit_done","run_id":"r_20261126_103232_e7e5","stage":"qa","unit":"project","path":"outputs/final/469e11c10902a93f/qa.json","key":"38366b1032f84277"}
+{"ts":"2026-11-26T10:33:19.051Z","type":"run_summary","run_id":"r_20261126_103232_e7e5","calls":0,"cache_hits":0,"fallbacks":0,"ran":["assemble/project","qa/project"],"failed":[],"skipped":[]}
+{"ts":"2026-11-26T10:33:20.392Z","type":"qa_result","run_id":"r_20261126_103319_1f23","stage":"qa","unit":"project","passed":true,"path":"/home/cyberhelmet/tizita/outputs/final/469e11c10902a93f/qa.json"}
+{"ts":"2026-11-26T10:33:20.416Z","type":"unit_done","run_id":"r_20261126_103319_1f23","stage":"qa","unit":"project","path":"outputs/final/469e11c10902a93f/qa.json","key":"38366b1032f84277"}
+{"ts":"2026-11-26T10:33:20.416Z","type":"run_summary","run_id":"r_20261126_103319_1f23","calls":0,"cache_hits":0,"fallbacks":0,"ran":["qa/project"],"failed":[],"skipped":[]}

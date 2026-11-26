@@ -263,3 +263,11 @@ def test_narration_track_trims_each_take_at_speech_end():
     g = narration_track_graph([0.4, 7.4], 20, ASM["audio"], [3.2, None]).split(";")
     assert g[0].startswith("[0:a]atrim=end=3.2,afade=t=out:st=3.17:d=0.03,aresample=48000")
     assert g[1].startswith("[1:a]aresample=48000")
+
+
+def test_end_card_model_names_drop_org_revision_and_host_note():
+    from tizita.stages.endcard import short_model
+
+    assert short_model("ACE-Step-v1-3.5B (victor/ace-step-jam)") == "ACE-Step-v1-3.5B"
+    assert short_model("@cf/black-forest-labs/flux-2-klein-4b") == "flux-2-klein-4b"
+    assert short_model("facebook/mms-tts-amh@e366aee5e22a") == "mms-tts-amh"

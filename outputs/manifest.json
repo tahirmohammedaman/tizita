@@ -2,7 +2,7 @@
   "entries": {
     "assemble/project": {
       "candidates": [],
-      "created_at": "2026-11-26T10:00:11.256Z",
+      "created_at": "2026-11-26T10:33:18.047Z",
       "field_hashes": {
         "assembly": "d9f7724b5fb5aa95",
         "end_card": "00ece5454e33b692",
@@ -10,19 +10,19 @@
         "shots.music_cue": "1f1f21cd714b5ef6"
       },
       "is_fallback": false,
-      "key": "7c55427dbba3e420",
-      "path": "outputs/final/7c55427dbba3e420/film_9x16.mp4",
+      "key": "469e11c10902a93f",
+      "path": "outputs/final/469e11c10902a93f/film_9x16.mp4",
       "primary_provider": null,
       "provider": {
         "model": null,
         "name": "ffmpeg",
         "params": {}
       },
-      "run_id": "r_20261126_095926_5cd2",
+      "run_id": "r_20261126_103232_e7e5",
       "seed": null,
-      "sha256": "a241072d5c9bacc0f360dbf554492f94ead64ec4fa5877296292f843acea96ea",
+      "sha256": "a025e929a74c7673eca63a01aa337c5c5b35b3065b92f96b1466f5b707362b07",
       "stage": "assemble",
-      "stage_version": 1,
+      "stage_version": 2,
       "unit": "project",
       "upstream": {
         "music/project": "c0a81c82163faec1193a9d021a7c612f3ac216a1f1ad6cac6579f11cecf36cda",
@@ -842,21 +842,21 @@
     },
     "qa/project": {
       "candidates": [],
-      "created_at": "2026-11-26T10:00:12.271Z",
+      "created_at": "2026-11-26T10:33:20.392Z",
       "field_hashes": {},
       "is_fallback": false,
-      "key": "a79abd6ec9aac62a",
-      "path": "outputs/final/7c55427dbba3e420/qa.json",
+      "key": "38366b1032f84277",
+      "path": "outputs/final/469e11c10902a93f/qa.json",
       "primary_provider": null,
       "provider": null,
-      "run_id": "r_20261126_095926_5cd2",
+      "run_id": "r_20261126_103319_1f23",
       "seed": null,
-      "sha256": "c0e5b22ce092ed1cb459ff0f821b4c16d87035ab8557f0e20a14c0fd2a84b1fc",
+      "sha256": "0939a0c53eaa00e18e01aaf91b0d84940ac9506dd40136c5ab27db41b73b8ff2",
       "stage": "qa",
       "stage_version": 1,
       "unit": "project",
       "upstream": {
-        "assemble/project": "a241072d5c9bacc0f360dbf554492f94ead64ec4fa5877296292f843acea96ea"
+        "assemble/project": "a025e929a74c7673eca63a01aa337c5c5b35b3065b92f96b1466f5b707362b07"
       }
     },
     "radio_cut/project": {

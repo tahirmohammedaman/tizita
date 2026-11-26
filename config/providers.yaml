@@ -294,7 +294,7 @@ providers:
     env: [KAGGLE_USERNAME, KAGGLE_KEY]
     licence: MIT
   hf_ace_space:
-    label: ACE-Step 1.5 (HF Space, ZeroGPU)
+    label: ACE-Step v1 3.5B (HF Space, ZeroGPU)
     adapter: hf_ace_space
     capability: music
     tier: free_hosted

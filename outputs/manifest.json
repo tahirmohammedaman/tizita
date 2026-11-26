@@ -1,5 +1,57 @@
 {
   "entries": {
+    "assemble/project": {
+      "candidates": [],
+      "created_at": "2026-11-26T09:09:15.396Z",
+      "field_hashes": {
+        "assembly": "d9f7724b5fb5aa95",
+        "end_card": "00ece5454e33b692",
+        "music.chosen": "74234e98afe7498f",
+        "shots.music_cue": "1f1f21cd714b5ef6"
+      },
+      "is_fallback": false,
+      "key": "b3b84d3428c317a2",
+      "path": "outputs/final/b3b84d3428c317a2/film_9x16.mp4",
+      "primary_provider": null,
+      "provider": {
+        "model": null,
+        "name": "ffmpeg",
+        "params": {}
+      },
+      "run_id": "r_20261126_090820_6906",
+      "seed": null,
+      "sha256": "7f2bf1bb3a66eb48a853562984c3ba9adc97642b6552772972e236fb16c46c98",
+      "stage": "assemble",
+      "stage_version": 1,
+      "unit": "project",
+      "upstream": {
+        "music/project": "bf8674ecfd62c41dc6b32991c4ece8d43f07f6208ca3367cc391d356bdb6df1e",
+        "narration/s01": "85ad29351e802cbd4ffe81384b79a18bb92a083612c7dc1c84f1ab48d2529a80",
+        "narration/s02": "13ca9925dfea8103914875c9fa4fc283748484b03d91067387e618fa62ff086c",
+        "narration/s03": "c7b490a6a07cf4f48e89a23e4388aa086fb2304d2e0cb270f62dc4135edf7986",
+        "narration/s04": "471f3e3c99a6107789683b11a0d8961d34bdcaf2cc01a90caa8c695b11d19693",
+        "narration/s05": "8af78fc98e4b99f68b859e96add5731a1ca4c3b7d878c11fb54bf39b9406ae87",
+        "narration/s06": "9202fb5e91ca4dbdd80d7c4da5760f6fc5891de5b81cb90361c282e2a81c6965",
+        "narration/s07": "43a2ebcf5a759aa993b51631d9c544a2066b85c9e47370faec341b1bd7bfad70",
+        "narration/s08": "dce2679162d9c892222549b1bf084e296dfef39c51cc5e5180cf9015099020c3",
+        "narration/s09": "4153616b8b2673e8d2b666c5926566863c07081d7dc788b4985785cef9eaff26",
+        "narration/s10": "c635e71f8fb3422b0ecb59114bca69bcf4e85ef565546093a6226559994f6c42",
+        "narration/s11": "e931249e111be112f8ed67735c1bb5632634af200df0f4067f81b745fdbd8615",
+        "shots/s01": "4f08a2a745a7cdde5cc4cd0907c8ff79fc430845019096ec0fba72bfe8026f83",
+        "shots/s02": "a3788a6740f367fd46178823e187537daf3769155253612745d6cdc3256c800d",
+        "shots/s03": "1c8c5268d0130d433a824f6e8b25fc995dee9c0a29e947dff46d45524474f07b",
+        "shots/s04": "d1d818d3e290734026000c4a320e84c4d9e4a5faa53c2c0b1689aa5cd4692f38",
+        "shots/s05": "51b341f3628ce72c556ddf4256b16ced103723741a5ac536c69a7b2f31ba1d61",
+        "shots/s06": "ad05d81c95b6b2f623768a4f30e4b58f567c197c001b86c3b638e07cbbd41f78",
+        "shots/s07": "cba85b35fbc502a474193cdeed50542468a49a4a7060c598f544aeb0e7e65a30",
+        "shots/s08": "f71bb02b6659fa1b485cfdbb7a0d7a6c7eac1085b0eb568409622f701051e25b",
+        "shots/s09": "386cbdfde15dd43dfad036d92327d1f1b111860fa785d0968210990cfe608553",
+        "shots/s10": "2428993c30a37656a8f7226ce2c5fedb5264fffdaf2e611043f989fb28259979",
+        "shots/s11": "591e0b89d7753bc2a6d098936c3c9c40eb42eb3ece9dec34756e5c9c22803160",
+        "subtitles/project": "28207cce0af6d17d685abd1711f43331281f7708944868cc09d5c13a26d7564f",
+        "timing/project": "7eafe0e099ba8e45f37dd25d7628da06fe728b8047bb176ae27de1f57be6be6a"
+      }
+    },
     "keyframes/s01": {
       "candidates": [],
       "created_at": "2026-11-26T08:41:45.582Z",
@@ -411,6 +463,50 @@
         "references/ref_youngest_sibling": "2ea6014e8dae23e05231b0893f70afcfcaaa7ac7a60482cf82a2c404a91d48c3"
       }
     },
+    "music/project": {
+      "candidates": [
+        {
+          "path": "outputs/music/b3d3dd1aa3c278b5_cand1.flac",
+          "sha256": "bf8674ecfd62c41dc6b32991c4ece8d43f07f6208ca3367cc391d356bdb6df1e"
+        },
+        {
+          "path": "outputs/music/b3d3dd1aa3c278b5_cand2.flac",
+          "sha256": "06f7271bd028f818963594a71601e2c96622ad7146ccd793654a51f8fb9bf364"
+        },
+        {
+          "path": "outputs/music/b3d3dd1aa3c278b5_cand3.flac",
+          "sha256": "07ddef6606db02595578c5aa6310c0d68a009b3e52d617e1f10ab928442618b8"
+        }
+      ],
+      "created_at": "2026-11-26T09:08:22.267Z",
+      "field_hashes": {
+        "assembly.pad_variants": "3d33268fd49b6d57",
+        "music.bpm": "a21855da08cb102d",
+        "music.candidates": "4e07408562bedb8b",
+        "music.caption": "2fc4d95d70999504",
+        "music.cues": "600f7613911943e1",
+        "music.duration_s": "96061e92f58e4bdc",
+        "music.instrumental": "b5bea41b6c623f7c",
+        "music.key": "9abf298f05e8bed9",
+        "music.seed": "a176eeb31e601c38"
+      },
+      "is_fallback": true,
+      "key": "b3d3dd1aa3c278b5",
+      "path": "outputs/music/b3d3dd1aa3c278b5_cand1.flac",
+      "primary_provider": "kaggle_ace",
+      "provider": {
+        "model": "ffmpeg-sine-pad",
+        "name": "synth_pad",
+        "params": {}
+      },
+      "run_id": "r_20261126_090820_6906",
+      "seed": 3000,
+      "sha256": "bf8674ecfd62c41dc6b32991c4ece8d43f07f6208ca3367cc391d356bdb6df1e",
+      "stage": "music",
+      "stage_version": 1,
+      "unit": "project",
+      "upstream": {}
+    },
     "narration/s01": {
       "candidates": [],
       "created_at": "2026-11-26T07:29:57.625Z",
@@ -740,6 +836,25 @@
       "stage_version": 1,
       "unit": "s11",
       "upstream": {}
+    },
+    "qa/project": {
+      "candidates": [],
+      "created_at": "2026-11-26T09:09:16.525Z",
+      "field_hashes": {},
+      "is_fallback": false,
+      "key": "54de0383b5c2a3f2",
+      "path": "outputs/final/b3b84d3428c317a2/qa.json",
+      "primary_provider": null,
+      "provider": null,
+      "run_id": "r_20261126_090820_6906",
+      "seed": null,
+      "sha256": "7c49badbaf588e1e2bc4790cd98841ceb85151700476c7c1ca29e51ecc63dc51",
+      "stage": "qa",
+      "stage_version": 1,
+      "unit": "project",
+      "upstream": {
+        "assemble/project": "7f2bf1bb3a66eb48a853562984c3ba9adc97642b6552772972e236fb16c46c98"
+      }
     },
     "radio_cut/project": {
       "candidates": [],
@@ -1071,6 +1186,369 @@
       "stage_version": 1,
       "unit": "ref_youngest_sibling",
       "upstream": {}
+    },
+    "shots/s01": {
+      "candidates": [],
+      "created_at": "2026-11-26T08:58:59.364Z",
+      "field_hashes": {
+        "assembly.shots": "7bf1fcf3ca21e70b",
+        "duration_s": "0de7cf39e1e63661",
+        "motion.kenburns": "c107e4afdeea0e6c",
+        "motion.mode": "903fa7fd15f8c2b5",
+        "motion.prompt": "341690d790006fab"
+      },
+      "is_fallback": true,
+      "key": "814594c5a8195b39",
+      "path": "outputs/shots/s01/814594c5a8195b39.mp4",
+      "primary_provider": "kaggle_wan22",
+      "provider": {
+        "model": "ffmpeg-zoompan",
+        "name": "kenburns",
+        "params": {
+          "pan": "none",
+          "zoom_from": 1.0,
+          "zoom_to": 1.07
+        }
+      },
+      "run_id": "r_20261126_085858_ca63",
+      "seed": 2001,
+      "sha256": "4f08a2a745a7cdde5cc4cd0907c8ff79fc430845019096ec0fba72bfe8026f83",
+      "stage": "shots",
+      "stage_version": 1,
+      "unit": "s01",
+      "upstream": {
+        "keyframes/s01": "697572ca8f0e28926ca337bd28e9833564a34ed2adca7b851ede0b46848d72da"
+      }
+    },
+    "shots/s02": {
+      "candidates": [],
+      "created_at": "2026-11-26T08:59:00.575Z",
+      "field_hashes": {
+        "assembly.shots": "7bf1fcf3ca21e70b",
+        "duration_s": "0de7cf39e1e63661",
+        "motion.kenburns": "1aef15add5ceef1b",
+        "motion.mode": "393e7c8c56ad3964",
+        "motion.prompt": "74234e98afe7498f"
+      },
+      "is_fallback": false,
+      "key": "6f51917ab1cb1330",
+      "path": "outputs/shots/s02/6f51917ab1cb1330.mp4",
+      "primary_provider": null,
+      "provider": {
+        "model": "ffmpeg-zoompan",
+        "name": "kenburns",
+        "params": {
+          "pan": "up",
+          "zoom_from": 1.0,
+          "zoom_to": 1.08
+        }
+      },
+      "run_id": "r_20261126_085858_ca63",
+      "seed": null,
+      "sha256": "a3788a6740f367fd46178823e187537daf3769155253612745d6cdc3256c800d",
+      "stage": "shots",
+      "stage_version": 1,
+      "unit": "s02",
+      "upstream": {
+        "keyframes/s02": "7a7ec38897e4cbb03b403622d4b11e6e0662de8434b9cd0ac3381f31a945fd60"
+      }
+    },
+    "shots/s03": {
+      "candidates": [],
+      "created_at": "2026-11-26T08:59:01.799Z",
+      "field_hashes": {
+        "assembly.shots": "7bf1fcf3ca21e70b",
+        "duration_s": "0de7cf39e1e63661",
+        "motion.kenburns": "c107e4afdeea0e6c",
+        "motion.mode": "903fa7fd15f8c2b5",
+        "motion.prompt": "39ad65dc998ab008"
+      },
+      "is_fallback": true,
+      "key": "e137c9bb9fcaae17",
+      "path": "outputs/shots/s03/e137c9bb9fcaae17.mp4",
+      "primary_provider": "kaggle_wan22",
+      "provider": {
+        "model": "ffmpeg-zoompan",
+        "name": "kenburns",
+        "params": {
+          "pan": "none",
+          "zoom_from": 1.0,
+          "zoom_to": 1.07
+        }
+      },
+      "run_id": "r_20261126_085858_ca63",
+      "seed": 2003,
+      "sha256": "1c8c5268d0130d433a824f6e8b25fc995dee9c0a29e947dff46d45524474f07b",
+      "stage": "shots",
+      "stage_version": 1,
+      "unit": "s03",
+      "upstream": {
+        "keyframes/s03": "09536a1139d81aa2eaa3ed9828b0ef68ffbc0441cd3b9dfd1e4157150a5f61e0"
+      }
+    },
+    "shots/s04": {
+      "candidates": [],
+      "created_at": "2026-11-26T08:59:02.954Z",
+      "field_hashes": {
+        "assembly.shots": "7bf1fcf3ca21e70b",
+        "duration_s": "0de7cf39e1e63661",
+        "motion.kenburns": "c4b18f65fd5959b5",
+        "motion.mode": "393e7c8c56ad3964",
+        "motion.prompt": "74234e98afe7498f"
+      },
+      "is_fallback": false,
+      "key": "b05c2255056c2936",
+      "path": "outputs/shots/s04/b05c2255056c2936.mp4",
+      "primary_provider": null,
+      "provider": {
+        "model": "ffmpeg-zoompan",
+        "name": "kenburns",
+        "params": {
+          "pan": "down",
+          "zoom_from": 1.0,
+          "zoom_to": 1.12
+        }
+      },
+      "run_id": "r_20261126_085858_ca63",
+      "seed": null,
+      "sha256": "d1d818d3e290734026000c4a320e84c4d9e4a5faa53c2c0b1689aa5cd4692f38",
+      "stage": "shots",
+      "stage_version": 1,
+      "unit": "s04",
+      "upstream": {
+        "keyframes/s04": "edfaf21c6e488b662ac026954b1c9bc68aadb54468e53684b2a64d5ec4eb6b7a"
+      }
+    },
+    "shots/s05": {
+      "candidates": [],
+      "created_at": "2026-11-26T08:59:04.142Z",
+      "field_hashes": {
+        "assembly.shots": "7bf1fcf3ca21e70b",
+        "duration_s": "0de7cf39e1e63661",
+        "motion.kenburns": "e5096bbcee239f0a",
+        "motion.mode": "393e7c8c56ad3964",
+        "motion.prompt": "74234e98afe7498f"
+      },
+      "is_fallback": false,
+      "key": "5e8065248e3daa8b",
+      "path": "outputs/shots/s05/5e8065248e3daa8b.mp4",
+      "primary_provider": null,
+      "provider": {
+        "model": "ffmpeg-zoompan",
+        "name": "kenburns",
+        "params": {
+          "pan": "none",
+          "zoom_from": 1.0,
+          "zoom_to": 1.09
+        }
+      },
+      "run_id": "r_20261126_085858_ca63",
+      "seed": null,
+      "sha256": "51b341f3628ce72c556ddf4256b16ced103723741a5ac536c69a7b2f31ba1d61",
+      "stage": "shots",
+      "stage_version": 1,
+      "unit": "s05",
+      "upstream": {
+        "keyframes/s05": "bdf6621700c4e1430abe43709817c3cbaacc540d665f4b1d9a1dfc1a318f1d9e"
+      }
+    },
+    "shots/s06": {
+      "candidates": [],
+      "created_at": "2026-11-26T08:59:05.341Z",
+      "field_hashes": {
+        "assembly.shots": "7bf1fcf3ca21e70b",
+        "duration_s": "0de7cf39e1e63661",
+        "motion.kenburns": "c107e4afdeea0e6c",
+        "motion.mode": "903fa7fd15f8c2b5",
+        "motion.prompt": "99758ccede235ebc"
+      },
+      "is_fallback": true,
+      "key": "1dcf780e4e5b1fd1",
+      "path": "outputs/shots/s06/1dcf780e4e5b1fd1.mp4",
+      "primary_provider": "kaggle_wan22",
+      "provider": {
+        "model": "ffmpeg-zoompan",
+        "name": "kenburns",
+        "params": {
+          "pan": "none",
+          "zoom_from": 1.0,
+          "zoom_to": 1.07
+        }
+      },
+      "run_id": "r_20261126_085858_ca63",
+      "seed": 2006,
+      "sha256": "ad05d81c95b6b2f623768a4f30e4b58f567c197c001b86c3b638e07cbbd41f78",
+      "stage": "shots",
+      "stage_version": 1,
+      "unit": "s06",
+      "upstream": {
+        "keyframes/s06": "4f2e71da2fae6104d5b005c659b39c5aa90a30c7b15bf4aa3c3df7378c7d50ed"
+      }
+    },
+    "shots/s07": {
+      "candidates": [],
+      "created_at": "2026-11-26T08:59:06.529Z",
+      "field_hashes": {
+        "assembly.shots": "7bf1fcf3ca21e70b",
+        "duration_s": "0de7cf39e1e63661",
+        "motion.kenburns": "2dd5e8b03c0c556e",
+        "motion.mode": "393e7c8c56ad3964",
+        "motion.prompt": "74234e98afe7498f"
+      },
+      "is_fallback": false,
+      "key": "e0f775d041547cb0",
+      "path": "outputs/shots/s07/e0f775d041547cb0.mp4",
+      "primary_provider": null,
+      "provider": {
+        "model": "ffmpeg-zoompan",
+        "name": "kenburns",
+        "params": {
+          "pan": "left",
+          "zoom_from": 1.0,
+          "zoom_to": 1.15
+        }
+      },
+      "run_id": "r_20261126_085858_ca63",
+      "seed": null,
+      "sha256": "cba85b35fbc502a474193cdeed50542468a49a4a7060c598f544aeb0e7e65a30",
+      "stage": "shots",
+      "stage_version": 1,
+      "unit": "s07",
+      "upstream": {
+        "keyframes/s07": "5ee730168011c23cd128df653e1589898ffbc0b2709df4da9598d066bdc60c47"
+      }
+    },
+    "shots/s08": {
+      "candidates": [],
+      "created_at": "2026-11-26T08:59:07.770Z",
+      "field_hashes": {
+        "assembly.shots": "7bf1fcf3ca21e70b",
+        "duration_s": "0de7cf39e1e63661",
+        "motion.kenburns": "3cef970a0ebf55bc",
+        "motion.mode": "393e7c8c56ad3964",
+        "motion.prompt": "74234e98afe7498f"
+      },
+      "is_fallback": false,
+      "key": "a454c85b199ad1b6",
+      "path": "outputs/shots/s08/a454c85b199ad1b6.mp4",
+      "primary_provider": null,
+      "provider": {
+        "model": "ffmpeg-zoompan",
+        "name": "kenburns",
+        "params": {
+          "pan": "right",
+          "zoom_from": 1.0,
+          "zoom_to": 1.1
+        }
+      },
+      "run_id": "r_20261126_085858_ca63",
+      "seed": null,
+      "sha256": "f71bb02b6659fa1b485cfdbb7a0d7a6c7eac1085b0eb568409622f701051e25b",
+      "stage": "shots",
+      "stage_version": 1,
+      "unit": "s08",
+      "upstream": {
+        "keyframes/s08": "ad1c1e6fc718503e70953108615250bd9b73d5d76c0f785dfc0acbf904f3f2e4"
+      }
+    },
+    "shots/s09": {
+      "candidates": [],
+      "created_at": "2026-11-26T08:59:09.014Z",
+      "field_hashes": {
+        "assembly.shots": "7bf1fcf3ca21e70b",
+        "duration_s": "0de7cf39e1e63661",
+        "motion.kenburns": "03a1dfc4333a1a32",
+        "motion.mode": "393e7c8c56ad3964",
+        "motion.prompt": "74234e98afe7498f"
+      },
+      "is_fallback": false,
+      "key": "fef4aa18c5871946",
+      "path": "outputs/shots/s09/fef4aa18c5871946.mp4",
+      "primary_provider": null,
+      "provider": {
+        "model": "ffmpeg-zoompan",
+        "name": "kenburns",
+        "params": {
+          "pan": "left",
+          "zoom_from": 1.0,
+          "zoom_to": 1.1
+        }
+      },
+      "run_id": "r_20261126_085858_ca63",
+      "seed": null,
+      "sha256": "386cbdfde15dd43dfad036d92327d1f1b111860fa785d0968210990cfe608553",
+      "stage": "shots",
+      "stage_version": 1,
+      "unit": "s09",
+      "upstream": {
+        "keyframes/s09": "defef37ad77e3d3bf59a74da266d88c4926953f49265d7a2cd1937adcb36d830"
+      }
+    },
+    "shots/s10": {
+      "candidates": [],
+      "created_at": "2026-11-26T08:59:10.218Z",
+      "field_hashes": {
+        "assembly.shots": "7bf1fcf3ca21e70b",
+        "duration_s": "0de7cf39e1e63661",
+        "motion.kenburns": "c107e4afdeea0e6c",
+        "motion.mode": "903fa7fd15f8c2b5",
+        "motion.prompt": "cff0075ead8ef2d0"
+      },
+      "is_fallback": true,
+      "key": "6edcee5783537480",
+      "path": "outputs/shots/s10/6edcee5783537480.mp4",
+      "primary_provider": "kaggle_wan22",
+      "provider": {
+        "model": "ffmpeg-zoompan",
+        "name": "kenburns",
+        "params": {
+          "pan": "none",
+          "zoom_from": 1.0,
+          "zoom_to": 1.07
+        }
+      },
+      "run_id": "r_20261126_085858_ca63",
+      "seed": 2010,
+      "sha256": "2428993c30a37656a8f7226ce2c5fedb5264fffdaf2e611043f989fb28259979",
+      "stage": "shots",
+      "stage_version": 1,
+      "unit": "s10",
+      "upstream": {
+        "keyframes/s10": "96e9afc15ecae1a36c4662825b4baecb1329076b607467f0ed427f79bc20724f"
+      }
+    },
+    "shots/s11": {
+      "candidates": [],
+      "created_at": "2026-11-26T08:59:11.493Z",
+      "field_hashes": {
+        "assembly.shots": "7bf1fcf3ca21e70b",
+        "duration_s": "0de7cf39e1e63661",
+        "motion.kenburns": "3cef970a0ebf55bc",
+        "motion.mode": "393e7c8c56ad3964",
+        "motion.prompt": "74234e98afe7498f"
+      },
+      "is_fallback": false,
+      "key": "4b54931a85f08e1f",
+      "path": "outputs/shots/s11/4b54931a85f08e1f.mp4",
+      "primary_provider": null,
+      "provider": {
+        "model": "ffmpeg-zoompan",
+        "name": "kenburns",
+        "params": {
+          "pan": "right",
+          "zoom_from": 1.0,
+          "zoom_to": 1.1
+        }
+      },
+      "run_id": "r_20261126_085858_ca63",
+      "seed": null,
+      "sha256": "591e0b89d7753bc2a6d098936c3c9c40eb42eb3ece9dec34756e5c9c22803160",
+      "stage": "shots",
+      "stage_version": 1,
+      "unit": "s11",
+      "upstream": {
+        "keyframes/s11": "bb73cf3458cd78fb1d107f172c1868ff4b2bb360053dad3dda6f5bb94fbcc24e"
+      }
     },
     "subtitles/project": {
       "candidates": [],

@@ -1,6 +1,6 @@
 # Progress log (agent-maintained)
 
-## Status: M3 (references + keyframes) done; next = compressed M4/M5 (Ken Burns cut first). Thu 26 Nov 2026, DEADLINE 23:59 EAT
+## Status: Ken Burns rough cut done, both films pass QA (feat/assemble). Waiting for Tahir: phone/headphones watch + `tizita choose music N`. Thu 26 Nov 2026, DEADLINE 23:59 EAT
 
 ### Done in M2
 - **feat/narration (PR #5):** `tizita run [--stage] [--unit] [--force] [--upgrade-fallbacks]` (`dag.execute`: skips cached units, prunes superseded artifacts, manifest with `is_fallback`/`primary_provider`, §7.4 summary line); stages `narration` (seed = `seed_base` + shot index), `timing` (§10.1 slots, advice when outside 60–90 s), `subtitles` (SRT + 9x16/16x9 ASS). `.env.example` now uses exactly the `.env` names (no aliases). **Gemini key rotation**: `GEMINI_API_KEY_1..3` via `env_any`, next key on 429/quota before the router's circuit sees an error.
@@ -91,34 +91,56 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 - Radio cut v4 (`outputs/radio_cut/968f9abb6b180d97.mp4`, 77.2 s, 11/11 Gemini TTS, run r_20261126_072953_685c).
 - Test 1 (family group chat, 4 siblings + 2 parents) and consent method recorded from Tahir's report; consent dates/evidence/words_approved still TODO(Tahir).
 
+### Done Thu 26 Nov ~12:15 EAT (compressed M4/M5, part A: guaranteed final cut; PR feat/assemble)
+- Stages `shots` (Ken Burns per keyframe, 1080x1920 24 fps, `shot.duration_s` long, zoompan on a 2x pre-scale with smoothstep easing), `music` (`music.candidates` through the music chain; with no Kaggle adapter it lands on `synth_pad`, one chord per candidate from `assembly.yaml: pad_variants`, FLAC), `assemble` (body with cut/crossfade/fade_black via xfade at slot starts, grade + grain, Pillow end card per ratio listing the models actually used, 9:16 + 16:9 in one ffmpeg pass, narration track -> ducked music -> two-pass loudnorm), `qa` (ffprobe + ebur128 -> `outputs/final/<key>/qa.json`, unit fails on any failed check). `tizita choose music N --reason`.
+- The 4 i2v shots (s01 s03 s06 s10) are recorded as **fallbacks** (Ken Burns, primary `kaggle_wan22`) with `zoom 1.0->1.07` from `kenburns.fallback` because their own kenburns block is flat.
+- Result (run `r_20261126_090820_6906`): both films 77.208 s, 1853/1853 frames, h264 High yuv420p, AAC 48 kHz, **-14.6 LUFS, -1.7 dBTP, LRA 6.8**. 9:16 = 61 MB, 16:9 = 26 MB. QA pass.
+- `.gitignore` now excludes `outputs/final/**/*.mp4` (one render ~90 MB of history); `qa.json`, `assemble.json`, `film.srt` are committed. CI `plan --check` now covers shots + music too.
+- `dag._prune` bug fixed: a new artifact with the old stem (same key, `.wav` -> `.flac`) was deleted as a "sibling". New artifacts/candidates are now kept; key-named dirs (`outputs/final/<key>/`) are removed whole.
+
+### Findings (real measurements, 26 Nov; EXPERIMENTS material)
+- **AAC PNS raises true peak**: master WAV at -3.0 dBTP became -0.9 dBTP after the native AAC encoder at 192k. `-aac_pns 0`: -2.5; `-aac_is 0`: -1.4; twoloop: -0.9; 256k: -2.9. Fix: `-aac_pns 0` + loudnorm TP target -2 (`assembly.yaml: master.tp`) -> -1.7 dBTP in the MP4.
+- **Grain vs file size** (7 s Ken Burns clip, CRF 18 veryfast): grain 0: 2.3 MB, 2: 2.3 MB (x264 erases it), 3: 4.6 MB, 4: 10.4 MB, 6 (SPEC default): film 295 MB. Chose 3.
+- ffmpeg quirks: concat/setpts output has no frame rate, so xfade fails ("1/0 is invalid"); end every clip chain and concat with `fps=24,settb=AVTB`. JPEG/PNG inputs come out full range (`yuvj420p`); scale with `out_range=tv`. A single graph with `asplit` feeding `sidechaincompress` produced a silent narration branch (-70 LUFS); the mix is now two commands and the sidechain is the narration file read twice.
+
+### Re-plan (time left ~11.5 h; SPEC §1 order: pipeline -> evidence/docs -> ceiling -> API/worker -> frontend -> deploy)
+1. **Now (Tahir, ~20 min):** watch both films (phone + headphones), `uv run tizita choose music N --reason "..."`, then `uv run tizita run --stage assemble --stage qa`.
+2. **GPU (optional, needs Tahir's OK):** no Kaggle runner/executor exists yet (adapters `kaggle_wan22`/`kaggle_ace` are `null`). Building runner + executor + kernel is ~2-3 h with real risk. Recommendation: **skip Wan**; try ACE-Step only if Tahir wants real music, time-boxed to 90 min, else the pad stays (documented as degradation).
+3. **13:00-15:00 M6 evidence:** `tizita costs`, `make clean-clone-test` (0 model calls), EXPERIMENTS from real run_ids (AAC/PNS, grain, CLIP threshold, TTS style prefix, voice), FAILURES draft from `logs/failures_auto.jsonl`. TTS benchmark only if cheap.
+4. **15:00-18:00 M9 docs + audit** (moved before M7: graded work reads docs only).
+5. **18:00-21:00 M7** API + frontend pages 1-4 if time remains; **M8 deploy is cut** unless everything above is done.
+6. Tahir: test 2 (3+ people) with the cut that has his chosen music -> DESIGN.md -> `git tag test2-near-final`; report, walkthrough, submit.
+
+### Open TODO(Tahir) (new)
+- Watch the rough cut; `tizita choose music N --reason`. Music is a synth pad (3 chords: 1 G major, 2 E minor, 3 Cmaj7), not ACE-Step.
+- Decide: Kaggle ACE-Step (time-boxed) or keep the pad. Wan i2v recommended cut.
+- Publishing the films: they are not in git. Upload `outputs/final/<key>/film_*.mp4` where you post them (or say if you want a GitHub release made).
+
 ## Next session prompt
 
 ```
-Model: Opus · Effort: medium (assembly + GPU plumbing under a hard deadline; high only if the Kaggle runner gets stuck)
-Read CLAUDE.md, docs/PROGRESS.md, then SPEC §9, §10, §7.2 (i2v/music rows), §12.1 items 6-7.
+Model: Sonnet · Effort: medium (evidence + docs from existing runs; no new ML plumbing)
+Read CLAUDE.md, docs/PROGRESS.md (Re-plan + Findings of 26 Nov), then SPEC §8.3, §12.1, §16, §17.
 
-DEADLINE Thu 26 Nov 23:59 EAT. The original M4 "overnight batch" no longer fits. Re-plan (SPEC §1 priority order):
- A. FIRST, a guaranteed final cut: `shots` stage = deterministic Ken Burns clip per keyframe (ffmpeg, pure builder in
-    tizita/ffmpeg/graphs.py + golden test, kenburns params already in storyboard motion.kenburns, ~5 s fixed, H.264
-    -preset veryfast -crf 18), then `assemble` (9x16 + 16x9, subtitles, narration, transitions) and `qa`. Both MP4s must pass QA.
- B. Music: simplest thing that works. synth_pad exists; ACE-Step on Kaggle only if Tahir OKs the quota. Candidates ->
-    `tizita choose music N --reason` (currently a stub in tizita/cli.py, `choose_music`; `choose reference` is the pattern).
- C. Optional, only if time remains and Tahir OKs `tizita plan`: <=3 i2v hero shots (Wan 2.2 TI2V-5B on Kaggle, 480p).
- Remaining after that: M6 evidence, M7 API/frontend (cut line: pages 1-4), M8 deploy, M9 docs+audit. Keep docs for last
- but do not skip: README, ARCHITECTURE, ETHICS table, FAILURES/EXPERIMENTS from real run_ids.
-
-State: main has M3 merged. storyboard.json = 11 shots, 6 golden refs chosen (sheet.chosen is a 0-based index), keyframes
-in outputs/keyframes/<shot>/<key>.jpg (JPEG from klein, 576x1024) + sidecar .json (CLIP/DINO per attempt). Older
-versions of s01/s03/s04/s07/s09 are in outputs/keyframes_prev/. Radio cut v4 = outputs/radio_cut/ (77.2 s).
-Reuse: dag.build_units/execute + stages/__init__.handlers (add `shots`, `assemble`, `qa`, `music`), Outcome.candidates
-(multi-candidate artifacts), ffmpeg/graphs.py builders, radio_cut stage as the model for an ffmpeg stage.
-
-Pre-conditions for Tahir: none for A. For B/C: OK to use Kaggle GPU (Kaggle weekly quota unknown, check the settings page).
-Acceptance: `uv run tizita run --stage shots --stage assemble --stage qa` then `jq . outputs/final/*/qa.json | head -40`
-shows both films with duration 60-90 s, audio loudness in range, no missing frames; `make test lint` green.
-STOP and wait for Tahir: before any Kaggle launch; after the rough cut (phone + headphones watch, then
-`tizita choose music N`); test 2 with 3+ people after the near-final cut (SPEC 18.1).
-Quirks: klein flags brand names (HTTP 400 code 3030, "Mercedes" got blocked) so describe, don't name; CF neurons ~100 per
-512x512 klein image (dashboard, 26 Nov); CLIP gate threshold is 0.5 (scene-vs-portrait CLIP is ~0.55, DINO near 0:
-the gate is weak, human check is the real one).
+DEADLINE Thu 26 Nov 23:59 EAT. Goal: M6 evidence, then M9 docs (moved before M7, SPEC §1 order).
+First, if `jq .music.chosen storyboard.json` is null, ask Tahir for `tizita choose music N` and stop.
+Then `uv run tizita run --stage assemble --stage qa` (re-renders with the chosen music; ~1 min) and
+commit the qa.json/assemble.json (films are gitignored).
+Scope:
+ 1. `tizita costs` (SPEC §8.3, stub in tizita/cli.py) from runs.jsonl -> docs/COSTS.md.
+ 2. `make clean-clone-test`: clone, `make film` with no keys -> 0 model calls, QA pass. Fix what breaks.
+ 3. EXPERIMENTS.md: >= 8 entries from REAL measurements only, each with run_ids or the measuring
+    command: AAC PNS vs true peak, grain vs size, CLIP threshold (s01 0.5575/0.5448/0.563), TTS style
+    prefix (2.7 s -> 9-10 s), voice Kore vs Achird, ducking defaults (measure music under voice with
+    ebur128 on stems), klein ref conditioning, Gemini model availability. Untested ones = `planned`.
+ 4. FAILURES.md draft from logs/failures_auto.jsonl (Tahir curates).
+ 5. Then M9: README (one-command run), ARCHITECTURE (Mermaid; say honestly which adapters are null:
+    kaggle_wan22, kaggle_ace, hf_*), ETHICS licence table, audit vs the brief's criteria.
+Reuse: tizita/stages/{shots,music,assemble,qa,endcard}.py, ffmpeg/graphs.py builders, dag.execute.
+Acceptance: `make test lint` green; clean-clone test 0 calls + QA pass; COSTS.md generated;
+EXPERIMENTS.md entries cite run_ids; PR merged with CI green.
+STOP for Tahir: if he OKs Kaggle ACE-Step (time-box 90 min, needs runner/executor that don't exist);
+test 2 with 3+ people on the cut with chosen music (SPEC 18.1), then `git tag test2-near-final`.
+Quirks: AAC needs `-aac_pns 0`; grain 3 max; ffmpeg chains end with fps=24,settb=AVTB; never commit
+films (~90 MB); i2v shots are Ken Burns fallbacks (primary kaggle_wan22) and show as upgradable.
 ```

@@ -1,0 +1,30 @@
+{
+  "degraded": [
+    "s01: i2v -> Ken Burns",
+    "s03: i2v -> Ken Burns",
+    "s06: i2v -> Ken Burns",
+    "s10: i2v -> Ken Burns",
+    "music: none chosen yet, using candidate 1"
+  ],
+  "loudnorm_pass1": {
+    "input_i": "-17.59",
+    "input_lra": "10.90",
+    "input_thresh": "-28.84",
+    "input_tp": "-1.13",
+    "normalization_type": "dynamic",
+    "output_i": "-15.58",
+    "output_lra": "7.20",
+    "output_thresh": "-26.60",
+    "output_tp": "-2.00",
+    "target_offset": "1.58"
+  },
+  "models": [
+    "Voice: gemini-3.8-flash-tts",
+    "Images: flux-2-klein-4b",
+    "Motion: ffmpeg-zoompan",
+    "Music: ffmpeg-sine-pad"
+  ],
+  "music": "outputs/music/b3d3dd1aa3c278b5_cand1.flac",
+  "music_chosen": null,
+  "total_s": 77.2
+}

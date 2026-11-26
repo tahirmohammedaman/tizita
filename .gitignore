@@ -39,3 +39,7 @@ ethics/evidence/
 .DS_Store
 .idea/
 .vscode/
+
+# rendered films: ~90 MB per render, kept out of git history (qa.json, assemble.json, film.srt
+# are committed); publish the films as release assets instead
+outputs/final/**/*.mp4

@@ -32,6 +32,9 @@ STAGE_VERSIONS: dict[str, int] = {
     "qa": 1,
 }
 
+# assembly.yaml sections the radio cut reads (later sections must not dirty it)
+RADIO_CUT_CFG = ("timing", "subtitles", "audio", "video", "pad")
+
 # Topological order (SPEC §6.1 dependency order). `director` is interactive and not planned.
 STAGE_ORDER = [
     "narration",
@@ -165,7 +168,7 @@ def build_units(sb: dict, project: Project) -> list[Unit]:
         Unit(
             "radio_cut",
             PROJECT,
-            {"assembly": assembly},
+            {"assembly": {k: assembly[k] for k in RADIO_CUT_CFG if k in assembly}},
             [UpRef("timing", PROJECT), UpRef("subtitles", PROJECT), *narr_up],
             est_latency_s=lat("radio_cut"),
         )
@@ -244,6 +247,12 @@ def build_units(sb: dict, project: Project) -> list[Unit]:
                     "motion.mode": m["mode"],
                     "motion.prompt": m.get("prompt", "") if i2v else None,
                     "motion.kenburns": m.get("kenburns", {}),
+                    "duration_s": s["duration_s"],
+                    "assembly.shots": {
+                        "fps": assembly.get("timing", {}).get("fps"),
+                        "video": assembly.get("video"),
+                        "kenburns": assembly.get("kenburns"),
+                    },
                 },
                 [UpRef("keyframes", s["id"])],
                 capability="i2v" if i2v else None,
@@ -259,7 +268,14 @@ def build_units(sb: dict, project: Project) -> list[Unit]:
         Unit(
             "music",
             PROJECT,
-            {f"music.{k}": v for k, v in music.items() if k not in ("chosen", "chosen_reason")},
+            {
+                **{
+                    f"music.{k}": v
+                    for k, v in music.items()
+                    if k not in ("chosen", "chosen_reason")
+                },
+                "assembly.pad_variants": assembly.get("pad_variants"),
+            },
             capability="music",
             seed=music["seed"],
             est_latency_s=lat("music"),
@@ -452,11 +468,23 @@ def manifest_path_for(project: Project, unit: Unit, key: str, ext: str) -> Path:
 # ---------------------------------------------------------------- runner
 
 
-def _prune(project: Project, old_rel: str) -> None:
-    """Delete a superseded artifact and its siblings (`<key>.srt` + `<key>_*.ass`)."""
+def _prune(
+    project: Project, old_rel: str, old_key: str | None = None, keep: set[Path] | None = None
+) -> None:
+    """Delete a superseded artifact and its siblings (`<key>.srt` + `<key>_*.ass`). Artifacts kept
+    in a directory named after their key (`outputs/final/<key>/`) take the whole directory.
+    Files in `keep` (the new artifact and candidates) are never deleted, even when they share the
+    old stem (same key, new extension)."""
+    keep = {k.resolve() for k in keep or set()}
     old = project.root / old_rel
+    if old_key and old.parent.name == old_key and project.outputs in old.parents:
+        if not any(old.parent.resolve() in k.parents for k in keep):
+            import shutil
+
+            shutil.rmtree(old.parent, ignore_errors=True)
+        return
     for f in old.parent.glob(f"{old.stem}*"):
-        if f.is_file():
+        if f.is_file() and f.resolve() not in keep:
             f.unlink()
 
 
@@ -534,7 +562,8 @@ def execute(
             continue
         art = Artifact(project.rel(res.path), sha256_file(res.path))
         if entry is not None and entry.path != art.path:
-            _prune(project, entry.path)
+            keep = {Path(res.path), *map(Path, res.candidates or [])}
+            _prune(project, entry.path, entry.key, keep)
         manifest.record(
             stage=unit.stage,
             unit=unit.unit,

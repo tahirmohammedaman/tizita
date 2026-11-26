@@ -1,6 +1,6 @@
 # Progress log (agent-maintained)
 
-## Status: near-final cut done (Ken Burns + ACE-Step music 1, TTS tail noise trimmed, QA pass both films). Next = test 2 (Tahir) + M6 evidence + M9 docs. Thu 26 Nov 2026, DEADLINE 23:59 EAT
+## Status: M6 evidence + M9 docs merged. Open: test 2 + report (Tahir), ceiling work (not run). Thu 26 Nov 2026, DEADLINE 23:59 EAT
 
 ### Done in M2
 - **feat/narration (PR #5):** `tizita run [--stage] [--unit] [--force] [--upgrade-fallbacks]` (`dag.execute`: skips cached units, prunes superseded artifacts, manifest with `is_fallback`/`primary_provider`, §7.4 summary line); stages `narration` (seed = `seed_base` + shot index), `timing` (§10.1 slots, advice when outside 60–90 s), `subtitles` (SRT + 9x16/16x9 ASS). `.env.example` now uses exactly the `.env` names (no aliases). **Gemini key rotation**: `GEMINI_API_KEY_1..3` via `env_any`, next key on 429/quota before the router's circuit sees an error.
@@ -126,37 +126,43 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 - Wan i2v recommended cut (no Kaggle runner).
 - Publishing the films: they are not in git. Upload `outputs/final/<key>/film_*.mp4` where you post them (or say if you want a GitHub release made).
 
+## Done Thu 26 Nov ~13:20-14:15 EAT: M6 evidence + M9 docs
+- `tizita costs` (`tizita/costs.py`) writes root `COSTS.md` (SPEC §17 location, not docs/). `make clean-clone-test` passes: 0 model calls, QA forced on the freshly rendered films. No pipeline fix was needed.
+- Bug fixed (PR #22): end card said "Music: ace-step-jam)"; label said ACE-Step 1.5. `assemble` is v2; **current films: `outputs/final/469e11c10902a93f/`** (77.2 s, -14.6 LUFS, -1.7 dBTP).
+- EXPERIMENTS 13 entries; `experiments/measure/measure.py` re-runs the FFmpeg ones. Correction: the AAC PNS overshoot only happens with the untrimmed TTS noise burst; the -2 dBTP target is what keeps QA green.
+- FAILURES draft F-01..F-14, README, ARCHITECTURE (router diagram, adapter status), ETHICS (licences and provider terms read 26 Nov), `docs/AUDIT.md`, report outline.
+- DESIGN: the test-1 diff is now `d483076..004855b` (`radio-cut-v1` holds the placeholder storyboard).
+- Gotcha: a Gemini key-rotation 429 writes no runs.jsonl line of its own (noted in AUDIT).
+
+### Open TODO(Tahir), by points at stake
+- Write the report (30 pts); pointers in `docs/report_outline.md`.
+- Test 2 with the current film, 3+ people, notes in DESIGN.md, then `git tag test2-near-final && git push origin test2-near-final`.
+- DESIGN: logline; confirm the audience wording and that `d483076` is what the family saw.
+- ETHICS: children mentioned in the story; posting platform + AI label; was the family told the story text goes to a free AI tier that may train on it.
+- Curate FAILURES.md; confirm EXPERIMENTS decisions; listening judgements (EXP-05, EXP-08).
+- Upload the NEW films (end card changed).
+- Decide: Ceiling A (TTS quota ~20 calls + ASR; native ratings optional) before any M7 work.
+
 ## Next session prompt
 
 ```
-Model: Sonnet · Effort: medium (evidence + docs from existing runs; no new ML plumbing)
-Read CLAUDE.md, docs/PROGRESS.md (Status, Findings, Re-plan, Open TODO), then SPEC §8.3, §12.1, §16, §17.
+Model: Sonnet · Effort: medium (one small benchmark script on the existing router)
+Read CLAUDE.md, docs/PROGRESS.md (Status, the 26 Nov 13:20 section), docs/AUDIT.md, then SPEC §12.2.
 
-DEADLINE Thu 26 Nov 23:59 EAT. Goal: M6 evidence, then M9 docs (before M7, SPEC §1 priority order).
-State: near-final cut done on main. outputs/final/7c55427dbba3e420/ (films gitignored; qa.json,
-assemble.json, film.srt committed). Music = ACE-Step candidate 1 (hf_ace_space via victor/ace-step-jam),
-chosen by Tahir. 4 i2v shots are Ken Burns fallbacks; Wan is cut (no Kaggle runner exists).
-Scope:
- 1. `tizita costs` (SPEC §8.3, stub in tizita/cli.py) from runs.jsonl -> docs/COSTS.md (free tiers: show
-    calls, latency, quota pools; $0 actual).
- 2. `make clean-clone-test`: clone to a temp dir, `make film` with no .env -> 0 model calls, QA pass. Fix
-    what breaks (likely: providers unusable without keys must still leave cached units cached).
- 3. EXPERIMENTS.md: >= 8 entries, REAL measurements only, each citing run_ids or the measuring command
-    (see PROGRESS Findings): AAC PNS vs true peak; grain vs file size; CLIP threshold (s01 0.5575/
-    0.5448/0.563); TTS style prefix (2.7 s -> 9-10 s); voice Kore vs Achird; TTS end-of-take noise
-    (11/11 takes, trim 0.26-0.36 s); ACE-Step Space availability (1.5 not initialized, v1 repo error,
-    jam ok ~35 s per 83 s track); synth pad vs ACE-Step (Tahir's pick + reason); ducking defaults
-    (measure music under voice with ebur128 on stems). Anything not run = `planned`.
- 4. FAILURES.md draft from logs/failures_auto.jsonl (Tahir curates; never invent his reflections).
- 5. M9: README (one-command run, outputs, how to choose music/reference), ARCHITECTURE (Mermaid DAG +
-    provider router; state honestly which adapters are null: kaggle_wan22, kaggle_ace, hf_wan_space,
-    local_*), ETHICS licence table (ACE-Step v1 Apache-2.0, FLUX.2 klein 4B, Gemini TTS terms, MMS
-    CC-BY-NC, Noto OFL; verify each), audit every Assignment 1 criterion -> evidence -> ok/gap.
-Reuse: tizita/stages/{shots,music,assemble,qa,endcard}.py, tizita/audio.py, ffmpeg/graphs.py, dag.execute.
-Acceptance: `make test lint` green; clean-clone test shows 0 calls + QA pass; docs/COSTS.md generated;
-EXPERIMENTS.md entries cite run_ids; one PR per feature (feat/costs, docs/evidence, docs/m9), CI green.
-STOP for Tahir: test 2 notes (he writes DESIGN.md and tags test2-near-final); any TODO(Tahir) text
-(reflections, consents, native ratings). If time remains after M9: M7 API + frontend pages 1-4 only.
-Quirks: AAC needs `-aac_pns 0`; grain 3 max; ffmpeg chains end with fps=24,settb=AVTB; never commit
-films (~90 MB); music FLAC is exempt from the 5 MB pre-commit hook; HF Spaces move: re-check before use.
+DEADLINE Thu 26 Nov 23:59 EAT. Pre-condition: Tahir approved Ceiling A and its quota (~20 TTS + ~20 ASR
+calls). If not approved, do not start it. SPEC §1 order: ceiling before API/frontend.
+Scope: experiments/tts_benchmark/ + `tizita exp tts-benchmark` (stub in tizita/cli.py):
+ - 5 story-domain sentences in am, om, ti, so; Gemini drafts translations, marked unverified by a native.
+ - gemini_tts, one voice (Achird), via the router (stage "exp"); sentences in a config file, not in code.
+ - ASR round trip via the router: cf_whisper (adapter exists; gemini_asr is null). Pass language am/so;
+   check which of om/ti Whisper supports and report unsupported as such.
+ - CER with jiwer (add dependency), NFC + punctuation stripped; unit test for the normaliser.
+ - results.csv, ratings CSV template (blank), REPORT.md (table, failure modes). Real results only.
+ - Add the EXPERIMENTS entry with run_ids, rerun `tizita costs`, update AUDIT.md and report_outline.md.
+Not in the film. Branch exp/tts-benchmark, PR, CI green, merge.
+Reuse: providers/session.py, router.call_one or the chain, runlog; experiments/measure/ style.
+Acceptance: `make test lint` green; `make clean-clone-test` PASS; REPORT.md numbers trace to runs.jsonl.
+Stop for Tahir: quota errors that would eat the film's TTS retake budget; native ratings (never invent).
+Also if Tahir finished test 2: check the DESIGN.md notes are committed and tag test2-near-final exists;
+update AUDIT.md. Never write their notes or reflections. M7 only if all this is done and time remains.
 ```

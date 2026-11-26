@@ -1,6 +1,6 @@
 # Progress log (agent-maintained)
 
-## Status: M6 evidence + M9 docs merged. Open: test 2 + report (Tahir), ceiling work (not run). Thu 26 Nov 2026, DEADLINE 23:59 EAT
+## Status: M6, M9, test 2 and Ceiling A done. Open: report, Tahir's doc TODOs, walkthrough, post, submit. Thu 26 Nov 2026, DEADLINE 23:59 EAT
 
 ### Done in M2
 - **feat/narration (PR #5):** `tizita run [--stage] [--unit] [--force] [--upgrade-fallbacks]` (`dag.execute`: skips cached units, prunes superseded artifacts, manifest with `is_fallback`/`primary_provider`, §7.4 summary line); stages `narration` (seed = `seed_base` + shot index), `timing` (§10.1 slots, advice when outside 60–90 s), `subtitles` (SRT + 9x16/16x9 ASS). `.env.example` now uses exactly the `.env` names (no aliases). **Gemini key rotation**: `GEMINI_API_KEY_1..3` via `env_any`, next key on 429/quota before the router's circuit sees an error.
@@ -151,23 +151,22 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 ## Next session prompt
 
 ```
-Model: Sonnet · Effort: medium (one small benchmark script on the existing router)
-Read CLAUDE.md, docs/PROGRESS.md (Status, the 26 Nov 13:20 section), docs/AUDIT.md, then SPEC §12.2.
+Model: Sonnet · Effort: medium (final checks and support; no new subsystem unless Tahir asks)
+Read CLAUDE.md, docs/PROGRESS.md (Status and the two 26 Nov afternoon sections), docs/AUDIT.md.
 
-DEADLINE Thu 26 Nov 23:59 EAT. Pre-condition: Tahir approved Ceiling A and its quota (~20 TTS + ~20 ASR
-calls). If not approved, do not start it. SPEC §1 order: ceiling before API/frontend.
-Scope: experiments/tts_benchmark/ + `tizita exp tts-benchmark` (stub in tizita/cli.py):
- - 5 story-domain sentences in am, om, ti, so; Gemini drafts translations, marked unverified by a native.
- - gemini_tts, one voice (Achird), via the router (stage "exp"); sentences in a config file, not in code.
- - ASR round trip via the router: cf_whisper (adapter exists; gemini_asr is null). Pass language am/so;
-   check which of om/ti Whisper supports and report unsupported as such.
- - CER with jiwer (add dependency), NFC + punctuation stripped; unit test for the normaliser.
- - results.csv, ratings CSV template (blank), REPORT.md (table, failure modes). Real results only.
- - Add the EXPERIMENTS entry with run_ids, rerun `tizita costs`, update AUDIT.md and report_outline.md.
-Not in the film. Branch exp/tts-benchmark, PR, CI green, merge.
-Reuse: providers/session.py, router.call_one or the chain, runlog; experiments/measure/ style.
-Acceptance: `make test lint` green; `make clean-clone-test` PASS; REPORT.md numbers trace to runs.jsonl.
-Stop for Tahir: quota errors that would eat the film's TTS retake budget; native ratings (never invent).
-Also if Tahir finished test 2: check the DESIGN.md notes are committed and tag test2-near-final exists;
-update AUDIT.md. Never write their notes or reflections. M7 only if all this is done and time remains.
+DEADLINE Thu 26 Nov 23:59 EAT (aim to submit 21:00). Done: M6 evidence, M9 docs, test 2 notes + tag
+test2-near-final, Ceiling A (experiments/tts_benchmark/REPORT.md). Film: outputs/final/469e11c10902a93f/.
+Scope, in order, only what Tahir asks for:
+ 1. Walkthrough rehearsal copy: separate clone with .env copied (never printed); edit one narration
+    line; plan; make film. Check the new runs.jsonl line says gemini_tts: on quota the chain reuses
+    previous_take and the edit is not heard.
+ 2. Log a runs.jsonl line for each rotated Gemini key 429 (gemini_text.call_rotating); add a test.
+ 3. List prices in config/pricing.yaml from the providers' pages (source URL + date); `tizita costs`.
+ 4. Check Tahir's edits (DESIGN, ETHICS, FAILURES, EXPERIMENTS, ratings_template.csv) against the
+    logs; add native ratings to REPORT.md only if a named rater filled them; update docs/AUDIT.md.
+ 5. Animation (friend's test-2 request) only if Tahir asks: propose a time box and quota first.
+    No Kaggle runner exists; the hosted Wan Space adapter is null and untested.
+Never write Tahir's notes, decisions, reflections, report or post.
+Acceptance: `make test lint` green; `make clean-clone-test` PASS; one PR per change, CI green.
+Stop for Tahir: GPU/quota spend, publishing films (GitHub release), anything outward-facing.
 ```

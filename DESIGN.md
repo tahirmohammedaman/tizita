@@ -35,13 +35,18 @@ pipeline build with a placeholder storyboard, so a diff from that tag does not s
 
 ## Test 2: near-final cut (tag `test2-near-final`)
 
-| # | Who | When / how | What they said | What changed |
-|---|---|---|---|---|
-| 1 | <!-- TODO(Tahir) --> | | | |
-| 2 | <!-- TODO(Tahir) --> | | | |
-| 3 | <!-- TODO(Tahir) --> | | | |
+Three viewers on 26 Nov 2026. The notes are Tahir's report, entered by the coding agent at his
+instruction; the feedback is paraphrased and no verbatim quotes were recorded.
+<!-- TODO(Tahir): how and when each person watched (phone or other, in person or sent), and which render they saw. -->
 
-**Storyboard changes:** <!-- TODO(Tahir) -->
+| # | Who | When / how | What they said (reported by Tahir) | What changed |
+|---|---|---|---|---|
+| 1 | Sister 1 | 2026-11-26 | Really liked the warm nostalgia and family feeling, especially the last scene with the little nephew. | No change requested |
+| 2 | Sister 2 | 2026-11-26 | Also liked the nostalgia and the generated pictures. The narration voice-over could be a little more realistic, for example closer to Tahir's own voice. | No change so far |
+| 3 | A friend (more technical) | 2026-11-26 | It would be nice if all or some frames were animated like real video, not only Ken Burns stills. Found the pipeline idea really interesting. Tahir told him animation is planned if there is time. | No change so far |
+
+**Storyboard changes:** none at the time of the tag.
+<!-- TODO(Tahir): what you decided about the two requests (voice, animation) and why. -->
 
 ## Shot reasons
 

@@ -29,7 +29,7 @@ Each criterion from the brief ("How your work is assessed"), the evidence, and a
 |---|---|---|
 | Audience and intent before generating | DESIGN, timestamped 25 Nov 18:42, before the first film image (26 Nov). Smoke-test images with unrelated prompts ran earlier. The wording started as agent-assumed defaults in `interview/answers.yaml`; the logline is empty | partial: TODO(Tahir) |
 | Test 1 (radio cut), 3+ people | DESIGN: 6 family members; paraphrased, no verbatim quotes; one combined row | partial |
-| Test 2 (near-final), 3+ people | not yet written; tag `test2-near-final` missing | **gap**: TODO(Tahir) |
+| Test 2 (near-final), 3+ people | DESIGN: two sisters and a friend, paraphrased; tag `test2-near-final`. How each watched, and the decisions on their requests, are still TODO | partial |
 | Storyboard visibly changed by feedback | `git diff d483076 004855b -- storyboard.json` | ok for test 1 |
 | A reason for every shot | `storyboard.json`, table in DESIGN; lint-enforced | ok |
 
@@ -80,6 +80,6 @@ frontend pages and deployment (`tizita serve` and `worker` are stubs).
 ## Biggest risks, in order of points at stake
 
 1. Report not yet written (30).
-2. Test 2 notes and tag (part of 10, and the report's audience section).
+2. No storyboard or film change in response to test 2 so far (test 1 did change the storyboard).
 3. No ceiling work (10). The cheapest real option is Ceiling A, the TTS + ASR round-trip benchmark
    (SPEC §12.2: about 20 TTS and 20 ASR calls, plus the code, which does not exist yet).

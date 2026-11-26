@@ -181,7 +181,7 @@ Consent is checked before any call that depicts a real person.
 - **Logging:** every attempt, failed ones included, writes one schema-checked line to `runs.jsonl`
   (run_id, stage, unit, provider, model, params, seed, attempt, cache key, output sha256, status,
   error class, `fallback_from`, latency, tier, list-price and actual cost; prompts as hash + first 200
-  characters, never secrets). At the time of writing it holds 251 lines, 211 of them `ok`
+  characters, never secrets). At the time of writing it holds 351 lines, 264 of them `ok`
   (breakdown: [COSTS](COSTS.md)). Every fallback also emits a `FallbackEvent` to the console (a yellow
   line), `logs/events.jsonl` and a draft entry in `logs/failures_auto.jsonl`, which is curated into
   `FAILURES.md`.

@@ -25,7 +25,7 @@ one scheduler.
 
 Additions that have no place in the brief's list: `tizita/dag.py` (stage graph, dirty detection),
 `tizita/cache.py` (cache keys, manifest), `tizita/runlog.py` and `tizita/events.py` (logs),
-`tizita/providers/` (one router for every model call), `config/` (all parameters), `tests/`.
+`tizita/providers/` (one router for every model call), `config/` (all parameters), `experiments/measure/` (re-runnable measurements), `tests/`.
 
 **Why a package and not one script per stage.** The criteria that carry the most weight (caching, retries,
 fallbacks, one `runs.jsonl` line per call, no secrets) are cross-cutting. Separate scripts would each
@@ -121,10 +121,37 @@ a TTS param (e.g. `style_mode`) use `tizita run --force --stage narration`.
 
 ## Providers, fallbacks and errors
 
+```mermaid
+flowchart TD
+  S[stage builds a Request] --> C[chain for the capability<br/>reordered by profile and --provider]
+  C --> F{usable?<br/>tier allowed, adapter, key, weights,<br/>circuit closed, privacy, budget}
+  F -- no --> N[next provider in chain]
+  N --> F
+  F -- yes --> A[adapter call]
+  A -- ok --> W[atomic write<br/>+ runs.jsonl line]
+  A -- 429 wait / 5xx / timeout --> R[retry with backoff] --> A
+  A -- quota or unavailable --> O[open circuit<br/>FallbackEvent + runs.jsonl line] --> N
+  A -- bad request or safety block --> X[fail the unit, no fallback]
+  N -- chain empty --> E[ChainExhausted: unit fails]
+```
+
+Consent is checked before any call that depicts a real person.
+
 - **One door for every model call:** stages build a `Request` and call the router
   (`tizita/providers/router.py`), never an SDK. Adapters live in `tizita/providers/`
   (`gemini_text`, `gemini_tts`, `cf_workers_ai`, `openai_compat`, `hf_ace_space`, `mms_tts`,
   `local_clip`, and the deterministic `synth_pad` and `previous_take`).
+- **What is actually wired.** Chains list the planned catalogue. An entry with `adapter: null` is
+  reported as unavailable and skipped, never faked:
+
+  | Capability | Working adapters | `adapter: null` (not built) |
+  |---|---|---|
+  | text | Gemini ×3, Workers AI, Groq and OpenRouter (never called: no keys), paid Gemini (untested) | `storyboard_manual` |
+  | tts | `gemini_tts`, `previous_take`, `mms_tts_local` | `gemini_tts_paid`, `mms_tts_space` |
+  | image / image_edit | `cf_flux2_klein` (the reference path was used; upload repaint is untested), `cf_flux1_schnell` (image only, no references) | `hf_flux`, `local_flux`, `fal_image`, `previous_keyframe` |
+  | i2v | none through the router; Ken Burns is done by the `shots` stage itself | `kaggle_wan22`, `hf_wan_space`, `local_wan`, `fal_i2v` (`kenburns` is listed with no adapter) |
+  | music | `hf_ace_space`, `synth_pad` | `kaggle_ace`, `local_ace`, `fal_music` |
+  | embed / asr | `local_clip`, `cf_whisper` | `skip_embed`, `gemini_asr`, `groq_whisper`, `local_whisper` |
 - **Chains** per capability are in `config/providers.yaml`, for example
   `tts: [gemini_tts, gemini_tts_paid, previous_take, mms_tts_space, mms_tts_local]` and
   `music: [kaggle_ace, hf_ace_space, local_ace, fal_music, synth_pad]`. Each entry declares its tier
@@ -154,8 +181,8 @@ a TTS param (e.g. `style_mode`) use `tizita run --force --stage narration`.
 - **Logging:** every attempt, failed ones included, writes one schema-checked line to `runs.jsonl`
   (run_id, stage, unit, provider, model, params, seed, attempt, cache key, output sha256, status,
   error class, `fallback_from`, latency, tier, list-price and actual cost; prompts as hash + first 200
-  characters, never secrets). At the time of writing it holds 251 lines: 211 `ok`, 23 `error`,
-  17 `fallback_triggered`. Every fallback also emits a `FallbackEvent` to the console (a yellow
+  characters, never secrets). At the time of writing it holds 251 lines, 211 of them `ok`
+  (breakdown: [COSTS](COSTS.md)). Every fallback also emits a `FallbackEvent` to the console (a yellow
   line), `logs/events.jsonl` and a draft entry in `logs/failures_auto.jsonl`, which is curated into
   `FAILURES.md`.
 
@@ -174,8 +201,7 @@ to make the final cut certain first:
 - **Music:** the GPU is the hosted one. `hf_ace_space` calls a ZeroGPU Hugging Face Space running
   ACE-Step v1 3.5B (`victor/ace-step-jam`), because the official ACE-Step 1.5 Space answered "Model not
   fully initialized" and the official v1 Space failed server-side on 26 Nov (details in the
-  `config/providers.yaml` comments). The display label still says "ACE-Step 1.5"; the logged `model`
-  field is the accurate one.
+  `config/providers.yaml` comments and [EXPERIMENTS](EXPERIMENTS.md) EXP-11).
 
 So the local pipeline needs no GPU: only the CPU models (MMS-TTS fallback, CLIP/DINOv2) run locally.
 
@@ -193,9 +219,10 @@ the graph string. Parameters come from `config/assembly.yaml`. Exports use `-pre
    in `fps=24,settb=AVTB`, because without it concat output has no frame rate and `xfade` fails.
 3. **Audio:** takes are placed at their slot starts. Gemini TTS ends every take with a short noise
    burst, so `tizita/audio.py: speech_end_s` cuts each take before it (30 ms fade). Music is ducked
-   under the narration with `sidechaincompress`. This runs as two commands, because a single graph
+   under the narration with `sidechaincompress` (EXP-05). This runs as two commands, because a single graph
    with `asplit` feeding the sidechain produced a silent branch. Then a two-pass `loudnorm` to
-   −14 LUFS with a −2 dBTP target, and AAC with `-aac_pns 0` (PNS raised true peak above −1 dBTP).
+   −14 LUFS with a −2 dBTP target (a −1 target ends at −0.8 dBTP after AAC), and `-aac_pns 0` as a
+   guard: with an untrimmed noise burst, PNS pushed true peak far above −1 dBTP (EXP-03).
 4. **Subtitles** (`stages/subtitles.py`): SRT from `text_en`, two ASS styles (the 9:16 one sits
    higher to clear platform UI), burned per export, and `film.srt` exported too.
 5. **End card** (`stages/endcard.py`): Pillow renders "Made with AI" in English and Amharic, the
@@ -230,7 +257,7 @@ missing keyframe stops that shot and therefore assembly.
 ## Local pipeline vs showcase
 
 The graded pipeline is the CLI: `make film` = `tizita validate` → `tizita run` → `tizita run --stage qa`,
-on a clean clone with `.env` keys (or none: everything is cached, see "Caching"). It never depends on
-the API, worker, frontend or VPS. `tizita/api/`, `tizita/worker/`, `frontend/` and `deploy/` are reserved for an
+on a clean clone with `.env` keys (or none: everything is cached, `make clean-clone-test` checks it).
+It never depends on the API, worker, frontend or VPS. `tizita/api/`, `tizita/worker/`, `frontend/` and `deploy/` are reserved for an
 optional showcase on top of the same stages; at the time of writing `tizita/api/` and
 `tizita/worker/` are empty packages (cut behind the pipeline and docs in the re-plan).

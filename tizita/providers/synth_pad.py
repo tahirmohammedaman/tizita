@@ -28,16 +28,21 @@ class SynthPad(Provider):
         if dur <= 0:
             raise BadRequest("synth_pad needs params.duration_s")
         cfg = load_config(Project.default(), "assembly")["pad"]
+        if req.params.get("freqs"):  # a music-stage candidate variant
+            cfg = {**cfg, "freqs": list(req.params["freqs"])}
+        flac = req.params.get("format") == "flac"  # committed music candidates: ~5x smaller
+        ext = "flac" if flac else "wav"
         with tempfile.TemporaryDirectory() as d:
-            out = Path(d) / "pad.wav"
-            r = subprocess.run(synth_pad_cmd(dur, str(out), cfg), capture_output=True, text=True)
+            out = Path(d) / f"pad.{ext}"
+            cmd = synth_pad_cmd(dur, str(out), cfg, "flac" if flac else "pcm_s16le")
+            r = subprocess.run(cmd, capture_output=True, text=True)
             if r.returncode != 0 or not out.exists():
                 raise Unavailable(f"ffmpeg pad failed: {r.stderr[-200:]}")
             data = out.read_bytes()
         return Result(
             model="ffmpeg-sine-pad",
             data=data,
-            mime="audio/wav",
-            ext="wav",
-            metrics={"duration_s": round(wav_duration_s(data), 3)},
+            mime="audio/flac" if flac else "audio/wav",
+            ext=ext,
+            metrics={"duration_s": dur if flac else round(wav_duration_s(data), 3)},
         )

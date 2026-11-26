@@ -29,3 +29,33 @@ pad:
   lowpass_hz: 900
   fade_in_s: 2
   fade_out_s: 3
+# ---- M4/M5 film assembly (new top-level keys so the radio cut's cache key is unchanged)
+kenburns:
+  # i2v shots whose Wan clip is missing degrade to this when their own kenburns block is flat
+  fallback: { zoom_from: 1.0, zoom_to: 1.07, pan: none }
+  still: { zoom_from: 1.0, zoom_to: 1.03, pan: none }
+  min_i2v_speed: 0.85    # an i2v clip may be slowed to 0.85x, then its last frame is held
+look:
+  contrast: 1.03
+  saturation: 0.97
+  grain: 3               # noise=alls=N:allf=t. 6 made the 9:16 film 295 MB (CRF 18); 3 ~4.6 MB per 7 s; 2 is erased by x264 (26 Nov)
+  fade_out_s: 0.6        # fade to black before the end card
+  card_fade_s: 0.5
+  blur_sigma: 30         # 16:9 background fill
+  bg_brightness: -0.12
+music_mix:
+  gain_db: -8            # music level after pre-normalisation, before ducking
+  fade_in_s: 2
+  fade_out_s: 3
+pad_variants:            # synth_pad candidates for `tizita choose music N` (storyboard key: G major)
+  - { name: "G major (G3 B3 D4 G4)", freqs: [196.0, 246.94, 293.66, 392.0] }
+  - { name: "E minor (E3 G3 B3 E4)", freqs: [164.81, 196.0, 246.94, 329.63] }
+  - { name: "Cmaj7 (C3 E3 G3 B3)", freqs: [130.81, 164.81, 196.0, 246.94] }
+qa:
+  duration_s: [60, 90]
+  lufs: -14
+  lufs_tol: 1
+  max_tp: -1
+  sizes: { "9x16": [1080, 1920], "16x9": [1920, 1080] }
+master:
+  tp: -2.0               # loudnorm TP target before AAC (QA max -1). The encoder runs with -aac_pns 0: PNS added +2 dB peaks on our speech at 192k (measured 26 Nov)

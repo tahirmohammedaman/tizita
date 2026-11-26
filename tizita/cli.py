@@ -560,10 +560,24 @@ def gpu_status() -> None:
     _pending("gpu status", "M4")
 
 
-@app.command(context_settings=_PASSTHROUGH)
+@app.command()
 def costs() -> None:
     """Regenerate the generated section of COSTS.md from runs.jsonl."""
-    _pending("costs", "M6")
+    from tizita.costs import write_costs
+    from tizita.providers.registry import load_config
+
+    project = _project()
+    prices = load_config(project, "pricing").get("prices", {})
+    configured = load_config(project, "providers").get("providers", {})
+    pools = {name: cfg.get("quota_pool") for name, cfg in configured.items()}
+    n, _ = write_costs(
+        project.root / "COSTS.md",
+        project.root / "runs.jsonl",
+        project.root / "logs" / "events.jsonl",
+        prices,
+        pools,
+    )
+    console.print(f"COSTS.md updated from {n} runs.jsonl lines")
 
 
 @exp_app.command("tts-benchmark", context_settings=_PASSTHROUGH)

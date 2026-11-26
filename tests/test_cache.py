@@ -73,7 +73,8 @@ def test_provider_change_changes_key(good_sb, project):
     assert cache_key("a", 1, {}, {}, None, 1) != cache_key("a", 2, {}, {}, None, 1)
 
 
-def test_provider_outside_active_chain_is_dirty(good_sb, project):
+def test_provider_outside_active_chain_stays_cached(good_sb, mutate, project):
+    # A paid-tier artifact must survive a run under the free profile (no rebuild, no replace).
     materialize(good_sb, project, PROV)
 
     def resolver(cap, unit):
@@ -81,7 +82,12 @@ def test_provider_outside_active_chain_is_dirty(good_sb, project):
 
     rows = plan(good_sb, project, resolver=resolver)
     narr = [r for r in rows if r.stage == "narration"]
-    assert all(r.status == "dirty" and "provider fake" in r.detail for r in narr)
+    assert narr and all(r.status == "cached" and "made by fake" in r.detail for r in narr)
+    assert not _dirty(rows)
+
+    # ...but a real input change still dirties it.
+    sb2 = mutate(lambda s: s["shots"][0]["narration"].update(text_am="አዲስ መስመር።"))
+    assert "narration/s01" in _dirty(plan(sb2, project, resolver=resolver))
 
 
 def test_fallback_upgradable(good_sb, project):

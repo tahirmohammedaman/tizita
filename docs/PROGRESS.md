@@ -1,6 +1,6 @@
 # Progress log (agent-maintained)
 
-## Status: final film f1eb451f1815c80d (all clips approved). Open: Tahir's answers (DESIGN/ETHICS/EXP/FAILURES), report, walkthrough, post, submit. DEADLINE Thu 26 Nov 23:59 EAT
+## Status: film f1eb451f1815c80d final, docs + report merged (PRs #34, #35). Open: walkthrough recording, public post, film upload, submission, revoke WaveSpeed key. DEADLINE Thu 26 Nov 23:59 EAT
 
 ### Done in M2
 - **feat/narration (PR #5):** `tizita run [--stage] [--unit] [--force] [--upgrade-fallbacks]` (`dag.execute`: skips cached units, prunes superseded artifacts, manifest with `is_fallback`/`primary_provider`, §7.4 summary line); stages `narration` (seed = `seed_base` + shot index), `timing` (§10.1 slots, advice when outside 60–90 s), `subtitles` (SRT + 9x16/16x9 ASS). `.env.example` now uses exactly the `.env` names (no aliases). **Gemini key rotation**: `GEMINI_API_KEY_1..3` via `env_any`, next key on 429/quota before the router's circuit sees an error.
@@ -170,44 +170,32 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 - Gotcha (F-19): `PAID_BUDGET_USD` caps cumulative logged spend; a blocked paid unit falls back to Ken Burns and prunes the approved clip (restored from git). Open: fail instead of falling back over an approved take.
 - Records: COSTS (WaveSpeed table, observed limits), FAILURES F-10/F-11 corrected + F-16..F-19, EXPERIMENTS EXP-02/03 corrected + EXP-15/16, ETHICS (WaveSpeed terms, C2PA in WAVs only), ARCHITECTURE, README, DESIGN, AUDIT.
 
+## Done Thu 26 Nov ~18:00-18:35 EAT
+- PR #34 merged (film, fixes, records). PR #35 merged: Tahir's answers in DESIGN/ETHICS/FAILURES/EXPERIMENTS/benchmark REPORT/AUDIT, and `docs/REPORT.md` (Tahir approved).
+- Report PDF: `~/tizita-submission/REPORT.pdf` (not in git). Link: https://github.com/tahirmohammedaman/tizita/blob/main/docs/REPORT.md
+- Native comments (Amharic, qualitative): Peneal Feleke, Sebrina Akmel, Sumeya Mohammed. No numeric scores; Oromo/Tigrinya/Somali unrated.
+- Walkthrough rehearsal 2 in `~/tizita-rehearsal` at e97b228: s01 one-word edit → 6 dirty, `make film` 67 s, `r_20261126_152923_48e2` (1 gemini_tts call + synth_pad), QA pass, all Wan clips stayed cached. Both rehearsals are stashed there; clone is clean (run `make film` once before recording).
+
 ## Next session prompt
 
 ```
-Model: Opus · Effort: medium (a cache/profile bug can overwrite the finished film; the rest is docs)
-Read CLAUDE.md, docs/PROGRESS.md (Status, this prompt), docs/AUDIT.md, DESIGN.md.
-DEADLINE Thu 26 Nov 23:59 EAT, submit by 21:00. The report (30 pts) is still unwritten: protect its time.
+Model: Sonnet · Effort: low (only checklists and small doc fixes remain)
+Read CLAUDE.md, docs/PROGRESS.md (Status + last "Done"). Don't reread SPEC.
+DEADLINE Thu 26 Nov 23:59 EAT; aim to submit by 21:00.
 
-STATE: branch feat/family-feedback-shots (pushed, no PR). New film outputs/final/c765af02771aed27/
-(78.83 s, QA 2 pass, review copy tmp_film_9x16.mp4). Frames + audio approved by me; clips not yet.
-Built with: ALLOW_PAID=1 PAID_BUDGET_USD=0.01 tizita run --stage assemble|qa --profile paid (blocks spend).
-WaveSpeed balance $0.142 (adapter tizita/providers/wavespeed.py; key in .env; I must revoke it after).
+STATE: main e97b228 (+ this handoff PR). Film outputs/final/f1eb451f1815c80d/ (78.83 s, QA pass,
+all clips approved). Report approved: docs/REPORT.md, PDF ~/tizita-submission/REPORT.pdf.
+WaveSpeed balance ~$0.04: no more paid runs.
 
-DO, in order:
-1. FIRST, before any `make film` / clean-clone: the free profile marks WaveSpeed keyframes/clips dirty
-   ("provider not in active chain"), so it can't build and could replace them. Fix in cache/dag so a
-   finished paid artifact stays cached when the paid tier is off. Test it. `plan` must show 0 dirty.
-2. End card shows "Images: edit" and raw i2v ids: show FLUX.2 klein 4B and Wan 2.2; bump assemble version.
-3. Show me the film; I decide on clip retries (about $0.05 per 5 s, ask first): s08 colour washes out to
-   pink + extra man; s11 family walk toward camera, odd white shapes in grass; s05 odd head/hand turn.
-4. Records from real run_ids: COSTS (actual WaveSpeed: frames $0.168, video $0.69; the 720p s03 line logs
-   $0.032 but cost $0.16 by balance); FAILURES (Cloudflare neurons + HF ZeroGPU runs exhausted; my price
-   misquote; ROOT CAUSE of the TTS hiss/click = our adapter re-wrapped Gemini's WAV, playing header +
-   C2PA as audio: correct F-10/F-11/EXP-03; 10 takes unwrapped to original bytes, so old runs.jsonl shas
-   differ; slowed i2v clips cut video to 15.5 s and QA passed it); EXPERIMENTS (klein prompts v1 vs v2,
-   Wan 720p vs 480p); ETHICS (read WaveSpeed terms/licence; C2PA is in the WAVs, not claimed in MP4);
-   ARCHITECTURE, README, DESIGN (status, "What is changing", shot reasons from storyboard), AUDIT.
-5. `make test lint`, `make clean-clone-test` (0 model calls), PR, CI green, merge.
-6. Ask me ONE question at a time, then write up only what I actually say (tidy and expand wording; no
-   invented opinions, quotes or attributions; no mention in project files that an assistant filled them):
-   DESIGN logline, family conversation, Test 1 rows 2-3, whether d483076 is what they saw; ETHICS: did the
-   children's parents agree, was family told about hosted AI providers, platform + AI label; hardest
-   problem for FAILURES; EXPERIMENTS decisions + listening judgements (EXP-05, EXP-08); native ratings
-   (named rater only; ti s01/s03/s07 faulty). consents.yaml is mine; only remind me of its stale TODO.
-7. Report: use docs/report_outline.md headings (aim, audience learning + changes, hardest problem,
-   practice that helped, one that didn't, ceiling, next). Interview me section by section; draft from my
-   answers and repo evidence; I check every claim (an AI interview follows). Export PDF/DOCX/link.
-8. Walkthrough (<= 5 min, one narration line regenerated live): refresh ~/tizita-rehearsal and re-rehearse.
-   The public post must be written by me; give me only a checklist (story, why, one lesson, AI label on).
-9. Submission checklist: public repo, report link; film 9:16 + 16:9, walkthrough, post, links open logged out.
-STOP for me: any spend, GitHub release / film upload, anything outward-facing.
+DO only what I ask, likely:
+1. Walkthrough help (<= 5 min, I record): ~/tizita-rehearsal is clean at main; run `make film` there
+   first. Live edit: remove ሁልጊዜ from s01 text_am → `tizita plan` (6 dirty) → `make film` (~67 s,
+   1 TTS call). Show runs.jsonl tail with jq, never cat.
+2. Public post: I write it myself. Only check it covers story, why, one lesson, AI label on.
+3. Submission checklist: repo public; report link opens logged out; film 9:16 + 16:9 uploaded
+   (YouTube, AI label on); walkthrough link; post link; every link opens in a private window.
+4. After I post: record the YouTube label confirmation in ETHICS (TODO there) on a docs/ branch, PR, merge.
+5. Remind me: revoke the WaveSpeed key; ethics/consents.yaml children TODO is mine.
+STOP for me: any upload, release, post or other outward-facing step; any spend.
+Acceptance: `make test lint` green; `tizita plan` on main = 0 dirty except assemble/qa (MP4s not in git).
 ```

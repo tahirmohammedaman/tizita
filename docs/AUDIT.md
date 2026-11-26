@@ -70,7 +70,7 @@ Each criterion from the brief ("How your work is assessed"), the evidence, and a
 |---|---|---|
 | Reflection and learning from the audience (10) | test 1 + diff; test 2 notes and the rendered changes in DESIGN | **gap** until written |
 | Suggested practices tested honestly (10) | candidates in report_outline | **gap** until written |
-| Curiosity beyond the floor (10) | Ceiling A run: `experiments/tts_benchmark/REPORT.md` (4 languages, 2 transcribers, EXP-14). No native ratings; no motion A/B | evidence ready; needs Tahir's written account |
+| Curiosity beyond the floor (10) | Ceiling A run: `experiments/tts_benchmark/REPORT.md` (4 languages, 2 transcribers, EXP-14). Native comments: Amharic only, three named listeners (EXP-08); no motion A/B | evidence ready; needs Tahir's written account |
 
 ## Not built (from SPEC, not from the brief's criteria)
 
@@ -82,5 +82,5 @@ frontend pages and deployment (`tizita serve` and `worker` are stubs).
 1. Report not yet written (30).
 2. The motion depends on a paid API whose key must be revoked after submission; a clean clone
    rebuilds from committed clips and makes no paid call.
-3. Ceiling A has no native-speaker ratings, and Oromo and Tigrinya rest on one same-vendor
-   transcriber.
+3. Ceiling A has native comments for Amharic only (three named listeners, no numeric scores), and
+   Oromo and Tigrinya rest on one same-vendor transcriber.

@@ -119,7 +119,8 @@ Format (SPEC §12.1): **Hypothesis → Change → Result (numbers + evidence) �
 - **Reading:** ducking adds 12–17 dB of separation. Going from ratio 6 to 12 adds only 1.5 dB. The
   short release lets the music back up sooner, including between words.
 - **Decision:** keep the brief's values. RMS is not a listening test.
-  <!-- TODO(Tahir): by ear on a phone speaker and headphones, is the music too quiet under speech? -->
+  By ear (Tahir, final film): the music level under the narration is about right, on both a phone
+  speaker and headphones.
 
 ## EXP-06: CLIP similarity threshold for keyframes
 
@@ -154,9 +155,19 @@ Format (SPEC §12.1): **Hypothesis → Change → Result (numbers + evidence) �
 - **Change:** voice name only, 3 identical lines (`r_20261126_070255_0908` Kore,
   `r_20261126_072953_685c` Achird; `measure.py pace`).
 - **Result (s):** s01 3.96 vs 3.92 · s02 3.19 vs 3.35 · s03 4.12 vs 4.20. All within 0.17 s.
-- **Decision:** Achird, chosen for who is telling the story. Pacing was not a factor. No blind or
-  native-speaker voice rating was run.
-  <!-- TODO(Tahir): your own judgement of the two voices, if you compared them by ear. -->
+- **Decision:** Achird, chosen for who is telling the story. Pacing was not a factor. No blind
+  A/B between the two voices was run.
+  By ear (Tahir): yes, Achird was chosen because the story is told by a man. He also listened to
+  most voices online, including other services such as Addis AI (an Ethiopian provider of localised
+  models), and judged Gemini TTS, specifically Achird, the best of them. Those comparisons were
+  informal listening outside the pipeline, so they have no run_ids.
+- **Native listeners:** Three native Amharic speakers listened to the Achird narration (26 Nov 2026). Their comments,
+  paraphrased by Tahir; no numeric scores were given:
+  - **Peneal Feleke** (Amharic): the Achird version was really good.
+  - **Sebrina Akmel** (Amharic): also really good. It sounded a bit translated, machine-like, but it
+    was okay, especially the later versions.
+  - **Sumeya Mohammed** (Amharic): also really good, but it would have been nicer if it sounded more
+    like Tahir.
 
 ## EXP-09: local MMS-TTS vs Gemini TTS on the same lines
 
@@ -258,7 +269,15 @@ Format (SPEC §12.1): **Hypothesis → Change → Result (numbers + evidence) �
   description and seed 3108 (`r_20261126_133457_11d4`).
 - **Result:** 14 images, $0.012 each, p50 17 s. The final film uses frames from this set for s01–s06,
   s08 and s11; s07, s09 and s10 are earlier free Workers AI frames.
-- <!-- TODO(Tahir): what was wrong in v1, what v2 changed, and why you picked v2 (your judgement). -->
+- **What v2 changed:** each prompt pins down the scene the family asked for. It gives an exact head
+  count ("Exactly two people", "Exactly three people, each appearing once"), fixes who sits where
+  in picture terms ("On the RIGHT side of the picture … the driver"), says who holds the wheel and
+  who does not, and keeps the child the same age in s01 and s02. Those are the Test 2 requests:
+  me in the back seat (change 4), Dad out of the driver's seat (change 2), the same-age child
+  (change 6) and the first day driving with Dad beside me (change 7).
+- **Decision:** v2. With a looser v1 prompt the model was free to swap the seats and the number of
+  people, which is exactly what the family had objected to. The father in s08 still did not look
+  right, so it got a third prompt with a new father description (change 3) and a new seed.
 
 ## EXP-16: Wan 2.2 i2v on WaveSpeed, 720p vs 480p
 
@@ -277,7 +296,9 @@ Format (SPEC §12.1): **Hypothesis → Change → Result (numbers + evidence) �
 - **Decision:** 480p for the rest of the film, to fit the prepaid credit; s03 keeps its 720p clip.
   Two 480p retries (s05, s08) with new seeds and tighter motion prompts went in after Tahir compared
   old and new side by side (`r_20261126_143111_6c85`).
-- <!-- TODO(Tahir): did 720p look better than 480p once upscaled? Your judgement only. -->
+- **By eye (Tahir):** the 720p s03 clip looks much nicer in the film. A 480p preview of s03 that he
+  made was also fine. That preview is not in `runs.jsonl`, so it has no run_id. At twice the price
+  per second, 480p was good enough for the rest.
 
 ## Planned (not run, no results)
 
@@ -285,8 +306,8 @@ Format (SPEC §12.1): **Hypothesis → Change → Result (numbers + evidence) �
 |---|---|
 | klein with reference images vs prompt-only (identity) | no prompt-only control run was made |
 | CLIP threshold against human same / not-same labels | no labels collected |
-| Gemini TTS voices rated by a native speaker | no ratings collected |
-| Wan 30 vs 40 steps; motion-only prompts; T4 vs RTX 4060 | Wan was cut: no GPU runner was built |
+| Numeric (1–5) native ratings of the TTS voices | only qualitative Amharic comments were collected (EXP-08) |
+| Wan 30 vs 40 steps; T4 vs RTX 4060 | Wan ran on WaveSpeed's hosted API (no step control, no own GPU) |
 | ACE-Step short vs detailed captions | one caption used |
-| Native-speaker ratings for the four-language benchmark (EXP-14) | not collected yet |
-| Ceiling B: blind motion A/B (Wan vs Ken Burns) | needs Wan clips |
+| Native-speaker ratings for Oromo, Tigrinya and Somali (EXP-14) | not collected |
+| Ceiling B: blind motion A/B (Wan vs Ken Burns) | Wan clips now exist; no A/B was run |

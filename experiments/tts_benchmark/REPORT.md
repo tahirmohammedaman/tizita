@@ -16,7 +16,16 @@ It is not a quality score for the voice, and with n = 5 it cannot rank languages
   (`r_20261126_111807_9624`) and **no native speaker has checked it**. The 15 new takes are from the
   same run.
 - Transcripts: `r_20261126_112822_3429` (`gemini-3.5-flash-lite` and Whisper large-v3-turbo).
-- **No native-speaker ratings have been collected.** `ratings_template.csv` is blank.
+- **Native ratings: Amharic only, qualitative.** `ratings_template.csv` (1–5 scores) is still blank;
+  no Oromo, Tigrinya or Somali speaker has rated the takes.
+
+Three native Amharic speakers listened to the Achird narration (26 Nov 2026). Their comments,
+paraphrased by Tahir; no numeric scores were given:
+- **Peneal Feleke** (Amharic): the Achird version was really good.
+- **Sebrina Akmel** (Amharic): also really good. It sounded a bit translated, machine-like, but it
+  was okay, especially the later versions.
+- **Sumeya Mohammed** (Amharic): also really good, but it would have been nicer if it sounded more
+  like Tahir.
 
 ## Results
 

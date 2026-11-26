@@ -5,8 +5,18 @@ Automatic drafts come from `logs/failures_auto.jsonl` (every fallback appends on
 into `runs.jsonl`. This draft was assembled by the coding agent from those logs and
 `docs/PROGRESS.md` on 26 Nov 2026.
 
-<!-- TODO(Tahir): curate. Cut, reorder, and add what you hit yourself. Name the hardest one for the
-report and say in your own words what you learned. -->
+## The hardest problems (Tahir)
+
+1. **The Gemini TTS quota running out mid-run** (F-02): the narration voice changed halfway
+   through the film.
+2. **Working out what to build:** deciding the specification and writing the first versions of
+   `SPEC.md` and `CLAUDE.md`, which the whole project started from.
+3. **The local pipeline I first aimed for did not work out.** Running the models on my own machine
+   meant downloading around 120 GB of weights, and most of the models needed about 32 GB of RAM plus
+   CPU offloading. So I dropped the local-model option and moved to hosted providers (free tiers
+   first, then WaveSpeed for images and motion).
+
+<!-- TODO(Tahir): curate the list below if you want: cut or reorder entries. -->
 
 ## Quota, availability and limits
 

@@ -21,7 +21,9 @@ screenshot of the family group chat covering all six) is private and only its SH
   characters or objects (`real_person: false`), no photo was used, and the narration is a stock
   synthetic voice, not a clone.
 - The story mentions young nephews and nieces. The child on screen is a fictional character.
-  <!-- TODO(Tahir): say whether the children's parents agreed to the story mentioning them. -->
+  The children's parents agreed to the story mentioning them. We talked about it while I was
+  brainstorming the idea, and again with the whole family; they then saw the radio cut and the
+  near-final cut, gave their consent and commented on them.
 
 ## Licences (every model and output)
 
@@ -72,7 +74,8 @@ Not used, listed because the plan named them: Wan 2.2 TI2V-5B (card: Apache-2.0)
   music: AI-generated", and the models actually used (read from the manifest).
 - **When posting:** switch on the platform's AI-content label and say in the post that voice,
   pictures and music are AI-generated.
-  <!-- TODO(Tahir): which platform(s), and confirm the label was switched on. -->
+  Platform: **YouTube**, with its AI-generated (altered or synthetic) content label switched on.
+  <!-- TODO(Tahir): confirm after posting that the label shows on the published video. -->
 - **Provenance marks:** no step is designed to remove watermarks or provenance metadata, and
   generated takes, images and score files are kept as received. **The 11 Gemini narration WAVs
   carry a C2PA chunk** (checked 26 Nov; the adapter now keeps Gemini's WAV byte for byte, FAILURES
@@ -97,8 +100,9 @@ What actually left the machine for this film:
 | Image prompt for one frame | a Hugging Face ZeroGPU Space (`hf_flux`) | the call failed on quota (F-16); the Space owner's code would have received it |
 
 **An honest caveat:** the story brief is personal, even without names, and it went to a tier that may
-train on it. The family consented to the story being told; <!-- TODO(Tahir): were they told that the
-text would go to a free AI service that may train on it? -->
+train on it. The family consented to the story being told, and I told them the text and pictures would go
+through online AI services. That is why we used no photos: only the storyboard and our characters'
+descriptions went to the providers, and no photo was used as a reference.
 
 **Private photos:** none were used. The design for them: `refs/private/` is gitignored, and the router
 never sends those files to a provider with `accepts_private_media: false` (every Gemini free-tier

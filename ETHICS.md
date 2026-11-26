@@ -77,6 +77,7 @@ What actually left the machine for this film:
 | Image prompts and the fictional reference images | Cloudflare Workers AI | [Data usage](https://developers.cloudflare.com/workers-ai/platform/data-usage/): no training on customer content; zero data retention for standard inference, with listed exceptions |
 | Score caption and tags (no family details by design) | a community Hugging Face Space (`victor/ace-step-jam`) | the Space owner's code receives the request; its handling was not audited |
 | Generated score audio | Cloudflare Whisper | as Cloudflare above |
+| Benchmark audio and five story lines in four languages (EXP-14) | Gemini (unpaid tier); Whisper on Cloudflare | as above |
 
 **An honest caveat:** the story brief is personal, even without names, and it went to a tier that may
 train on it. The family consented to the story being told; <!-- TODO(Tahir): were they told that the

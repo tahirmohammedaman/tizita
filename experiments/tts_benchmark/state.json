@@ -1,0 +1,311 @@
+{
+  "audio": {
+    "am/s01": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/am_s01.wav",
+      "run_id": "r_20261126_072953_685c",
+      "source": "film take"
+    },
+    "am/s03": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/am_s03.wav",
+      "run_id": "r_20261126_072953_685c",
+      "source": "film take"
+    },
+    "am/s06": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/am_s06.wav",
+      "run_id": "r_20261126_072953_685c",
+      "source": "film take"
+    },
+    "am/s07": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/am_s07.wav",
+      "run_id": "r_20261126_072953_685c",
+      "source": "film take"
+    },
+    "am/s09": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/am_s09.wav",
+      "run_id": "r_20261126_072953_685c",
+      "source": "film take"
+    },
+    "om/s01": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/om_s01.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    },
+    "om/s03": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/om_s03.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    },
+    "om/s06": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/om_s06.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    },
+    "om/s07": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/om_s07.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    },
+    "om/s09": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/om_s09.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    },
+    "so/s01": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/so_s01.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    },
+    "so/s03": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/so_s03.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    },
+    "so/s06": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/so_s06.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    },
+    "so/s07": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/so_s07.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    },
+    "so/s09": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/so_s09.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    },
+    "ti/s01": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/ti_s01.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    },
+    "ti/s03": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/ti_s03.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    },
+    "ti/s06": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/ti_s06.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    },
+    "ti/s07": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/ti_s07.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    },
+    "ti/s09": {
+      "model": "gemini-3.8-flash-tts",
+      "path": "experiments/tts_benchmark/audio/ti_s09.wav",
+      "run_id": "r_20261126_111807_9624",
+      "source": "benchmark"
+    }
+  },
+  "transcripts": {
+    "cf_whisper:am/s01": {
+      "model": "@cf/openai/whisper-large-v3-turbo",
+      "run_id": "r_20261126_112822_3429",
+      "text": "መም ስንስስድ አለፍፍፍፍፍ የ ስስስድ አንድ ተውፍፍ እንደና ህስት እንዳው ከ እንድ ስልፍፍፍፍፍፍ ና እንዳስ አለፍፍፍፍፍፍፍ መውፍፍፍፍፍፍፍ ተገ�"
+    },
+    "cf_whisper:am/s03": {
+      "model": "@cf/openai/whisper-large-v3-turbo",
+      "run_id": "r_20261126_112822_3429",
+      "text": "እን እን እን እን ተልስ ኢድጀመሪል"
+    },
+    "cf_whisper:am/s06": {
+      "model": "@cf/openai/whisper-large-v3-turbo",
+      "run_id": "r_20261126_112822_3429",
+      "text": "ልእ አስነንኘንን አስንኞን መናእንንን ምለፍነኒያት ላምኝ"
+    },
+    "cf_whisper:am/s07": {
+      "model": "@cf/openai/whisper-large-v3-turbo",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Matā matā hë tōčin wude bīt adr-sallu."
+    },
+    "cf_whisper:am/s09": {
+      "model": "@cf/openai/whisper-large-v3-turbo",
+      "run_id": "r_20261126_112822_3429",
+      "text": "እን እንን እን እን ብን እንን ኢትድ ራንጀንባኑ"
+    },
+    "cf_whisper:so/s01": {
+      "model": "@cf/openai/whisper-large-v3-turbo",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Marki aan Koree n'e yey, in taan 40-century kursi gadaan b'ayye a haid."
+    },
+    "cf_whisper:so/s03": {
+      "model": "@cf/openai/whisper-large-v3-turbo",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Waxamarka simid maalinti aamfadi istey kursiga darawalka."
+    },
+    "cf_whisper:so/s06": {
+      "model": "@cf/openai/whisper-large-v3-turbo",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Xadda talaifun kaigwao shidmaa. Xabayn iyoq nabaa."
+    },
+    "cf_whisper:so/s07": {
+      "model": "@cf/openai/whisper-large-v3-turbo",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Waxan hebeen ki guri ga geeya gabdaha andalashada wadaag no."
+    },
+    "cf_whisper:so/s09": {
+      "model": "@cf/openai/whisper-large-v3-turbo",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Uwe yerbaa kufadista baudaida uwei qaptaan isterinka."
+    },
+    "gemini_asr:am/s01": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "በሊጂነቲ ሁልጊዜ የምከመተው ከኋላውን ነበር።"
+    },
+    "gemini_asr:am/s03": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "ከዚያም አንዲ ቀን እኔ ራሴ አሽከርካሪው ወንበር ላይ ተቀመጥኩ።"
+    },
+    "gemini_asr:am/s06": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "አሁንምማ ቀንም ማታም ስልክ ይዞሃል።"
+    },
+    "gemini_asr:am/s07": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "ማታ ማታ እህቶቼን ወደ ቤት አደርሳለሁ።"
+    },
+    "gemini_asr:am/s09": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "ልተኙሾቹ ክፌ ላይ ተቀምጦ መሪውን ይዛሉ"
+    },
+    "gemini_asr:om/s01": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Yeroo guddicha turee dubbatu turee"
+    },
+    "gemini_asr:om/s03": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Sanappoda guyyaan iteesoo konkolaachiisaa raate duube."
+    },
+    "gemini_asr:om/s06": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Amma bilbiliiko alqaniif guyyaa ebsaawla."
+    },
+    "gemini_asr:om/s07": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Alkan Obbo Luba Taakkoo Garmanaatiin kolajjii sangalaa"
+    },
+    "gemini_asr:om/s09": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Yoo lentiin tiin qabaten chaakoota ani isiteriingi qabatani tabatatu"
+    },
+    "gemini_asr:so/s01": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Madaxii Ankorin eey intaan fadhiisan jiray kursiga dambe ayaa ahayd."
+    },
+    "gemini_asr:so/s03": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Waxa markaas mid maalintii aan fadhiistay kursiga Darawalka"
+    },
+    "gemini_asr:so/s06": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Haddii ay telefoon kuu soo shidmaane, habeen iyo maalin"
+    },
+    "gemini_asr:so/s07": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Waxa nҳаbeenkii guriga geeуа gabdhaha aan dhalashada wadaaqno"
+    },
+    "gemini_asr:so/s09": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "Oday baa ku fariistay boodi, oo uu qabtaan isteerinka."
+    },
+    "gemini_asr:ti/s01": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "ከመ ትርኢዎ ሓምሳ ብዕባ ኾይኑ መጥዕን ኩሉ ግዜ አብ ድሕሪት ኮፍ እብል ነይረ።"
+    },
+    "gemini_asr:ti/s03": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "ድሕሪ እቲ ማእ አብ ዝባን መራሕት መኪና መንዳቢ ኮፍ ዝበልኩሉ መዓልቲ መጻእ።"
+    },
+    "gemini_asr:ti/s06": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "ሓጂ ትሰልካዩ ብማዕልቲ ሮም ብሌቲ በሪ።"
+    },
+    "gemini_asr:ti/s07": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "አብለይቲ ንሓትነተይ ንኣብገዘይ ወሰደ።"
+    },
+    "gemini_asr:ti/s09": {
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_112822_3429",
+      "text": "ከቶም ኣሽቱው ዓቐበይ ኮፊ ኢሎም ነታ መንዳብይ ዝሕዙዋ።"
+    }
+  },
+  "translations": {
+    "om": {
+      "lines": {
+        "s01": "Yeroo guddachaa turee duubatti taa'aa ture.",
+        "s03": "Sana booda guyyaan ani teessoo konkolaachisaarra taa'e dhufe.",
+        "s06": "Amma bilbilli koo halkaniif guyyaa ibsaa oola.",
+        "s07": "Halkan obboleettota koo gara manaatti konkolaachisaan gala.",
+        "s09": "Ijoolleen xixiqqoon cinaacha koo taa'anii isteeringii qabatanii taphatu."
+      },
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_111807_9624"
+    },
+    "so": {
+      "lines": {
+        "s01": "Markii aan korayay, intaan fadhiisan jiray kursiga dambe ayay ahayd.",
+        "s03": "Waxaa markaas yimid maalintii aan fadhiistay kursiga darawalka.",
+        "s06": "Hadda telefoonkaygu wuu shidmaa, habeen iyo dhcaba.",
+        "s07": "Waxaan habeenkii guriga geeyaa gabdhaha aan dhalashada wadaagno.",
+        "s09": "Kuwa yaryar waxay ku fadhiistaan bowdayda oo waxay qabtaan isteerinka."
+      },
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_111807_9624"
+    },
+    "ti": {
+      "lines": {
+        "s01": "كتريا ከም ዝዓበኹ መጠን ኩሉ ግዜ ኣብ ድሕሪት ኮፍ እብል ነይረ።",
+        "s03": "ድሕሪኡ ድማ ኣብ ዝባን መራሕቲ መኪና (መንዳቢ) ኮፍ ዝበልኩሉ መዓלቲ መጸ።",
+        "s06": "ሕጂ እቲ ስልካይ ብመዓልቲ ይኹን ብለይቲ ይበርህ እዩ።",
+        "s07": "ኣብ ለይቲ ንሓܬነተይ ናብ ገዛይ ይወስደን።",
+        "s09": "እቶም ንኣሽቱ ኣብ ዓቐበይ ኮፍ ኢሎም ነታ መንዳቢ ይሕዙዋ።"
+      },
+      "model": "gemini-3.5-flash-lite",
+      "run_id": "r_20261126_111807_9624"
+    }
+  }
+}

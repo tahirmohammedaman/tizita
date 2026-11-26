@@ -1,0 +1,37 @@
+{
+  "s01": {
+    "cer_as_generated": 2.7333,
+    "cer_trimmed": 2.6667,
+    "cut_at_s": 3.565,
+    "run_id": "r_20261126_113245_64ab",
+    "transcript_trimmed": "በ ኢትንዮድድይንድያ እንድ አሙግርኑድ እንድዳዳዳያንድ እንድ ና ለለርንድ አለትላችት እንድ እንድያዳንድበኝል እንድ ለስንድ እንድ እንድቸው እን�"
+  },
+  "s03": {
+    "cer_as_generated": 0.7692,
+    "cer_trimmed": 0.9487,
+    "cut_at_s": 3.91,
+    "run_id": "r_20261126_113245_64ab",
+    "transcript_trimmed": "ሚህለ ቅ ሂይሩ, ሚክነነት እኝፈ៊ እ� planetaryiroick"
+  },
+  "s06": {
+    "cer_as_generated": 1.381,
+    "cer_trimmed": 4.1905,
+    "cut_at_s": 3.475,
+    "run_id": "r_20261126_113245_64ab",
+    "transcript_trimmed": "ገ ጋሷሳሶን እና እንንድ ተደና እስህ እንዲናንድ እንዳ አስያ እንድ እንድ እንድዊዳ ኢት መግንድ መትም እንድርንድ እንድ እንድ እንድ ለንድ ለንድ ከ ተለ�"
+  },
+  "s07": {
+    "cer_as_generated": 1.3333,
+    "cer_trimmed": 1.375,
+    "cut_at_s": 2.08,
+    "run_id": "r_20261126_113245_64ab",
+    "transcript_trimmed": "Matamata hëtočin vë dhe bítadir salom."
+  },
+  "s09": {
+    "cer_as_generated": 0.8929,
+    "cer_trimmed": 1.1429,
+    "cut_at_s": 2.53,
+    "run_id": "r_20261126_113245_64ab",
+    "transcript_trimmed": "ተሚኙ እንክኑያ ተሁተው ማስምችያያ እእንዳናት እንያንጵምኖያን"
+  }
+}

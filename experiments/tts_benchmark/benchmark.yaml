@@ -1,0 +1,33 @@
+# Ceiling A: multilingual narration benchmark (SPEC §12.2). Not part of the film.
+# Amharic = the film's approved lines (their committed takes are reused: no new TTS calls).
+# om / ti / so are drafted by Gemini from the English and are NOT checked by a native speaker.
+voice: Achird
+tts_provider: gemini_tts
+translators: [gemini_flash_35, gemini_flash_lite]   # in order; the one used is recorded per language
+asr_providers: [gemini_asr, cf_whisper]
+languages:
+  am: { name: Amharic, script: "Ge'ez", whisper_code: am }
+  om: { name: Afaan Oromo, script: "Latin (Qubee)", whisper_code: null }   # not in Whisper's language list
+  ti: { name: Tigrinya, script: "Ge'ez", whisper_code: null }              # not in Whisper's language list
+  so: { name: Somali, script: Latin, whisper_code: so }
+translate_prompt: >
+  Translate each English sentence into natural spoken {name}, written in {script} script, as a
+  quiet first-person story narration. Return only a JSON array of strings, same order.
+asr_prompt: >
+  Transcribe this {name} speech verbatim in {script} script. Return only the transcript.
+sentences:
+  - id: s01
+    en: "I always sat in the back seat growing up."
+    am: "በልጅነቴ ሁልጊዜ የምቀመጠው ከኋላ ወንበር ነበር።"
+  - id: s03
+    en: "Then came the day I sat in the driver's seat."
+    am: "ከዚያም አንድ ቀን እኔ ራሴ አሽከርካሪው ወንበር ላይ ተቀመጥኩ።"
+  - id: s06
+    en: "Now my phone lights up, day or night."
+    am: "አሁንማ ቀንም ማታም ስልኬ ይጮኻል።"
+  - id: s07
+    en: "I drive my sisters home at night."
+    am: "ማታ ማታ እህቶቼን ወደ ቤት አደርሳለሁ።"
+  - id: s09
+    en: "The little ones sit on my lap and hold the wheel."
+    am: "ትንንሾቹ እቅፌ ላይ ተቀምጠው መሪውን ይይዛሉ።"

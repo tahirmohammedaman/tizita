@@ -80,7 +80,7 @@ uv run tizita run --stage assemble --stage qa
 |---|---|---|
 | Clean clone, `make film` | 0 | $0 |
 | Edit one narration line | 1 (TTS) | $0 on the free tier |
-| Everything logged while building (251 lines, retries and experiments included) | 251 attempts, 211 ok | $0 actual |
+| Everything logged while building (351 lines, retries and experiments included) | 351 attempts, 264 ok | $0 actual |
 
 List prices are only partly published, so the paid-tier equivalent is incomplete. See
 [COSTS](COSTS.md) (`make costs` regenerates it from `runs.jsonl`).
@@ -153,6 +153,7 @@ make test lint
 ## Docs
 
 [ARCHITECTURE](ARCHITECTURE.md) · [DESIGN](DESIGN.md) · [EXPERIMENTS](EXPERIMENTS.md) ·
+[Four-language TTS benchmark](experiments/tts_benchmark/REPORT.md) ·
 [FAILURES](FAILURES.md) · [COSTS](COSTS.md) · [ETHICS](ETHICS.md) · [Requirements audit](docs/AUDIT.md) ·
 [SPEC](SPEC.md) (the plan; where it differs from the code, ARCHITECTURE describes the code)
 

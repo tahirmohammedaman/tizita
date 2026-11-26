@@ -580,10 +580,21 @@ def costs() -> None:
     console.print(f"COSTS.md updated from {n} runs.jsonl lines")
 
 
-@exp_app.command("tts-benchmark", context_settings=_PASSTHROUGH)
-def exp_tts_benchmark() -> None:
-    """Ceiling A: multilingual TTS benchmark."""
-    _pending("exp tts-benchmark", "M6")
+@exp_app.command("tts-benchmark")
+def exp_tts_benchmark(
+    report: Annotated[
+        bool, typer.Option("--report", help="Re-score saved transcripts; no model calls.")
+    ] = False,
+) -> None:
+    """Ceiling A: multilingual TTS benchmark (calls Gemini and Whisper unless --report)."""
+    from tizita.tts_benchmark import Bench
+
+    project = _project()
+    bench = Bench(project, None if report else _router(project), say=console.print)
+    if not report:
+        bench.run()
+    rows = bench.report()
+    console.print(f"{len(rows)} scored transcripts -> experiments/tts_benchmark/results.csv")
 
 
 @motion_app.command("build", context_settings=_PASSTHROUGH)

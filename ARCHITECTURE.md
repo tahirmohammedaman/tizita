@@ -151,7 +151,7 @@ Consent is checked before any call that depicts a real person.
   | image / image_edit | `cf_flux2_klein` (the reference path was used; upload repaint is untested), `cf_flux1_schnell` (image only, no references) | `hf_flux`, `local_flux`, `fal_image`, `previous_keyframe` |
   | i2v | none through the router; Ken Burns is done by the `shots` stage itself | `kaggle_wan22`, `hf_wan_space`, `local_wan`, `fal_i2v` (`kenburns` is listed with no adapter) |
   | music | `hf_ace_space`, `synth_pad` | `kaggle_ace`, `local_ace`, `fal_music` |
-  | embed / asr | `local_clip`, `cf_whisper` | `skip_embed`, `gemini_asr`, `groq_whisper`, `local_whisper` |
+  | embed / asr | `local_clip`, `cf_whisper`, `gemini_asr` | `skip_embed`, `groq_whisper`, `local_whisper` |
 - **Chains** per capability are in `config/providers.yaml`, for example
   `tts: [gemini_tts, gemini_tts_paid, previous_take, mms_tts_space, mms_tts_local]` and
   `music: [kaggle_ace, hf_ace_space, local_ace, fal_music, synth_pad]`. Each entry declares its tier
@@ -181,7 +181,7 @@ Consent is checked before any call that depicts a real person.
 - **Logging:** every attempt, failed ones included, writes one schema-checked line to `runs.jsonl`
   (run_id, stage, unit, provider, model, params, seed, attempt, cache key, output sha256, status,
   error class, `fallback_from`, latency, tier, list-price and actual cost; prompts as hash + first 200
-  characters, never secrets). At the time of writing it holds 251 lines, 211 of them `ok`
+  characters, never secrets). At the time of writing it holds 351 lines, 264 of them `ok`
   (breakdown: [COSTS](COSTS.md)). Every fallback also emits a `FallbackEvent` to the console (a yellow
   line), `logs/events.jsonl` and a draft entry in `logs/failures_auto.jsonl`, which is curated into
   `FAILURES.md`.

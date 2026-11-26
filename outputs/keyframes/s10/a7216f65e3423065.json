@@ -1,0 +1,23 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "path": "a7216f65e3423065_try1.jpg",
+      "score": 0.554,
+      "seed": 1010,
+      "sims": {
+        "clip": [
+          0.5865,
+          0.554
+        ],
+        "dino": [
+          0.1437,
+          0.1194
+        ]
+      }
+    }
+  ],
+  "below_threshold": false,
+  "chosen_attempt": 1,
+  "threshold": 0.5
+}

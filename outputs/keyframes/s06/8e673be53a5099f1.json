@@ -1,0 +1,14 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "path": "8e673be53a5099f1_try1.jpg",
+      "score": null,
+      "seed": 1006,
+      "sims": null
+    }
+  ],
+  "below_threshold": false,
+  "chosen_attempt": 1,
+  "threshold": 0.5
+}

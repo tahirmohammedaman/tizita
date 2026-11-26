@@ -7,7 +7,7 @@ Source: `runs.jsonl`, 410 lines from 2026-11-25T14:48:23.754Z to 2026-11-26T14:3
 
 **Actual spend: $0.83.** List-price equivalent of the priced calls: $0.9058. **55 of 410 calls have no list price** (no published or applicable rate in `config/pricing.yaml`, or the usage was not logged), so that figure is a partial estimate, not the cost of the film on a paid tier. Rates are applied to the logged usage and are lower bounds where usage is missing: TTS counts output audio only, FLUX counts output tiles (and steps) only, not reference images, and Gemini text omits any thinking tokens (not logged).
 
-Latencies are wall-clock seconds of successful calls (nearest-rank percentiles). "GPU min" is "not logged" where a provider reports no GPU time, including the hosted ZeroGPU Space.
+Latencies are wall-clock seconds of successful calls (nearest-rank percentiles). "GPU min" is the GPU time of our own jobs; "(provider)" is the inference time a hosted provider reports per call (WaveSpeed's `inference_ms`, successful calls only), which excludes queueing and is the closest figure to GPU time we have. "not logged" means the provider reports neither, including the free tiers and the hosted ZeroGPU Space.
 
 ### Per stage
 
@@ -15,13 +15,13 @@ Latencies are wall-clock seconds of successful calls (nearest-rank percentiles).
 |---|---|---|---|---|---|---|---|---|
 | director | 33 | 8 | 25 | 31.3 | 178.8 | not logged | $0.0091 + 5 unpriced | $0.00 |
 | exp | 106 | 59 | 47 | 3.3 | 13.1 | not logged | $0.0213 + 35 unpriced | $0.00 |
-| keyframes | 76 | 73 | 3 | 5.5 | 23.3 | not logged | $0.1829 + 1 unpriced | $0.17 |
+| keyframes | 76 | 73 | 3 | 5.5 | 23.3 | 2.7 (provider) | $0.1829 + 1 unpriced | $0.17 |
 | music | 24 | 19 | 5 | 0.6 | 50.1 | not logged | $0.0000 + 9 unpriced | $0.00 |
 | music_qa | 3 | 3 | 0 | 11.0 | 15.6 | not logged | unknown | $0.00 |
 | narration | 67 | 66 | 1 | 3.3 | 5.1 | not logged | $0.0427 | $0.00 |
 | radio_cut | 10 | 10 | 0 | 0.6 | 1.3 | not logged | $0.0000 | $0.00 |
 | references | 61 | 60 | 1 | 8.4 | 11.4 | not logged | $0.0172 | $0.00 |
-| shots | 13 | 13 | 0 | 33.4 | 127.7 | not logged | $0.6300 + 1 unpriced | $0.66 |
+| shots | 13 | 13 | 0 | 33.4 | 127.7 | 7.7 (provider) | $0.6300 + 1 unpriced | $0.66 |
 | smoke | 17 | 9 | 8 | 3.7 | 10.0 | not logged | $0.0026 + 1 unpriced | $0.00 |
 
 `director`, `smoke`, `exp` and `music_qa` are development calls, not part of `make film`.
@@ -45,8 +45,8 @@ Latencies are wall-clock seconds of successful calls (nearest-rank percentiles).
 | mms_tts_local | local | 9 | 9 | 0 | 0.8 | 10.8 | not logged | $0.0000 | $0.00 |
 | previous_take | deterministic | 12 | 12 | 0 | 0.0 | 0.0 | not logged | $0.0000 | $0.00 |
 | synth_pad | deterministic | 25 | 25 | 0 | 0.6 | 0.9 | not logged | $0.0000 | $0.00 |
-| wavespeed_klein | paid | 14 | 14 | 0 | 17.0 | 41.6 | not logged | $0.1680 | $0.17 |
-| wavespeed_wan | paid | 13 | 13 | 0 | 33.4 | 127.7 | not logged | $0.6300 + 1 unpriced | $0.66 |
+| wavespeed_klein | paid | 14 | 14 | 0 | 17.0 | 41.6 | 2.7 (provider) | $0.1680 | $0.17 |
+| wavespeed_wan | paid | 13 | 13 | 0 | 33.4 | 127.7 | 7.7 (provider) | $0.6300 + 1 unpriced | $0.66 |
 
 ### Quota pools
 
@@ -94,6 +94,20 @@ Dashboard reading (not in the log), 26 Nov 11:12 EAT: Cloudflare showed about 2.
 FLUX.2 klein over about 28 images at 512×512, roughly 100 per image. The day's total noted at the
 same time was 2.5k of 10k, which is lower than the klein figure, so treat both as approximate. No
 Kaggle GPU quota was used (no Kaggle runner was built).
+
+## Frontier comparison
+
+We had free-tier access to one frontier family, Gemini, and compared it with open models on the
+**same inputs** for three tasks. No frontier image or video model was run, so those rows are absent.
+
+| Task | Frontier (Gemini, free tier) | Open model | Result on the same input | Evidence |
+|---|---|---|---|---|
+| Amharic narration (TTS) | `gemini-3.8-flash-tts`, voice Achird | `facebook/mms-tts-amh`, local CPU | 8 identical lines: MMS 29.56 s vs Gemini 22.75 s (30% longer) and a different voice. Gemini shipped, 11/11 lines | EXP-09; `r_20261126_070255_0908`, `r_20261126_072953_685c` |
+| Transcription as a TTS judge | Gemini 3.5 Flash-Lite (audio in) | Whisper large-v3-turbo (Workers AI) | Median CER on identical audio: Amharic 0.191 vs 1.333, Somali 0.167 vs 0.391; Whisper does not support Oromo or Tigrinya | EXP-14; `r_20261126_112822_3429`, `r_20261126_113245_64ab` |
+| Storyboard drafting (text) | `gemini-3.5-flash` (`3.8-flash` answered 0 of 24) | `gpt-oss-120b` (Workers AI) | Both drafted an English beat sheet; the open model's Amharic read as ungrammatical (the agent's non-native reading, not a rating). Gemini p50 31 s | EXP-10; F-01 |
+
+Cost: every Gemini call here was on the free tier ($0 actual); list prices are in the tables above.
+Where the open model was hosted it was also free; MMS ran locally on CPU.
 
 ## Notes
 

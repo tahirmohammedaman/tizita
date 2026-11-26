@@ -70,6 +70,10 @@ def summarise(lines: Iterable[dict], prices: dict, key) -> list[dict]:
                 "p50_s": percentile(latencies, 50),
                 "p95_s": percentile(latencies, 95),
                 "gpu_min": sum(r.get("gpu_seconds") or 0 for r in items) / 60,
+                "inference_min": sum(
+                    ((r.get("metrics") or {}).get("inference_ms") or 0) / 1000 for r in ok
+                )
+                / 60,
                 "list_usd": sum(p for p in priced if p is not None),
                 "unpriced": sum(1 for p in priced if p is None),
                 "actual_usd": sum(r.get("cost_actual_usd") or 0 for r in items),
@@ -100,7 +104,12 @@ def _table(rows: list[dict], names: list[str]) -> list[str]:
     head = [*names, "calls", "ok", "failed", "p50 s", "p95 s", "GPU min", "list price", "actual"]
     out = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
     for r in rows:
-        gpu = f"{r['gpu_min']:.1f}" if r["gpu_min"] else "not logged"
+        if r["gpu_min"]:
+            gpu = f"{r['gpu_min']:.1f}"
+        elif r.get("inference_min"):
+            gpu = f"{r['inference_min']:.1f} (provider)"
+        else:
+            gpu = "not logged"
         cells = [
             *r["key"],
             r["calls"],
@@ -137,8 +146,10 @@ def render(lines: list[dict], events: list[dict], prices: dict, pools: dict[str,
         "images, and Gemini text omits any thinking tokens (not logged).",
         "",
         "Latencies are wall-clock seconds of successful calls (nearest-rank percentiles). "
-        '"GPU min" is "not logged" where a provider reports no GPU time, including the hosted '
-        "ZeroGPU Space.",
+        '"GPU min" is the GPU time of our own jobs; "(provider)" is the inference time a hosted '
+        "provider reports per call (WaveSpeed's `inference_ms`, successful calls only), which "
+        'excludes queueing and is the closest figure to GPU time we have. "not logged" means the '
+        "provider reports neither, including the free tiers and the hosted ZeroGPU Space.",
         "",
         "### Per stage",
         "",

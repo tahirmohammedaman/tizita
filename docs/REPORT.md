@@ -128,7 +128,7 @@ transcribing it and comparing with the text (character error rate), using two tr
   trimming it changed nothing (1.333 → 1.375).
 - Whisper does not support Oromo or Tigrinya at all, and 3 of 5 Tigrinya lines contained
   non-Ethiopic letters from the translation step, so those languages remain unverified.
-- Three native Amharic listeners rated the Amharic narration (section 2); nobody has rated the other
+- Three native Amharic listeners commented on the Amharic narration (section 2, no numeric scores); nobody has rated the other
   three languages yet.
 
 The lesson: an automatic score in a low-resource language measures the scorer as well as the

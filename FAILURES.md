@@ -18,9 +18,15 @@ into `runs.jsonl`. This draft was assembled by the coding agent from those logs 
 
 Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 
+Each entry has a **Led to** line: **code** (a change in `tizita/` with a test where possible),
+**config** (a value in `config/*.yaml` or the storyboard), **CI**, or **process** (a change in how we
+work, with no code). Count: 12 entries changed code, 8 config, 1 CI, 9 process (several changed
+more than one).
+
 ## Quota, availability and limits
 
 ### F-01 · Gemini text models returned 503 for the whole drafting window
+- **Led to:** config (text chain) and process (Gemini draft, then hand edit and approval).
 - **Blocker:** `gemini-3.8-flash` answered 0 of 24 attempts, director and smoke runs together
   ("experiencing high demand").
 - **Tried:** retries with backoff, then Flash-Lite, then Workers AI `gpt-oss-120b`. The last
@@ -30,6 +36,7 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 - **Evidence:** `r_20261125_151751_c7d8` … `r_20261125_152435_ea1d`; EXP-10.
 
 ### F-02 · Gemini TTS free quota ran out in the middle of a narration run
+- **Led to:** code (key rotation, `previous_take` provider) and config (TTS chain order).
 - **Blocker:** `RESOURCE_EXHAUSTED` at s04. The router fell back to local MMS-TTS, so 8 of 11 lines
   came out in a different voice.
 - **Tried:** the fallback worked as designed, but a voice change mid-film is not acceptable, and MMS
@@ -40,6 +47,7 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 - **Evidence:** `r_20261126_070255_0908` (failure), `r_20261126_072953_685c` (fixed).
 
 ### F-03 · No working GPU path for moving shots before the deadline
+- **Led to:** process (Wan cut, Ken Burns recorded as fallback); later code (WaveSpeed adapter).
 - **Blocker:** the Wan 2.2 image-to-video adapter needs a Kaggle runner and executor that were never
   built.
 - **Decision:** cut Wan. A late, untested GPU path risked the whole film.
@@ -53,6 +61,7 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 ## Tools that moved since the brief
 
 ### F-04 · ACE-Step hosted Spaces
+- **Led to:** code (`hf_ace_space` adapter) and config (Space id).
 - **Blocker:** the official 1.5 Space answered "Model not fully initialized"; the official v1 Space
   failed with `RepositoryNotFoundError`. The first adapter calls also sent arguments the API
   rejected. Each failure fell back to the synth pad, so the run succeeded but the score was still a
@@ -62,6 +71,7 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 - **Evidence:** `r_20261126_092802_0914` … `r_20261126_093124_ab46`; EXP-11.
 
 ### F-05 · Model ids and APIs that differ from the plan
+- **Led to:** code (multipart input, `uroman`) and config (model ids).
 - There is no `gemini-3.8-flash-lite`; the lite id is `gemini-3.5-flash-lite`.
 - FLUX.2 klein on Workers AI takes **multipart** input (references as `input_image_0..3`) and returns
   JPEG; FLUX.1 schnell accepts only prompt and steps (no seed, no size).
@@ -71,18 +81,21 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 ## Language
 
 ### F-06 · The TTS model read the style instruction aloud
+- **Led to:** config (`style_mode: none`).
 - **Blocker:** a 2.7 s Amharic line came out at 9–10 s; radio-cut slots were 11 s for six words.
 - **Tried:** long instruction, "Say warmly:", plain text.
 - **Fix:** plain text and a voice name (`style_mode: none`).
 - **Evidence:** `r_20261125_150850_3486`, `r_20261125_150908_b5f0`; EXP-01.
 
 ### F-07 · Whisper wrote Amharic in Arabic script
+- **Led to:** code (ASR language hint).
 - **Blocker:** without a language hint, Workers AI Whisper transcribed Amharic audio in the wrong
   script.
 - **Fix:** pass `language: am` in any ASR round trip. It is not sufficient on its own: see F-15.
 - **Evidence:** `logs/failures_auto.jsonl`, 2026-11-25T14:51.
 
 ### F-15 · Whisper cannot score our Amharic speech
+- **Led to:** process (Whisper not used as a judge; CER always reported with its transcriber).
 - **Blocker:** median CER 1.333 on five lines that Gemini transcribed at 0.191, with repetition
   loops, and one line written in Latin letters despite `language=am`.
 - **Tried:** the language hint (set from the start); trimming the TTS noise burst off the takes.
@@ -93,12 +106,14 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 ## Consistency and content filters
 
 ### F-08 · The similarity gate could never pass
+- **Led to:** config (threshold 0.5) and process (people judge identity).
 - **Blocker:** the planned CLIP threshold (0.75) failed every attempt, because a scene and a portrait
   reference score about 0.55.
 - **Fix:** threshold 0.5, used only as a tripwire; humans judge identity.
 - **Evidence:** EXP-06.
 
 ### F-09 · The image safety filter rejected a car brand
+- **Led to:** process (prompts describe objects instead of naming brands).
 - **Blocker:** HTTP 400 (code 3030) on a prompt that named "Mercedes-Benz". A safety block does not
   fall back silently, so the unit failed.
 - **Fix:** describe the car instead (a boxy 1990 dark blue-black sedan).
@@ -108,6 +123,7 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 ## Audio and FFmpeg
 
 ### F-10 · A hiss and click at both ends of every Gemini TTS take
+- **Led to:** code (`as_wav` + test; takes restored).
 - **Blocker:** Tahir heard a "ssshhh" between lines. 11 of 11 takes carried a near-full-scale burst
   after the speech, and a click at the start.
 - **First fix (wrong cause):** trim at the quiet gap before the burst at assembly (EXP-02). That hid
@@ -124,6 +140,7 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
   `r_20261126_072953_685c`; commit `e7775c6`; EXP-02 and EXP-03 (corrected).
 
 ### F-11 · QA failed on true peak
+- **Led to:** config (−2 dBTP target) and code (AAC flag).
 - **Blocker:** both exports failed `true_peak` (`r_20261126_090216_2873`).
 - **Tried:** AAC encoder flags and bitrates.
 - **Fix:** `-aac_pns 0` and a −2 dBTP loudnorm target. A later grid (EXP-03) showed that the large
@@ -131,6 +148,7 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
   clean takes the −2 target is what matters.
 
 ### F-12 · Silent narration and broken crossfades
+- **Led to:** code (two-command mix, `fps=24,settb=AVTB`).
 - **Blocker 1:** one filtergraph with `asplit` feeding `sidechaincompress` produced a silent
   narration branch (−70 LUFS). **Fix:** mix in two commands and read the narration file twice.
 - **Blocker 2:** `concat` output has no frame rate, so `xfade` failed ("1/0 is invalid"). **Fix:** end
@@ -138,6 +156,7 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 - **Evidence:** `docs/PROGRESS.md` findings; golden tests in `tests/test_assembly.py`.
 
 ### F-13 · The end card credited the wrong string
+- **Led to:** code (label parsing + test).
 - **Blocker:** the film's end card read "Music: ace-step-jam)", and the provider label said
   ACE-Step 1.5 although v1 3.5B ran. It passed QA, which does not read text.
 - **Fix:** strip the host note before splitting the model id; corrected the label; added a test
@@ -146,6 +165,7 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 ## Paid fallback for images and motion (26 Nov afternoon)
 
 ### F-16 · Cloudflare neurons and Hugging Face ZeroGPU ran out during the redraw
+- **Led to:** code (paid `wavespeed` adapter behind the paid guard) and process (paid tier for the redraw).
 - **Blocker:** redrawing frames after family feedback used up the daily 10,000 Workers AI neurons
   (HTTP 429 for both FLUX.2 klein and FLUX.1 schnell). A new `hf_flux` adapter (FLUX through a
   ZeroGPU Space) failed on its first call: "You have exceeded your ZeroGPU runs limit".
@@ -156,6 +176,7 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 - **Evidence:** `r_20261126_130951_92a3`, `r_20261126_132846_1b3a`; COSTS.md "Free-tier limits".
 
 ### F-17 · A price quoted before a paid run was wrong by 5×
+- **Led to:** config (per-second pricing) and process (check the balance after one paid call).
 - **Blocker:** before the s03 720p test, the coding assistant quoted the clip at about $0.03, reading
   WaveSpeed's `base_price` as per clip. It is per second of output; the 8 s 720p clip cost $0.16 by
   the account balance. The router logged the wrong estimate ($0.032).
@@ -165,6 +186,7 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 - **Evidence:** `r_20261126_134523_f6fd`; COSTS.md.
 
 ### F-18 · Slowed i2v clips cut the film to 15.5 s, and QA passed it
+- **Led to:** code (hold last frame; QA length from the timing plan).
 - **Blocker:** the assembly slows i2v clips to fill their slot. The 5 s Wan clips ended before their
   slots did, the concatenated video stopped at 15.5 s while the audio ran on, and QA still passed:
   it counted the expected frames from the video stream, which agreed with itself.
@@ -173,6 +195,7 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 - **Evidence:** commit `e7775c6`; tests in `tests/test_assembly.py`.
 
 ### F-19 · A budget-capped retry replaced approved clips with Ken Burns
+- **Led to:** code (paid artifacts stay cached under the free profile) and process (budget = logged spend + new).
 - **Blocker:** a paid retry of s05 and s08 ran with `PAID_BUDGET_USD=0.12`. The guard compares the
   **cumulative** logged spend ($0.73) plus the estimate against the budget, so both calls were
   blocked, the stage fell back to Ken Burns, and pruning removed the approved Wan clips.
@@ -185,6 +208,7 @@ Tahir reviewed the list below on 26 Nov 2026 and kept every entry.
 ## Repository and CI
 
 ### F-14 · CI secret scan and branch protection
+- **Led to:** CI (pinned gitleaks, allowlist) and process (branch protection script).
 - `gitleaks-action` got HTTP 403 listing PR commits: replaced with a pinned gitleaks binary over the
   full history. It then flagged 16-hex cache keys as API keys: `.gitleaks.toml` allowlists exactly
   that pattern.

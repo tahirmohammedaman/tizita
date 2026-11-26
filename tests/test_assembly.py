@@ -274,3 +274,13 @@ def test_end_card_model_names_drop_org_revision_and_host_note():
     assert short_model("ACE-Step-v1-3.5B (victor/ace-step-jam)") == "ACE-Step-v1-3.5B"
     assert short_model("@cf/black-forest-labs/flux-2-klein-4b") == "flux-2-klein-4b"
     assert short_model("facebook/mms-tts-amh@e366aee5e22a") == "mms-tts-amh"
+
+
+def test_credit_name_maps_hosted_ids():
+    from tizita.stages.endcard import credit_name
+
+    names = {"flux-2-klein-4b": "FLUX.2 klein 4B", "wan-2.2": "Wan 2.2"}
+    assert credit_name("wavespeed-ai/flux-2-klein-4b/edit", names) == "FLUX.2 klein 4B"
+    assert credit_name("@cf/black-forest-labs/flux-2-klein-4b", names) == "FLUX.2 klein 4B"
+    assert credit_name("wavespeed-ai/wan-2.2/i2v-480p-ultra-fast", names) == "Wan 2.2"
+    assert credit_name("facebook/mms-tts-amh@e366aee5e22a", names) == "mms-tts-amh"

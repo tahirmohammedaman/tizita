@@ -90,7 +90,7 @@ def run(ctx: Ctx, unit, key: str) -> Outcome:
 
     # end cards
     fonts = root / cfg["subtitles"]["fonts_dir"]
-    models = models_used(ctx.manifest)
+    models = models_used(ctx.manifest, cfg.get("credit_names"))
     cards = tuple(
         str(render_card(ctx.sb, models, lay, work / f"card_{lay}.png", fonts).relative_to(root))
         for lay in ("9x16", "16x9")

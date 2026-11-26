@@ -2,209 +2,247 @@
   "entries": {
     "assemble/project": {
       "candidates": [],
-      "created_at": "2026-11-26T10:33:18.047Z",
+      "created_at": "2026-11-26T14:33:05.822Z",
       "field_hashes": {
-        "assembly": "d9f7724b5fb5aa95",
+        "assembly": "2a8429a5a69d50a7",
         "end_card": "00ece5454e33b692",
         "music.chosen": "5feceb66ffc86f38",
         "shots.music_cue": "1f1f21cd714b5ef6"
       },
       "is_fallback": false,
-      "key": "469e11c10902a93f",
-      "path": "outputs/final/469e11c10902a93f/film_9x16.mp4",
+      "key": "f1eb451f1815c80d",
+      "path": "outputs/final/f1eb451f1815c80d/film_9x16.mp4",
       "primary_provider": null,
       "provider": {
         "model": null,
         "name": "ffmpeg",
         "params": {}
       },
-      "run_id": "r_20261126_103232_e7e5",
+      "run_id": "r_20261126_143219_b1f6",
       "seed": null,
-      "sha256": "a025e929a74c7673eca63a01aa337c5c5b35b3065b92f96b1466f5b707362b07",
+      "sha256": "82bcc3d30cac275509361c99ab76d0c635816d51e803a98b76d14cb5984aad87",
       "stage": "assemble",
-      "stage_version": 2,
+      "stage_version": 4,
       "unit": "project",
       "upstream": {
         "music/project": "c0a81c82163faec1193a9d021a7c612f3ac216a1f1ad6cac6579f11cecf36cda",
-        "narration/s01": "85ad29351e802cbd4ffe81384b79a18bb92a083612c7dc1c84f1ab48d2529a80",
-        "narration/s02": "13ca9925dfea8103914875c9fa4fc283748484b03d91067387e618fa62ff086c",
-        "narration/s03": "c7b490a6a07cf4f48e89a23e4388aa086fb2304d2e0cb270f62dc4135edf7986",
-        "narration/s04": "471f3e3c99a6107789683b11a0d8961d34bdcaf2cc01a90caa8c695b11d19693",
-        "narration/s05": "8af78fc98e4b99f68b859e96add5731a1ca4c3b7d878c11fb54bf39b9406ae87",
-        "narration/s06": "9202fb5e91ca4dbdd80d7c4da5760f6fc5891de5b81cb90361c282e2a81c6965",
-        "narration/s07": "43a2ebcf5a759aa993b51631d9c544a2066b85c9e47370faec341b1bd7bfad70",
-        "narration/s08": "dce2679162d9c892222549b1bf084e296dfef39c51cc5e5180cf9015099020c3",
-        "narration/s09": "4153616b8b2673e8d2b666c5926566863c07081d7dc788b4985785cef9eaff26",
-        "narration/s10": "c635e71f8fb3422b0ecb59114bca69bcf4e85ef565546093a6226559994f6c42",
-        "narration/s11": "e931249e111be112f8ed67735c1bb5632634af200df0f4067f81b745fdbd8615",
-        "shots/s01": "4f08a2a745a7cdde5cc4cd0907c8ff79fc430845019096ec0fba72bfe8026f83",
-        "shots/s02": "a3788a6740f367fd46178823e187537daf3769155253612745d6cdc3256c800d",
-        "shots/s03": "1c8c5268d0130d433a824f6e8b25fc995dee9c0a29e947dff46d45524474f07b",
-        "shots/s04": "d1d818d3e290734026000c4a320e84c4d9e4a5faa53c2c0b1689aa5cd4692f38",
-        "shots/s05": "51b341f3628ce72c556ddf4256b16ced103723741a5ac536c69a7b2f31ba1d61",
-        "shots/s06": "ad05d81c95b6b2f623768a4f30e4b58f567c197c001b86c3b638e07cbbd41f78",
-        "shots/s07": "cba85b35fbc502a474193cdeed50542468a49a4a7060c598f544aeb0e7e65a30",
-        "shots/s08": "f71bb02b6659fa1b485cfdbb7a0d7a6c7eac1085b0eb568409622f701051e25b",
-        "shots/s09": "386cbdfde15dd43dfad036d92327d1f1b111860fa785d0968210990cfe608553",
-        "shots/s10": "2428993c30a37656a8f7226ce2c5fedb5264fffdaf2e611043f989fb28259979",
-        "shots/s11": "591e0b89d7753bc2a6d098936c3c9c40eb42eb3ece9dec34756e5c9c22803160",
-        "subtitles/project": "28207cce0af6d17d685abd1711f43331281f7708944868cc09d5c13a26d7564f",
-        "timing/project": "7eafe0e099ba8e45f37dd25d7628da06fe728b8047bb176ae27de1f57be6be6a"
+        "narration/s01": "90327457b124ba51b00d352245e9c382a500fc760d9462c0e6f4e6ba2966b270",
+        "narration/s02": "c0b344eba37e610c9c2a0e3f3176c06c98367902ad67c1af349b4ad9835b93f5",
+        "narration/s03": "68a075747528f26e2f4b3205e40731d4b487b2f4046e6ce50089da748a9168cf",
+        "narration/s04": "103cf4f05c899066972d09f1f8d80cc42ce357df229f01afac0e6323dd20b82f",
+        "narration/s05": "cb47b24f37bff0fb65b621234c656fc7363b4594082c820921cc61d48cc5ae0d",
+        "narration/s06": "045d4be06a4e006025a0be166c93bef2b739ddd4b7b7ed0dd07cc2a28829d074",
+        "narration/s07": "0bc5cd029d0d0d6a864a5fb7252e03e583251e146ea6c62f610f2ee15688a6c9",
+        "narration/s08": "ae6ed772dcafa12434dbcca0176f72ef64371ccf1454d3765764f0e2b7e609b8",
+        "narration/s09": "73500d4f63f4d30c3392594ae4fe3d991d105702981feb4512084fd685c54f37",
+        "narration/s10": "25aed39bf928da317680eef217389d69492949850bbb6fd91fd095c6a5abb7db",
+        "narration/s11": "6e827c2a96c6e73474c9fcd7f2d474d454bf8846069183c4b1828725d35027b8",
+        "shots/s01": "bb9a9d16dda5dc8e15075fdba398e7ddd23633db7f39ecbd4c4b33fee7a9e6da",
+        "shots/s02": "b46bae9f489ef483623a433a7f790a8864b72ebaeeea503b9fe6bf0f82e75a60",
+        "shots/s03": "94809ba1013bc75d58a01a0d9f67de79353da5d4be694590404085ae246f61c0",
+        "shots/s04": "a45b1103cd37114db012c94be3e127645c39fdc3fe3cb6bc63c5bac5d00cf6f5",
+        "shots/s05": "7fef6f0ac7a2ecc7a673c77c336e551767f4a3b1fd716962ca11a5bdc24a7df7",
+        "shots/s06": "71482c7bc489b7ae3e3b9d945535e72cad498408b403831c09b65ed356b74565",
+        "shots/s07": "5fd23a7acca4ed3eb1d48e64c1e2ac1af008b775ff0a9d935f046236d7ff230d",
+        "shots/s08": "616e3fe23c300f33cab55de1f425ab97ba352f8b511d889c757b18cf1cc4aac7",
+        "shots/s09": "860608cbc80ef5e6cddfd5d311f3589708562fa637396ae132434db2d79e26f5",
+        "shots/s10": "590f060721cee4e5e44fbe73ece0106c6ec018adcb145b5e15d3b388adbd607e",
+        "shots/s11": "363e92b8bda1fc8fc83ac6df2b56f1cd11fd4a0dd21c43f91ac13bce8699882d",
+        "subtitles/project": "46127d2471c9735ca141cb29fa799fc890605f219a0fc332ecb00ffc9bec753f",
+        "timing/project": "921f5dcc5b4f3b4c74f5d30525b213754a32ce9e70e68632fe3132b8cc01723d"
       }
     },
     "keyframes/s01": {
       "candidates": [],
-      "created_at": "2026-11-26T08:41:45.582Z",
+      "created_at": "2026-11-26T13:33:29.721Z",
       "field_hashes": {
         "keyframe.candidates": "6b86b273ff34fce1",
-        "keyframe.prompt": "cdb656bc5ee2dc76",
+        "keyframe.prompt": "2485a1cf0874049f",
         "keyframe.source": "1988e17316b73548",
         "keyframe.upload": "74234e98afe7498f",
         "style.character_defaults": "d8b1009fd794bcb9",
-        "style.characters.youngest_sibling": "6f113a04d4513975",
+        "style.characters.child_narrator": "5e098b112354c030",
         "style.negative": "80819193126480c7",
         "style.style_block": "20d95cc178dca22a"
       },
       "is_fallback": false,
-      "key": "594a30821203b037",
-      "path": "outputs/keyframes/s01/594a30821203b037.jpg",
-      "primary_provider": "cf_flux2_klein",
+      "key": "eaf781104cc9010d",
+      "path": "outputs/keyframes/s01/eaf781104cc9010d.jpg",
+      "primary_provider": "wavespeed_klein",
       "provider": {
-        "model": "@cf/black-forest-labs/flux-2-klein-4b",
-        "name": "cf_flux2_klein",
+        "model": "wavespeed-ai/flux-2-klein-4b/edit",
+        "name": "wavespeed_klein",
         "params": {
           "height": 1024,
-          "steps": 4,
           "width": 576
         }
       },
-      "run_id": "r_20261126_084128_94c5",
+      "run_id": "r_20261126_133254_a95a",
       "seed": 1001,
-      "sha256": "697572ca8f0e28926ca337bd28e9833564a34ed2adca7b851ede0b46848d72da",
+      "sha256": "bd54a556f6139d37a0db2342fc8b66d51fade1457deaa7c57431edd89c882b26",
       "stage": "keyframes",
       "stage_version": 1,
       "unit": "s01",
       "upstream": {
         "references/family_car_ref": "c6f73b85c6a53a045b480c8cc47ee6e84f0be73d836fa704096dbc2779794f44",
-        "references/ref_youngest_sibling": "2ea6014e8dae23e05231b0893f70afcfcaaa7ac7a60482cf82a2c404a91d48c3"
+        "references/ref_child_narrator": "a857c837b51a564a7df95a4bac55255d4c099bf00db118233b7eb0010c75221f"
       }
     },
     "keyframes/s02": {
       "candidates": [],
-      "created_at": "2026-11-26T08:27:25.534Z",
+      "created_at": "2026-11-26T13:33:58.334Z",
       "field_hashes": {
         "keyframe.candidates": "6b86b273ff34fce1",
-        "keyframe.prompt": "95b9c814eb6bd830",
+        "keyframe.prompt": "2f6dc48d808f5e80",
         "keyframe.source": "1988e17316b73548",
         "keyframe.upload": "74234e98afe7498f",
         "style.character_defaults": "d8b1009fd794bcb9",
+        "style.characters.child_narrator": "5e098b112354c030",
         "style.characters.older_brother": "2605dffeca44af7b",
         "style.negative": "80819193126480c7",
         "style.style_block": "20d95cc178dca22a"
       },
       "is_fallback": false,
-      "key": "143fc01c54a09613",
-      "path": "outputs/keyframes/s02/143fc01c54a09613.jpg",
-      "primary_provider": "cf_flux2_klein",
+      "key": "96798e1cb188dcc7",
+      "path": "outputs/keyframes/s02/96798e1cb188dcc7.jpg",
+      "primary_provider": "wavespeed_klein",
       "provider": {
-        "model": "@cf/black-forest-labs/flux-2-klein-4b",
-        "name": "cf_flux2_klein",
+        "model": "wavespeed-ai/flux-2-klein-4b/edit",
+        "name": "wavespeed_klein",
         "params": {
           "height": 1024,
-          "steps": 4,
           "width": 576
         }
       },
-      "run_id": "r_20261126_082710_439e",
+      "run_id": "r_20261126_133254_a95a",
       "seed": 1002,
-      "sha256": "7a7ec38897e4cbb03b403622d4b11e6e0662de8434b9cd0ac3381f31a945fd60",
+      "sha256": "b01f0782b09753a31bb91e119ab96ba5652710021b9eb334ff04f94dc4dacaec",
       "stage": "keyframes",
       "stage_version": 1,
       "unit": "s02",
       "upstream": {
         "references/family_car_ref": "c6f73b85c6a53a045b480c8cc47ee6e84f0be73d836fa704096dbc2779794f44",
+        "references/ref_child_narrator": "a857c837b51a564a7df95a4bac55255d4c099bf00db118233b7eb0010c75221f",
         "references/ref_older_brother": "4fa109cb1124f05f2e142eb41dbbc0744432b881f04d0633c51c096813852b9b"
       }
     },
     "keyframes/s03": {
       "candidates": [],
-      "created_at": "2026-11-26T08:41:53.566Z",
+      "created_at": "2026-11-26T13:34:14.040Z",
       "field_hashes": {
         "keyframe.candidates": "6b86b273ff34fce1",
-        "keyframe.prompt": "9e013b963bdc4b9b",
+        "keyframe.prompt": "4632c687605d8792",
         "keyframe.source": "1988e17316b73548",
         "keyframe.upload": "74234e98afe7498f",
         "style.character_defaults": "d8b1009fd794bcb9",
-        "style.characters.youngest_sibling": "6f113a04d4513975",
+        "style.characters.father": "d740243ccc20a095",
+        "style.characters.teen_narrator": "816540ced1b60936",
         "style.negative": "80819193126480c7",
         "style.style_block": "20d95cc178dca22a"
       },
       "is_fallback": false,
-      "key": "7319fe5bb217cd7b",
-      "path": "outputs/keyframes/s03/7319fe5bb217cd7b.jpg",
-      "primary_provider": "cf_flux2_klein",
+      "key": "1641e157f820c0c4",
+      "path": "outputs/keyframes/s03/1641e157f820c0c4.jpg",
+      "primary_provider": "wavespeed_klein",
       "provider": {
-        "model": "@cf/black-forest-labs/flux-2-klein-4b",
-        "name": "cf_flux2_klein",
+        "model": "wavespeed-ai/flux-2-klein-4b/edit",
+        "name": "wavespeed_klein",
         "params": {
           "height": 1024,
-          "steps": 4,
           "width": 576
         }
       },
-      "run_id": "r_20261126_084128_94c5",
+      "run_id": "r_20261126_133254_a95a",
       "seed": 1003,
-      "sha256": "09536a1139d81aa2eaa3ed9828b0ef68ffbc0441cd3b9dfd1e4157150a5f61e0",
+      "sha256": "7eaf09eb8134623b35448cd06ca126900b9815d3a020b1d2c6e22bd1376e6053",
       "stage": "keyframes",
       "stage_version": 1,
       "unit": "s03",
       "upstream": {
         "references/family_car_ref": "c6f73b85c6a53a045b480c8cc47ee6e84f0be73d836fa704096dbc2779794f44",
-        "references/ref_youngest_sibling": "2ea6014e8dae23e05231b0893f70afcfcaaa7ac7a60482cf82a2c404a91d48c3"
+        "references/ref_father": "86ed51cb15e0be386476346f4a0d1998a8e736b04d828a78abcaa78009b0f2dd",
+        "references/ref_teen_narrator": "34f889723200433cce19b7564e26d84a078403482500fefec007d42dfe8580e3"
       }
     },
     "keyframes/s04": {
       "candidates": [],
-      "created_at": "2026-11-26T08:41:57.895Z",
+      "created_at": "2026-11-26T13:34:31.323Z",
       "field_hashes": {
         "keyframe.candidates": "6b86b273ff34fce1",
-        "keyframe.prompt": "626842e837e60411",
+        "keyframe.prompt": "22cc9ea5679fa07f",
         "keyframe.source": "1988e17316b73548",
         "keyframe.upload": "74234e98afe7498f",
         "style.character_defaults": "d8b1009fd794bcb9",
-        "style.characters.youngest_sibling": "6f113a04d4513975",
+        "style.characters.father": "d740243ccc20a095",
+        "style.characters.teen_narrator": "816540ced1b60936",
         "style.negative": "80819193126480c7",
         "style.style_block": "20d95cc178dca22a"
       },
       "is_fallback": false,
-      "key": "24e4f938e668c720",
-      "path": "outputs/keyframes/s04/24e4f938e668c720.jpg",
-      "primary_provider": "cf_flux2_klein",
+      "key": "6de779542a64a625",
+      "path": "outputs/keyframes/s04/6de779542a64a625.jpg",
+      "primary_provider": "wavespeed_klein",
       "provider": {
-        "model": "@cf/black-forest-labs/flux-2-klein-4b",
-        "name": "cf_flux2_klein",
+        "model": "wavespeed-ai/flux-2-klein-4b/edit",
+        "name": "wavespeed_klein",
         "params": {
           "height": 1024,
-          "steps": 4,
           "width": 576
         }
       },
-      "run_id": "r_20261126_084128_94c5",
+      "run_id": "r_20261126_133254_a95a",
       "seed": 1004,
-      "sha256": "edfaf21c6e488b662ac026954b1c9bc68aadb54468e53684b2a64d5ec4eb6b7a",
+      "sha256": "6bdbd054ecb92e88fcbfb1a7718a05823af2bd9888ac3d3dd28b1633ab516c76",
       "stage": "keyframes",
       "stage_version": 1,
       "unit": "s04",
       "upstream": {
-        "references/ref_youngest_sibling": "2ea6014e8dae23e05231b0893f70afcfcaaa7ac7a60482cf82a2c404a91d48c3"
+        "references/family_car_ref": "c6f73b85c6a53a045b480c8cc47ee6e84f0be73d836fa704096dbc2779794f44",
+        "references/ref_father": "86ed51cb15e0be386476346f4a0d1998a8e736b04d828a78abcaa78009b0f2dd",
+        "references/ref_teen_narrator": "34f889723200433cce19b7564e26d84a078403482500fefec007d42dfe8580e3"
       }
     },
     "keyframes/s05": {
       "candidates": [],
-      "created_at": "2026-11-26T08:27:45.510Z",
+      "created_at": "2026-11-26T13:42:03.017Z",
       "field_hashes": {
         "keyframe.candidates": "6b86b273ff34fce1",
-        "keyframe.prompt": "8c966e1b2d736797",
+        "keyframe.prompt": "1c52057d1e975721",
+        "keyframe.source": "1988e17316b73548",
+        "keyframe.upload": "74234e98afe7498f",
+        "style.character_defaults": "d8b1009fd794bcb9",
+        "style.characters.teen_narrator": "816540ced1b60936",
+        "style.negative": "80819193126480c7",
+        "style.style_block": "20d95cc178dca22a"
+      },
+      "is_fallback": false,
+      "key": "00e5aa55e92287d0",
+      "path": "outputs/keyframes/s05/00e5aa55e92287d0.jpg",
+      "primary_provider": "wavespeed_klein",
+      "provider": {
+        "model": "wavespeed-ai/flux-2-klein-4b/edit",
+        "name": "wavespeed_klein",
+        "params": {
+          "height": 1024,
+          "width": 576
+        }
+      },
+      "run_id": "r_20261126_134147_81b9",
+      "seed": 1005,
+      "sha256": "627566b3f24bc61c20e4d547b5436e4377634792141862c332e84f93432a5d31",
+      "stage": "keyframes",
+      "stage_version": 1,
+      "unit": "s05",
+      "upstream": {
+        "references/ref_teen_narrator": "34f889723200433cce19b7564e26d84a078403482500fefec007d42dfe8580e3"
+      }
+    },
+    "keyframes/s06": {
+      "candidates": [],
+      "created_at": "2026-11-26T13:40:51.824Z",
+      "field_hashes": {
+        "keyframe.candidates": "6b86b273ff34fce1",
+        "keyframe.prompt": "df31b6c22fc53283",
         "keyframe.source": "1988e17316b73548",
         "keyframe.upload": "74234e98afe7498f",
         "style.character_defaults": "d8b1009fd794bcb9",
@@ -213,61 +251,25 @@
         "style.style_block": "20d95cc178dca22a"
       },
       "is_fallback": false,
-      "key": "9d85c9c2f16d6f40",
-      "path": "outputs/keyframes/s05/9d85c9c2f16d6f40.jpg",
-      "primary_provider": "cf_flux2_klein",
+      "key": "21194c0ba45332b4",
+      "path": "outputs/keyframes/s06/21194c0ba45332b4.jpg",
+      "primary_provider": "wavespeed_klein",
       "provider": {
-        "model": "@cf/black-forest-labs/flux-2-klein-4b",
-        "name": "cf_flux2_klein",
+        "model": "wavespeed-ai/flux-2-klein-4b/edit",
+        "name": "wavespeed_klein",
         "params": {
           "height": 1024,
-          "steps": 4,
           "width": 576
         }
       },
-      "run_id": "r_20261126_082710_439e",
-      "seed": 1005,
-      "sha256": "bdf6621700c4e1430abe43709817c3cbaacc540d665f4b1d9a1dfc1a318f1d9e",
-      "stage": "keyframes",
-      "stage_version": 1,
-      "unit": "s05",
-      "upstream": {
-        "references/family_car_ref": "c6f73b85c6a53a045b480c8cc47ee6e84f0be73d836fa704096dbc2779794f44",
-        "references/ref_youngest_sibling": "2ea6014e8dae23e05231b0893f70afcfcaaa7ac7a60482cf82a2c404a91d48c3"
-      }
-    },
-    "keyframes/s06": {
-      "candidates": [],
-      "created_at": "2026-11-26T08:27:51.866Z",
-      "field_hashes": {
-        "keyframe.candidates": "6b86b273ff34fce1",
-        "keyframe.prompt": "76da21d7b0d4422d",
-        "keyframe.source": "1988e17316b73548",
-        "keyframe.upload": "74234e98afe7498f",
-        "style.negative": "80819193126480c7",
-        "style.style_block": "20d95cc178dca22a"
-      },
-      "is_fallback": false,
-      "key": "8e673be53a5099f1",
-      "path": "outputs/keyframes/s06/8e673be53a5099f1.jpg",
-      "primary_provider": "cf_flux2_klein",
-      "provider": {
-        "model": "@cf/black-forest-labs/flux-2-klein-4b",
-        "name": "cf_flux2_klein",
-        "params": {
-          "height": 1024,
-          "steps": 4,
-          "width": 576
-        }
-      },
-      "run_id": "r_20261126_082710_439e",
+      "run_id": "r_20261126_134024_c57d",
       "seed": 1006,
-      "sha256": "4f2e71da2fae6104d5b005c659b39c5aa90a30c7b15bf4aa3c3df7378c7d50ed",
+      "sha256": "2ebbb52e1a93cc684389c56d1fb6369527f26fdcdaa59336fac10bb53e93979f",
       "stage": "keyframes",
       "stage_version": 1,
       "unit": "s06",
       "upstream": {
-        "references/family_car_ref": "c6f73b85c6a53a045b480c8cc47ee6e84f0be73d836fa704096dbc2779794f44"
+        "references/ref_youngest_sibling": "2ea6014e8dae23e05231b0893f70afcfcaaa7ac7a60482cf82a2c404a91d48c3"
       }
     },
     "keyframes/s07": {
@@ -309,41 +311,39 @@
     },
     "keyframes/s08": {
       "candidates": [],
-      "created_at": "2026-11-26T08:28:23.922Z",
+      "created_at": "2026-11-26T13:35:16.164Z",
       "field_hashes": {
         "keyframe.candidates": "6b86b273ff34fce1",
-        "keyframe.prompt": "75c7b75484b77776",
+        "keyframe.prompt": "042256eaedadcc78",
         "keyframe.source": "1988e17316b73548",
         "keyframe.upload": "74234e98afe7498f",
         "style.character_defaults": "d8b1009fd794bcb9",
-        "style.characters.father": "3c4ea149be287d3f",
+        "style.characters.father": "d740243ccc20a095",
         "style.characters.mother": "d60e9047a972066f",
         "style.characters.youngest_sibling": "6f113a04d4513975",
         "style.negative": "80819193126480c7",
         "style.style_block": "20d95cc178dca22a"
       },
       "is_fallback": false,
-      "key": "28ccb73716ddea20",
-      "path": "outputs/keyframes/s08/28ccb73716ddea20.jpg",
-      "primary_provider": "cf_flux2_klein",
+      "key": "afc282d566fe3bd5",
+      "path": "outputs/keyframes/s08/afc282d566fe3bd5.jpg",
+      "primary_provider": "wavespeed_klein",
       "provider": {
-        "model": "@cf/black-forest-labs/flux-2-klein-4b",
-        "name": "cf_flux2_klein",
+        "model": "wavespeed-ai/flux-2-klein-4b/edit",
+        "name": "wavespeed_klein",
         "params": {
           "height": 1024,
-          "steps": 4,
           "width": 576
         }
       },
-      "run_id": "r_20261126_082710_439e",
-      "seed": 1008,
-      "sha256": "ad1c1e6fc718503e70953108615250bd9b73d5d76c0f785dfc0acbf904f3f2e4",
+      "run_id": "r_20261126_133457_11d4",
+      "seed": 3108,
+      "sha256": "18d3480bd8c2b20f68760a754bfcb03ddcd8b8cae96bc90a44992ddf232cae94",
       "stage": "keyframes",
       "stage_version": 1,
       "unit": "s08",
       "upstream": {
-        "references/family_car_ref": "c6f73b85c6a53a045b480c8cc47ee6e84f0be73d836fa704096dbc2779794f44",
-        "references/ref_father": "9099193af1011f0e0b2c4b1a267ad1ec96f05700b18cbbc17d252b4d03d95f9f",
+        "references/ref_father": "86ed51cb15e0be386476346f4a0d1998a8e736b04d828a78abcaa78009b0f2dd",
         "references/ref_mother": "a20a7010c08c87dcbcbd59f8639db60328bc707265ce7cee160579e31f6b4deb",
         "references/ref_youngest_sibling": "2ea6014e8dae23e05231b0893f70afcfcaaa7ac7a60482cf82a2c404a91d48c3"
       }
@@ -428,10 +428,10 @@
     },
     "keyframes/s11": {
       "candidates": [],
-      "created_at": "2026-11-26T08:28:44.330Z",
+      "created_at": "2026-11-26T13:41:33.637Z",
       "field_hashes": {
         "keyframe.candidates": "6b86b273ff34fce1",
-        "keyframe.prompt": "ed43aa91d4a15a66",
+        "keyframe.prompt": "7eaf6c50cd777477",
         "keyframe.source": "1988e17316b73548",
         "keyframe.upload": "74234e98afe7498f",
         "style.character_defaults": "d8b1009fd794bcb9",
@@ -440,21 +440,20 @@
         "style.style_block": "20d95cc178dca22a"
       },
       "is_fallback": false,
-      "key": "dc2acb2332ff4bd5",
-      "path": "outputs/keyframes/s11/dc2acb2332ff4bd5.jpg",
-      "primary_provider": "cf_flux2_klein",
+      "key": "94383cf24f5c63f3",
+      "path": "outputs/keyframes/s11/94383cf24f5c63f3.jpg",
+      "primary_provider": "wavespeed_klein",
       "provider": {
-        "model": "@cf/black-forest-labs/flux-2-klein-4b",
-        "name": "cf_flux2_klein",
+        "model": "wavespeed-ai/flux-2-klein-4b/edit",
+        "name": "wavespeed_klein",
         "params": {
           "height": 1024,
-          "steps": 4,
           "width": 576
         }
       },
-      "run_id": "r_20261126_082710_439e",
+      "run_id": "r_20261126_134024_c57d",
       "seed": 1011,
-      "sha256": "bb73cf3458cd78fb1d107f172c1868ff4b2bb360053dad3dda6f5bb94fbcc24e",
+      "sha256": "8abad74eb75a941bbc16327171563472bcae61b84c215ddbda4268a63e2d899a",
       "stage": "keyframes",
       "stage_version": 1,
       "unit": "s11",
@@ -534,7 +533,7 @@
       },
       "run_id": "r_20261126_072953_685c",
       "seed": 1000,
-      "sha256": "85ad29351e802cbd4ffe81384b79a18bb92a083612c7dc1c84f1ab48d2529a80",
+      "sha256": "90327457b124ba51b00d352245e9c382a500fc760d9462c0e6f4e6ba2966b270",
       "stage": "narration",
       "stage_version": 1,
       "unit": "s01",
@@ -564,7 +563,7 @@
       },
       "run_id": "r_20261126_072953_685c",
       "seed": 1001,
-      "sha256": "13ca9925dfea8103914875c9fa4fc283748484b03d91067387e618fa62ff086c",
+      "sha256": "c0b344eba37e610c9c2a0e3f3176c06c98367902ad67c1af349b4ad9835b93f5",
       "stage": "narration",
       "stage_version": 1,
       "unit": "s02",
@@ -594,7 +593,7 @@
       },
       "run_id": "r_20261126_072953_685c",
       "seed": 1002,
-      "sha256": "c7b490a6a07cf4f48e89a23e4388aa086fb2304d2e0cb270f62dc4135edf7986",
+      "sha256": "68a075747528f26e2f4b3205e40731d4b487b2f4046e6ce50089da748a9168cf",
       "stage": "narration",
       "stage_version": 1,
       "unit": "s03",
@@ -602,17 +601,17 @@
     },
     "narration/s04": {
       "candidates": [],
-      "created_at": "2026-11-26T07:30:08.193Z",
+      "created_at": "2026-11-26T13:44:25.974Z",
       "field_hashes": {
         "meta.narration_language": "55a609f7739e7749",
-        "narration.text_am": "8e73b93c9c3b1a82",
+        "narration.text_am": "9aa7714c2c1c4134",
         "voice.provider_pref": "8e87c4d7cbdf1be2",
         "voice.style_instruction": "416c5ce25dfff1a1",
         "voice.voice_name": "7ca6563f87168908"
       },
       "is_fallback": false,
-      "key": "673adb5fc4e39d92",
-      "path": "outputs/narration/s04/673adb5fc4e39d92.wav",
+      "key": "bb5240711ff3a79a",
+      "path": "outputs/narration/s04/bb5240711ff3a79a.wav",
       "primary_provider": "gemini_tts",
       "provider": {
         "model": "gemini-3.8-flash-tts",
@@ -622,9 +621,9 @@
           "voice_name": "Kore"
         }
       },
-      "run_id": "r_20261126_072953_685c",
+      "run_id": "r_20261126_134421_2d63",
       "seed": 1003,
-      "sha256": "471f3e3c99a6107789683b11a0d8961d34bdcaf2cc01a90caa8c695b11d19693",
+      "sha256": "103cf4f05c899066972d09f1f8d80cc42ce357df229f01afac0e6323dd20b82f",
       "stage": "narration",
       "stage_version": 1,
       "unit": "s04",
@@ -654,7 +653,7 @@
       },
       "run_id": "r_20261126_072953_685c",
       "seed": 1004,
-      "sha256": "8af78fc98e4b99f68b859e96add5731a1ca4c3b7d878c11fb54bf39b9406ae87",
+      "sha256": "cb47b24f37bff0fb65b621234c656fc7363b4594082c820921cc61d48cc5ae0d",
       "stage": "narration",
       "stage_version": 1,
       "unit": "s05",
@@ -684,7 +683,7 @@
       },
       "run_id": "r_20261126_072953_685c",
       "seed": 1005,
-      "sha256": "9202fb5e91ca4dbdd80d7c4da5760f6fc5891de5b81cb90361c282e2a81c6965",
+      "sha256": "045d4be06a4e006025a0be166c93bef2b739ddd4b7b7ed0dd07cc2a28829d074",
       "stage": "narration",
       "stage_version": 1,
       "unit": "s06",
@@ -714,7 +713,7 @@
       },
       "run_id": "r_20261126_072953_685c",
       "seed": 1006,
-      "sha256": "43a2ebcf5a759aa993b51631d9c544a2066b85c9e47370faec341b1bd7bfad70",
+      "sha256": "0bc5cd029d0d0d6a864a5fb7252e03e583251e146ea6c62f610f2ee15688a6c9",
       "stage": "narration",
       "stage_version": 1,
       "unit": "s07",
@@ -744,7 +743,7 @@
       },
       "run_id": "r_20261126_072953_685c",
       "seed": 1007,
-      "sha256": "dce2679162d9c892222549b1bf084e296dfef39c51cc5e5180cf9015099020c3",
+      "sha256": "ae6ed772dcafa12434dbcca0176f72ef64371ccf1454d3765764f0e2b7e609b8",
       "stage": "narration",
       "stage_version": 1,
       "unit": "s08",
@@ -774,7 +773,7 @@
       },
       "run_id": "r_20261126_072953_685c",
       "seed": 1008,
-      "sha256": "4153616b8b2673e8d2b666c5926566863c07081d7dc788b4985785cef9eaff26",
+      "sha256": "73500d4f63f4d30c3392594ae4fe3d991d105702981feb4512084fd685c54f37",
       "stage": "narration",
       "stage_version": 1,
       "unit": "s09",
@@ -782,17 +781,17 @@
     },
     "narration/s10": {
       "candidates": [],
-      "created_at": "2026-11-26T07:30:28.430Z",
+      "created_at": "2026-11-26T14:00:16.367Z",
       "field_hashes": {
         "meta.narration_language": "55a609f7739e7749",
-        "narration.text_am": "262289c9ec5514ef",
+        "narration.text_am": "7608bdbb8748df01",
         "voice.provider_pref": "8e87c4d7cbdf1be2",
         "voice.style_instruction": "416c5ce25dfff1a1",
         "voice.voice_name": "7ca6563f87168908"
       },
       "is_fallback": false,
-      "key": "29ec83281e16a834",
-      "path": "outputs/narration/s10/29ec83281e16a834.wav",
+      "key": "63c594661773b9e7",
+      "path": "outputs/narration/s10/63c594661773b9e7.wav",
       "primary_provider": "gemini_tts",
       "provider": {
         "model": "gemini-3.8-flash-tts",
@@ -802,9 +801,9 @@
           "voice_name": "Kore"
         }
       },
-      "run_id": "r_20261126_072953_685c",
+      "run_id": "r_20261126_135953_2f7d",
       "seed": 1009,
-      "sha256": "c635e71f8fb3422b0ecb59114bca69bcf4e85ef565546093a6226559994f6c42",
+      "sha256": "25aed39bf928da317680eef217389d69492949850bbb6fd91fd095c6a5abb7db",
       "stage": "narration",
       "stage_version": 1,
       "unit": "s10",
@@ -834,7 +833,7 @@
       },
       "run_id": "r_20261126_072953_685c",
       "seed": 1010,
-      "sha256": "e931249e111be112f8ed67735c1bb5632634af200df0f4067f81b745fdbd8615",
+      "sha256": "6e827c2a96c6e73474c9fcd7f2d474d454bf8846069183c4b1828725d35027b8",
       "stage": "narration",
       "stage_version": 1,
       "unit": "s11",
@@ -842,58 +841,58 @@
     },
     "qa/project": {
       "candidates": [],
-      "created_at": "2026-11-26T10:33:20.392Z",
+      "created_at": "2026-11-26T14:33:07.183Z",
       "field_hashes": {},
       "is_fallback": false,
-      "key": "38366b1032f84277",
-      "path": "outputs/final/469e11c10902a93f/qa.json",
+      "key": "972318d99dcb6afb",
+      "path": "outputs/final/f1eb451f1815c80d/qa.json",
       "primary_provider": null,
       "provider": null,
-      "run_id": "r_20261126_103319_1f23",
+      "run_id": "r_20261126_143306_77a7",
       "seed": null,
-      "sha256": "0939a0c53eaa00e18e01aaf91b0d84940ac9506dd40136c5ab27db41b73b8ff2",
+      "sha256": "c3d8d4e7d6da965009c3292fed2d842d6680f60cd2e5b4682ab97acde60c13a5",
       "stage": "qa",
-      "stage_version": 1,
+      "stage_version": 2,
       "unit": "project",
       "upstream": {
-        "assemble/project": "a025e929a74c7673eca63a01aa337c5c5b35b3065b92f96b1466f5b707362b07"
+        "assemble/project": "82bcc3d30cac275509361c99ab76d0c635816d51e803a98b76d14cb5984aad87"
       }
     },
     "radio_cut/project": {
       "candidates": [],
-      "created_at": "2026-11-26T07:30:43.794Z",
+      "created_at": "2026-11-26T14:15:44.594Z",
       "field_hashes": {
         "assembly": "c732a7c250c0ce4f"
       },
       "is_fallback": false,
-      "key": "968f9abb6b180d97",
-      "path": "outputs/radio_cut/968f9abb6b180d97.mp4",
+      "key": "9d40850ba0382466",
+      "path": "outputs/radio_cut/9d40850ba0382466.mp4",
       "primary_provider": null,
       "provider": {
         "model": null,
         "name": "ffmpeg",
         "params": {}
       },
-      "run_id": "r_20261126_073034_3acd",
+      "run_id": "r_20261126_141534_8ff8",
       "seed": null,
-      "sha256": "3a00d2db840713caff6140b27ab0c27aa4a97c1f79c6d4f5660886d5122520f2",
+      "sha256": "bb2e9080357eaa3ab60afdfc7f09075ea0106ff0d2e98c5ecff18ad4d9dd4243",
       "stage": "radio_cut",
       "stage_version": 1,
       "unit": "project",
       "upstream": {
-        "narration/s01": "85ad29351e802cbd4ffe81384b79a18bb92a083612c7dc1c84f1ab48d2529a80",
-        "narration/s02": "13ca9925dfea8103914875c9fa4fc283748484b03d91067387e618fa62ff086c",
-        "narration/s03": "c7b490a6a07cf4f48e89a23e4388aa086fb2304d2e0cb270f62dc4135edf7986",
-        "narration/s04": "471f3e3c99a6107789683b11a0d8961d34bdcaf2cc01a90caa8c695b11d19693",
-        "narration/s05": "8af78fc98e4b99f68b859e96add5731a1ca4c3b7d878c11fb54bf39b9406ae87",
-        "narration/s06": "9202fb5e91ca4dbdd80d7c4da5760f6fc5891de5b81cb90361c282e2a81c6965",
-        "narration/s07": "43a2ebcf5a759aa993b51631d9c544a2066b85c9e47370faec341b1bd7bfad70",
-        "narration/s08": "dce2679162d9c892222549b1bf084e296dfef39c51cc5e5180cf9015099020c3",
-        "narration/s09": "4153616b8b2673e8d2b666c5926566863c07081d7dc788b4985785cef9eaff26",
-        "narration/s10": "c635e71f8fb3422b0ecb59114bca69bcf4e85ef565546093a6226559994f6c42",
-        "narration/s11": "e931249e111be112f8ed67735c1bb5632634af200df0f4067f81b745fdbd8615",
-        "subtitles/project": "28207cce0af6d17d685abd1711f43331281f7708944868cc09d5c13a26d7564f",
-        "timing/project": "7eafe0e099ba8e45f37dd25d7628da06fe728b8047bb176ae27de1f57be6be6a"
+        "narration/s01": "90327457b124ba51b00d352245e9c382a500fc760d9462c0e6f4e6ba2966b270",
+        "narration/s02": "c0b344eba37e610c9c2a0e3f3176c06c98367902ad67c1af349b4ad9835b93f5",
+        "narration/s03": "68a075747528f26e2f4b3205e40731d4b487b2f4046e6ce50089da748a9168cf",
+        "narration/s04": "103cf4f05c899066972d09f1f8d80cc42ce357df229f01afac0e6323dd20b82f",
+        "narration/s05": "cb47b24f37bff0fb65b621234c656fc7363b4594082c820921cc61d48cc5ae0d",
+        "narration/s06": "045d4be06a4e006025a0be166c93bef2b739ddd4b7b7ed0dd07cc2a28829d074",
+        "narration/s07": "0bc5cd029d0d0d6a864a5fb7252e03e583251e146ea6c62f610f2ee15688a6c9",
+        "narration/s08": "ae6ed772dcafa12434dbcca0176f72ef64371ccf1454d3765764f0e2b7e609b8",
+        "narration/s09": "73500d4f63f4d30c3392594ae4fe3d991d105702981feb4512084fd685c54f37",
+        "narration/s10": "25aed39bf928da317680eef217389d69492949850bbb6fd91fd095c6a5abb7db",
+        "narration/s11": "6e827c2a96c6e73474c9fcd7f2d474d454bf8846069183c4b1828725d35027b8",
+        "subtitles/project": "46127d2471c9735ca141cb29fa799fc890605f219a0fc332ecb00ffc9bec753f",
+        "timing/project": "921f5dcc5b4f3b4c74f5d30525b213754a32ce9e70e68632fe3132b8cc01723d"
       }
     },
     "references/family_car_ref": {
@@ -994,37 +993,37 @@
       "unit": "ref_child",
       "upstream": {}
     },
-    "references/ref_father": {
+    "references/ref_child_narrator": {
       "candidates": [
         {
-          "path": "outputs/references/ref_father/03d80dab14b2d1d8_cand1.jpg",
-          "sha256": "fc1d057fd091cbc20ac3c24cd4f6652d9b7cc52b524c41d149af4850045b03be"
+          "path": "outputs/references/ref_child_narrator/cc8ae50c0fa2fc47_cand1.jpg",
+          "sha256": "a857c837b51a564a7df95a4bac55255d4c099bf00db118233b7eb0010c75221f"
         },
         {
-          "path": "outputs/references/ref_father/03d80dab14b2d1d8_cand2.jpg",
-          "sha256": "55294022a63bb51e1df2ad6ab2c731e51158364b703f812f0df2d17c4671052a"
+          "path": "outputs/references/ref_child_narrator/cc8ae50c0fa2fc47_cand2.jpg",
+          "sha256": "0bd9041a20a8bd313b8e0eca552ab06967085c13232c581494ff8dc7e0dedd2e"
         },
         {
-          "path": "outputs/references/ref_father/03d80dab14b2d1d8_cand3.jpg",
-          "sha256": "9099193af1011f0e0b2c4b1a267ad1ec96f05700b18cbbc17d252b4d03d95f9f"
+          "path": "outputs/references/ref_child_narrator/cc8ae50c0fa2fc47_cand3.jpg",
+          "sha256": "914c728d533e01301be2d354d5371999a44a34ef51c9a77c6de1a6d0665093cb"
         },
         {
-          "path": "outputs/references/ref_father/03d80dab14b2d1d8_cand4.jpg",
-          "sha256": "7054e2f51562e44e8191cacc50a4c62e8a5b89da43889437e0df680658e0af2e"
+          "path": "outputs/references/ref_child_narrator/cc8ae50c0fa2fc47_cand4.jpg",
+          "sha256": "a1ba7fb9ab9d07187a338b84a26dab1e92bbdb0c16e3886287543f8e75b5cce6"
         }
       ],
-      "created_at": "2026-11-26T08:22:18.238Z",
+      "created_at": "2026-11-26T13:01:31.578Z",
       "field_hashes": {
-        "description": "902b8c62678436c1",
+        "description": "b0320b348d02ca48",
         "kind": "4e1d81205c420040",
-        "photos": "4f53cda18c2baa0c",
+        "photos": "bdcfa9123c63f6a4",
         "sheet.candidates": "4b227777d4dd1fc6",
         "style.character_defaults": "d8b1009fd794bcb9",
         "style.style_block": "20d95cc178dca22a"
       },
       "is_fallback": false,
-      "key": "03d80dab14b2d1d8",
-      "path": "outputs/references/ref_father/03d80dab14b2d1d8_cand1.jpg",
+      "key": "cc8ae50c0fa2fc47",
+      "path": "outputs/references/ref_child_narrator/cc8ae50c0fa2fc47_cand1.jpg",
       "primary_provider": "cf_flux2_klein",
       "provider": {
         "model": "@cf/black-forest-labs/flux-2-klein-4b",
@@ -1035,9 +1034,58 @@
           "width": 576
         }
       },
-      "run_id": "r_20261126_081945_b206",
-      "seed": 1500,
-      "sha256": "fc1d057fd091cbc20ac3c24cd4f6652d9b7cc52b524c41d149af4850045b03be",
+      "run_id": "r_20261126_130037_f561",
+      "seed": 1700,
+      "sha256": "a857c837b51a564a7df95a4bac55255d4c099bf00db118233b7eb0010c75221f",
+      "stage": "references",
+      "stage_version": 1,
+      "unit": "ref_child_narrator",
+      "upstream": {}
+    },
+    "references/ref_father": {
+      "candidates": [
+        {
+          "path": "outputs/references/ref_father/1f432cb370b43ba9_cand1.jpg",
+          "sha256": "86ed51cb15e0be386476346f4a0d1998a8e736b04d828a78abcaa78009b0f2dd"
+        },
+        {
+          "path": "outputs/references/ref_father/1f432cb370b43ba9_cand2.jpg",
+          "sha256": "e9fb5453702fee4e751db75d49d6a45d8461a67addaa15b5f494fd6a25374348"
+        },
+        {
+          "path": "outputs/references/ref_father/1f432cb370b43ba9_cand3.jpg",
+          "sha256": "27f4f8569164f4312d56f60cf8f2c35c4b8eba0fa83ebc9ccac0524c58c0049b"
+        },
+        {
+          "path": "outputs/references/ref_father/1f432cb370b43ba9_cand4.jpg",
+          "sha256": "c784d03a98dbac5128e4a994fd88feb19d10a89e32fe9e101f7dc58f1dd1badd"
+        }
+      ],
+      "created_at": "2026-11-26T13:01:11.877Z",
+      "field_hashes": {
+        "description": "0e15a59183e3fe7f",
+        "kind": "4e1d81205c420040",
+        "photos": "4f53cda18c2baa0c",
+        "sheet.candidates": "4b227777d4dd1fc6",
+        "style.character_defaults": "d8b1009fd794bcb9",
+        "style.style_block": "20d95cc178dca22a"
+      },
+      "is_fallback": false,
+      "key": "1f432cb370b43ba9",
+      "path": "outputs/references/ref_father/1f432cb370b43ba9_cand1.jpg",
+      "primary_provider": "cf_flux2_klein",
+      "provider": {
+        "model": "@cf/black-forest-labs/flux-2-klein-4b",
+        "name": "cf_flux2_klein",
+        "params": {
+          "height": 1024,
+          "steps": 4,
+          "width": 576
+        }
+      },
+      "run_id": "r_20261126_130037_f561",
+      "seed": 1900,
+      "sha256": "86ed51cb15e0be386476346f4a0d1998a8e736b04d828a78abcaa78009b0f2dd",
       "stage": "references",
       "stage_version": 1,
       "unit": "ref_father",
@@ -1141,6 +1189,55 @@
       "unit": "ref_older_brother",
       "upstream": {}
     },
+    "references/ref_teen_narrator": {
+      "candidates": [
+        {
+          "path": "outputs/references/ref_teen_narrator/1816e10d35cfaa8b_cand1.jpg",
+          "sha256": "0bef158b9d472d0423bd42612a36691a43ad04014586c37a2064324f1a333e7f"
+        },
+        {
+          "path": "outputs/references/ref_teen_narrator/1816e10d35cfaa8b_cand2.jpg",
+          "sha256": "183c807a151dcc5a4f12f0b54a33aff443453da2738bc8a17868e16d4413eb90"
+        },
+        {
+          "path": "outputs/references/ref_teen_narrator/1816e10d35cfaa8b_cand3.jpg",
+          "sha256": "34f889723200433cce19b7564e26d84a078403482500fefec007d42dfe8580e3"
+        },
+        {
+          "path": "outputs/references/ref_teen_narrator/1816e10d35cfaa8b_cand4.jpg",
+          "sha256": "d65725bb952a06c97883a2b2c442ca42ef8d9ace590c949c9a57ffe82342789d"
+        }
+      ],
+      "created_at": "2026-11-26T13:01:53.356Z",
+      "field_hashes": {
+        "description": "0453ab03ba905961",
+        "kind": "4e1d81205c420040",
+        "photos": "bdcfa9123c63f6a4",
+        "sheet.candidates": "4b227777d4dd1fc6",
+        "style.character_defaults": "d8b1009fd794bcb9",
+        "style.style_block": "20d95cc178dca22a"
+      },
+      "is_fallback": false,
+      "key": "1816e10d35cfaa8b",
+      "path": "outputs/references/ref_teen_narrator/1816e10d35cfaa8b_cand1.jpg",
+      "primary_provider": "cf_flux2_klein",
+      "provider": {
+        "model": "@cf/black-forest-labs/flux-2-klein-4b",
+        "name": "cf_flux2_klein",
+        "params": {
+          "height": 1024,
+          "steps": 4,
+          "width": 576
+        }
+      },
+      "run_id": "r_20261126_130037_f561",
+      "seed": 1800,
+      "sha256": "0bef158b9d472d0423bd42612a36691a43ad04014586c37a2064324f1a333e7f",
+      "stage": "references",
+      "stage_version": 1,
+      "unit": "ref_teen_narrator",
+      "upstream": {}
+    },
     "references/ref_youngest_sibling": {
       "candidates": [
         {
@@ -1192,228 +1289,214 @@
     },
     "shots/s01": {
       "candidates": [],
-      "created_at": "2026-11-26T08:58:59.364Z",
+      "created_at": "2026-11-26T13:52:33.652Z",
       "field_hashes": {
         "assembly.shots": "7bf1fcf3ca21e70b",
         "duration_s": "0de7cf39e1e63661",
         "motion.kenburns": "c107e4afdeea0e6c",
         "motion.mode": "903fa7fd15f8c2b5",
-        "motion.prompt": "341690d790006fab"
+        "motion.prompt": "0f72ac4f7edc4c33"
       },
-      "is_fallback": true,
-      "key": "814594c5a8195b39",
-      "path": "outputs/shots/s01/814594c5a8195b39.mp4",
-      "primary_provider": "kaggle_wan22",
+      "is_fallback": false,
+      "key": "48487c3b72f605c6",
+      "path": "outputs/shots/s01/48487c3b72f605c6.mp4",
+      "primary_provider": "wavespeed_wan",
       "provider": {
-        "model": "ffmpeg-zoompan",
-        "name": "kenburns",
+        "model": "wavespeed-ai/wan-2.2/i2v-480p-ultra-fast",
+        "name": "wavespeed_wan",
         "params": {
-          "pan": "none",
-          "zoom_from": 1.0,
-          "zoom_to": 1.07
+          "negative_prompt": "photorealistic, morphing faces, extra people, extra fingers, deformed hands, text, watermark, flicker, camera shake, scene change"
         }
       },
-      "run_id": "r_20261126_085858_ca63",
+      "run_id": "r_20261126_135159_20a5",
       "seed": 2001,
-      "sha256": "4f08a2a745a7cdde5cc4cd0907c8ff79fc430845019096ec0fba72bfe8026f83",
+      "sha256": "bb9a9d16dda5dc8e15075fdba398e7ddd23633db7f39ecbd4c4b33fee7a9e6da",
       "stage": "shots",
       "stage_version": 1,
       "unit": "s01",
       "upstream": {
-        "keyframes/s01": "697572ca8f0e28926ca337bd28e9833564a34ed2adca7b851ede0b46848d72da"
+        "keyframes/s01": "bd54a556f6139d37a0db2342fc8b66d51fade1457deaa7c57431edd89c882b26"
       }
     },
     "shots/s02": {
       "candidates": [],
-      "created_at": "2026-11-26T08:59:00.575Z",
+      "created_at": "2026-11-26T13:53:27.708Z",
       "field_hashes": {
         "assembly.shots": "7bf1fcf3ca21e70b",
         "duration_s": "0de7cf39e1e63661",
         "motion.kenburns": "1aef15add5ceef1b",
-        "motion.mode": "393e7c8c56ad3964",
-        "motion.prompt": "74234e98afe7498f"
+        "motion.mode": "903fa7fd15f8c2b5",
+        "motion.prompt": "009d30d95ae37bc8"
       },
       "is_fallback": false,
-      "key": "6f51917ab1cb1330",
-      "path": "outputs/shots/s02/6f51917ab1cb1330.mp4",
-      "primary_provider": null,
+      "key": "b8b40e9d0420721a",
+      "path": "outputs/shots/s02/b8b40e9d0420721a.mp4",
+      "primary_provider": "wavespeed_wan",
       "provider": {
-        "model": "ffmpeg-zoompan",
-        "name": "kenburns",
+        "model": "wavespeed-ai/wan-2.2/i2v-480p-ultra-fast",
+        "name": "wavespeed_wan",
         "params": {
-          "pan": "up",
-          "zoom_from": 1.0,
-          "zoom_to": 1.08
+          "negative_prompt": "photorealistic, morphing faces, extra people, extra fingers, deformed hands, text, watermark, flicker, camera shake, scene change"
         }
       },
-      "run_id": "r_20261126_085858_ca63",
-      "seed": null,
-      "sha256": "a3788a6740f367fd46178823e187537daf3769155253612745d6cdc3256c800d",
+      "run_id": "r_20261126_135242_0610",
+      "seed": 2002,
+      "sha256": "b46bae9f489ef483623a433a7f790a8864b72ebaeeea503b9fe6bf0f82e75a60",
       "stage": "shots",
       "stage_version": 1,
       "unit": "s02",
       "upstream": {
-        "keyframes/s02": "7a7ec38897e4cbb03b403622d4b11e6e0662de8434b9cd0ac3381f31a945fd60"
+        "keyframes/s02": "b01f0782b09753a31bb91e119ab96ba5652710021b9eb334ff04f94dc4dacaec"
       }
     },
     "shots/s03": {
       "candidates": [],
-      "created_at": "2026-11-26T08:59:01.799Z",
+      "created_at": "2026-11-26T13:47:33.523Z",
       "field_hashes": {
         "assembly.shots": "7bf1fcf3ca21e70b",
         "duration_s": "0de7cf39e1e63661",
         "motion.kenburns": "c107e4afdeea0e6c",
         "motion.mode": "903fa7fd15f8c2b5",
-        "motion.prompt": "39ad65dc998ab008"
+        "motion.prompt": "d0e3091b9acad214"
       },
-      "is_fallback": true,
-      "key": "e137c9bb9fcaae17",
-      "path": "outputs/shots/s03/e137c9bb9fcaae17.mp4",
-      "primary_provider": "kaggle_wan22",
+      "is_fallback": false,
+      "key": "2850536d76c3a78d",
+      "path": "outputs/shots/s03/2850536d76c3a78d.mp4",
+      "primary_provider": "wavespeed_wan",
       "provider": {
-        "model": "ffmpeg-zoompan",
-        "name": "kenburns",
+        "model": "wavespeed-ai/wan-2.2/i2v-720p-ultra-fast",
+        "name": "wavespeed_wan",
         "params": {
-          "pan": "none",
-          "zoom_from": 1.0,
-          "zoom_to": 1.07
+          "negative_prompt": "photorealistic, morphing faces, extra people, extra fingers, deformed hands, text, watermark, flicker, camera shake, scene change"
         }
       },
-      "run_id": "r_20261126_085858_ca63",
+      "run_id": "r_20261126_134523_f6fd",
       "seed": 2003,
-      "sha256": "1c8c5268d0130d433a824f6e8b25fc995dee9c0a29e947dff46d45524474f07b",
+      "sha256": "94809ba1013bc75d58a01a0d9f67de79353da5d4be694590404085ae246f61c0",
       "stage": "shots",
       "stage_version": 1,
       "unit": "s03",
       "upstream": {
-        "keyframes/s03": "09536a1139d81aa2eaa3ed9828b0ef68ffbc0441cd3b9dfd1e4157150a5f61e0"
+        "keyframes/s03": "7eaf09eb8134623b35448cd06ca126900b9815d3a020b1d2c6e22bd1376e6053"
       }
     },
     "shots/s04": {
       "candidates": [],
-      "created_at": "2026-11-26T08:59:02.954Z",
+      "created_at": "2026-11-26T13:54:15.443Z",
       "field_hashes": {
         "assembly.shots": "7bf1fcf3ca21e70b",
-        "duration_s": "0de7cf39e1e63661",
+        "duration_s": "6dc50a2fd3ef8343",
         "motion.kenburns": "c4b18f65fd5959b5",
-        "motion.mode": "393e7c8c56ad3964",
-        "motion.prompt": "74234e98afe7498f"
+        "motion.mode": "903fa7fd15f8c2b5",
+        "motion.prompt": "b486d06e25fec04e"
       },
       "is_fallback": false,
-      "key": "b05c2255056c2936",
-      "path": "outputs/shots/s04/b05c2255056c2936.mp4",
-      "primary_provider": null,
+      "key": "c774bbf7b24ce398",
+      "path": "outputs/shots/s04/c774bbf7b24ce398.mp4",
+      "primary_provider": "wavespeed_wan",
       "provider": {
-        "model": "ffmpeg-zoompan",
-        "name": "kenburns",
+        "model": "wavespeed-ai/wan-2.2/i2v-480p-ultra-fast",
+        "name": "wavespeed_wan",
         "params": {
-          "pan": "down",
-          "zoom_from": 1.0,
-          "zoom_to": 1.12
+          "negative_prompt": "photorealistic, morphing faces, extra people, extra fingers, deformed hands, text, watermark, flicker, camera shake, scene change"
         }
       },
-      "run_id": "r_20261126_085858_ca63",
-      "seed": null,
-      "sha256": "d1d818d3e290734026000c4a320e84c4d9e4a5faa53c2c0b1689aa5cd4692f38",
+      "run_id": "r_20261126_135242_0610",
+      "seed": 2004,
+      "sha256": "a45b1103cd37114db012c94be3e127645c39fdc3fe3cb6bc63c5bac5d00cf6f5",
       "stage": "shots",
       "stage_version": 1,
       "unit": "s04",
       "upstream": {
-        "keyframes/s04": "edfaf21c6e488b662ac026954b1c9bc68aadb54468e53684b2a64d5ec4eb6b7a"
+        "keyframes/s04": "6bdbd054ecb92e88fcbfb1a7718a05823af2bd9888ac3d3dd28b1633ab516c76"
       }
     },
     "shots/s05": {
       "candidates": [],
-      "created_at": "2026-11-26T08:59:04.142Z",
+      "created_at": "2026-11-26T14:31:48.561Z",
       "field_hashes": {
         "assembly.shots": "7bf1fcf3ca21e70b",
         "duration_s": "0de7cf39e1e63661",
         "motion.kenburns": "e5096bbcee239f0a",
-        "motion.mode": "393e7c8c56ad3964",
-        "motion.prompt": "74234e98afe7498f"
+        "motion.mode": "903fa7fd15f8c2b5",
+        "motion.prompt": "3b047b89f09312ba"
       },
       "is_fallback": false,
-      "key": "5e8065248e3daa8b",
-      "path": "outputs/shots/s05/5e8065248e3daa8b.mp4",
-      "primary_provider": null,
+      "key": "173852f21961744e",
+      "path": "outputs/shots/s05/173852f21961744e.mp4",
+      "primary_provider": "wavespeed_wan",
       "provider": {
-        "model": "ffmpeg-zoompan",
-        "name": "kenburns",
+        "model": "wavespeed-ai/wan-2.2/i2v-480p-ultra-fast",
+        "name": "wavespeed_wan",
         "params": {
-          "pan": "none",
-          "zoom_from": 1.0,
-          "zoom_to": 1.09
+          "negative_prompt": "photorealistic, morphing faces, extra people, extra fingers, deformed hands, text, watermark, flicker, camera shake, scene change"
         }
       },
-      "run_id": "r_20261126_085858_ca63",
-      "seed": null,
-      "sha256": "51b341f3628ce72c556ddf4256b16ced103723741a5ac536c69a7b2f31ba1d61",
+      "run_id": "r_20261126_143111_6c85",
+      "seed": 2105,
+      "sha256": "7fef6f0ac7a2ecc7a673c77c336e551767f4a3b1fd716962ca11a5bdc24a7df7",
       "stage": "shots",
       "stage_version": 1,
       "unit": "s05",
       "upstream": {
-        "keyframes/s05": "bdf6621700c4e1430abe43709817c3cbaacc540d665f4b1d9a1dfc1a318f1d9e"
+        "keyframes/s05": "627566b3f24bc61c20e4d547b5436e4377634792141862c332e84f93432a5d31"
       }
     },
     "shots/s06": {
       "candidates": [],
-      "created_at": "2026-11-26T08:59:05.341Z",
+      "created_at": "2026-11-26T13:55:10.587Z",
       "field_hashes": {
         "assembly.shots": "7bf1fcf3ca21e70b",
         "duration_s": "0de7cf39e1e63661",
         "motion.kenburns": "c107e4afdeea0e6c",
         "motion.mode": "903fa7fd15f8c2b5",
-        "motion.prompt": "99758ccede235ebc"
+        "motion.prompt": "714a78551702ebd6"
       },
-      "is_fallback": true,
-      "key": "1dcf780e4e5b1fd1",
-      "path": "outputs/shots/s06/1dcf780e4e5b1fd1.mp4",
-      "primary_provider": "kaggle_wan22",
+      "is_fallback": false,
+      "key": "ea233b6832554254",
+      "path": "outputs/shots/s06/ea233b6832554254.mp4",
+      "primary_provider": "wavespeed_wan",
       "provider": {
-        "model": "ffmpeg-zoompan",
-        "name": "kenburns",
+        "model": "wavespeed-ai/wan-2.2/i2v-480p-ultra-fast",
+        "name": "wavespeed_wan",
         "params": {
-          "pan": "none",
-          "zoom_from": 1.0,
-          "zoom_to": 1.07
+          "negative_prompt": "photorealistic, morphing faces, extra people, extra fingers, deformed hands, text, watermark, flicker, camera shake, scene change"
         }
       },
-      "run_id": "r_20261126_085858_ca63",
+      "run_id": "r_20261126_135242_0610",
       "seed": 2006,
-      "sha256": "ad05d81c95b6b2f623768a4f30e4b58f567c197c001b86c3b638e07cbbd41f78",
+      "sha256": "71482c7bc489b7ae3e3b9d945535e72cad498408b403831c09b65ed356b74565",
       "stage": "shots",
       "stage_version": 1,
       "unit": "s06",
       "upstream": {
-        "keyframes/s06": "4f2e71da2fae6104d5b005c659b39c5aa90a30c7b15bf4aa3c3df7378c7d50ed"
+        "keyframes/s06": "2ebbb52e1a93cc684389c56d1fb6369527f26fdcdaa59336fac10bb53e93979f"
       }
     },
     "shots/s07": {
       "candidates": [],
-      "created_at": "2026-11-26T08:59:06.529Z",
+      "created_at": "2026-11-26T13:55:40.950Z",
       "field_hashes": {
         "assembly.shots": "7bf1fcf3ca21e70b",
         "duration_s": "0de7cf39e1e63661",
         "motion.kenburns": "2dd5e8b03c0c556e",
-        "motion.mode": "393e7c8c56ad3964",
-        "motion.prompt": "74234e98afe7498f"
+        "motion.mode": "903fa7fd15f8c2b5",
+        "motion.prompt": "777d705300d01787"
       },
       "is_fallback": false,
-      "key": "e0f775d041547cb0",
-      "path": "outputs/shots/s07/e0f775d041547cb0.mp4",
-      "primary_provider": null,
+      "key": "7a5b35e6bacf9205",
+      "path": "outputs/shots/s07/7a5b35e6bacf9205.mp4",
+      "primary_provider": "wavespeed_wan",
       "provider": {
-        "model": "ffmpeg-zoompan",
-        "name": "kenburns",
+        "model": "wavespeed-ai/wan-2.2/i2v-480p-ultra-fast",
+        "name": "wavespeed_wan",
         "params": {
-          "pan": "left",
-          "zoom_from": 1.0,
-          "zoom_to": 1.15
+          "negative_prompt": "photorealistic, morphing faces, extra people, extra fingers, deformed hands, text, watermark, flicker, camera shake, scene change"
         }
       },
-      "run_id": "r_20261126_085858_ca63",
-      "seed": null,
-      "sha256": "cba85b35fbc502a474193cdeed50542468a49a4a7060c598f544aeb0e7e65a30",
+      "run_id": "r_20261126_135242_0610",
+      "seed": 2007,
+      "sha256": "5fd23a7acca4ed3eb1d48e64c1e2ac1af008b775ff0a9d935f046236d7ff230d",
       "stage": "shots",
       "stage_version": 1,
       "unit": "s07",
@@ -1423,63 +1506,59 @@
     },
     "shots/s08": {
       "candidates": [],
-      "created_at": "2026-11-26T08:59:07.770Z",
+      "created_at": "2026-11-26T14:32:19.522Z",
       "field_hashes": {
         "assembly.shots": "7bf1fcf3ca21e70b",
         "duration_s": "0de7cf39e1e63661",
         "motion.kenburns": "3cef970a0ebf55bc",
-        "motion.mode": "393e7c8c56ad3964",
-        "motion.prompt": "74234e98afe7498f"
+        "motion.mode": "903fa7fd15f8c2b5",
+        "motion.prompt": "4257d09cd3436fff"
       },
       "is_fallback": false,
-      "key": "a454c85b199ad1b6",
-      "path": "outputs/shots/s08/a454c85b199ad1b6.mp4",
-      "primary_provider": null,
+      "key": "f6e57cdd877a2aa6",
+      "path": "outputs/shots/s08/f6e57cdd877a2aa6.mp4",
+      "primary_provider": "wavespeed_wan",
       "provider": {
-        "model": "ffmpeg-zoompan",
-        "name": "kenburns",
+        "model": "wavespeed-ai/wan-2.2/i2v-480p-ultra-fast",
+        "name": "wavespeed_wan",
         "params": {
-          "pan": "right",
-          "zoom_from": 1.0,
-          "zoom_to": 1.1
+          "negative_prompt": "photorealistic, morphing faces, extra people, extra fingers, deformed hands, text, watermark, flicker, camera shake, scene change"
         }
       },
-      "run_id": "r_20261126_085858_ca63",
-      "seed": null,
-      "sha256": "f71bb02b6659fa1b485cfdbb7a0d7a6c7eac1085b0eb568409622f701051e25b",
+      "run_id": "r_20261126_143111_6c85",
+      "seed": 2108,
+      "sha256": "616e3fe23c300f33cab55de1f425ab97ba352f8b511d889c757b18cf1cc4aac7",
       "stage": "shots",
       "stage_version": 1,
       "unit": "s08",
       "upstream": {
-        "keyframes/s08": "ad1c1e6fc718503e70953108615250bd9b73d5d76c0f785dfc0acbf904f3f2e4"
+        "keyframes/s08": "18d3480bd8c2b20f68760a754bfcb03ddcd8b8cae96bc90a44992ddf232cae94"
       }
     },
     "shots/s09": {
       "candidates": [],
-      "created_at": "2026-11-26T08:59:09.014Z",
+      "created_at": "2026-11-26T13:56:59.078Z",
       "field_hashes": {
         "assembly.shots": "7bf1fcf3ca21e70b",
         "duration_s": "0de7cf39e1e63661",
         "motion.kenburns": "03a1dfc4333a1a32",
-        "motion.mode": "393e7c8c56ad3964",
-        "motion.prompt": "74234e98afe7498f"
+        "motion.mode": "903fa7fd15f8c2b5",
+        "motion.prompt": "9c4a6d0f21290998"
       },
       "is_fallback": false,
-      "key": "fef4aa18c5871946",
-      "path": "outputs/shots/s09/fef4aa18c5871946.mp4",
-      "primary_provider": null,
+      "key": "90041d9832282969",
+      "path": "outputs/shots/s09/90041d9832282969.mp4",
+      "primary_provider": "wavespeed_wan",
       "provider": {
-        "model": "ffmpeg-zoompan",
-        "name": "kenburns",
+        "model": "wavespeed-ai/wan-2.2/i2v-480p-ultra-fast",
+        "name": "wavespeed_wan",
         "params": {
-          "pan": "left",
-          "zoom_from": 1.0,
-          "zoom_to": 1.1
+          "negative_prompt": "photorealistic, morphing faces, extra people, extra fingers, deformed hands, text, watermark, flicker, camera shake, scene change"
         }
       },
-      "run_id": "r_20261126_085858_ca63",
-      "seed": null,
-      "sha256": "386cbdfde15dd43dfad036d92327d1f1b111860fa785d0968210990cfe608553",
+      "run_id": "r_20261126_135242_0610",
+      "seed": 2009,
+      "sha256": "860608cbc80ef5e6cddfd5d311f3589708562fa637396ae132434db2d79e26f5",
       "stage": "shots",
       "stage_version": 1,
       "unit": "s09",
@@ -1489,30 +1568,28 @@
     },
     "shots/s10": {
       "candidates": [],
-      "created_at": "2026-11-26T08:59:10.218Z",
+      "created_at": "2026-11-26T13:57:37.498Z",
       "field_hashes": {
         "assembly.shots": "7bf1fcf3ca21e70b",
         "duration_s": "0de7cf39e1e63661",
         "motion.kenburns": "c107e4afdeea0e6c",
         "motion.mode": "903fa7fd15f8c2b5",
-        "motion.prompt": "cff0075ead8ef2d0"
+        "motion.prompt": "37820bec052c71db"
       },
-      "is_fallback": true,
-      "key": "6edcee5783537480",
-      "path": "outputs/shots/s10/6edcee5783537480.mp4",
-      "primary_provider": "kaggle_wan22",
+      "is_fallback": false,
+      "key": "4ef99f47966ab779",
+      "path": "outputs/shots/s10/4ef99f47966ab779.mp4",
+      "primary_provider": "wavespeed_wan",
       "provider": {
-        "model": "ffmpeg-zoompan",
-        "name": "kenburns",
+        "model": "wavespeed-ai/wan-2.2/i2v-480p-ultra-fast",
+        "name": "wavespeed_wan",
         "params": {
-          "pan": "none",
-          "zoom_from": 1.0,
-          "zoom_to": 1.07
+          "negative_prompt": "photorealistic, morphing faces, extra people, extra fingers, deformed hands, text, watermark, flicker, camera shake, scene change"
         }
       },
-      "run_id": "r_20261126_085858_ca63",
+      "run_id": "r_20261126_135242_0610",
       "seed": 2010,
-      "sha256": "2428993c30a37656a8f7226ce2c5fedb5264fffdaf2e611043f989fb28259979",
+      "sha256": "590f060721cee4e5e44fbe73ece0106c6ec018adcb145b5e15d3b388adbd607e",
       "stage": "shots",
       "stage_version": 1,
       "unit": "s10",
@@ -1522,73 +1599,71 @@
     },
     "shots/s11": {
       "candidates": [],
-      "created_at": "2026-11-26T08:59:11.493Z",
+      "created_at": "2026-11-26T13:58:11.854Z",
       "field_hashes": {
         "assembly.shots": "7bf1fcf3ca21e70b",
         "duration_s": "0de7cf39e1e63661",
         "motion.kenburns": "3cef970a0ebf55bc",
-        "motion.mode": "393e7c8c56ad3964",
-        "motion.prompt": "74234e98afe7498f"
+        "motion.mode": "903fa7fd15f8c2b5",
+        "motion.prompt": "0330642bf5ab1a16"
       },
       "is_fallback": false,
-      "key": "4b54931a85f08e1f",
-      "path": "outputs/shots/s11/4b54931a85f08e1f.mp4",
-      "primary_provider": null,
+      "key": "ac7fe667f33caaa7",
+      "path": "outputs/shots/s11/ac7fe667f33caaa7.mp4",
+      "primary_provider": "wavespeed_wan",
       "provider": {
-        "model": "ffmpeg-zoompan",
-        "name": "kenburns",
+        "model": "wavespeed-ai/wan-2.2/i2v-480p-ultra-fast",
+        "name": "wavespeed_wan",
         "params": {
-          "pan": "right",
-          "zoom_from": 1.0,
-          "zoom_to": 1.1
+          "negative_prompt": "photorealistic, morphing faces, extra people, extra fingers, deformed hands, text, watermark, flicker, camera shake, scene change"
         }
       },
-      "run_id": "r_20261126_085858_ca63",
-      "seed": null,
-      "sha256": "591e0b89d7753bc2a6d098936c3c9c40eb42eb3ece9dec34756e5c9c22803160",
+      "run_id": "r_20261126_135242_0610",
+      "seed": 2011,
+      "sha256": "363e92b8bda1fc8fc83ac6df2b56f1cd11fd4a0dd21c43f91ac13bce8699882d",
       "stage": "shots",
       "stage_version": 1,
       "unit": "s11",
       "upstream": {
-        "keyframes/s11": "bb73cf3458cd78fb1d107f172c1868ff4b2bb360053dad3dda6f5bb94fbcc24e"
+        "keyframes/s11": "8abad74eb75a941bbc16327171563472bcae61b84c215ddbda4268a63e2d899a"
       }
     },
     "subtitles/project": {
       "candidates": [],
-      "created_at": "2026-11-26T07:30:31.367Z",
+      "created_at": "2026-11-26T14:00:17.126Z",
       "field_hashes": {
         "assembly.subtitles": "d2e95b4feee8f19a",
         "end_card.text_en": "65b591edd72172de",
         "shots[s01].text_en": "ebc695c85cf0aea7",
         "shots[s02].text_en": "10434d9e4002fa6a",
         "shots[s03].text_en": "370278c26f4cebc8",
-        "shots[s04].text_en": "591e7831b25c0040",
+        "shots[s04].text_en": "bf908572c9dcc26d",
         "shots[s05].text_en": "c5eb9a6302b7dcec",
         "shots[s06].text_en": "199031c8aea912b9",
         "shots[s07].text_en": "0d22d62445dc32df",
         "shots[s08].text_en": "29414deea6bbfb94",
         "shots[s09].text_en": "3e30aea69f9f2484",
-        "shots[s10].text_en": "60104b9f902a2734",
+        "shots[s10].text_en": "653ae1278b8a3515",
         "shots[s11].text_en": "9f486e4aa89ba244"
       },
       "is_fallback": false,
-      "key": "5a4190a5c2ef8b1e",
-      "path": "outputs/subtitles/5a4190a5c2ef8b1e.srt",
+      "key": "fe96efe77030603d",
+      "path": "outputs/subtitles/fe96efe77030603d.srt",
       "primary_provider": null,
       "provider": null,
-      "run_id": "r_20261126_072953_685c",
+      "run_id": "r_20261126_140017_3a7e",
       "seed": null,
-      "sha256": "28207cce0af6d17d685abd1711f43331281f7708944868cc09d5c13a26d7564f",
+      "sha256": "46127d2471c9735ca141cb29fa799fc890605f219a0fc332ecb00ffc9bec753f",
       "stage": "subtitles",
       "stage_version": 1,
       "unit": "project",
       "upstream": {
-        "timing/project": "7eafe0e099ba8e45f37dd25d7628da06fe728b8047bb176ae27de1f57be6be6a"
+        "timing/project": "921f5dcc5b4f3b4c74f5d30525b213754a32ce9e70e68632fe3132b8cc01723d"
       }
     },
     "timing/project": {
       "candidates": [],
-      "created_at": "2026-11-26T07:30:31.357Z",
+      "created_at": "2026-11-26T14:00:16.779Z",
       "field_hashes": {
         "assembly.timing": "50bc5cb07708abb5",
         "end_card.duration_s": "4e07408562bedb8b",
@@ -1599,7 +1674,7 @@
         "shots[s02].transition_in": "89a286b358d0aa60",
         "shots[s03].duration_s": "0de7cf39e1e63661",
         "shots[s03].transition_in": "55bb0212433e1acf",
-        "shots[s04].duration_s": "0de7cf39e1e63661",
+        "shots[s04].duration_s": "6dc50a2fd3ef8343",
         "shots[s04].transition_in": "89a286b358d0aa60",
         "shots[s05].duration_s": "0de7cf39e1e63661",
         "shots[s05].transition_in": "55bb0212433e1acf",
@@ -1617,28 +1692,28 @@
         "shots[s11].transition_in": "55bb0212433e1acf"
       },
       "is_fallback": false,
-      "key": "7de87c2530d8f92b",
-      "path": "outputs/timing/7de87c2530d8f92b.json",
+      "key": "d6a5f2b9a8337b1b",
+      "path": "outputs/timing/d6a5f2b9a8337b1b.json",
       "primary_provider": null,
       "provider": null,
-      "run_id": "r_20261126_072953_685c",
+      "run_id": "r_20261126_140016_edf7",
       "seed": null,
-      "sha256": "7eafe0e099ba8e45f37dd25d7628da06fe728b8047bb176ae27de1f57be6be6a",
+      "sha256": "921f5dcc5b4f3b4c74f5d30525b213754a32ce9e70e68632fe3132b8cc01723d",
       "stage": "timing",
       "stage_version": 1,
       "unit": "project",
       "upstream": {
-        "narration/s01": "85ad29351e802cbd4ffe81384b79a18bb92a083612c7dc1c84f1ab48d2529a80",
-        "narration/s02": "13ca9925dfea8103914875c9fa4fc283748484b03d91067387e618fa62ff086c",
-        "narration/s03": "c7b490a6a07cf4f48e89a23e4388aa086fb2304d2e0cb270f62dc4135edf7986",
-        "narration/s04": "471f3e3c99a6107789683b11a0d8961d34bdcaf2cc01a90caa8c695b11d19693",
-        "narration/s05": "8af78fc98e4b99f68b859e96add5731a1ca4c3b7d878c11fb54bf39b9406ae87",
-        "narration/s06": "9202fb5e91ca4dbdd80d7c4da5760f6fc5891de5b81cb90361c282e2a81c6965",
-        "narration/s07": "43a2ebcf5a759aa993b51631d9c544a2066b85c9e47370faec341b1bd7bfad70",
-        "narration/s08": "dce2679162d9c892222549b1bf084e296dfef39c51cc5e5180cf9015099020c3",
-        "narration/s09": "4153616b8b2673e8d2b666c5926566863c07081d7dc788b4985785cef9eaff26",
-        "narration/s10": "c635e71f8fb3422b0ecb59114bca69bcf4e85ef565546093a6226559994f6c42",
-        "narration/s11": "e931249e111be112f8ed67735c1bb5632634af200df0f4067f81b745fdbd8615"
+        "narration/s01": "90327457b124ba51b00d352245e9c382a500fc760d9462c0e6f4e6ba2966b270",
+        "narration/s02": "c0b344eba37e610c9c2a0e3f3176c06c98367902ad67c1af349b4ad9835b93f5",
+        "narration/s03": "68a075747528f26e2f4b3205e40731d4b487b2f4046e6ce50089da748a9168cf",
+        "narration/s04": "103cf4f05c899066972d09f1f8d80cc42ce357df229f01afac0e6323dd20b82f",
+        "narration/s05": "cb47b24f37bff0fb65b621234c656fc7363b4594082c820921cc61d48cc5ae0d",
+        "narration/s06": "045d4be06a4e006025a0be166c93bef2b739ddd4b7b7ed0dd07cc2a28829d074",
+        "narration/s07": "0bc5cd029d0d0d6a864a5fb7252e03e583251e146ea6c62f610f2ee15688a6c9",
+        "narration/s08": "ae6ed772dcafa12434dbcca0176f72ef64371ccf1454d3765764f0e2b7e609b8",
+        "narration/s09": "73500d4f63f4d30c3392594ae4fe3d991d105702981feb4512084fd685c54f37",
+        "narration/s10": "25aed39bf928da317680eef217389d69492949850bbb6fd91fd095c6a5abb7db",
+        "narration/s11": "6e827c2a96c6e73474c9fcd7f2d474d454bf8846069183c4b1828725d35027b8"
       }
     }
   },

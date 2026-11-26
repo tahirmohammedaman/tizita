@@ -31,7 +31,7 @@
         "reference_id": "ref_mother"
       },
       "father": {
-        "description": "An elderly Ethiopian father with a gentle, weathered face, deeper dark brown skin and short cut grey hair.",
+        "description": "An elderly Ethiopian father with distinctly East African, Ethiopian highland facial features, large round open eyes, a high-bridged nose, a gentle weathered face, deep dark brown skin and short cut grey hair.",
         "wardrobe": "Tweed-style jacket over a plain shirt.",
         "reference_id": "ref_father"
       },
@@ -39,6 +39,16 @@
         "description": "A small Ethiopian child of about four with a round face and bright eyes.",
         "wardrobe": "Colourful everyday cotton shirt.",
         "reference_id": "ref_child"
+      },
+      "child_narrator": {
+        "description": "An Ethiopian boy of about seven with East African features, warm brown skin, large soft curious eyes, short, non-curly, neatly cut dark hair.",
+        "wardrobe": "Simple dark brown knit sweater over a collared shirt.",
+        "reference_id": "ref_child_narrator"
+      },
+      "teen_narrator": {
+        "description": "A slim Ethiopian teenage boy of about fifteen with East African features, warm brown skin, soft eyes, short, non-curly, neatly cut dark hair, no facial hair.",
+        "wardrobe": "Dark brown sweater over a simple collared shirt.",
+        "reference_id": "ref_teen_narrator"
       }
     }
   },
@@ -101,11 +111,11 @@
       "real_person": false,
       "consent_id": null,
       "photos": [],
-      "description": "An elderly Ethiopian father with a gentle, weathered face, deeper dark brown skin and short cut grey hair.",
+      "description": "An elderly Ethiopian father with distinctly East African, Ethiopian highland facial features, large round open eyes, a high-bridged nose, a gentle weathered face, deep dark brown skin and short cut grey hair.",
       "sheet": {
         "candidates": 4,
-        "chosen": 2,
-        "seed": 1500
+        "chosen": 0,
+        "seed": 1900
       }
     },
     {
@@ -119,6 +129,36 @@
         "candidates": 4,
         "chosen": 1,
         "seed": 1600
+      }
+    },
+    {
+      "id": "ref_child_narrator",
+      "kind": "person",
+      "real_person": false,
+      "consent_id": null,
+      "photos": [
+        "outputs/references/ref_youngest_sibling/aff4cbbbec5ba00f_cand2.jpg"
+      ],
+      "description": "An Ethiopian boy of about seven with East African features, warm brown skin, large soft curious eyes, short, non-curly, neatly cut dark hair.",
+      "sheet": {
+        "candidates": 4,
+        "chosen": 0,
+        "seed": 1700
+      }
+    },
+    {
+      "id": "ref_teen_narrator",
+      "kind": "person",
+      "real_person": false,
+      "consent_id": null,
+      "photos": [
+        "outputs/references/ref_youngest_sibling/aff4cbbbec5ba00f_cand2.jpg"
+      ],
+      "description": "A slim Ethiopian teenage boy of about fifteen with East African features, warm brown skin, soft eyes, short, non-curly, neatly cut dark hair, no facial hair.",
+      "sheet": {
+        "candidates": 4,
+        "chosen": 2,
+        "seed": 1800
       }
     }
   ],
@@ -163,23 +203,23 @@
       "shot_size": "medium_close",
       "duration_s": 7.0,
       "characters": [
-        "youngest_sibling"
+        "child_narrator"
       ],
       "references": [
         "family_car_ref",
-        "ref_youngest_sibling"
+        "ref_child_narrator"
       ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "Inside the dark blue-black sedan, seen from the back seat: a young Ethiopian man seated in the rear seat on the left, fully inside the car, looking forward between the two front headrests through the windshield, warm interior glow, soft evening sunlight.",
+        "prompt": "A hand-painted gouache and oil illustration with thick visible brush strokes and flat painted faces, clearly a painting and not a photograph. Interior of the dark blue-black sedan in daytime, seen from the front of the cabin. Exactly one person: a small seven-year-old boy sitting in the back seat, leaning forward between the two empty front headrests, wide-eyed and curious, watching the road ahead. The rear window is behind him.",
         "seed": 1001,
         "candidates": 1,
         "approved": false
       },
       "motion": {
         "mode": "i2v",
-        "prompt": "Slow push forward toward the young boy watching intently.",
+        "prompt": "The seven-year-old boy leans forward a little, blinks and watches the road with wide curious eyes; scenery slides past the rear window. Slow gentle push in. The painted illustration style stays exactly the same. Subtle, natural motion; faces and the number of people stay unchanged.",
         "seed": 2001,
         "max_attempts": 3,
         "kenburns": {
@@ -187,7 +227,7 @@
           "zoom_to": 1.0,
           "pan": "none"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "በልጅነቴ ሁልጊዜ የምቀመጠው ከኋላ ወንበር ነበር።",
@@ -202,23 +242,25 @@
       "shot_size": "close",
       "duration_s": 7.0,
       "characters": [
+        "child_narrator",
         "older_brother"
       ],
       "references": [
         "family_car_ref",
+        "ref_child_narrator",
         "ref_older_brother"
       ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "Close-up of experienced hands comfortably steering a car wheel, amber dashboard backlight illuminating smooth leather.",
+        "prompt": "A hand-painted gouache and oil illustration with thick visible brush strokes and flat painted faces, clearly a painting and not a photograph. Side view from inside the dark blue-black sedan in bright daytime. Exactly two people, one small child and one grown man. The grown older brother, in a navy denim jacket, sits in the driver's seat on the right side of the picture with both of his hands on the steering wheel. On the left side of the picture the small seven-year-old boy in a brown sweater sits in the back seat and leans forward, his small hands resting on the back of the front seat, smiling with excitement, looking at his brother's hands, not at the viewer.",
         "seed": 1002,
         "candidates": 1,
         "approved": false
       },
       "motion": {
-        "mode": "kenburns",
-        "prompt": "slow push in, soft light drifts",
+        "mode": "i2v",
+        "prompt": "The older brother steers gently with both hands; the little boy smiles and watches his brother's hands closely; scenery drifts past the windows. The painted illustration style stays exactly the same. Subtle, natural motion; faces and the number of people stay unchanged.",
         "seed": 2002,
         "max_attempts": 3,
         "kenburns": {
@@ -226,7 +268,7 @@
           "zoom_to": 1.08,
           "pan": "up"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "ታላላቆቼ መሪውን ይዘው ሲነዱ እያየሁ አደግኩ።",
@@ -237,27 +279,29 @@
     },
     {
       "id": "s03",
-      "reason": "Marks the narrative turning point where narrator steps into the driver's seat.",
+      "reason": "The turning point: the first day in the driver's seat, with Dad beside him.",
       "shot_size": "medium",
       "duration_s": 7.0,
       "characters": [
-        "youngest_sibling"
+        "teen_narrator",
+        "father"
       ],
       "references": [
         "family_car_ref",
-        "ref_youngest_sibling"
+        "ref_teen_narrator",
+        "ref_father"
       ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "A young Ethiopian man sitting nervous in the driver's seat of the dark blue-black sedan, fully inside the car, on a quiet empty suburban road, cool dusk lighting. The car paint is the same dark blue-black. No flags, no text, no signs.",
+        "prompt": "A hand-painted gouache and oil illustration with thick visible brush strokes and flat painted faces, clearly a painting and not a photograph. Daytime on a quiet cobblestone neighbourhood road, view through the windshield of the parked dark blue-black left-hand-drive sedan. Exactly two people. On the RIGHT side of the picture: the fifteen-year-old boy in a brown sweater is the driver, the only one holding the steering wheel, looking nervous, shoulders tense. On the LEFT side of the picture: the grey-haired father in a tweed jacket sits in the passenger seat, hands resting in his lap, no steering wheel in front of him, smiling at his son encouragingly.",
         "seed": 1003,
         "candidates": 1,
         "approved": false
       },
       "motion": {
         "mode": "i2v",
-        "prompt": "Slow camera pull back revealing the driver alone behind the wheel.",
+        "prompt": "The parked car is still. The teenage boy takes a nervous breath and tightens his hands on the wheel; his father turns slightly toward him and gives an encouraging nod. Very slow push in. The painted illustration style stays exactly the same. Subtle, natural motion; faces and the number of people stay unchanged.",
         "seed": 2003,
         "max_attempts": 3,
         "kenburns": {
@@ -265,7 +309,7 @@
           "zoom_to": 1.0,
           "pan": "none"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "ከዚያም አንድ ቀን እኔ ራሴ አሽከርካሪው ወንበር ላይ ተቀመጥኩ።",
@@ -276,26 +320,29 @@
     },
     {
       "id": "s04",
-      "reason": "Highlights the vulnerability and physical tension of learning to drive.",
-      "shot_size": "close",
-      "duration_s": 7.0,
+      "reason": "The first drive with Dad: nerves and a car that keeps stalling, with Dad patiently beside him.",
+      "shot_size": "medium_close",
+      "duration_s": 8.6,
       "characters": [
-        "youngest_sibling"
+        "teen_narrator",
+        "father"
       ],
       "references": [
-        "ref_youngest_sibling"
+        "family_car_ref",
+        "ref_teen_narrator",
+        "ref_father"
       ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "Close-up of one person's two hands gripping the steering wheel at ten-and-two, anatomically correct hands with five fingers each, dusk shadows across the dashboard. Only one person in the car, no passenger, no other people.",
+        "prompt": "A hand-painted gouache and oil illustration with thick visible brush strokes and flat painted faces, clearly a painting and not a photograph. Close view inside the dark blue-black sedan in daytime, a cobblestone road outside; the car has just stalled. Exactly two people. On the right side of the picture the fifteen-year-old boy in a brown sweater is the driver, looking down worried, one hand on the steering wheel and the other on the gear stick between the two seats. On the left side of the picture the father, with salt-and-pepper hair and a tweed jacket, sits in the passenger seat and does not touch the steering wheel; he raises one open hand, calmly explaining to his son.",
         "seed": 1004,
         "candidates": 1,
         "approved": false
       },
       "motion": {
-        "mode": "kenburns",
-        "prompt": "slow push in, soft light drifts",
+        "mode": "i2v",
+        "prompt": "The car has stalled with a small jolt. The father gestures calmly while explaining; the teenage boy looks down, worried, and nods. The painted illustration style stays exactly the same. Subtle, natural motion; faces and the number of people stay unchanged.",
         "seed": 2004,
         "max_attempts": 3,
         "kenburns": {
@@ -303,46 +350,45 @@
           "zoom_to": 1.12,
           "pan": "down"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
-        "text_am": "እጆቼ መሪውን አጥብቀው ይዘውት ነበር።",
-        "text_en": "My hands gripped the wheel so tight."
+        "text_am": "አስታውሳለሁ፣ አባቴ ለመጀመሪያ ጊዜ እንድነዳ ሲፈቅድልኝ በጣም ፈርቼ ነበር። መኪናውም ብዙ ጊዜ ይጠፋብኝ ነበር።",
+        "text_en": "The first time Dad let me drive, I was so nervous. The car kept stalling."
       },
       "music_cue": "cue_02",
       "transition_in": "cut"
     },
     {
       "id": "s05",
-      "reason": "Shows growing self-awareness and careful responsibility behind the wheel.",
+      "reason": "Still on the first drive: the nervous teenager checks the mirror again and again, learning to be careful.",
       "shot_size": "close",
       "duration_s": 7.0,
       "characters": [
-        "youngest_sibling"
+        "teen_narrator"
       ],
       "references": [
-        "family_car_ref",
-        "ref_youngest_sibling"
+        "ref_teen_narrator"
       ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "Framed reflection in interior rear-view mirror showing determined dark eyes adjusting position, soft dim cabin lighting.",
+        "prompt": "A hand-painted gouache and oil illustration with thick visible brush strokes and painted texture, clearly a painting and not a photograph. Close shot inside a car in warm daytime light on a quiet cobblestone neighbourhood road. Exactly one person: the fifteen-year-old boy in the driver's seat, seen in three-quarter profile, one hand reaching up to adjust the rear-view mirror at the top of the windshield, the other hand on the steering wheel, eyes fixed on the mirror with a careful, slightly nervous expression. The mirror is turned so its glass shows only the road behind, no face in it.",
         "seed": 1005,
         "candidates": 1,
         "approved": false
       },
       "motion": {
-        "mode": "kenburns",
-        "prompt": "slow push in, soft light drifts",
-        "seed": 2005,
+        "mode": "i2v",
+        "prompt": "The teenage boy slowly adjusts the rear-view mirror with one hand, glances at it, then back at the road. His head turns only slightly and naturally; his hands keep their shape. The painted illustration style stays exactly the same. Subtle, natural motion; faces and the number of people stay unchanged.",
+        "seed": 2105,
         "max_attempts": 3,
         "kenburns": {
           "zoom_from": 1.0,
           "zoom_to": 1.09,
           "pan": "none"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "መስታወቱን ደጋግሜ እየተመለከትኩ።",
@@ -353,24 +399,26 @@
     },
     {
       "id": "s06",
-      "reason": "Signals the present day transition where the family relies on the narrator.",
-      "shot_size": "insert",
+      "reason": "The present day: even resting in bed, the narrator's phone lights up because the family relies on him.",
+      "shot_size": "medium_close",
       "duration_s": 7.0,
-      "characters": [],
+      "characters": [
+        "youngest_sibling"
+      ],
       "references": [
-        "family_car_ref"
+        "ref_youngest_sibling"
       ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "Smartphone resting on passenger seat lighting up brightly in dark car interior, blurred night city lights outside window.",
+        "prompt": "A hand-painted gouache and oil illustration with thick visible brush strokes and painted texture, clearly a painting and not a photograph. A dark bedroom at night, vertical composition. Exactly one person: the young man lying on his back in bed under a blanket, head on a pillow, just waking, turning his head toward the smartphone beside him whose bright screen has lit up and casts a soft cool glow on his face. Deep indigo shadows, faint warm streetlight through a curtained window. No car.",
         "seed": 1006,
         "candidates": 1,
         "approved": false
       },
       "motion": {
         "mode": "i2v",
-        "prompt": "Gentle camera tilt down toward glowing phone screen.",
+        "prompt": "The phone screen lights up and glows on his face; his eyes open a little more and he looks at it. Very gentle camera push in. The painted illustration style stays exactly the same. Subtle, natural motion; faces and the number of people stay unchanged.",
         "seed": 2006,
         "max_attempts": 3,
         "kenburns": {
@@ -378,7 +426,7 @@
           "zoom_to": 1.0,
           "pan": "none"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "አሁንማ ቀንም ማታም ስልኬ ይጮኻል።",
@@ -408,8 +456,8 @@
         "approved": false
       },
       "motion": {
-        "mode": "kenburns",
-        "prompt": "slow push in, soft light drifts",
+        "mode": "i2v",
+        "prompt": "The car drives slowly toward the camera along the night street with headlights glowing; streetlamps shimmer. Everyone stays inside the car. The painted illustration style stays exactly the same. Subtle, natural motion; faces and the number of people stay unchanged.",
         "seed": 2007,
         "max_attempts": 3,
         "kenburns": {
@@ -417,7 +465,7 @@
           "zoom_to": 1.15,
           "pan": "left"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "ማታ ማታ እህቶቼን ወደ ቤት አደርሳለሁ።",
@@ -432,35 +480,34 @@
       "shot_size": "medium",
       "duration_s": 7.0,
       "characters": [
+        "father",
         "youngest_sibling",
-        "mother",
-        "father"
+        "mother"
       ],
       "references": [
-        "family_car_ref",
+        "ref_father",
         "ref_youngest_sibling",
-        "ref_mother",
-        "ref_father"
+        "ref_mother"
       ],
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "Daytime, soft bright light through the windows of a dark blue-black boxy 1990 German sedan: the young driver at the wheel glancing warmly at his elderly father in the front passenger seat, his mother smiling in the back seat, busy street outside.",
-        "seed": 1008,
+        "prompt": "A hand-painted gouache and oil illustration with thick visible brush strokes, clearly a painting and not a photograph. Daytime, view through the windshield of a dark blue-black boxy 1990 German left-hand-drive sedan on a busy street. Exactly three people, each appearing once: two men in the front seats and one woman in the back. Large in the front seat on the LEFT of the picture: the old grey-haired man in a tweed jacket (the first reference), the passenger, hands in his lap. Large in the front seat on the RIGHT of the picture: the young man in a dark brown sweater (the second reference), driving, hands on the steering wheel. Small behind them, visible in the gap between the two front seats: the one woman in a cream hijab (the third reference), smiling. She is the only woman.",
+        "seed": 3108,
         "candidates": 1,
         "approved": false
       },
       "motion": {
-        "mode": "kenburns",
-        "prompt": "slow push in, gentle daylight shimmer",
-        "seed": 2008,
+        "mode": "i2v",
+        "prompt": "The car moves gently through the daytime street; the young man keeps both hands on the wheel and smiles; his father and mother ride calmly; the street drifts past. Colours and lighting stay exactly as in the first frame, no colour shift. Only these three people are in the car; nobody new appears. The painted illustration style stays exactly the same. Subtle, natural motion.",
+        "seed": 2108,
         "max_attempts": 3,
         "kenburns": {
           "zoom_from": 1.0,
           "zoom_to": 1.1,
           "pan": "right"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "ቀን ደግሞ ወላጆቼን ወደ ጉዳያቸው አደርሳቸዋለሁ።",
@@ -492,8 +539,8 @@
         "approved": false
       },
       "motion": {
-        "mode": "kenburns",
-        "prompt": "slow push in, soft light drifts",
+        "mode": "i2v",
+        "prompt": "The car stays parked. The little child happily turns the steering wheel a little with tiny hands while the young man smiles. Slow push in. The painted illustration style stays exactly the same. Subtle, natural motion; faces and the number of people stay unchanged.",
         "seed": 2009,
         "max_attempts": 3,
         "kenburns": {
@@ -501,7 +548,7 @@
           "zoom_to": 1.1,
           "pan": "left"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "ትንንሾቹ እቅፌ ላይ ተቀምጠው መሪውን ይይዛሉ።",
@@ -534,7 +581,7 @@
       },
       "motion": {
         "mode": "i2v",
-        "prompt": "Slow pan right from driver to smiling mother closing car door.",
+        "prompt": "The woman and the young man smile warmly at each other; the lamp above glows softly. Slow gentle push in. The painted illustration style stays exactly the same. Subtle, natural motion; faces and the number of people stay unchanged.",
         "seed": 2010,
         "max_attempts": 3,
         "kenburns": {
@@ -542,19 +589,19 @@
           "zoom_to": 1.0,
           "pan": "none"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
-        "text_am": "ያ ከኋላ ወንበር የተቀመጠው ጭምት ልጅ...",
-        "text_en": "The quiet kid from the back seat..."
+        "text_am": "ያ ከኋላ ወንበር የተቀመጠው ትንሹ ልጅ...",
+        "text_en": "The little kid from the back seat..."
       },
       "music_cue": "cue_03",
       "transition_in": "crossfade"
     },
     {
       "id": "s11",
-      "reason": "Concludes on full resolution of personal transformation and familial pride.",
-      "shot_size": "close",
+      "reason": "Closing image: everyone has been brought home safely, and the narrator watches them go in.",
+      "shot_size": "wide",
       "duration_s": 7.0,
       "characters": [
         "youngest_sibling"
@@ -566,14 +613,14 @@
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "Side mirror reflection showing confident young driver smiling softly as distant city streetlights streak smoothly past.",
+        "prompt": "A hand-painted gouache and oil illustration with thick visible brush strokes and painted texture, clearly a painting and not a photograph. Closing scene at deep blue dusk outside a family home, wide vertical composition. The dark blue-black sedan is parked in front of the house with one door open. The front door of the house is open and spills warm golden light. A few family members, seen only from behind as soft silhouettes, walk into the lit doorway. In the foreground the young man stands fully outside the car beside the driver's door, in three-quarter view, watching them with a quiet contented smile. Peaceful, warm, hopeful.",
         "seed": 1011,
         "candidates": 1,
         "approved": false
       },
       "motion": {
-        "mode": "kenburns",
-        "prompt": "slow push in, soft light drifts",
+        "mode": "i2v",
+        "prompt": "The family members walk slowly into the warm lit doorway; the young man stands still beside the car and watches them with a quiet smile. Slow camera pull back. The painted illustration style stays exactly the same. Subtle, natural motion; faces and the number of people stay unchanged.",
         "seed": 2011,
         "max_attempts": 3,
         "kenburns": {
@@ -581,7 +628,7 @@
           "zoom_to": 1.1,
           "pan": "right"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "...ዛሬ ሁሉንም ወደ ቤት የሚያደርሰው እሱ ነው።",

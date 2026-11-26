@@ -5,6 +5,7 @@ duration_s: { min: 60, max: 90 }          # shots + end card, planned and measur
 gpu:
   # Kaggle 2×T4 Wan 2.2 TI2V-5B at 480p: estimate until M4 measures it.
   minutes_per_i2v_shot: 6
+  i2v_long_clip_above_s: 8                 # planned shots longer than this get an 8 s clip, else 5 s
   max_i2v_shots: 6                         # SPEC §9: hero shots only; the rest are Ken Burns
   budget_minutes: 60
 

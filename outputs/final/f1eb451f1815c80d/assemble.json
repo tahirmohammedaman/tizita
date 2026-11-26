@@ -1,0 +1,24 @@
+{
+  "degraded": [],
+  "loudnorm_pass1": {
+    "input_i": "-18.70",
+    "input_lra": "9.00",
+    "input_thresh": "-29.31",
+    "input_tp": "-1.53",
+    "normalization_type": "dynamic",
+    "output_i": "-15.20",
+    "output_lra": "6.90",
+    "output_thresh": "-25.69",
+    "output_tp": "-2.00",
+    "target_offset": "1.20"
+  },
+  "models": [
+    "Voice: gemini-3.8-flash-tts",
+    "Images: FLUX.2 klein 4B",
+    "Motion: Wan 2.2",
+    "Music: ACE-Step"
+  ],
+  "music": "outputs/music/671f08747e5a53ea_cand1.flac",
+  "music_chosen": 0,
+  "total_s": 78.8
+}

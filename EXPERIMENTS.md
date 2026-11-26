@@ -54,8 +54,13 @@ Format (SPEC §12.1): **Hypothesis → Change → Result (numbers + evidence) �
 - **Change:** none to the takes. Measured the 10 ms RMS of each committed WAV
   (`measure.py tails`), then cut each take in the quiet run before the burst.
 - **Result:** **11 of 11** takes end in the same burst (peak about −2.6 dBFS) after the speech has
-  decayed. The cut removes 0.26–0.36 s per take. The takes come from `r_20261126_072953_685c`; the
-  adapter only wraps Gemini's PCM in a WAV header.
+  decayed. The cut removes 0.26–0.36 s per take. The takes come from `r_20261126_072953_685c`.
+- **Correction (26 Nov afternoon):** the hypothesis was right but the explanation was not. The
+  sentence here used to say "the adapter only wraps Gemini's PCM in a WAV header". In fact Gemini
+  returned a complete WAV with a C2PA chunk after the samples, and the adapter wrapped that whole
+  file again, so the inner header played as a click and the C2PA manifest as the burst. The noise
+  was ours, not Gemini's. Fixed at the source (FAILURES F-10); the takes were restored to the
+  original bytes.
 - **Decision:** keep the takes as generated (no re-spend) and trim at assembly
   (`tizita/audio.py: speech_end_s`, 30 ms fade). The older radio cut still has the noise.
 
@@ -80,6 +85,9 @@ Format (SPEC §12.1): **Hypothesis → Change → Result (numbers + evidence) �
   fails at −0.8.
 - **Decision:** keep `master.tp: -2.0`. `-aac_pns 0` stays as a harmless guard for an untrimmed
   take, not as the fix.
+- **Correction (26 Nov afternoon):** the "noise bursts" in this grid were the C2PA bytes of a
+  double-wrapped WAV played as audio (F-10), so the "trim off" rows measure our own bug, not a
+  property of the TTS. The "trim on" rows are the relevant ones.
 
 ## EXP-04: grain strength vs file size
 
@@ -239,6 +247,37 @@ Format (SPEC §12.1): **Hypothesis → Change → Result (numbers + evidence) �
   [REPORT](experiments/tts_benchmark/REPORT.md).
 
 ---
+
+## EXP-15: FLUX.2 klein 4B edit prompts, v1 vs v2 (family-feedback frames)
+
+- **Hypothesis:** a revised prompt fixes what the family pointed out in the redrawn frames.
+- **Change:** prompt text only; same model (`wavespeed-ai/flux-2-klein-4b/edit`), same seeds
+  (1001–1004, 1008), same reference images. v1: `r_20261126_133047_c3f0`; v2:
+  `r_20261126_133254_a95a` (all five `prompt_sha256` differ; the logged heads are identical, so the
+  change is in the later part of each prompt). s08 then got a third version with a new father
+  description and seed 3108 (`r_20261126_133457_11d4`).
+- **Result:** 14 images, $0.012 each, p50 17 s. The final film uses frames from this set for s01–s06,
+  s08 and s11; s07, s09 and s10 are earlier free Workers AI frames.
+- <!-- TODO(Tahir): what was wrong in v1, what v2 changed, and why you picked v2 (your judgement). -->
+
+## EXP-16: Wan 2.2 i2v on WaveSpeed, 720p vs 480p
+
+- **Hypothesis:** 720p is worth its price for a film delivered at 1080×1920.
+- **Change:** resolution tier. s03 at 720p, 8 s (`r_20261126_134523_f6fd`); the other ten shots at
+  480p, 5 s (s04 8 s) (`r_20261126_135159_20a5`, `r_20261126_135242_0610`).
+- **Result:**
+
+  | tier | raw clip | cost | inference time |
+  |---|---|---|---|
+  | 720p, 8 s | 720×1280, 241 frames @ 30 fps | $0.16 (by balance) | 119 s |
+  | 480p, 5 s | 464×832, 161 frames @ 30 fps | $0.05 | 20–41 s (10 clips) |
+
+  Per second of output, 720p costs 2× ($0.02 vs $0.01) and took about 3× as long to infer per second.
+  This is one 720p clip against ten 480p ones, on different shots, so it is not a quality comparison.
+- **Decision:** 480p for the rest of the film, to fit the prepaid credit; s03 keeps its 720p clip.
+  Two 480p retries (s05, s08) with new seeds and tighter motion prompts went in after Tahir compared
+  old and new side by side (`r_20261126_143111_6c85`).
+- <!-- TODO(Tahir): did 720p look better than 480p once upscaled? Your judgement only. -->
 
 ## Planned (not run, no results)
 

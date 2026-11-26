@@ -1,6 +1,6 @@
 # Progress log (agent-maintained)
 
-## Status: M6, M9, test 2 and Ceiling A done. Open: report, Tahir's doc TODOs, walkthrough, post, submit. Thu 26 Nov 2026, DEADLINE 23:59 EAT
+## Status: final film f1eb451f1815c80d (all clips approved). Open: Tahir's answers (DESIGN/ETHICS/EXP/FAILURES), report, walkthrough, post, submit. DEADLINE Thu 26 Nov 23:59 EAT
 
 ### Done in M2
 - **feat/narration (PR #5):** `tizita run [--stage] [--unit] [--force] [--upgrade-fallbacks]` (`dag.execute`: skips cached units, prunes superseded artifacts, manifest with `is_fallback`/`primary_provider`, §7.4 summary line); stages `narration` (seed = `seed_base` + shot index), `timing` (§10.1 slots, advice when outside 60–90 s), `subtitles` (SRT + 9x16/16x9 ASS). `.env.example` now uses exactly the `.env` names (no aliases). **Gemini key rotation**: `GEMINI_API_KEY_1..3` via `env_any`, next key on 429/quota before the router's circuit sees an error.
@@ -157,21 +157,57 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 - Gotcha: the English subtitle is a separate field; editing only `text_am` leaves it unchanged.
 - Not exercised: the quota-exhausted path (`previous_take`). Check the new line's `provider` after any live edit.
 
+## Done Thu 26 Nov ~15:40-17:20 EAT (branch feat/family-feedback-shots, not merged)
+- Family film changes: new frames s01-s06, s08, s11; new lines s04 and s10; all 11 shots animated (Wan 2.2).
+- New adapters: `hf_flux` (free run limit hit, no image), `wavespeed` (paid; FLUX.2 klein edit, Wan i2v).
+- Fixed: Gemini WAV double wrap (noise at both ends of every take); slowed i2v clips cut the video short; QA frame check.
+- Film `outputs/final/c765af02771aed27/`, QA pass. Open: free-profile cache bug, end card model names, records, PR.
+
+## Done Thu 26 Nov ~17:25-18:30 EAT (branch feat/family-feedback-shots)
+- Fix: an artifact whose provider is outside the active profile stays `cached` ("kept: made by …"); free-profile `plan` = 47 cached.
+- End card credits use `config/assembly.yaml: credit_names` (FLUX.2 klein 4B, Wan 2.2); assemble v4.
+- s05/s08 retried (seeds 2105/2108, tighter prompts; `r_20261126_143111_6c85`, $0.10); Tahir compared old/new and kept both new; all 11 clips approved. Film `outputs/final/f1eb451f1815c80d/`, 78.83 s, QA pass. WaveSpeed balance ≈ $0.04.
+- Gotcha (F-19): `PAID_BUDGET_USD` caps cumulative logged spend; a blocked paid unit falls back to Ken Burns and prunes the approved clip (restored from git). Open: fail instead of falling back over an approved take.
+- Records: COSTS (WaveSpeed table, observed limits), FAILURES F-10/F-11 corrected + F-16..F-19, EXPERIMENTS EXP-02/03 corrected + EXP-15/16, ETHICS (WaveSpeed terms, C2PA in WAVs only), ARCHITECTURE, README, DESIGN, AUDIT.
+
 ## Next session prompt
 
 ```
-Model: Sonnet · Effort: medium (final checks and support; no new subsystem unless Tahir asks)
-Read CLAUDE.md, docs/PROGRESS.md (Status, the 26 Nov afternoon sections), docs/AUDIT.md.
+Model: Opus · Effort: medium (a cache/profile bug can overwrite the finished film; the rest is docs)
+Read CLAUDE.md, docs/PROGRESS.md (Status, this prompt), docs/AUDIT.md, DESIGN.md.
+DEADLINE Thu 26 Nov 23:59 EAT, submit by 21:00. The report (30 pts) is still unwritten: protect its time.
 
-DEADLINE Thu 26 Nov 23:59 EAT (aim to submit 21:00). Done: M6, M9, test 2 + tag, Ceiling A, rotated-key
-logging, list prices, walkthrough rehearsal (~/tizita-rehearsal). Film: outputs/final/469e11c10902a93f/.
-Scope, only what Tahir asks for:
- 1. Check Tahir's edits (DESIGN, ETHICS, FAILURES, EXPERIMENTS, ethics/consents.yaml,
-    experiments/tts_benchmark/ratings_template.csv) against the logs; add native ratings to REPORT.md
-    only if a named rater filled them (note the faulty Tigrinya lines); update docs/AUDIT.md.
- 2. Animation only if Tahir asks: propose a time box and quota first. No Kaggle runner exists; the
-    hosted Wan Space adapter is null and untested.
-Never write Tahir's notes, decisions, reflections, report or post.
-Acceptance: `make test lint` green; `make clean-clone-test` PASS; one PR per change, CI green.
-Stop for Tahir: GPU/quota spend, publishing films (GitHub release), anything outward-facing.
+STATE: branch feat/family-feedback-shots (pushed, no PR). New film outputs/final/c765af02771aed27/
+(78.83 s, QA 2 pass, review copy tmp_film_9x16.mp4). Frames + audio approved by me; clips not yet.
+Built with: ALLOW_PAID=1 PAID_BUDGET_USD=0.01 tizita run --stage assemble|qa --profile paid (blocks spend).
+WaveSpeed balance $0.142 (adapter tizita/providers/wavespeed.py; key in .env; I must revoke it after).
+
+DO, in order:
+1. FIRST, before any `make film` / clean-clone: the free profile marks WaveSpeed keyframes/clips dirty
+   ("provider not in active chain"), so it can't build and could replace them. Fix in cache/dag so a
+   finished paid artifact stays cached when the paid tier is off. Test it. `plan` must show 0 dirty.
+2. End card shows "Images: edit" and raw i2v ids: show FLUX.2 klein 4B and Wan 2.2; bump assemble version.
+3. Show me the film; I decide on clip retries (about $0.05 per 5 s, ask first): s08 colour washes out to
+   pink + extra man; s11 family walk toward camera, odd white shapes in grass; s05 odd head/hand turn.
+4. Records from real run_ids: COSTS (actual WaveSpeed: frames $0.168, video $0.69; the 720p s03 line logs
+   $0.032 but cost $0.16 by balance); FAILURES (Cloudflare neurons + HF ZeroGPU runs exhausted; my price
+   misquote; ROOT CAUSE of the TTS hiss/click = our adapter re-wrapped Gemini's WAV, playing header +
+   C2PA as audio: correct F-10/F-11/EXP-03; 10 takes unwrapped to original bytes, so old runs.jsonl shas
+   differ; slowed i2v clips cut video to 15.5 s and QA passed it); EXPERIMENTS (klein prompts v1 vs v2,
+   Wan 720p vs 480p); ETHICS (read WaveSpeed terms/licence; C2PA is in the WAVs, not claimed in MP4);
+   ARCHITECTURE, README, DESIGN (status, "What is changing", shot reasons from storyboard), AUDIT.
+5. `make test lint`, `make clean-clone-test` (0 model calls), PR, CI green, merge.
+6. Ask me ONE question at a time, then write up only what I actually say (tidy and expand wording; no
+   invented opinions, quotes or attributions; no mention in project files that an assistant filled them):
+   DESIGN logline, family conversation, Test 1 rows 2-3, whether d483076 is what they saw; ETHICS: did the
+   children's parents agree, was family told about hosted AI providers, platform + AI label; hardest
+   problem for FAILURES; EXPERIMENTS decisions + listening judgements (EXP-05, EXP-08); native ratings
+   (named rater only; ti s01/s03/s07 faulty). consents.yaml is mine; only remind me of its stale TODO.
+7. Report: use docs/report_outline.md headings (aim, audience learning + changes, hardest problem,
+   practice that helped, one that didn't, ceiling, next). Interview me section by section; draft from my
+   answers and repo evidence; I check every claim (an AI interview follows). Export PDF/DOCX/link.
+8. Walkthrough (<= 5 min, one narration line regenerated live): refresh ~/tizita-rehearsal and re-rehearse.
+   The public post must be written by me; give me only a checklist (story, why, one lesson, AI label on).
+9. Submission checklist: public repo, report link; film 9:16 + 16:9, walkthrough, post, links open logged out.
+STOP for me: any spend, GitHub release / film upload, anything outward-facing.
 ```

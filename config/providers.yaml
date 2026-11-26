@@ -20,6 +20,7 @@ quota_pools:
   "hf:spaces":              { reset: "hours:24" }
   "hf:zerogpu":             { reset: "hours:24" }
   "hf:inference":           { reset: "hours:720" }
+  "wavespeed:credit":        { reset: null, note: "prepaid credit" }
   "kaggle:gpu":             { reset: "hours:168", note: "weekly GPU quota" }
 
 providers:
@@ -187,13 +188,31 @@ providers:
     cost_basis: cloudflare.flux2_klein_4b
     params: { width: 576, height: 1024, steps: 4 }   # 9:16 draft; finals go higher
   hf_flux:
-    label: FLUX (HF Inference Providers)
-    adapter: null
-    lands_in: M3
+    label: FLUX.2 klein 4B (HF Space, ZeroGPU)
+    adapter: hf_flux_space
     capability: image
     tier: free_hosted
-    quota_pool: "hf:inference"
+    quota_pool: "hf:zerogpu"
+    model: black-forest-labs/FLUX.2-klein-4B
+    space: black-forest-labs/FLUX.2-klein-4B
+    api_name: /infer
     env: [HF_TOKEN]
+    accepts_private_media: false         # public Space: no private photos
+    licence: apache-2.0 (FLUX.2 klein 4B); Hugging Face terms
+    params: { width: 576, height: 1024, steps: 4 }
+  wavespeed_klein:
+    label: FLUX.2 klein 4B edit (WaveSpeed, paid)
+    adapter: wavespeed
+    capability: image
+    tier: paid
+    quota_pool: "wavespeed:credit"
+    model: wavespeed-ai/flux-2-klein-4b/edit
+    max_images: 3
+    env: [WAVESPEED_API_KEY]
+    accepts_private_media: false
+    licence: apache-2.0 (FLUX.2 klein 4B); WaveSpeed terms
+    cost_basis: wavespeed.flux2_klein_4b_edit
+    params: { width: 576, height: 1024 }
   cf_flux1_schnell:
     label: FLUX.1 schnell (cloudflare, no ref conditioning)
     adapter: cf_workers_ai
@@ -275,6 +294,20 @@ providers:
     tier: paid
     quota_pool: "fal:paid"
     env: [FAL_KEY]
+  wavespeed_wan:
+    label: Wan 2.2 i2v 480p ultra-fast (WaveSpeed, paid)
+    adapter: wavespeed
+    capability: i2v
+    tier: paid
+    quota_pool: "wavespeed:credit"
+    model: wavespeed-ai/wan-2.2/i2v-480p-ultra-fast
+    max_images: 1
+    env: [WAVESPEED_API_KEY]
+    accepts_private_media: false
+    licence: apache-2.0 (Wan 2.2); WaveSpeed terms
+    cost_basis: wavespeed.wan22_i2v_480p
+    params:
+      negative_prompt: "photorealistic, morphing faces, extra people, extra fingers, deformed hands, text, watermark, flicker, camera shake, scene change"
   kenburns:
     label: Ken Burns (FFmpeg)
     adapter: null
@@ -404,9 +437,9 @@ providers:
 chains:
   text:       [gemini_flash, gemini_flash_35, gemini_flash_lite, cf_text, groq_text, openrouter_text, gemini_paid_text, storyboard_manual]
   tts:        [gemini_tts, gemini_tts_paid, previous_take, mms_tts_space, mms_tts_local]   # local voices last: previous_take always answers first, so no mid-film voice change; local-first profile reorders
-  image:      [cf_flux2_klein, hf_flux, cf_flux1_schnell, local_flux, fal_image, previous_keyframe]
-  image_edit: [cf_flux2_klein, hf_flux, local_flux, fal_image, previous_keyframe]
-  i2v:        [kaggle_wan22, hf_wan_space, local_wan, fal_i2v, kenburns]
+  image:      [cf_flux2_klein, hf_flux, cf_flux1_schnell, local_flux, wavespeed_klein, fal_image, previous_keyframe]
+  image_edit: [cf_flux2_klein, hf_flux, local_flux, wavespeed_klein, fal_image, previous_keyframe]
+  i2v:        [kaggle_wan22, hf_wan_space, local_wan, wavespeed_wan, fal_i2v, kenburns]
   music:      [kaggle_ace, hf_ace_space, local_ace, fal_music, synth_pad]
   embed:      [local_clip, skip_embed]
   asr:        [gemini_asr, cf_whisper, groq_whisper, local_whisper]

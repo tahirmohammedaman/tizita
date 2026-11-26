@@ -67,11 +67,11 @@ def test_body_graph_transitions_offsets_and_look():
     g = body_graph(slots, [7, 7, 5, 7], [1e3, 1e3, 1 / 0.85, 1e3], ASM).split(";")
     assert g[0] == (
         "[0:v]scale=1080:1920:flags=lanczos:out_range=tv,setsar=1,fps=24,format=yuv420p,"
-        "setpts=1*(PTS-STARTPTS),tpad=stop_mode=clone:stop_duration=0.1,"
+        "setpts=1*(PTS-STARTPTS),fps=24,tpad=stop_mode=clone:stop_duration=0.1,"
         "trim=duration=7,setpts=PTS-STARTPTS,fps=24,settb=AVTB[c0]"
     )
     # a 5 s i2v clip in a 7 s slot: slowed to 0.85x (1.176), then the last frame is held
-    assert "setpts=1.176*(PTS-STARTPTS),tpad=stop_mode=clone:stop_duration=1.218" in g[2]
+    assert "setpts=1.176*(PTS-STARTPTS),fps=24,tpad=stop_mode=clone:stop_duration=1.218" in g[2]
     assert "[c0]fade=t=in:d=0.4[f0]" in g
     assert "[f0][c1]concat=n=2:v=1:a=0,fps=24,settb=AVTB[a1]" in g
     assert "[a1][c2]xfade=transition=fade:duration=0.4:offset=13.6[a2]" in g
@@ -147,10 +147,13 @@ def _probe(w, h, dur, frames, codec="h264", pix="yuv420p"):
 
 def test_qa_checks_pass_and_fail():
     loud = {"lufs": -14.6, "true_peak_db": -1.7, "lra": 6.8}
-    ok = check_file("f", "9x16", _probe(1080, 1920, 77.2, 1853), loud, ASM, 24)
+    ok = check_file("f", "9x16", _probe(1080, 1920, 77.2, 1853), loud, ASM, 24, 77.2)
     assert ok["pass"]
+    # the 26 Nov bug: 15.5 s of picture under 77.2 s of audio
+    cut = check_file("f", "9x16", _probe(1080, 1920, 77.2, 372), loud, ASM, 24, 77.2)
+    assert not cut["checks"]["frames"]
     bad = check_file("f", "16x9", _probe(1920, 1080, 95, 2000, pix="yuvj420p"),
-                     {**loud, "true_peak_db": -0.4}, ASM, 24)  # fmt: skip
+                     {**loud, "true_peak_db": -0.4}, ASM, 24, 95)  # fmt: skip
     failed = {k for k, v in bad["checks"].items() if not v}
     assert failed == {"duration", "video_codec", "frames", "true_peak"}
 
@@ -271,3 +274,13 @@ def test_end_card_model_names_drop_org_revision_and_host_note():
     assert short_model("ACE-Step-v1-3.5B (victor/ace-step-jam)") == "ACE-Step-v1-3.5B"
     assert short_model("@cf/black-forest-labs/flux-2-klein-4b") == "flux-2-klein-4b"
     assert short_model("facebook/mms-tts-amh@e366aee5e22a") == "mms-tts-amh"
+
+
+def test_credit_name_maps_hosted_ids():
+    from tizita.stages.endcard import credit_name
+
+    names = {"flux-2-klein-4b": "FLUX.2 klein 4B", "wan-2.2": "Wan 2.2"}
+    assert credit_name("wavespeed-ai/flux-2-klein-4b/edit", names) == "FLUX.2 klein 4B"
+    assert credit_name("@cf/black-forest-labs/flux-2-klein-4b", names) == "FLUX.2 klein 4B"
+    assert credit_name("wavespeed-ai/wan-2.2/i2v-480p-ultra-fast", names) == "Wan 2.2"
+    assert credit_name("facebook/mms-tts-amh@e366aee5e22a", names) == "mms-tts-amh"

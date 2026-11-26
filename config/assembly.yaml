@@ -59,3 +59,8 @@ qa:
   sizes: { "9x16": [1080, 1920], "16x9": [1920, 1080] }
 master:
   tp: -2.0               # loudnorm TP target before AAC (QA max -1). The encoder runs with -aac_pns 0: PNS added +2 dB peaks on our speech at 192k (measured 26 Nov)
+# End-card credits: substring of the recorded model id -> display name (first match wins).
+credit_names:
+  flux-2-klein-4b: FLUX.2 klein 4B
+  wan-2.2: Wan 2.2
+  ace-step: ACE-Step

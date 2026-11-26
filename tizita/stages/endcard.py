@@ -17,7 +17,17 @@ def short_model(model: str) -> str:
     return model.split(" (")[0].split("/")[-1].split("@")[0]
 
 
-def models_used(manifest) -> list[str]:
+def credit_name(model: str, names: dict[str, str] | None = None) -> str:
+    """Display name for a recorded model id: the first `credit_names` substring that matches
+    (case-insensitive), else the short id."""
+    low = model.lower()
+    for key, label in (names or {}).items():
+        if key.lower() in low:
+            return label
+    return short_model(model)
+
+
+def models_used(manifest, credit_names: dict[str, str] | None = None) -> list[str]:
     """Short 'Role: model' lines from the provider idents recorded in the manifest."""
     roles = [
         ("narration", "Voice"),
@@ -31,7 +41,7 @@ def models_used(manifest) -> list[str]:
         for e in manifest.entries.values():
             if e.stage == stage and e.provider:
                 m = e.provider.get("model") or e.provider.get("name")
-                m = short_model(str(m))
+                m = credit_name(str(m), credit_names)
                 if m not in names:
                     names.append(m)
         if names:

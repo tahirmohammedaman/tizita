@@ -11,6 +11,7 @@ from pathlib import Path
 from tizita.dag import PROJECT
 from tizita.ffmpeg.graphs import ebur128_cmd
 from tizita.stages import Ctx, Outcome
+from tizita.stages.timing import load_timing
 from tizita.storyboard import load_config
 from tizita.util import atomic_write_json
 
@@ -35,7 +36,9 @@ def parse_ebur128(stderr: str) -> dict:
     return {"lufs": f(i), "true_peak_db": f(tp), "lra": f(lra)}
 
 
-def check_file(path: Path, layout: str, info: dict, loud: dict, cfg: dict, fps: int) -> dict:
+def check_file(
+    path: Path, layout: str, info: dict, loud: dict, cfg: dict, fps: int, planned_s: float
+) -> dict:
     q = cfg["qa"]
     v = next((s for s in info["streams"] if s["codec_type"] == "video"), {})
     a = next((s for s in info["streams"] if s["codec_type"] == "audio"), {})
@@ -43,7 +46,8 @@ def check_file(path: Path, layout: str, info: dict, loud: dict, cfg: dict, fps: 
     num, den = (int(x) for x in v.get("r_frame_rate", "0/1").split("/"))
     rate = num / den if den else 0
     frames = int(v.get("nb_frames", 0) or 0)
-    want_frames = round(float(v.get("duration", dur)) * fps)
+    # from the timing plan, not the video stream: a cut-short picture agrees with itself
+    want_frames = round(planned_s * fps)
     lo, hi = q["duration_s"]
     w, h = q["sizes"][layout]
     checks = {
@@ -78,11 +82,14 @@ def run(ctx: Ctx, unit, key: str) -> Outcome:
     fps = cfg["timing"]["fps"]
     film9 = root / ctx.manifest.get("assemble", PROJECT).path
     films = {"9x16": film9, "16x9": film9.with_name("film_16x9.mp4")}
+    planned_s = load_timing(ctx.project, ctx.manifest)["total_s"]
     report = {}
     for layout, p in films.items():
         r = subprocess.run(ebur128_cmd(str(p)), capture_output=True, text=True)
         loud = parse_ebur128(r.stderr)
-        report[layout] = check_file(p.relative_to(root), layout, probe(p), loud, cfg, fps)
+        report[layout] = check_file(
+            p.relative_to(root), layout, probe(p), loud, cfg, fps, planned_s
+        )
     report["pass"] = all(r["pass"] for r in report.values() if isinstance(r, dict))
     out = film9.with_name("qa.json")
     atomic_write_json(out, json.loads(json.dumps(report, default=str)))

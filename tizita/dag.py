@@ -28,8 +28,8 @@ STAGE_VERSIONS: dict[str, int] = {
     "keyframes": 1,
     "shots": 1,
     "music": 1,
-    "assemble": 2,  # 2: end card model credit no longer truncated
-    "qa": 1,
+    "assemble": 4,  # 3: slowed clips hold their last frame; 4: end-card model display names
+    "qa": 2,  # 2: frame count checked against the timing plan
 }
 
 # assembly.yaml sections the radio cut reads (later sections must not dirty it)
@@ -383,12 +383,16 @@ def _status(
     if set(entry.upstream) - set(upstream_shas) - set(stale):
         reasons.append("upstream set changed")
     used = (entry.provider or {}).get("name")
-    if planned is not None and used is not None and used not in planned.chain:
-        reasons.append(f"provider {used} not in active chain")
     if not (project.root / entry.path).exists():
         return "missing", "artifact file gone"
     if reasons:
         return "dirty", ", ".join(reasons)
+    # A finished artifact stays valid when its provider is outside the active profile
+    # (e.g. a paid-tier keyframe under the free profile): inputs are unchanged, so
+    # rebuilding would only replace an approved take with a worse or unbuildable one.
+    # Use --force to regenerate it deliberately.
+    if planned is not None and used is not None and used not in planned.chain:
+        return "cached", f"kept: made by {used} (outside active profile)"
     if (
         entry.is_fallback
         and planned is not None

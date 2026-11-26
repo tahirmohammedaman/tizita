@@ -18,7 +18,7 @@ one scheduler.
 |---|---|---|
 | script | `tizita/director.py` (`tizita new`) | A model drafts a beat sheet; code builds the schema-shaped storyboard, lints it and repairs it up to twice → `storyboard.draft.json` |
 | keyframes | `stages/references.py`, `stages/keyframes.py` (shared helpers in `stages/images.py`) | Character/car sheet candidates → a human picks a golden one → per-shot keyframes conditioned on the goldens, gated by CLIP/DINOv2 similarity |
-| shots | `stages/shots.py` | One clip per shot (Ken Burns today, see "GPU executors") |
+| shots | `stages/shots.py` | One clip per shot: Wan 2.2 i2v (paid, WaveSpeed) or Ken Burns (see "GPU executors") |
 | music | `stages/music.py` | N score candidates; `tizita choose music N --reason` |
 | narration | `stages/narration.py`, `stages/timing.py`, `stages/radio_cut.py` | One TTS take per shot; slot timing from the **measured** take lengths; the radio cut |
 | assemble | `stages/subtitles.py`, `stages/endcard.py`, `stages/assemble.py`, `stages/qa.py`, `tizita/ffmpeg/graphs.py` | SRT/ASS, end card, mix + both exports, ffprobe/ebur128 QA |
@@ -94,7 +94,9 @@ excerpt below).
   The per-field hashes let `plan` say *which* field made a unit dirty.
 - **Status per unit:** `cached`, `dirty: <field or upstream>`, `missing`, `fallback-upgradable`
   (a fallback output whose primary provider is available again; `tizita run --upgrade-fallbacks`
-  re-renders them).
+  re-renders them). An artifact whose provider is outside the active profile (e.g. a paid WaveSpeed
+  clip under the free profile) stays `cached` with a note, because its inputs are unchanged;
+  `--force` regenerates it.
 - **Atomic writes:** artifacts are written to a temp file in the same directory and `os.replace`d
   (`tizita/util.py`), so an interrupted run never registers a half-written file. Superseded artifacts
   are pruned after a unit succeeds.
@@ -148,8 +150,8 @@ Consent is checked before any call that depicts a real person.
   |---|---|---|
   | text | Gemini ×3, Workers AI, Groq and OpenRouter (never called: no keys), paid Gemini (untested) | `storyboard_manual` |
   | tts | `gemini_tts`, `previous_take`, `mms_tts_local` | `gemini_tts_paid`, `mms_tts_space` |
-  | image / image_edit | `cf_flux2_klein` (the reference path was used; upload repaint is untested), `cf_flux1_schnell` (image only, no references) | `hf_flux`, `local_flux`, `fal_image`, `previous_keyframe` |
-  | i2v | none through the router; Ken Burns is done by the `shots` stage itself | `kaggle_wan22`, `hf_wan_space`, `local_wan`, `fal_i2v` (`kenburns` is listed with no adapter) |
+  | image / image_edit | `cf_flux2_klein` (the reference path was used; upload repaint is untested), `cf_flux1_schnell` (image only, no references), `hf_flux` (ZeroGPU Space; built, but its only call hit the quota), `wavespeed_klein` (paid) | `local_flux`, `fal_image`, `previous_keyframe` |
+  | i2v | `wavespeed_wan` (paid, Wan 2.2 i2v 480p/720p); Ken Burns is done by the `shots` stage itself | `kaggle_wan22`, `hf_wan_space`, `local_wan`, `fal_i2v` (`kenburns` is listed with no adapter) |
   | music | `hf_ace_space`, `synth_pad` | `kaggle_ace`, `local_ace`, `fal_music` |
   | embed / asr | `local_clip`, `cf_whisper`, `gemini_asr` | `skip_embed`, `groq_whisper`, `local_whisper` |
 - **Chains** per capability are in `config/providers.yaml`, for example
@@ -195,15 +197,17 @@ Planned (SPEC §9): a `gpu_jobs/runner.py` job runner, the same code on Kaggle a
 packages and placeholders. With the deadline close, the work was re-planned (see `docs/PROGRESS.md`)
 to make the final cut certain first:
 
-- **Shots:** the `i2v` chain falls through to the deterministic `kenburns` provider. The four `i2v`
-  shots (s01, s03, s06, s10) are recorded in the manifest as **fallbacks** with primary
-  `kaggle_wan22`, so `plan` lists them as upgradable once an executor exists.
+- **Shots:** under the free profile the `i2v` chain falls through to the deterministic `kenburns`
+  provider. For the final film all 11 shots were animated by Wan 2.2 on WaveSpeed's paid API
+  (`tizita/providers/wavespeed.py`, profile `paid`, behind the paid guard), after the free GPU paths
+  were out of reach (FAILURES F-03, F-16). Those clips stay cached under the free profile.
 - **Music:** the GPU is the hosted one. `hf_ace_space` calls a ZeroGPU Hugging Face Space running
   ACE-Step v1 3.5B (`victor/ace-step-jam`), because the official ACE-Step 1.5 Space answered "Model not
   fully initialized" and the official v1 Space failed server-side on 26 Nov (details in the
   `config/providers.yaml` comments and [EXPERIMENTS](EXPERIMENTS.md) EXP-11).
 
 So the local pipeline needs no GPU: only the CPU models (MMS-TTS fallback, CLIP/DINOv2) run locally.
+The hosted GPUs are WaveSpeed's (paid) and the Hugging Face Space's (free).
 
 ## Assembly
 
@@ -214,11 +218,13 @@ the graph string. Parameters come from `config/assembly.yaml`. Exports use `-pre
    crossfades overlap the slots, plus a 3 s end card. The measured total must be 60–90 s, otherwise
    the stage fails with advice ("trim s07 narration by ~6 words").
 2. **Video:** each clip is fitted to its slot (Ken Burns clips are rendered at slot length; real i2v
-   clips may be slowed down to 0.85× at most), then graded, given light grain (`assembly.yaml`: 3,
+   clips may be slowed down to 0.85× at most, then hold their last frame to the end of the slot;
+   QA checks the frame count against the timing plan, FAILURES F-18), then graded, given light grain (`assembly.yaml`: 3,
    chosen by measurement), and joined with `xfade` cuts, crossfades or fades to black. Every chain ends
    in `fps=24,settb=AVTB`, because without it concat output has no frame rate and `xfade` fails.
-3. **Audio:** takes are placed at their slot starts. Gemini TTS ends every take with a short noise
-   burst, so `tizita/audio.py: speech_end_s` cuts each take before it (30 ms fade). Music is ducked
+3. **Audio:** takes are placed at their slot starts. `tizita/audio.py: speech_end_s` trims each take
+   after the speech (30 ms fade). It was added for a noise burst that turned out to be our own
+   double-wrapped WAV (FAILURES F-10); it stays as a guard. Music is ducked
    under the narration with `sidechaincompress` (EXP-05). This runs as two commands, because a single graph
    with `asplit` feeding the sidechain produced a silent branch. Then a two-pass `loudnorm` to
    −14 LUFS with a −2 dBTP target (a −1 target ends at −0.8 dBTP after AAC), and `-aac_pns 0` as a
@@ -243,7 +249,7 @@ are committed as evidence.
 | A provider is out of quota, down or not configured | Router falls back down the chain, logs `fallback_triggered`, emits a `FallbackEvent`; the unit is marked `is_fallback` |
 | Every hosted TTS fails | `previous_take` reuses that shot's last cached take before any local voice, so the voice never changes mid-film |
 | Every music provider fails | `synth_pad` (deterministic FFmpeg chord pad) always answers |
-| No i2v provider | `kenburns` renders the shot from its keyframe (current state for all shots) |
+| No i2v provider | `kenburns` renders the shot from its keyframe (free profile; the final film uses Wan clips for all 11 shots) |
 | Music not chosen yet | Assembly uses candidate 1 and records a `degraded` event |
 | Keyframe below the similarity gate | Up to 3 re-seeds, then the best attempt is kept and logged |
 | Safety block or bad request | That unit fails with the provider's message; downstream units are skipped as "upstream not ready" |

@@ -1,0 +1,143 @@
+{
+  "end_card": {
+    "duration": 3.0,
+    "start": 75.8
+  },
+  "narration_s": {
+    "s01": 3.76,
+    "s02": 3.19,
+    "s03": 4.04,
+    "s04": 7.39,
+    "s05": 2.22,
+    "s06": 3.59,
+    "s07": 2.24,
+    "s08": 2.97,
+    "s09": 2.63,
+    "s10": 2.42,
+    "s11": 2.52
+  },
+  "slots": [
+    {
+      "duration": 7.0,
+      "end": 7.0,
+      "id": "s01",
+      "narration_end": 4.16,
+      "narration_s": 3.76,
+      "narration_start": 0.4,
+      "planned": 7.0,
+      "start": 0.0,
+      "transition_in": "fade_black"
+    },
+    {
+      "duration": 7.0,
+      "end": 14.0,
+      "id": "s02",
+      "narration_end": 10.59,
+      "narration_s": 3.19,
+      "narration_start": 7.4,
+      "planned": 7.0,
+      "start": 7.0,
+      "transition_in": "cut"
+    },
+    {
+      "duration": 7.0,
+      "end": 20.6,
+      "id": "s03",
+      "narration_end": 18.04,
+      "narration_s": 4.04,
+      "narration_start": 14.0,
+      "planned": 7.0,
+      "start": 13.6,
+      "transition_in": "crossfade"
+    },
+    {
+      "duration": 8.6,
+      "end": 29.2,
+      "id": "s04",
+      "narration_end": 28.39,
+      "narration_s": 7.39,
+      "narration_start": 21.0,
+      "planned": 8.6,
+      "start": 20.6,
+      "transition_in": "cut"
+    },
+    {
+      "duration": 7.0,
+      "end": 35.8,
+      "id": "s05",
+      "narration_end": 31.42,
+      "narration_s": 2.22,
+      "narration_start": 29.2,
+      "planned": 7.0,
+      "start": 28.8,
+      "transition_in": "crossfade"
+    },
+    {
+      "duration": 7.0,
+      "end": 42.4,
+      "id": "s06",
+      "narration_end": 39.39,
+      "narration_s": 3.59,
+      "narration_start": 35.8,
+      "planned": 7.0,
+      "start": 35.4,
+      "transition_in": "crossfade"
+    },
+    {
+      "duration": 7.0,
+      "end": 49.4,
+      "id": "s07",
+      "narration_end": 45.04,
+      "narration_s": 2.24,
+      "narration_start": 42.8,
+      "planned": 7.0,
+      "start": 42.4,
+      "transition_in": "cut"
+    },
+    {
+      "duration": 7.0,
+      "end": 56.0,
+      "id": "s08",
+      "narration_end": 52.37,
+      "narration_s": 2.97,
+      "narration_start": 49.4,
+      "planned": 7.0,
+      "start": 49.0,
+      "transition_in": "crossfade"
+    },
+    {
+      "duration": 7.0,
+      "end": 62.6,
+      "id": "s09",
+      "narration_end": 58.63,
+      "narration_s": 2.63,
+      "narration_start": 56.0,
+      "planned": 7.0,
+      "start": 55.6,
+      "transition_in": "crossfade"
+    },
+    {
+      "duration": 7.0,
+      "end": 69.2,
+      "id": "s10",
+      "narration_end": 65.02,
+      "narration_s": 2.42,
+      "narration_start": 62.6,
+      "planned": 7.0,
+      "start": 62.2,
+      "transition_in": "crossfade"
+    },
+    {
+      "duration": 7.0,
+      "end": 75.8,
+      "id": "s11",
+      "narration_end": 71.72,
+      "narration_s": 2.52,
+      "narration_start": 69.2,
+      "planned": 7.0,
+      "start": 68.8,
+      "transition_in": "crossfade"
+    }
+  ],
+  "total_s": 78.8
+}

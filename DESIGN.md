@@ -19,11 +19,11 @@ Tahir's own story, told in first person as the youngest of five siblings (two ol
 
 | # | Who (relation to the audience) | When / how | What they said | What I'll change |
 |---|---|---|---|---|
-| 1 | <!-- TODO(Tahir) --> | | | |
+| 1 | Whole family: 4 older siblings + both parents (6 people) | Family group chat, 2026-11-25/26 (exact dates: TODO(Tahir)). Shared the storyboard and the v1 radio cut | Reported by Tahir: everyone liked the idea and is excited to see the final video. Their comments asked for more parts in the story and for more natural Amharic. <!-- TODO(Tahir): paste 1-2 real quotes per person if you want them on record --> | Added the sisters/parents/nephews shots (now 11 shots); rewrote the Amharic with Gemini and hand edits (Tahir approved) |
 | 2 | <!-- TODO(Tahir) --> | | | |
 | 3 | <!-- TODO(Tahir) --> | | | |
 
-**Storyboard changes:** <!-- TODO(Tahir): link the git diff, e.g. `git diff radio-cut-v1 test1-radio-cut -- storyboard.json` -->
+**Storyboard changes:** `git diff radio-cut-v1 test1-radio-cut -- storyboard.json`
 
 ## Test 2: near-final cut (tag `test2-near-final`)
 

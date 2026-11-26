@@ -71,6 +71,8 @@ make test lint
 
 ## Docs
 
+The brief's `pipeline/` folder is the `tizita/stages/` package here; the mapping and the reason are in [ARCHITECTURE → Repository layout vs. the brief](ARCHITECTURE.md#repository-layout-vs-the-brief).
+
 [ARCHITECTURE](ARCHITECTURE.md) · [DESIGN](DESIGN.md) · [EXPERIMENTS](EXPERIMENTS.md) · [FAILURES](FAILURES.md) · [COSTS](COSTS.md) · [ETHICS](ETHICS.md) · [SPEC](SPEC.md)
 
 Showcase: `tizita.tahiraman.me` <!-- TODO(agent, M8): link once live -->

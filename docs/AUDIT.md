@@ -12,7 +12,7 @@ Each criterion from the brief ("How your work is assessed"), the evidence, and a
 | Caching: only what changed is re-run | `tizita/cache.py`, `outputs/manifest.json`, tests; EXP-13; `tizita plan` | ok |
 | Retries | `providers/router.py`, error taxonomy, `tests/test_router.py` | ok |
 | No secrets committed | `.env` gitignored; gitleaks in pre-commit and CI over full history | ok |
-| `runs.jsonl` complete | one schema-checked line per router attempt. **Hole:** when a Gemini key returns 429 and the next key is tried, that rotated attempt gets no line of its own (`gemini_text.call_rotating`) | partial |
+| `runs.jsonl` complete | one schema-checked line per router attempt, and since the afternoon of 26 Nov one per rotated Gemini key (`metrics.rotated_key`, the key's name only). **Hole:** rotations before that fix have no line and cannot be reconstructed | partial |
 | One documented command, from a clean clone | `make film`; `make clean-clone-test`: 0 model calls, QA pass | ok (tested on one machine only) |
 | Same command generating from nothing | needs keys; the film was built stage by stage over two days and never regenerated from an empty cache in one run | partial |
 

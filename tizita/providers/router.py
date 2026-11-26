@@ -244,9 +244,13 @@ class Router:
             attempt += 1
             seed = None if req.seed is None else req.seed + (attempt - 1) * RETRY_SEED_STEP
             current = current.with_seed(seed)
+            p.rotated.clear()
             t0 = time.monotonic()
             try:
-                result = self._invoke(p, current)
+                try:
+                    result = self._invoke(p, current)
+                finally:
+                    self._log_rotated(p, current, attempt, fallback_from)
             except ProviderError as e:
                 latency = int((time.monotonic() - t0) * 1000)
                 retry = False
@@ -319,6 +323,13 @@ class Router:
             cost_actual_usd=round(actual, 6),
         )
 
+    def _log_rotated(
+        self, p: Provider, req: Request, attempt: int, fallback_from: str | None
+    ) -> None:
+        for key_name, e, latency in p.rotated:
+            self._log(p, req, attempt, latency, e, fallback_from, terminal=False, key_name=key_name)
+        p.rotated.clear()
+
     def _log(
         self,
         p: Provider,
@@ -329,6 +340,7 @@ class Router:
         fallback_from: str | None,
         *,
         terminal: bool,
+        key_name: str | None = None,
     ) -> None:
         self.runlog.record(
             **self._base_line(p, req, attempt, None),
@@ -339,6 +351,7 @@ class Router:
             error_message=e.message,
             fallback_from=fallback_from,
             latency_ms=latency,
+            metrics={"rotated_key": key_name} if key_name else {},
         )
 
     def _base_line(self, p: Provider, req: Request, attempt: int, params: dict | None) -> dict:

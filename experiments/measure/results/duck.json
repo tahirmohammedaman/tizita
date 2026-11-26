@@ -1,0 +1,37 @@
+{
+  "gap_frames": 4292,
+  "metric": "median 10 ms RMS dBFS",
+  "rows": {
+    "brief default: 0.02 / 6 / 300 / 1500": {
+      "music_in_gaps_db": -28.2,
+      "music_under_voice_db": -42.9,
+      "voice_db": -19.8,
+      "voice_over_music_db": 23.1
+    },
+    "no_duck (ratio 1)": {
+      "music_in_gaps_db": -27.3,
+      "music_under_voice_db": -27.6,
+      "voice_db": -19.8,
+      "voice_over_music_db": 7.8
+    },
+    "ratio 12": {
+      "music_in_gaps_db": -28.2,
+      "music_under_voice_db": -44.4,
+      "voice_db": -19.8,
+      "voice_over_music_db": 24.6
+    },
+    "ratio 3": {
+      "music_in_gaps_db": -28.1,
+      "music_under_voice_db": -39.8,
+      "voice_db": -19.8,
+      "voice_over_music_db": 20.0
+    },
+    "release 300 ms": {
+      "music_in_gaps_db": -27.3,
+      "music_under_voice_db": -39.8,
+      "voice_db": -19.8,
+      "voice_over_music_db": 20.0
+    }
+  },
+  "speech_frames": 2517
+}

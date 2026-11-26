@@ -64,7 +64,7 @@ Calls that draw on the same free allowance. Deterministic and local calls use no
 
 ### Cache
 
-Over 51 `tizita run` invocations in `logs/events.jsonl`: 112 unit cache hits and 166 units generated (40% hit rate). Run summaries do not split hits by stage.
+Over 53 `tizita run` invocations in `logs/events.jsonl`: 112 unit cache hits and 169 units generated (40% hit rate). Run summaries do not split hits by stage.
 
 ### T4 vs RTX 4060
 

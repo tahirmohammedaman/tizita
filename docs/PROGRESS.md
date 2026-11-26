@@ -1,6 +1,6 @@
 # Progress log (agent-maintained)
 
-## Status: new animated film built (not merged). Open: profile/cache bug, end card, records, docs, report, walkthrough, post, submit. DEADLINE Thu 26 Nov 23:59 EAT
+## Status: final film f1eb451f1815c80d (all clips approved). Open: Tahir's answers (DESIGN/ETHICS/EXP/FAILURES), report, walkthrough, post, submit. DEADLINE Thu 26 Nov 23:59 EAT
 
 ### Done in M2
 - **feat/narration (PR #5):** `tizita run [--stage] [--unit] [--force] [--upgrade-fallbacks]` (`dag.execute`: skips cached units, prunes superseded artifacts, manifest with `is_fallback`/`primary_provider`, §7.4 summary line); stages `narration` (seed = `seed_base` + shot index), `timing` (§10.1 slots, advice when outside 60–90 s), `subtitles` (SRT + 9x16/16x9 ASS). `.env.example` now uses exactly the `.env` names (no aliases). **Gemini key rotation**: `GEMINI_API_KEY_1..3` via `env_any`, next key on 429/quota before the router's circuit sees an error.
@@ -162,6 +162,13 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 - New adapters: `hf_flux` (free run limit hit, no image), `wavespeed` (paid; FLUX.2 klein edit, Wan i2v).
 - Fixed: Gemini WAV double wrap (noise at both ends of every take); slowed i2v clips cut the video short; QA frame check.
 - Film `outputs/final/c765af02771aed27/`, QA pass. Open: free-profile cache bug, end card model names, records, PR.
+
+## Done Thu 26 Nov ~17:25-18:30 EAT (branch feat/family-feedback-shots)
+- Fix: an artifact whose provider is outside the active profile stays `cached` ("kept: made by …"); free-profile `plan` = 47 cached.
+- End card credits use `config/assembly.yaml: credit_names` (FLUX.2 klein 4B, Wan 2.2); assemble v4.
+- s05/s08 retried (seeds 2105/2108, tighter prompts; `r_20261126_143111_6c85`, $0.10); Tahir compared old/new and kept both new; all 11 clips approved. Film `outputs/final/f1eb451f1815c80d/`, 78.83 s, QA pass. WaveSpeed balance ≈ $0.04.
+- Gotcha (F-19): `PAID_BUDGET_USD` caps cumulative logged spend; a blocked paid unit falls back to Ken Burns and prunes the approved clip (restored from git). Open: fail instead of falling back over an approved take.
+- Records: COSTS (WaveSpeed table, observed limits), FAILURES F-10/F-11 corrected + F-16..F-19, EXPERIMENTS EXP-02/03 corrected + EXP-15/16, ETHICS (WaveSpeed terms, C2PA in WAVs only), ARCHITECTURE, README, DESIGN, AUDIT.
 
 ## Next session prompt
 

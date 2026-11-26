@@ -33,7 +33,9 @@ services also apply their own terms of use.
 
 | Component | Output in the film | Licence (as declared) | How checked |
 |---|---|---|---|
-| FLUX.2 klein 4B (on Workers AI) | references, keyframes | Apache-2.0 | card `black-forest-labs/FLUX.2-klein-4B` |
+| FLUX.2 klein 4B (on Workers AI) | references; keyframes s07, s09, s10 | Apache-2.0 | card `black-forest-labs/FLUX.2-klein-4B` |
+| FLUX.2 klein 4B edit (on WaveSpeed, paid) | keyframes s01–s06, s08, s11 | model Apache-2.0 (upstream card); WaveSpeed's model page names no licence and says commercial rights "depend on the model's license" | [model page](https://wavespeed.ai/models/wavespeed-ai/flux-2-klein-4b/edit); ToS below |
+| Wan 2.2 i2v 480p/720p ultra-fast (on WaveSpeed, paid) | motion for all 11 shots | not stated by WaveSpeed (same wording as above), and which upstream Wan 2.2 checkpoint it runs is not stated; the Wan 2.2 TI2V-5B card we checked is Apache-2.0 | [model page](https://wavespeed.ai/models/wavespeed-ai/wan-2.2/i2v-480p-ultra-fast); ToS below |
 | ACE-Step v1 3.5B (via the `victor/ace-step-jam` Space) | score | model Apache-2.0; Space code MIT | card `ACE-Step/ACE-Step-v1-3.5B`; Space card |
 | Gemini TTS (`gemini-3.8-flash-tts`, unpaid tier) | narration | Gemini API Additional Terms (effective 23 Mar 2026): Google does not claim ownership of generated content; the user is responsible for its use | [terms](https://ai.google.dev/gemini-api/terms) |
 | Gemini text (3.5 Flash, Flash-Lite) | draft script and Amharic | same terms | same |
@@ -51,6 +53,16 @@ services also apply their own terms of use.
 | DINOv2-small | keyframe similarity | Apache-2.0 |
 | Whisper large-v3-turbo | vocals check on the score | MIT |
 
+**WaveSpeed terms** ([ToS](https://wavespeed.ai/terms-of-service), last updated 1 Nov 2026;
+[acceptable use](https://wavespeed.ai/static/acceptable-use), 28 Sep 2026): the customer owns
+inputs and outputs (11.1); WaveSpeed takes a licence only "to the extent necessary to provide the
+Output and associated Services" (11.2); it does not warrant that outputs are copyrightable or
+unique (13.5). The customer warrants consent from "every identifiable person whose image, likeness,
+or voice appears in its Inputs" (12.2); deepfakes of real people without consent are prohibited
+(8.3), as is misleading people into believing outputs are human-made (8.3). No general AI-label
+requirement. Our inputs were the generated, fictional reference sheets and keyframes, not photos of
+real people. The ToS sections after 14 were not read in full.
+
 Not used, listed because the plan named them: Wan 2.2 TI2V-5B (card: Apache-2.0), ACE-Step 1.5
 (card: MIT), MusicGen and LTX-Video (not checked).
 
@@ -62,9 +74,12 @@ Not used, listed because the plan named them: Wan 2.2 TI2V-5B (card: Apache-2.0)
   pictures and music are AI-generated.
   <!-- TODO(Tahir): which platform(s), and confirm the label was switched on. -->
 - **Provenance marks:** no step is designed to remove watermarks or provenance metadata, and
-  generated takes, images and score files are kept as received. Assembly does re-encode audio and
-  video, and the FFmpeg commands do not set any metadata options. **Whether SynthID or C2PA marks
-  survive into the MP4 was not verified.**
+  generated takes, images and score files are kept as received. **The 11 Gemini narration WAVs
+  carry a C2PA chunk** (checked 26 Nov; the adapter now keeps Gemini's WAV byte for byte, FAILURES
+  F-10). The WaveSpeed frames and clips carry no C2PA marker. Assembly re-encodes audio and video
+  and does not copy the C2PA chunk, so **the final MP4s carry no C2PA manifest, and we do not claim
+  one**; whether an inaudible SynthID watermark survives the mix was not tested. The AI label is the
+  end card and the post.
 
 ## Privacy data flow
 
@@ -78,6 +93,8 @@ What actually left the machine for this film:
 | Score caption and tags (no family details by design) | a community Hugging Face Space (`victor/ace-step-jam`) | the Space owner's code receives the request; its handling was not audited |
 | Generated score audio | Cloudflare Whisper | as Cloudflare above |
 | Benchmark audio and five story lines in four languages (EXP-14) | Gemini (unpaid tier); Whisper on Cloudflare | as above |
+| Image and motion prompts, the generated reference sheets and keyframes (no photos) | WaveSpeed (paid, 26 Nov) | [Privacy](https://wavespeed.ai/privacy-policy) (25 Sep 2026): kept "as long as necessary to provide our Services", no set period for uploads; no explicit promise either way on training with inputs or outputs; the ToS licence covers providing the service only. Third-party model hosts are involved and their retention is not stated |
+| Image prompt for one frame | a Hugging Face ZeroGPU Space (`hf_flux`) | the call failed on quota (F-16); the Space owner's code would have received it |
 
 **An honest caveat:** the story brief is personal, even without names, and it went to a tier that may
 train on it. The family consented to the story being told; <!-- TODO(Tahir): were they told that the

@@ -57,14 +57,18 @@ first notes and added them later.
 | 6 | Shots 1 and 2 should show me as a child of the same age | Both sisters | One reference of me at about 7, used in s01 and s02 |
 | 7 | Shot 3 should show my first day driving | Mum, dad, sister 2 | s03 and s04: me at about 15 with Dad beside me, a quiet cobblestone neighbourhood road |
 
-**Status:** nothing had changed when the tag was made. The `storyboard.json` edits for changes 1 to 7
-and the new references are prepared; the new frames, line and films are not rendered yet (the daily
-free image allowance ran out).
+**Status:** nothing had changed when the tag was made. Changes 1 to 7 were then rendered on 26 Nov
+(afternoon): new father, child and teenage references; new frames for s01–s06, s08 and s11
+(FLUX.2 klein 4B edit on WaveSpeed, because the free image allowance had run out, FAILURES F-16);
+a new s04 line in Amharic and English (Gemini TTS). The final film is
+`outputs/final/f1eb451f1815c80d/` (78.8 s, QA pass).
 **The two other requests:**
 - **Voice closer to mine:** I kept the AI voice, mainly because of time and cost. There are AI tools
   that clone voices well, but they are not very good with Amharic, so my choice of narrating in my
   native language also limits this.
-- **Animation:** I decided to do Wan animation for this submission.
+- **Animation:** I decided to do Wan animation for this submission. All 11 shots are now animated
+  with Wan 2.2 image-to-video (WaveSpeed, 480p; s03 at 720p). After watching the result I had s05
+  and s08 redone with new seeds and compared old and new side by side; I kept both new ones.
 
 ## Shot reasons
 
@@ -74,12 +78,12 @@ Copied from `storyboard.json` (lint enforces a reason on every shot).
 |---|---|---|
 | s01 | I always sat in the back seat growing up. | Establishes the narrator's early life perspective always watching from the back seat. |
 | s02 | Watching my older siblings take the wheel. | Focuses on the art of driving as seen through an observant younger child's eyes. |
-| s03 | Then came the day I sat in the driver's seat. | Marks the narrative turning point where narrator steps into the driver's seat. |
-| s04 | My hands gripped the wheel so tight. | Highlights the vulnerability and physical tension of learning to drive. |
-| s05 | Checking the mirror over and over. | Shows growing self-awareness and careful responsibility behind the wheel. |
-| s06 | Now my phone lights up, day or night. | Signals the present day transition where the family relies on the narrator. |
+| s03 | Then came the day I sat in the driver's seat. | The turning point: the first day in the driver's seat, with Dad beside him. |
+| s04 | The first time Dad let me drive, I was so nervous. The car kept stalling. | The first drive with Dad: nerves and a car that keeps stalling, with Dad patiently beside him. |
+| s05 | Checking the mirror over and over. | Still on the first drive: the nervous teenager checks the mirror again and again, learning to be careful. |
+| s06 | Now my phone lights up, day or night. | The present day: even resting in bed, the narrator's phone lights up because the family relies on him. |
 | s07 | I drive my sisters home at night. | Night pickups: the sisters' ride home, shown as headlights and dark road (no faces needed). |
 | s08 | By day, I take my parents on their errands. | Daytime counterpart to the night rides: the narrator now drives his ageing parents on errands. |
 | s09 | The little ones sit on my lap and hold the wheel. | The warmest beat: a small nephew or niece on the narrator's lap holding the wheel, the new generation in the seat he once watched from. |
 | s10 | The little kid from the back seat... | Depicts the emotional payoff of helping loved ones and earning their trust. |
-| s11 | ...is the one who brings everyone home. | Concludes on full resolution of personal transformation and familial pride. |
+| s11 | ...is the one who brings everyone home. | Closing image: everyone has been brought home safely, and the narrator watches them go in. |

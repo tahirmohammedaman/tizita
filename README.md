@@ -7,9 +7,10 @@ A storyboard-driven AI short-film pipeline. One file, `storyboard.json`, is the 
 **The film:** *The Seat in the Front*, 11 shots, 77.2 s, in 9:16 and 16:9: a youngest sibling who
 watched from the back seat becomes the one who drives everyone home.
 
-**State (26 Nov 2026):** the pipeline runs end to end. Two parts are not built: the Wan image-to-video
-GPU path (the four `i2v` shots are Ken Burns moves, recorded as fallbacks) and the web showcase
-(API, worker, frontend, deploy). See [what works and what doesn't](docs/AUDIT.md).
+**State (26 Nov 2026):** the pipeline runs end to end. All 11 shots are animated with Wan 2.2
+image-to-video through WaveSpeed's paid API (≈ $0.96 for frames and clips, see [COSTS](COSTS.md));
+under the free profile the `i2v` chain falls back to Ken Burns moves. Not built: a free GPU executor
+(Kaggle/local) and the web showcase (API, worker, frontend, deploy). See [what works and what doesn't](docs/AUDIT.md).
 
 ## One command
 
@@ -26,8 +27,8 @@ Output, in `outputs/final/<key>/`:
 
 | File | What it is |
 |---|---|
-| `film_9x16.mp4` | 1080×1920 master (about 63 MB), English subtitles burned in |
-| `film_16x9.mp4` | 1920×1080 version (about 26 MB) |
+| `film_9x16.mp4` | 1080×1920 master (about 74 MB), English subtitles burned in |
+| `film_16x9.mp4` | 1920×1080 version (about 30 MB) |
 | `film.srt` | the English subtitles |
 | `assemble.json` | music used, loudness stats, models credited, every degradation |
 | `qa.json` | duration, resolution, frame rate, codecs, loudness, true peak; `make film` fails if a check fails |
@@ -52,6 +53,10 @@ make film                     # regenerates only that
   assembly and QA rebuild.
 - **Force one unit** without an edit: `uv run tizita run --stage keyframes --unit s04 --force`.
 - **Replace Ken Burns fallbacks** once an i2v provider exists: `uv run tizita run --upgrade-fallbacks`.
+- **Paid clips stay put:** a clip made under the `paid` profile stays cached under the free one
+  (inputs unchanged). Retrying one costs money: `ALLOW_PAID=1 PAID_BUDGET_USD=<logged spend + new>
+  uv run tizita run --stage shots --profile paid` after changing its `motion.seed`. The budget caps
+  the **cumulative** logged spend.
 
 ### Choosing a reference or the music
 
@@ -80,7 +85,8 @@ uv run tizita run --stage assemble --stage qa
 |---|---|---|
 | Clean clone, `make film` | 0 | $0 |
 | Edit one narration line | 1 (TTS) | $0 on the free tier |
-| Everything logged while building (351 lines, retries and experiments included) | 351 attempts, 264 ok | $0 actual |
+| Family-feedback frames and Wan clips (WaveSpeed, paid) | 27 | ≈ $0.96 actual (logged $0.83; one line under-logged, see COSTS) |
+| Everything else logged while building (retries and experiments included) | see COSTS | $0 actual |
 
 List prices are only partly published, so the paid-tier equivalent is incomplete. See
 [COSTS](COSTS.md) (`make costs` regenerates it from `runs.jsonl`).
@@ -140,7 +146,8 @@ Local CPU models (MMS-TTS fallback, CLIP/DINOv2 consistency check) are optional 
 ## Provider profiles
 
 `TIZITA_PROFILE=free` (default), `free+local`, `local-first`, `paid` or `custom`;
-`--provider tts=<id>` puts one provider first. Paid providers need `ALLOW_PAID=true` **and** a budget. No paid provider was ever called: only the paid Gemini text entry has an adapter, and it is untested.
+`--provider tts=<id>` puts one provider first. Paid providers need `ALLOW_PAID=true` **and** a budget. The only paid provider called is WaveSpeed
+(`wavespeed_klein`, `wavespeed_wan`); the paid Gemini text entry has an adapter but is untested.
 
 ## Development
 

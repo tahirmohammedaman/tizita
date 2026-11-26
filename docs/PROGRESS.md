@@ -1,6 +1,6 @@
 # Progress log (agent-maintained)
 
-## Status: M2 done except Tahir's review of the director draft (Wed 25 Nov 2026, ~18:45 EAT)
+## Status: M2 done + storyboard v2 + male-voice radio cut v4 merged; M3 (references, keyframes) next (Thu 26 Nov 2026, DEADLINE 23:59 EAT)
 
 ### Done in M2
 - **feat/narration (PR #5):** `tizita run [--stage] [--unit] [--force] [--upgrade-fallbacks]` (`dag.execute`: skips cached units, prunes superseded artifacts, manifest with `is_fallback`/`primary_provider`, §7.4 summary line); stages `narration` (seed = `seed_base` + shot index), `timing` (§10.1 slots, advice when outside 60–90 s), `subtitles` (SRT + 9x16/16x9 ASS). `.env.example` now uses exactly the `.env` names (no aliases). **Gemini key rotation**: `GEMINI_API_KEY_1..3` via `env_any`, next key on 429/quota before the router's circuit sees an error.
@@ -79,37 +79,41 @@
 ### Next
 M3 References + keyframes (prompt below). Needs the real storyboard promoted first.
 
+### Done Thu 26 Nov (after M2)
+- Storyboard v2 merged (PR #9): 11 shots (sisters at night, parents by day, nephew on lap), refs `ref_father`, `ref_child` added (6 refs total, 4 sheet candidates each), Amharic rewritten (Gemini 3.5 Flash draft, Flash-Lite critique, hand edits; Tahir approved: "nothing to correct"). Credits: "Story: Tahir Mohammedaman", "Narration voice, images and music: AI-generated".
+- Male voice `Achird` (PR #10). TTS chain: gemini_tts, gemini_tts_paid, previous_take, then local MMS (never reached in free profile, so no mid-film voice change). Gemini keys 1-6 rotate on 429; a stale open circuit (`.state/circuits.json`) blocks keys until its `open_until`: delete the entry after adding keys.
+- Radio cut v4 (`outputs/radio_cut/968f9abb6b180d97.mp4`, 77.2 s, 11/11 Gemini TTS, run r_20261126_072953_685c).
+- Test 1 (family group chat, 4 siblings + 2 parents) and consent method recorded from Tahir's report; consent dates/evidence/words_approved still TODO(Tahir).
+
 ## Next session prompt
 
 ```
-Model: Sonnet · Effort: medium
+Model: Sonnet · Effort: medium (image calls are mostly plumbing; effort high only if the klein ref path misbehaves)
 Read CLAUDE.md, docs/PROGRESS.md, then SPEC §6, §7.2 (image rows), §11.2.
 
-Goal: M3 References + keyframes. Branches: feat/references (stage, candidates -> golden pick,
-`tizita choose reference`), feat/keyframes (stage, CLIP gate, upload repaint, HF/local adapters).
-One PR each, CI job `ci` green, merge with --merge. M2 is merged; tag radio-cut-v1 exists.
+Goal: M3 References + keyframes. Branches: feat/references (stage, 4 candidates per ref -> golden pick,
+`tizita choose reference <ref> <N>`), then feat/keyframes (stage, CLIP gate, upload repaint, HF/local adapters).
+One PR each, CI job `ci` green, merge with --merge (do NOT delete the branch yourself while a merge is pending: it closed PR #8).
+DEADLINE is Thu 26 Nov 23:59 EAT: keep it lean; Ken Burns on all keyframes is the fallback if i2v time runs out.
 
-Pre-conditions (Tahir, do first; stop and ask if missing):
-- `uv run tizita new --write` ran, i.e. storyboard.json is the real story (check `jq .meta.title`);
-- DESIGN.md audience/intent written and timestamped; consent recorded in ethics/consents.yaml;
-- `git tag test1-radio-cut` after test 1 (3+ people) on the real radio cut (`uv run tizita run`, `make radio-cut`).
+State: storyboard.json = real story, 11 shots, 6 refs (family_car_ref object + 5 fictional text-only people).
+Tag test1-radio-cut is on main (test 1 done by family). Consents are method-only; no photos are used, no real_person refs.
 
-Reuse (don't rebuild): dag.build_units (references/keyframes fields + UpRef chosen already declared),
-dag.execute + stages/__init__.handlers (add `references`, `keyframes` handlers), Router.call with
-capability image/image_edit (chains in config/providers.yaml), cf_workers_ai adapter (FLUX.2 klein is
-multipart; refs go in input_image_0..3; returns JPEG), local_clip adapter for the CLIP gate,
-Request.private_media + the consent gate, `privacy_notice` event.
+Reuse (don't rebuild): dag.build_units (references/keyframes fields + UpRef chosen declared), dag.execute +
+stages/__init__.handlers (add `references`, `keyframes`), Router.call capability image/image_edit (chains in
+config/providers.yaml), cf_workers_ai adapter (FLUX.2 klein is multipart; refs go in input_image_0..3; returns JPEG),
+local_clip adapter for the CLIP gate, Request.private_media + consent gate.
 
-Facts learned: Workers AI klein 4B ok (~7-10 s, 512x512, 4 steps); schnell has no seed/size (1024^2);
-neurons per image are UNKNOWN (read the CF dashboard, note it in PROGRESS); max 3 attempts per unit,
-retry seed = seed + (n-1)*1000; draft at 480p-ish sizes. The draft storyboard has fictional text-only
-references (4 sheet candidates each, ~3 person refs + 1 object): ~16 candidate images + 10 keyframes.
-Photo mode: private photos only to providers with accepts_private_media (Cloudflare, local), never Gemini.
+Facts: klein 4B ok (~7-10 s, 512x512, 4 steps); schnell has no seed/size (1024^2). Neurons per image UNKNOWN: read the
+CF dashboard and note it in PROGRESS. Max 3 attempts/unit, retry seed = seed + (n-1)*1000. ~24 ref candidates + 11 keyframes.
+The ref path (input_image_0..3) has never been exercised: test it on one unit first.
+Keyframe prompts for people must carry style.character_defaults + the ref's wardrobe from style.characters.
 
-Acceptance: `uv run tizita plan --stage references --stage keyframes` lists the units; candidates
-exist under outputs/references/<ref>/; STOP for Tahir to choose goldens (`tizita choose reference
-<ref> <N>`), then all keyframes generate with a CLIP score table printed; faces/hands checked by Tahir.
-make test lint green; `tizita plan --check --stage ...` extended in CI only for stages with committed outputs.
-Stop for Tahir: before spending quota if CF neurons look exhausted, at the golden pick, and after keyframes.
-Remind him: §18.1 "during M3" choose the golden; check faces and hands on every keyframe.
+Acceptance: `uv run tizita plan --stage references --stage keyframes` lists units; candidates exist in outputs/references/<ref>/.
+STOP: send Tahir each ref's candidate sheet with SendUserFile (he has no file access), wait for picks like
+"car 2, brother 1, mother 3, youngest 2, father 1, child 4", apply `tizita choose reference`. Then generate all keyframes,
+print the CLIP score table, send the keyframes to Tahir for the faces/hands check (SPEC §18.1).
+make test lint green; extend `plan --check` in CI only for stages with committed outputs.
+Also pending from Tahir: consent dates/evidence/words_approved; per-person quotes for test 1 (optional); DESIGN.md logline is final.
+Stop and ask before spending quota if CF neurons look exhausted.
 ```

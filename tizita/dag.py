@@ -564,6 +564,11 @@ def execute(
         if entry is not None and entry.path != art.path:
             keep = {Path(res.path), *map(Path, res.candidates or [])}
             _prune(project, entry.path, entry.key, keep)
+            keep_r = {k.resolve() for k in keep}
+            for c in entry.candidates:  # superseded candidates of a multi-candidate artifact
+                f = project.root / c["path"]
+                if f.is_file() and f.resolve() not in keep_r:
+                    f.unlink()
         manifest.record(
             stage=unit.stage,
             unit=unit.unit,

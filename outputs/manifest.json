@@ -2,7 +2,7 @@
   "entries": {
     "assemble/project": {
       "candidates": [],
-      "created_at": "2026-11-26T14:26:35.097Z",
+      "created_at": "2026-11-26T14:33:05.822Z",
       "field_hashes": {
         "assembly": "2a8429a5a69d50a7",
         "end_card": "00ece5454e33b692",
@@ -10,17 +10,17 @@
         "shots.music_cue": "1f1f21cd714b5ef6"
       },
       "is_fallback": false,
-      "key": "19b3245fe35fc434",
-      "path": "outputs/final/19b3245fe35fc434/film_9x16.mp4",
+      "key": "f1eb451f1815c80d",
+      "path": "outputs/final/f1eb451f1815c80d/film_9x16.mp4",
       "primary_provider": null,
       "provider": {
         "model": null,
         "name": "ffmpeg",
         "params": {}
       },
-      "run_id": "r_20261126_142549_0147",
+      "run_id": "r_20261126_143219_b1f6",
       "seed": null,
-      "sha256": "d0b687547daf1d0dcee2e8e4db0d423e865a189110d447d63ac101606e5345ee",
+      "sha256": "82bcc3d30cac275509361c99ab76d0c635816d51e803a98b76d14cb5984aad87",
       "stage": "assemble",
       "stage_version": 4,
       "unit": "project",
@@ -41,10 +41,10 @@
         "shots/s02": "b46bae9f489ef483623a433a7f790a8864b72ebaeeea503b9fe6bf0f82e75a60",
         "shots/s03": "94809ba1013bc75d58a01a0d9f67de79353da5d4be694590404085ae246f61c0",
         "shots/s04": "a45b1103cd37114db012c94be3e127645c39fdc3fe3cb6bc63c5bac5d00cf6f5",
-        "shots/s05": "380389c72415b5b16591717605cbb6b17bbc01f16c156f457391c9d8bce7075c",
+        "shots/s05": "7fef6f0ac7a2ecc7a673c77c336e551767f4a3b1fd716962ca11a5bdc24a7df7",
         "shots/s06": "71482c7bc489b7ae3e3b9d945535e72cad498408b403831c09b65ed356b74565",
         "shots/s07": "5fd23a7acca4ed3eb1d48e64c1e2ac1af008b775ff0a9d935f046236d7ff230d",
-        "shots/s08": "76b8873ca79f289bd3391584c8c2ad25da589af03c00853a3e45c546101d7aeb",
+        "shots/s08": "616e3fe23c300f33cab55de1f425ab97ba352f8b511d889c757b18cf1cc4aac7",
         "shots/s09": "860608cbc80ef5e6cddfd5d311f3589708562fa637396ae132434db2d79e26f5",
         "shots/s10": "590f060721cee4e5e44fbe73ece0106c6ec018adcb145b5e15d3b388adbd607e",
         "shots/s11": "363e92b8bda1fc8fc83ac6df2b56f1cd11fd4a0dd21c43f91ac13bce8699882d",
@@ -841,21 +841,21 @@
     },
     "qa/project": {
       "candidates": [],
-      "created_at": "2026-11-26T14:26:36.451Z",
+      "created_at": "2026-11-26T14:33:07.183Z",
       "field_hashes": {},
       "is_fallback": false,
-      "key": "38727073cce82e44",
-      "path": "outputs/final/19b3245fe35fc434/qa.json",
+      "key": "972318d99dcb6afb",
+      "path": "outputs/final/f1eb451f1815c80d/qa.json",
       "primary_provider": null,
       "provider": null,
-      "run_id": "r_20261126_142635_eede",
+      "run_id": "r_20261126_143306_77a7",
       "seed": null,
-      "sha256": "bd483b588bb5754d7d5ce61e502d78afc495d6fa5958f9e8d02f9808ea4cf868",
+      "sha256": "c3d8d4e7d6da965009c3292fed2d842d6680f60cd2e5b4682ab97acde60c13a5",
       "stage": "qa",
       "stage_version": 2,
       "unit": "project",
       "upstream": {
-        "assemble/project": "d0b687547daf1d0dcee2e8e4db0d423e865a189110d447d63ac101606e5345ee"
+        "assemble/project": "82bcc3d30cac275509361c99ab76d0c635816d51e803a98b76d14cb5984aad87"
       }
     },
     "radio_cut/project": {
@@ -1413,17 +1413,17 @@
     },
     "shots/s05": {
       "candidates": [],
-      "created_at": "2026-11-26T13:54:42.440Z",
+      "created_at": "2026-11-26T14:31:48.561Z",
       "field_hashes": {
         "assembly.shots": "7bf1fcf3ca21e70b",
         "duration_s": "0de7cf39e1e63661",
         "motion.kenburns": "e5096bbcee239f0a",
         "motion.mode": "903fa7fd15f8c2b5",
-        "motion.prompt": "86e96982ffc703d1"
+        "motion.prompt": "3b047b89f09312ba"
       },
       "is_fallback": false,
-      "key": "e859907ea373a228",
-      "path": "outputs/shots/s05/e859907ea373a228.mp4",
+      "key": "173852f21961744e",
+      "path": "outputs/shots/s05/173852f21961744e.mp4",
       "primary_provider": "wavespeed_wan",
       "provider": {
         "model": "wavespeed-ai/wan-2.2/i2v-480p-ultra-fast",
@@ -1432,9 +1432,9 @@
           "negative_prompt": "photorealistic, morphing faces, extra people, extra fingers, deformed hands, text, watermark, flicker, camera shake, scene change"
         }
       },
-      "run_id": "r_20261126_135242_0610",
-      "seed": 2005,
-      "sha256": "380389c72415b5b16591717605cbb6b17bbc01f16c156f457391c9d8bce7075c",
+      "run_id": "r_20261126_143111_6c85",
+      "seed": 2105,
+      "sha256": "7fef6f0ac7a2ecc7a673c77c336e551767f4a3b1fd716962ca11a5bdc24a7df7",
       "stage": "shots",
       "stage_version": 1,
       "unit": "s05",
@@ -1506,17 +1506,17 @@
     },
     "shots/s08": {
       "candidates": [],
-      "created_at": "2026-11-26T13:56:10.413Z",
+      "created_at": "2026-11-26T14:32:19.522Z",
       "field_hashes": {
         "assembly.shots": "7bf1fcf3ca21e70b",
         "duration_s": "0de7cf39e1e63661",
         "motion.kenburns": "3cef970a0ebf55bc",
         "motion.mode": "903fa7fd15f8c2b5",
-        "motion.prompt": "e88465534dd065b8"
+        "motion.prompt": "4257d09cd3436fff"
       },
       "is_fallback": false,
-      "key": "f9381f17aa173b9a",
-      "path": "outputs/shots/s08/f9381f17aa173b9a.mp4",
+      "key": "f6e57cdd877a2aa6",
+      "path": "outputs/shots/s08/f6e57cdd877a2aa6.mp4",
       "primary_provider": "wavespeed_wan",
       "provider": {
         "model": "wavespeed-ai/wan-2.2/i2v-480p-ultra-fast",
@@ -1525,9 +1525,9 @@
           "negative_prompt": "photorealistic, morphing faces, extra people, extra fingers, deformed hands, text, watermark, flicker, camera shake, scene change"
         }
       },
-      "run_id": "r_20261126_135242_0610",
-      "seed": 2008,
-      "sha256": "76b8873ca79f289bd3391584c8c2ad25da589af03c00853a3e45c546101d7aeb",
+      "run_id": "r_20261126_143111_6c85",
+      "seed": 2108,
+      "sha256": "616e3fe23c300f33cab55de1f425ab97ba352f8b511d889c757b18cf1cc4aac7",
       "stage": "shots",
       "stage_version": 1,
       "unit": "s08",

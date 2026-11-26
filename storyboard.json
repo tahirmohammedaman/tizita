@@ -227,7 +227,7 @@
           "zoom_to": 1.0,
           "pan": "none"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "በልጅነቴ ሁልጊዜ የምቀመጠው ከኋላ ወንበር ነበር።",
@@ -268,7 +268,7 @@
           "zoom_to": 1.08,
           "pan": "up"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "ታላላቆቼ መሪውን ይዘው ሲነዱ እያየሁ አደግኩ።",
@@ -309,7 +309,7 @@
           "zoom_to": 1.0,
           "pan": "none"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "ከዚያም አንድ ቀን እኔ ራሴ አሽከርካሪው ወንበር ላይ ተቀመጥኩ።",
@@ -350,7 +350,7 @@
           "zoom_to": 1.12,
           "pan": "down"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "አስታውሳለሁ፣ አባቴ ለመጀመሪያ ጊዜ እንድነዳ ሲፈቅድልኝ በጣም ፈርቼ ነበር። መኪናውም ብዙ ጊዜ ይጠፋብኝ ነበር።",
@@ -380,15 +380,15 @@
       },
       "motion": {
         "mode": "i2v",
-        "prompt": "The teenage boy adjusts the rear-view mirror, glances at it, then at the road, then at the mirror again. The painted illustration style stays exactly the same. Subtle, natural motion; faces and the number of people stay unchanged.",
-        "seed": 2005,
+        "prompt": "The teenage boy slowly adjusts the rear-view mirror with one hand, glances at it, then back at the road. His head turns only slightly and naturally; his hands keep their shape. The painted illustration style stays exactly the same. Subtle, natural motion; faces and the number of people stay unchanged.",
+        "seed": 2105,
         "max_attempts": 3,
         "kenburns": {
           "zoom_from": 1.0,
           "zoom_to": 1.09,
           "pan": "none"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "መስታወቱን ደጋግሜ እየተመለከትኩ።",
@@ -426,7 +426,7 @@
           "zoom_to": 1.0,
           "pan": "none"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "አሁንማ ቀንም ማታም ስልኬ ይጮኻል።",
@@ -465,7 +465,7 @@
           "zoom_to": 1.15,
           "pan": "left"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "ማታ ማታ እህቶቼን ወደ ቤት አደርሳለሁ።",
@@ -499,15 +499,15 @@
       },
       "motion": {
         "mode": "i2v",
-        "prompt": "The car moves gently through the daytime street; the young man keeps both hands on the wheel and smiles; his father and mother ride calmly; the street drifts past. The painted illustration style stays exactly the same. Subtle, natural motion; faces and the number of people stay unchanged.",
-        "seed": 2008,
+        "prompt": "The car moves gently through the daytime street; the young man keeps both hands on the wheel and smiles; his father and mother ride calmly; the street drifts past. Colours and lighting stay exactly as in the first frame, no colour shift. Only these three people are in the car; nobody new appears. The painted illustration style stays exactly the same. Subtle, natural motion.",
+        "seed": 2108,
         "max_attempts": 3,
         "kenburns": {
           "zoom_from": 1.0,
           "zoom_to": 1.1,
           "pan": "right"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "ቀን ደግሞ ወላጆቼን ወደ ጉዳያቸው አደርሳቸዋለሁ።",
@@ -548,7 +548,7 @@
           "zoom_to": 1.1,
           "pan": "left"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "ትንንሾቹ እቅፌ ላይ ተቀምጠው መሪውን ይይዛሉ።",
@@ -589,7 +589,7 @@
           "zoom_to": 1.0,
           "pan": "none"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "ያ ከኋላ ወንበር የተቀመጠው ትንሹ ልጅ...",
@@ -628,7 +628,7 @@
           "zoom_to": 1.1,
           "pan": "right"
         },
-        "approved": false
+        "approved": true
       },
       "narration": {
         "text_am": "...ዛሬ ሁሉንም ወደ ቤት የሚያደርሰው እሱ ነው።",

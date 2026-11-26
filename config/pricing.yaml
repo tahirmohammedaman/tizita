@@ -24,6 +24,16 @@ prices:
     input_tile_usd: 0.000059    # per input 512x512 tile; not applied (input sizes not logged)
     source: "https://developers.cloudflare.com/workers-ai/platform/pricing/ (page dateModified 2026-11-18)"
     read_on: 2026-11-26
+  wavespeed.flux2_klein_4b_edit:
+    unit: image
+    usd: 0.012
+    source: "https://api.wavespeed.ai/api/v3/models (base_price)"
+    read_on: 2026-11-26
+  wavespeed.wan22_i2v_480p:
+    unit: second                # base_price is per second: one 8 s 720p clip cost $0.16 by balance
+    usd: 0.01
+    source: "https://api.wavespeed.ai/api/v3/models (base_price 0.01)"
+    read_on: 2026-11-26
   cloudflare.flux1_schnell:
     unit: image_tiles
     tile_usd: 0.0000528         # per 512x512 tile

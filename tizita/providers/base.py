@@ -141,7 +141,8 @@ class Provider:
         if unit == "image":
             return float(usd) * int(req.params.get("n", 1))
         if unit == "second":
-            return float(usd) * float(req.params.get("duration_s", 5))
+            seconds = req.params.get("duration_s") or req.params.get("duration") or 5
+            return float(usd) * float(seconds)
         return float(usd)
 
     def measured_cost_usd(self, req: Request, result: Result) -> float | None:

@@ -10,6 +10,15 @@ from tizita.providers.gemini_text import call_rotating, check_blocked
 SAMPLE_RATE = 24000
 
 
+def as_wav(audio: bytes, rate: int) -> bytes:
+    """The API may answer with raw PCM or with a whole WAV file (with a C2PA chunk after the
+    samples). A WAV is kept byte for byte: wrapping it again plays its header and C2PA manifest
+    as noise, and rewriting it would drop the provenance."""
+    if audio[:4] == b"RIFF" and audio[8:12] == b"WAVE":
+        return audio
+    return pcm16_to_wav(audio, rate)
+
+
 class GeminiTTS(Provider):
     def call(self, req: Request) -> Result:
         from google.genai import types
@@ -39,7 +48,7 @@ class GeminiTTS(Provider):
             raise Transient("Gemini TTS returned no audio part") from e
         if not pcm:
             raise Transient("Gemini TTS returned empty audio")
-        wav = pcm16_to_wav(pcm, SAMPLE_RATE)
+        wav = as_wav(pcm, SAMPLE_RATE)
         return Result(
             model=self.model,
             data=wav,

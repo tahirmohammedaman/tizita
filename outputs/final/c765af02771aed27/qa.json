@@ -1,0 +1,59 @@
+{
+  "16x9": {
+    "audio_codec": "aac",
+    "checks": {
+      "audio_codec": true,
+      "duration": true,
+      "fps": true,
+      "frames": true,
+      "loudness": true,
+      "resolution": true,
+      "true_peak": true,
+      "video_codec": true
+    },
+    "duration_s": 78.833,
+    "expected_frames": 1891,
+    "file": "outputs/final/c765af02771aed27/film_16x9.mp4",
+    "fps": 24.0,
+    "frames": 1892,
+    "lra": 6.7,
+    "lufs": -14.6,
+    "pass": true,
+    "profile": "High",
+    "size": [
+      1920,
+      1080
+    ],
+    "true_peak_db": -1.7,
+    "video_codec": "h264"
+  },
+  "9x16": {
+    "audio_codec": "aac",
+    "checks": {
+      "audio_codec": true,
+      "duration": true,
+      "fps": true,
+      "frames": true,
+      "loudness": true,
+      "resolution": true,
+      "true_peak": true,
+      "video_codec": true
+    },
+    "duration_s": 78.833,
+    "expected_frames": 1891,
+    "file": "outputs/final/c765af02771aed27/film_9x16.mp4",
+    "fps": 24.0,
+    "frames": 1892,
+    "lra": 6.7,
+    "lufs": -14.6,
+    "pass": true,
+    "profile": "High",
+    "size": [
+      1080,
+      1920
+    ],
+    "true_peak_db": -1.7,
+    "video_codec": "h264"
+  },
+  "pass": true
+}

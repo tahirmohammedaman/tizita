@@ -188,6 +188,20 @@ def kenburns_cmd(
 # ---------------------------------------------------------------- assembly
 
 
+def i2v_normalise_cmd(clip: str, out: str, cfg: dict[str, Any]) -> list[str]:
+    """Generated video clip -> silent 1080x1920 CFR H.264 (cover, then centre crop)."""
+    fps = cfg["timing"]["fps"]
+    v = cfg["video"]
+    vf = (
+        "scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,"
+        f"crop=1080:1920,setsar=1,fps={fps},format=yuv420p"
+    )
+    return [
+        *BASE, "-i", clip, "-vf", vf, "-an",
+        "-c:v", "libx264", "-preset", v["preset"], "-crf", str(v["crf"]), out,
+    ]  # fmt: skip
+
+
 def _fit_clip(i: int, clip_s: float, slot_s: float, fps: int, max_stretch: float) -> str:
     """Normalise clip i to 1080x1920 CFR and exactly slot_s: slow down (<= max_stretch),
     then hold the last frame, then trim."""
@@ -195,7 +209,7 @@ def _fit_clip(i: int, clip_s: float, slot_s: float, fps: int, max_stretch: float
     hold = max(0.0, slot_s - clip_s * k) + 0.1
     return (
         f"[{i}:v]scale=1080:1920:flags=lanczos:out_range=tv,setsar=1,fps={fps},format=yuv420p,"
-        f"setpts={_f(k)}*(PTS-STARTPTS),tpad=stop_mode=clone:stop_duration={_f(hold)},"
+        f"setpts={_f(k)}*(PTS-STARTPTS),fps={fps},tpad=stop_mode=clone:stop_duration={_f(hold)},"
         f"trim=duration={_f(slot_s)},setpts=PTS-STARTPTS,fps={fps},settb=AVTB[c{i}]"
     )
 

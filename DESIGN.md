@@ -1,7 +1,5 @@
 # Design
 
-> Written by Tahir. The agent created this skeleton only; it never fills in test notes or quotes.
-
 ## Audience and intent (written **before** any generation)
 
 - **Written at:** 2026-11-25 18:42 EAT, before any image call (filled in by the agent at Tahir's instruction; values from interview/answers.yaml)
@@ -35,18 +33,38 @@ pipeline build with a placeholder storyboard, so a diff from that tag does not s
 
 ## Test 2: near-final cut (tag `test2-near-final`)
 
-Three viewers on 26 Nov 2026. The notes are Tahir's report, entered by the coding agent at his
-instruction; the feedback is paraphrased and no verbatim quotes were recorded.
-<!-- TODO(Tahir): how and when each person watched (phone or other, in person or sent), and which render they saw. -->
+Viewers on 26 Nov 2026: two sisters, both parents and a friend. The family watched the final cut of
+that time (with the AI end card) on their own phones through the family group chat, around 14:00 EAT.
+Feedback is paraphrased; no verbatim quotes were recorded. The first notes (14:15) covered only part
+of it. The picture and line requests below were made at the same time, but I left them out of those
+first notes and added them later.
 
-| # | Who | When / how | What they said (reported by Tahir) | What changed |
-|---|---|---|---|---|
-| 1 | Sister 1 | 2026-11-26 | Really liked the warm nostalgia and family feeling, especially the last scene with the little nephew. | No change requested |
-| 2 | Sister 2 | 2026-11-26 | Also liked the nostalgia and the generated pictures. The narration voice-over could be a little more realistic, for example closer to Tahir's own voice. | No change so far |
-| 3 | A friend (more technical) | 2026-11-26 | It would be nice if all or some frames were animated like real video, not only Ken Burns stills. Found the pipeline idea really interesting. Tahir told him animation is planned if there is time. | No change so far |
+| # | Who | What they said (paraphrased) |
+|---|---|---|
+| 1 | Sister 1 | Really liked the warm nostalgia and family feeling, especially the last scene with the little nephew. Asked for changes 1, 2, 3, 4 and 6 below. |
+| 2 | Sister 2 | Liked the nostalgia and the generated pictures. The voice-over could be a little more realistic, for example closer to my own voice. Asked for changes 3, 4, 5, 6 and 7. |
+| 3 | Mum | Asked for changes 1, 2, 3 and 7. |
+| 4 | Dad | Asked for changes 1, 2 and 7. |
+| 5 | A friend (more technical) | It would be nice if some or all frames were animated like real video, not only Ken Burns stills. Found the pipeline idea really interesting. I told him animation is planned if there is time. |
 
-**Storyboard changes:** none at the time of the tag.
-<!-- TODO(Tahir): what you decided about the two requests (voice, animation) and why. -->
+| Change | Request | Asked by (and my own view) | What is changing |
+|---|---|---|---|
+| 1 | Replace "My hands gripped the wheel so tight" with a line that shows how nervous I was learning to drive | Sister 1, mum, dad, me | s04: new Amharic and English from my memory of Dad first letting me drive and the car stalling; new frame |
+| 2 | In the errands shot, Dad is in the driver's seat; he shouldn't be | Sister 1, mum, dad, me | s08: I drive, Dad in the front passenger seat, Mum in the back |
+| 3 | Dad looks too Asian | Both sisters, mum | New father reference with explicitly Ethiopian features |
+| 4 | Shot 1 doesn't show me sitting in the back seat, although the line says so | Both sisters, me | s01: new frame inside the car, in the back seat |
+| 5 | In shot 2, show child me excited, attentive and curious while someone else drives | Sister 2 | s02: child me leaning forward, watching my older brother drive in daytime |
+| 6 | Shots 1 and 2 should show me as a child of the same age | Both sisters | One reference of me at about 7, used in s01 and s02 |
+| 7 | Shot 3 should show my first day driving | Mum, dad, sister 2 | s03 and s04: me at about 15 with Dad beside me, a quiet cobblestone neighbourhood road |
+
+**Status:** nothing had changed when the tag was made. The `storyboard.json` edits for changes 1 to 7
+and the new references are prepared; the new frames, line and films are not rendered yet (the daily
+free image allowance ran out).
+**The two other requests:**
+- **Voice closer to mine:** I kept the AI voice, mainly because of time and cost. There are AI tools
+  that clone voices well, but they are not very good with Amharic, so my choice of narrating in my
+  native language also limits this.
+- **Animation:** I decided to do Wan animation for this submission.
 
 ## Shot reasons
 
@@ -63,5 +81,5 @@ Copied from `storyboard.json` (lint enforces a reason on every shot).
 | s07 | I drive my sisters home at night. | Night pickups: the sisters' ride home, shown as headlights and dark road (no faces needed). |
 | s08 | By day, I take my parents on their errands. | Daytime counterpart to the night rides: the narrator now drives his ageing parents on errands. |
 | s09 | The little ones sit on my lap and hold the wheel. | The warmest beat: a small nephew or niece on the narrator's lap holding the wheel, the new generation in the seat he once watched from. |
-| s10 | The quiet kid from the back seat... | Depicts the emotional payoff of helping loved ones and earning their trust. |
+| s10 | The little kid from the back seat... | Depicts the emotional payoff of helping loved ones and earning their trust. |
 | s11 | ...is the one who brings everyone home. | Concludes on full resolution of personal transformation and familial pride. |

@@ -28,8 +28,8 @@ STAGE_VERSIONS: dict[str, int] = {
     "keyframes": 1,
     "shots": 1,
     "music": 1,
-    "assemble": 2,  # 2: end card model credit no longer truncated
-    "qa": 1,
+    "assemble": 3,  # 3: slowed clips hold their last frame (the body was cut short)
+    "qa": 2,  # 2: frame count checked against the timing plan
 }
 
 # assembly.yaml sections the radio cut reads (later sections must not dirty it)

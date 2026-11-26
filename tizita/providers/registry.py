@@ -20,6 +20,8 @@ ADAPTERS = {
     "local_clip": "tizita.providers.local_clip:LocalClip",
     "synth_pad": "tizita.providers.synth_pad:SynthPad",
     "hf_ace_space": "tizita.providers.hf_ace_space:HFAceSpace",
+    "hf_flux_space": "tizita.providers.hf_flux_space:HFFluxSpace",
+    "wavespeed": "tizita.providers.wavespeed:WaveSpeed",
     "previous_take": "tizita.providers.previous_take:PreviousTake",
 }
 

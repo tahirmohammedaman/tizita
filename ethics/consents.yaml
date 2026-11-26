@@ -19,7 +19,7 @@
   scope: [story, likeness]
   recorded_on: 2026-11-26   # shared 2026-11-25 evening; each person said yes ~09:00 EAT on 2026-11-26 (per Tahir)
   method: "written (family group chat)"
-  evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
+  evidence_sha256: "9bb65bb769f4cfcb802eca7a58c1ad13ebaccbc0bca919f72052953b046613c8"   # screenshot of the family group chat (one file covers all entries), kept private
   words_approved: true       # saw the storyboard, v1 radio cut and the rewritten Amharic text on 2026-11-26 (per Tahir)
 - id: C-002
   person: "older brother 2"
@@ -27,7 +27,7 @@
   scope: [story, likeness]
   recorded_on: 2026-11-26   # shared 2026-11-25 evening; each person said yes ~09:00 EAT on 2026-11-26 (per Tahir)
   method: "written (family group chat)"
-  evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
+  evidence_sha256: "9bb65bb769f4cfcb802eca7a58c1ad13ebaccbc0bca919f72052953b046613c8"   # screenshot of the family group chat (one file covers all entries), kept private
   words_approved: true       # saw the storyboard, v1 radio cut and the rewritten Amharic text on 2026-11-26 (per Tahir)
 - id: C-003
   person: "older sister 1"
@@ -35,7 +35,7 @@
   scope: [story, likeness]
   recorded_on: 2026-11-26   # shared 2026-11-25 evening; each person said yes ~09:00 EAT on 2026-11-26 (per Tahir)
   method: "written (family group chat)"
-  evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
+  evidence_sha256: "9bb65bb769f4cfcb802eca7a58c1ad13ebaccbc0bca919f72052953b046613c8"   # screenshot of the family group chat (one file covers all entries), kept private
   words_approved: true       # saw the storyboard, v1 radio cut and the rewritten Amharic text on 2026-11-26 (per Tahir)
 - id: C-004
   person: "older sister 2"
@@ -43,7 +43,7 @@
   scope: [story, likeness]
   recorded_on: 2026-11-26   # shared 2026-11-25 evening; each person said yes ~09:00 EAT on 2026-11-26 (per Tahir)
   method: "written (family group chat)"
-  evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
+  evidence_sha256: "9bb65bb769f4cfcb802eca7a58c1ad13ebaccbc0bca919f72052953b046613c8"   # screenshot of the family group chat (one file covers all entries), kept private
   words_approved: true       # saw the storyboard, v1 radio cut and the rewritten Amharic text on 2026-11-26 (per Tahir)
 - id: C-005
   person: "mother"
@@ -51,7 +51,7 @@
   scope: [story, likeness]
   recorded_on: 2026-11-26   # shared 2026-11-25 evening; each person said yes ~09:00 EAT on 2026-11-26 (per Tahir)
   method: "written (family group chat)"
-  evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
+  evidence_sha256: "9bb65bb769f4cfcb802eca7a58c1ad13ebaccbc0bca919f72052953b046613c8"   # screenshot of the family group chat (one file covers all entries), kept private
   words_approved: true       # saw the storyboard, v1 radio cut and the rewritten Amharic text on 2026-11-26 (per Tahir)
 - id: C-006
   person: "father"
@@ -59,5 +59,5 @@
   scope: [story, likeness]
   recorded_on: 2026-11-26   # shared 2026-11-25 evening; each person said yes ~09:00 EAT on 2026-11-26 (per Tahir)
   method: "written (family group chat)"
-  evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
+  evidence_sha256: "9bb65bb769f4cfcb802eca7a58c1ad13ebaccbc0bca919f72052953b046613c8"   # screenshot of the family group chat (one file covers all entries), kept private
   words_approved: true       # saw the storyboard, v1 radio cut and the rewritten Amharic text on 2026-11-26 (per Tahir)

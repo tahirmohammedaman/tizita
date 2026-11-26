@@ -136,8 +136,8 @@
     "instrumental": true,
     "candidates": 3,
     "seed": 3000,
-    "chosen": null,
-    "chosen_reason": null,
+    "chosen": 0,
+    "chosen_reason": "More human-like, and goes well with the intent (Tahir)",
     "cues": [
       {
         "id": "cue_01",

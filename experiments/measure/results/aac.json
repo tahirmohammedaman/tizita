@@ -1,0 +1,41 @@
+{
+  "metric": "ebur128 true peak, dBFS",
+  "rows": [
+    {
+      "192k_default": -0.8,
+      "192k_is_off": -0.8,
+      "192k_pns_off": -0.8,
+      "256k_default": -0.8,
+      "tail_trim": true,
+      "tp_target": -1.0,
+      "wav_true_peak_db": -1.0
+    },
+    {
+      "192k_default": -1.7,
+      "192k_is_off": -1.7,
+      "192k_pns_off": -1.7,
+      "256k_default": -1.8,
+      "tail_trim": true,
+      "tp_target": -2.0,
+      "wav_true_peak_db": -2.0
+    },
+    {
+      "192k_default": 0.4,
+      "192k_is_off": 1.0,
+      "192k_pns_off": -0.2,
+      "256k_default": -0.4,
+      "tail_trim": false,
+      "tp_target": -1.0,
+      "wav_true_peak_db": -1.0
+    },
+    {
+      "192k_default": 0.4,
+      "192k_is_off": 1.5,
+      "192k_pns_off": -1.7,
+      "256k_default": -1.5,
+      "tail_trim": false,
+      "tp_target": -2.0,
+      "wav_true_peak_db": -2.0
+    }
+  ]
+}

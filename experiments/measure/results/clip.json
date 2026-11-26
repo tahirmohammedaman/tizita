@@ -1,0 +1,147 @@
+{
+  "attempts": [
+    {
+      "clip": 0.5433,
+      "dino_max": 0.0641,
+      "file": "outputs/keyframes/s01/594a30821203b037.json",
+      "seed": 1001,
+      "shot": "s01"
+    },
+    {
+      "clip": 0.482,
+      "dino_max": -0.068,
+      "file": "outputs/keyframes/s02/143fc01c54a09613.json",
+      "seed": 1002,
+      "shot": "s02"
+    },
+    {
+      "clip": 0.6249,
+      "dino_max": 0.0278,
+      "file": "outputs/keyframes/s02/143fc01c54a09613.json",
+      "seed": 2002,
+      "shot": "s02"
+    },
+    {
+      "clip": 0.5334,
+      "dino_max": 0.0824,
+      "file": "outputs/keyframes/s03/7319fe5bb217cd7b.json",
+      "seed": 1003,
+      "shot": "s03"
+    },
+    {
+      "clip": 0.5492,
+      "dino_max": -0.0528,
+      "file": "outputs/keyframes/s04/24e4f938e668c720.json",
+      "seed": 1004,
+      "shot": "s04"
+    },
+    {
+      "clip": 0.661,
+      "dino_max": 0.2959,
+      "file": "outputs/keyframes/s05/9d85c9c2f16d6f40.json",
+      "seed": 1005,
+      "shot": "s05"
+    },
+    {
+      "clip": 0.4981,
+      "dino_max": 0.0422,
+      "file": "outputs/keyframes/s07/b1ddb91ecacaf1e8.json",
+      "seed": 1007,
+      "shot": "s07"
+    },
+    {
+      "clip": 0.5061,
+      "dino_max": 0.0487,
+      "file": "outputs/keyframes/s07/b1ddb91ecacaf1e8.json",
+      "seed": 2007,
+      "shot": "s07"
+    },
+    {
+      "clip": 0.4856,
+      "dino_max": 0.0849,
+      "file": "outputs/keyframes/s08/28ccb73716ddea20.json",
+      "seed": 1008,
+      "shot": "s08"
+    },
+    {
+      "clip": 0.4449,
+      "dino_max": 0.1081,
+      "file": "outputs/keyframes/s08/28ccb73716ddea20.json",
+      "seed": 2008,
+      "shot": "s08"
+    },
+    {
+      "clip": 0.5504,
+      "dino_max": 0.1714,
+      "file": "outputs/keyframes/s08/28ccb73716ddea20.json",
+      "seed": 3008,
+      "shot": "s08"
+    },
+    {
+      "clip": 0.6039,
+      "dino_max": 0.1338,
+      "file": "outputs/keyframes/s09/36fe22eab9687ec2.json",
+      "seed": 1009,
+      "shot": "s09"
+    },
+    {
+      "clip": 0.554,
+      "dino_max": 0.1437,
+      "file": "outputs/keyframes/s10/a7216f65e3423065.json",
+      "seed": 1010,
+      "shot": "s10"
+    },
+    {
+      "clip": 0.5727,
+      "dino_max": 0.104,
+      "file": "outputs/keyframes/s11/dc2acb2332ff4bd5.json",
+      "seed": 1011,
+      "shot": "s11"
+    },
+    {
+      "clip": 0.5556,
+      "dino_max": 0.0643,
+      "file": "outputs/keyframes_prev/s01/09a2956ebd080a30.json",
+      "seed": 1001,
+      "shot": "s01"
+    },
+    {
+      "clip": 0.5475,
+      "dino_max": 0.1123,
+      "file": "outputs/keyframes_prev/s03/4227bdcbe3d27b31.json",
+      "seed": 1003,
+      "shot": "s03"
+    },
+    {
+      "clip": 0.6783,
+      "dino_max": 0.0012,
+      "file": "outputs/keyframes_prev/s04/925f699e78e9989e.json",
+      "seed": 1004,
+      "shot": "s04"
+    },
+    {
+      "clip": 0.7443,
+      "dino_max": 0.3685,
+      "file": "outputs/keyframes_prev/s07/192e88bdc995fcd8.json",
+      "seed": 1007,
+      "shot": "s07"
+    },
+    {
+      "clip": 0.5604,
+      "dino_max": 0.119,
+      "file": "outputs/keyframes_prev/s09/b1db8ffb17567a98.json",
+      "seed": 1009,
+      "shot": "s09"
+    }
+  ],
+  "max": 0.7443,
+  "median": 0.5504,
+  "min": 0.4449,
+  "n": 19,
+  "would_fail": {
+    "0.45": 1,
+    "0.5": 4,
+    "0.55": 9,
+    "0.75": 19
+  }
+}

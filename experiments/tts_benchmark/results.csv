@@ -1,0 +1,31 @@
+lang,sentence,asr,cer,cer_folded,reference,transcript,tts_run_id,asr_run_id
+am,s01,gemini_asr,0.3,0.3,በልጅነቴ ሁልጊዜ የምቀመጠው ከኋላ ወንበር ነበር።,በሊጂነቲ ሁልጊዜ የምከመተው ከኋላውን ነበር።,r_20261126_072953_685c,r_20261126_112822_3429
+am,s01,cf_whisper,2.7333,2.7333,በልጅነቴ ሁልጊዜ የምቀመጠው ከኋላ ወንበር ነበር።,መም ስንስስድ አለፍፍፍፍፍ የ ስስስድ አንድ ተውፍፍ እንደና ህስት እንዳው ከ እንድ ስልፍፍፍፍፍፍ ና እንዳስ አለፍፍፍፍፍፍፍ መውፍፍፍፍፍፍፍ ተገ�,r_20261126_072953_685c,r_20261126_112822_3429
+am,s03,gemini_asr,0.0256,0.0256,ከዚያም አንድ ቀን እኔ ራሴ አሽከርካሪው ወንበር ላይ ተቀመጥኩ።,ከዚያም አንዲ ቀን እኔ ራሴ አሽከርካሪው ወንበር ላይ ተቀመጥኩ።,r_20261126_072953_685c,r_20261126_112822_3429
+am,s03,cf_whisper,0.7692,0.7692,ከዚያም አንድ ቀን እኔ ራሴ አሽከርካሪው ወንበር ላይ ተቀመጥኩ።,እን እን እን እን ተልስ ኢድጀመሪል,r_20261126_072953_685c,r_20261126_112822_3429
+am,s06,gemini_asr,0.1905,0.1905,አሁንማ ቀንም ማታም ስልኬ ይጮኻል።,አሁንምማ ቀንም ማታም ስልክ ይዞሃል።,r_20261126_072953_685c,r_20261126_112822_3429
+am,s06,cf_whisper,1.381,1.381,አሁንማ ቀንም ማታም ስልኬ ይጮኻል።,ልእ አስነንኘንን አስንኞን መናእንንን ምለፍነኒያት ላምኝ,r_20261126_072953_685c,r_20261126_112822_3429
+am,s07,gemini_asr,0.0,0.0,ማታ ማታ እህቶቼን ወደ ቤት አደርሳለሁ።,ማታ ማታ እህቶቼን ወደ ቤት አደርሳለሁ።,r_20261126_072953_685c,r_20261126_112822_3429
+am,s07,cf_whisper,1.3333,1.3333,ማታ ማታ እህቶቼን ወደ ቤት አደርሳለሁ።,Matā matā hë tōčin wude bīt adr-sallu.,r_20261126_072953_685c,r_20261126_112822_3429
+am,s09,gemini_asr,0.2857,0.2857,ትንንሾቹ እቅፌ ላይ ተቀምጠው መሪውን ይይዛሉ።,ልተኙሾቹ ክፌ ላይ ተቀምጦ መሪውን ይዛሉ,r_20261126_072953_685c,r_20261126_112822_3429
+am,s09,cf_whisper,0.8929,0.8929,ትንንሾቹ እቅፌ ላይ ተቀምጠው መሪውን ይይዛሉ።,እን እንን እን እን ብን እንን ኢትድ ራንጀንባኑ,r_20261126_072953_685c,r_20261126_112822_3429
+om,s01,gemini_asr,0.3095,,Yeroo guddachaa turee duubatti taa'aa ture.,Yeroo guddicha turee dubbatu turee,r_20261126_111807_9624,r_20261126_112822_3429
+om,s03,gemini_asr,0.25,,Sana booda guyyaan ani teessoo konkolaachisaarra taa'e dhufe.,Sanappoda guyyaan iteesoo konkolaachiisaa raate duube.,r_20261126_111807_9624,r_20261126_112822_3429
+om,s06,gemini_asr,0.2,,Amma bilbilli koo halkaniif guyyaa ibsaa oola.,Amma bilbiliiko alqaniif guyyaa ebsaawla.,r_20261126_111807_9624,r_20261126_112822_3429
+om,s07,gemini_asr,0.3966,,Halkan obboleettota koo gara manaatti konkolaachisaan gala.,Alkan Obbo Luba Taakkoo Garmanaatiin kolajjii sangalaa,r_20261126_111807_9624,r_20261126_112822_3429
+om,s09,gemini_asr,0.4366,,Ijoolleen xixiqqoon cinaacha koo taa'anii isteeringii qabatanii taphatu.,Yoo lentiin tiin qabaten chaakoota ani isiteriingi qabatani tabatatu,r_20261126_111807_9624,r_20261126_112822_3429
+ti,s01,gemini_asr,0.4524,,كتريا ከም ዝዓበኹ መጠን ኩሉ ግዜ ኣብ ድሕሪት ኮፍ እብል ነይረ።,ከመ ትርኢዎ ሓምሳ ብዕባ ኾይኑ መጥዕን ኩሉ ግዜ አብ ድሕሪት ኮፍ እብል ነይረ።,r_20261126_111807_9624,r_20261126_112822_3429
+ti,s03,gemini_asr,0.2222,,ድሕሪኡ ድማ ኣብ ዝባን መራሕቲ መኪና (መንዳቢ) ኮፍ ዝበልኩሉ መዓלቲ መጸ።,ድሕሪ እቲ ማእ አብ ዝባን መራሕት መኪና መንዳቢ ኮፍ ዝበልኩሉ መዓልቲ መጻእ።,r_20261126_111807_9624,r_20261126_112822_3429
+ti,s06,gemini_asr,0.5758,,ሕጂ እቲ ስልካይ ብመዓልቲ ይኹን ብለይቲ ይበርህ እዩ።,ሓጂ ትሰልካዩ ብማዕልቲ ሮም ብሌቲ በሪ።,r_20261126_111807_9624,r_20261126_112822_3429
+ti,s07,gemini_asr,0.3846,,ኣብ ለይቲ ንሓܬነተይ ናብ ገዛይ ይወስደን።,አብለይቲ ንሓትነተይ ንኣብገዘይ ወሰደ።,r_20261126_111807_9624,r_20261126_112822_3429
+ti,s09,gemini_asr,0.25,,እቶም ንኣሽቱ ኣብ ዓቐበይ ኮፍ ኢሎም ነታ መንዳቢ ይሕዙዋ።,ከቶም ኣሽቱው ዓቐበይ ኮፊ ኢሎም ነታ መንዳብይ ዝሕዙዋ።,r_20261126_111807_9624,r_20261126_112822_3429
+so,s01,gemini_asr,0.1667,,"Markii aan korayay, intaan fadhiisan jiray kursiga dambe ayay ahayd.",Madaxii Ankorin eey intaan fadhiisan jiray kursiga dambe ayaa ahayd.,r_20261126_111807_9624,r_20261126_112822_3429
+so,s01,cf_whisper,0.4848,,"Markii aan korayay, intaan fadhiisan jiray kursiga dambe ayay ahayd.","Marki aan Koree n'e yey, in taan 40-century kursi gadaan b'ayye a haid.",r_20261126_111807_9624,r_20261126_112822_3429
+so,s03,gemini_asr,0.0484,,Waxaa markaas yimid maalintii aan fadhiistay kursiga darawalka.,Waxa markaas mid maalintii aan fadhiistay kursiga Darawalka,r_20261126_111807_9624,r_20261126_112822_3429
+so,s03,cf_whisper,0.1774,,Waxaa markaas yimid maalintii aan fadhiistay kursiga darawalka.,Waxamarka simid maalinti aamfadi istey kursiga darawalka.,r_20261126_111807_9624,r_20261126_112822_3429
+so,s06,gemini_asr,0.3878,,"Hadda telefoonkaygu wuu shidmaa, habeen iyo dhcaba.","Haddii ay telefoon kuu soo shidmaane, habeen iyo maalin",r_20261126_111807_9624,r_20261126_112822_3429
+so,s06,cf_whisper,0.4082,,"Hadda telefoonkaygu wuu shidmaa, habeen iyo dhcaba.",Xadda talaifun kaigwao shidmaa. Xabayn iyoq nabaa.,r_20261126_111807_9624,r_20261126_112822_3429
+so,s07,gemini_asr,0.127,,Waxaan habeenkii guriga geeyaa gabdhaha aan dhalashada wadaagno.,Waxa nҳаbeenkii guriga geeуа gabdhaha aan dhalashada wadaaqno,r_20261126_111807_9624,r_20261126_112822_3429
+so,s07,cf_whisper,0.1746,,Waxaan habeenkii guriga geeyaa gabdhaha aan dhalashada wadaagno.,Waxan hebeen ki guri ga geeya gabdaha andalashada wadaag no.,r_20261126_111807_9624,r_20261126_112822_3429
+so,s09,gemini_asr,0.3768,,Kuwa yaryar waxay ku fadhiistaan bowdayda oo waxay qabtaan isteerinka.,"Oday baa ku fariistay boodi, oo uu qabtaan isteerinka.",r_20261126_111807_9624,r_20261126_112822_3429
+so,s09,cf_whisper,0.3913,,Kuwa yaryar waxay ku fadhiistaan bowdayda oo waxay qabtaan isteerinka.,Uwe yerbaa kufadista baudaida uwei qaptaan isterinka.,r_20261126_111807_9624,r_20261126_112822_3429

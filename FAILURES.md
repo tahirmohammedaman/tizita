@@ -66,8 +66,16 @@ report and say in your own words what you learned. -->
 ### F-07 · Whisper wrote Amharic in Arabic script
 - **Blocker:** without a language hint, Workers AI Whisper transcribed Amharic audio in the wrong
   script.
-- **Fix:** pass `language: am`. This matters for any ASR round trip.
+- **Fix:** pass `language: am` in any ASR round trip. It is not sufficient on its own: see F-15.
 - **Evidence:** `logs/failures_auto.jsonl`, 2026-11-25T14:51.
+
+### F-15 · Whisper cannot score our Amharic speech
+- **Blocker:** median CER 1.333 on five lines that Gemini transcribed at 0.191, with repetition
+  loops, and one line written in Latin letters despite `language=am`.
+- **Tried:** the language hint (set from the start); trimming the TTS noise burst off the takes.
+- **Outcome:** neither helped (median 1.375 trimmed). Whisper is not used as a judge of this
+  Amharic. It stays only as the check for words in the score (EXP-12).
+- **Evidence:** `r_20261126_112822_3429`, `r_20261126_113245_64ab`; EXP-14.
 
 ## Consistency and content filters
 

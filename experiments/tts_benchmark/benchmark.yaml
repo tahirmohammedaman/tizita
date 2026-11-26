@@ -3,7 +3,7 @@
 # om / ti / so are drafted by Gemini from the English and are NOT checked by a native speaker.
 voice: Achird
 tts_provider: gemini_tts
-translator: gemini_flash_35
+translators: [gemini_flash_35, gemini_flash_lite]   # in order; the one used is recorded per language
 asr_providers: [gemini_asr, cf_whisper]
 languages:
   am: { name: Amharic, script: "Ge'ez", whisper_code: am }

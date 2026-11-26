@@ -94,7 +94,14 @@ class Bench:
                 prompt=prompt,
                 params={"max_tokens": 4096, "response_mime_type": "application/json"},
             )
-            result, run_id = self._call(self.cfg["translator"], req)
+            for pid in self.cfg["translators"]:
+                try:
+                    result, run_id = self._call(pid, req)
+                    break
+                except ProviderError as e:
+                    self.say(f"translate {lang} with {pid} failed: {e.message[:120]}")
+            else:
+                continue  # no translator answered: this language is skipped, not faked
             body = re.sub(r"^```(json)?|```$", "", (result.text or "").strip()).strip()
             lines = json.loads(body)
             if len(lines) != len(sentences) or not all(isinstance(x, str) for x in lines):
@@ -114,6 +121,8 @@ class Bench:
 
     def items(self):
         for lang in self.cfg["languages"]:
+            if lang != "am" and lang not in self.state["translations"]:
+                continue
             for s in self.cfg["sentences"]:
                 yield f"{lang}/{s['id']}", lang, s
 
@@ -137,7 +146,13 @@ class Bench:
                     inputs={"voice": self.cfg["voice"]},
                     output_path=out,
                 )
-                result, run_id = self._call(self.cfg["tts_provider"], req)
+                try:
+                    result, run_id = self._call(self.cfg["tts_provider"], req)
+                except (QuotaExhausted, RateLimited):
+                    raise  # stop: the rest of the daily quota belongs to the film
+                except ProviderError as e:
+                    self.say(f"audio {key} failed: {e.message[:120]}")
+                    continue
                 model, source = result.model, "benchmark"
             self.state["audio"][key] = {
                 "path": self.project.rel(out),
@@ -150,6 +165,7 @@ class Bench:
 
     def transcribe(self) -> None:
         for pid in self.cfg["asr_providers"]:
+            failures = 0  # in a row; three and this provider is left for a later run
             for key, lang, s in self.items():
                 meta = self.cfg["languages"][lang]
                 slot = f"{pid}:{key}"
@@ -175,7 +191,12 @@ class Bench:
                     break
                 except ProviderError as e:
                     self.say(f"{slot} failed: {e.message[:120]}")
+                    failures += 1
+                    if failures == 3:
+                        self.say(f"{pid}: 3 failures in a row, stopping it for this run")
+                        break
                     continue
+                failures = 0
                 self.state["transcripts"][slot] = {
                     "text": result.text or "",
                     "run_id": run_id,

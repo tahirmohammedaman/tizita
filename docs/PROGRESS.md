@@ -143,6 +143,11 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 - Upload the NEW films (end card changed).
 - Decide: Ceiling A (TTS quota ~20 calls + ASR; native ratings optional) before any M7 work.
 
+## Done Thu 26 Nov ~14:15-14:40 EAT
+- Test 2 notes in DESIGN.md (two sisters, a friend; Tahir's report); tag `test2-near-final` pushed. Requests: voice closer to Tahir's / more real (sister 2); animated shots (friend). No change made yet.
+- Ceiling A run: `tizita exp tts-benchmark`, `experiments/tts_benchmark/REPORT.md`, EXP-14. New `gemini_asr` adapter (flash-lite; 3.5-flash 503'd on all audio). 15 TTS calls, no quota error. Whisper fails on this Amharic audio; trimming the noise burst did not help.
+- Open: native ratings (`ratings_template.csv`, Tahir may rate Amharic himself and say he is the rater); Tahir's decisions on the two test-2 requests.
+
 ## Next session prompt
 
 ```

@@ -37,7 +37,7 @@ Each criterion from the brief ("How your work is assessed"), the evidence, and a
 
 | Asked | Evidence | Status |
 |---|---|---|
-| 10+ logged experiments with hypotheses | EXPERIMENTS EXP-01 to 13 | ok (several are small single comparisons, and say so) |
+| 10+ logged experiments with hypotheses | EXPERIMENTS EXP-01 to 14 | ok (several are small single comparisons, and say so) |
 | Comparisons backed by evidence | run_ids; `experiments/measure/` with saved results | ok |
 | Reasons for each choice | "Decision" in each entry | partial: Tahir has not confirmed them |
 
@@ -45,7 +45,7 @@ Each criterion from the brief ("How your work is assessed"), the evidence, and a
 
 | Asked | Evidence | Status |
 |---|---|---|
-| FAILURES.md: quota, consistency, language; tried; resolved | FAILURES F-01 to F-14, `logs/failures_auto.jsonl` | partial until Tahir curates it |
+| FAILURES.md: quota, consistency, language; tried; resolved | FAILURES F-01 to F-15, `logs/failures_auto.jsonl` | partial until Tahir curates it |
 
 ## Measurement (5)
 
@@ -70,7 +70,7 @@ Each criterion from the brief ("How your work is assessed"), the evidence, and a
 |---|---|---|
 | Reflection and learning from the audience (10) | test 1 + diff; test 2 pending | **gap** until written |
 | Suggested practices tested honestly (10) | candidates in report_outline | **gap** until written |
-| Curiosity beyond the floor (10) | no ceiling work run: no TTS benchmark, no motion A/B. `experiments/measure/` and EXP-03 (a corrected explanation) are the closest things | **gap** |
+| Curiosity beyond the floor (10) | Ceiling A run: `experiments/tts_benchmark/REPORT.md` (4 languages, 2 transcribers, EXP-14). No native ratings; no motion A/B | evidence ready; needs Tahir's written account |
 
 ## Not built (from SPEC, not from the brief's criteria)
 
@@ -81,5 +81,5 @@ frontend pages and deployment (`tizita serve` and `worker` are stubs).
 
 1. Report not yet written (30).
 2. No storyboard or film change in response to test 2 so far (test 1 did change the storyboard).
-3. No ceiling work (10). The cheapest real option is Ceiling A, the TTS + ASR round-trip benchmark
-   (SPEC §12.2: about 20 TTS and 20 ASR calls, plus the code, which does not exist yet).
+3. Ceiling A has no native-speaker ratings, and Oromo and Tigrinya rest on one same-vendor
+   transcriber.

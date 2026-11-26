@@ -25,6 +25,7 @@ Format (SPEC §12.1): **Hypothesis → Change → Result (numbers + evidence) �
 | 11 | Which hosted ACE-Step actually works? | One community Space, v1 model |
 | 12 | Synth pad or generated score? | ACE-Step, candidate 1 |
 | 13 | What does editing one narration line cost? | 1 model call, 0 GPU minutes |
+| 14 | Can an ASR round trip judge TTS in four languages? | Not with one transcriber |
 
 ---
 
@@ -220,6 +221,25 @@ Format (SPEC §12.1): **Hypothesis → Change → Result (numbers + evidence) �
 
 ---
 
+## EXP-14: judging TTS in four languages by ASR round trip (Ceiling A)
+
+- **Hypothesis:** transcribing Gemini TTS output and scoring the CER shows which of Amharic, Oromo,
+  Tigrinya and Somali the voice handles.
+- **Change:** language (5 lines each, voice Achird); then the transcriber on identical audio; then,
+  for Whisper on Amharic only, the noise burst trimmed or not.
+- **Result (median CER, Gemini ASR / Whisper):** Amharic 0.191 / 1.333 · Somali 0.167 / 0.391 ·
+  Oromo 0.309 / unsupported · Tigrinya 0.385 / unsupported. Trimming the burst: Whisper 1.333 →
+  1.375. Runs: TTS `r_20261126_111807_9624` (Amharic reuses `r_20261126_072953_685c`), ASR
+  `r_20261126_112822_3429`, trim `r_20261126_113245_64ab`.
+- **What changed my mind:** on one Amharic file Gemini scored 0.000 and Whisper 1.333, writing the
+  right sounds in Latin letters. The score measured the judge as much as the voice. My noise-burst
+  explanation for Whisper's loops did not hold.
+- **Decision:** report CER with its transcriber, never alone; treat Oromo and Tigrinya as unverified
+  until a native speaker rates them. Full account:
+  [REPORT](experiments/tts_benchmark/REPORT.md).
+
+---
+
 ## Planned (not run, no results)
 
 | Question | Why not run |
@@ -229,5 +249,5 @@ Format (SPEC §12.1): **Hypothesis → Change → Result (numbers + evidence) �
 | Gemini TTS voices rated by a native speaker | no ratings collected |
 | Wan 30 vs 40 steps; motion-only prompts; T4 vs RTX 4060 | Wan was cut: no GPU runner was built |
 | ACE-Step short vs detailed captions | one caption used |
-| Ceiling A: multilingual TTS benchmark (am / om / ti / so, CER) | not started |
+| Native-speaker ratings for the four-language benchmark (EXP-14) | not collected yet |
 | Ceiling B: blind motion A/B (Wan vs Ken Burns) | needs Wan clips |

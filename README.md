@@ -153,6 +153,7 @@ make test lint
 ## Docs
 
 [ARCHITECTURE](ARCHITECTURE.md) · [DESIGN](DESIGN.md) · [EXPERIMENTS](EXPERIMENTS.md) ·
+[Four-language TTS benchmark](experiments/tts_benchmark/REPORT.md) ·
 [FAILURES](FAILURES.md) · [COSTS](COSTS.md) · [ETHICS](ETHICS.md) · [Requirements audit](docs/AUDIT.md) ·
 [SPEC](SPEC.md) (the plan; where it differs from the code, ARCHITECTURE describes the code)
 

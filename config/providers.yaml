@@ -294,13 +294,24 @@ providers:
     env: [KAGGLE_USERNAME, KAGGLE_KEY]
     licence: MIT
   hf_ace_space:
-    label: ACE-Step (HF Space)
-    adapter: null
-    lands_in: M4
+    label: ACE-Step 1.5 (HF Space, ZeroGPU)
+    adapter: hf_ace_space
     capability: music
     tier: free_hosted
     quota_pool: "hf:zerogpu"
     env: [HF_TOKEN]
+    licence: Apache-2.0 (ACE-Step v1)
+    # 26 Nov: the official 1.5 Space (ACE-Step/Ace-Step-v1.5, /generation_wrapper, model
+    # acestep-v15-xl-turbo | acestep-v15-turbo) is RUNNING but answers "Model not fully initialized"
+    # for both models. Using the official v1 Space instead (flavor v1 = tempo/key in the tags).
+    # To go back: space ACE-Step/Ace-Step-v1.5, api_name /generation_wrapper, flavor v15, steps 8.
+    # The v1 Space (ACE-Step/ACE-Step, /__call__) fails server-side: "RepositoryNotFoundError".
+    # Working Space: victor/ace-step-jam (ZeroGPU), `/generate` = ACE-Step v1 with few steps.
+    space: victor/ace-step-jam
+    api_name: /generate
+    flavor: jam
+    model: ACE-Step-v1-3.5B (victor/ace-step-jam)
+    params: { steps: 8, guidance_scale: 7.0 }
   local_ace:
     label: ACE-Step 1.5 (local G14, untested)
     adapter: null

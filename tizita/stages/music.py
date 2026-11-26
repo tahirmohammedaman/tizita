@@ -4,6 +4,9 @@ deterministic synth pad; each candidate then uses a different chord from `pad_va
 
 from __future__ import annotations
 
+import subprocess
+from pathlib import Path
+
 from tizita.cache import provider_ident
 from tizita.dag import manifest_path_for
 from tizita.providers.base import Request
@@ -14,6 +17,19 @@ from tizita.storyboard import load_config
 HEADROOM_S = 10.0  # longer than the film so the pad's own fade-out is never reached
 
 
+def to_flac(path: Path) -> Path:
+    """Lossless FLAC for committed candidates (a WAV from the Space is ~16 MB per 83 s)."""
+    if path.suffix != ".wav":
+        return path
+    out = path.with_suffix(".flac")
+    tmp = out.with_name(out.stem + ".tmp.flac")
+    cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(path), "-c:a", "flac"]
+    subprocess.run([*cmd, str(tmp)], check=True)
+    tmp.replace(out)
+    path.unlink()
+    return out
+
+
 def run(ctx: Ctx, unit, key: str) -> Outcome:
     music = ctx.sb["music"]
     variants = load_config(ctx.project, "assembly").get("pad_variants") or [{}]
@@ -22,7 +38,7 @@ def run(ctx: Ctx, unit, key: str) -> Outcome:
     for i in range(int(music["candidates"])):
         existing = sorted(base.parent.glob(f"{key}_cand{i + 1}.*"))
         if existing:
-            paths.append(existing[0])
+            paths.append(to_flac(existing[0]))
             continue
         v = variants[i % len(variants)]
         req = Request(
@@ -45,7 +61,7 @@ def run(ctx: Ctx, unit, key: str) -> Outcome:
         path, (prov, result), fb, primary = generate(ctx, req, base.with_name(f"{key}_cand{i + 1}"))
         ident = provider_ident(prov.name, result.model, prov.params)
         any_fb = any_fb or fb
-        paths.append(path)
+        paths.append(to_flac(path))
         calls += 1
     if ident is None:
         prev = ctx.manifest.get("music", unit.unit)

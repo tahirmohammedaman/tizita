@@ -18,6 +18,7 @@ ADAPTERS = {
     "mms_tts": "tizita.providers.mms_tts:MMSTTS",
     "local_clip": "tizita.providers.local_clip:LocalClip",
     "synth_pad": "tizita.providers.synth_pad:SynthPad",
+    "hf_ace_space": "tizita.providers.hf_ace_space:HFAceSpace",
     "previous_take": "tizita.providers.previous_take:PreviousTake",
 }
 

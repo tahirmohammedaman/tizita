@@ -103,6 +103,12 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 - **Grain vs file size** (7 s Ken Burns clip, CRF 18 veryfast): grain 0: 2.3 MB, 2: 2.3 MB (x264 erases it), 3: 4.6 MB, 4: 10.4 MB, 6 (SPEC default): film 295 MB. Chose 3.
 - ffmpeg quirks: concat/setpts output has no frame rate, so xfade fails ("1/0 is invalid"); end every clip chain and concat with `fps=24,settb=AVTB`. JPEG/PNG inputs come out full range (`yuvj420p`); scale with `out_range=tv`. A single graph with `asplit` feeding `sidechaincompress` produced a silent narration branch (-70 LUFS); the mix is now two commands and the sidechain is the narration file read twice.
 
+### Done Thu 26 Nov ~12:40 EAT: real music (PR feat/ace-music)
+- Tahir: "I want better music, not the continuous machine humming" and "no lyrics at all, just instrumental".
+- `hf_ace_space` adapter (gradio_client, HF_TOKEN). Spaces tried 26 Nov: **ACE-Step/Ace-Step-v1.5** is RUNNING but answers "Model not fully initialized. Missing components: model, vae, text_tokenizer, text_encoder" for both `acestep-v15-xl-turbo` and `acestep-v15-turbo`; **ACE-Step/ACE-Step** (v1) fails server-side with `RepositoryNotFoundError`; **victor/ace-step-jam** `/generate` works (ACE-Step v1 3.5B, 8 steps, returns a base64 data URI WAV). 20 s took 26 s; 83 s ~35 s each.
+- Caption changed to acoustic-only (no "synth pads"). Tags add "<bpm> BPM, <key>, instrumental, no vocals"; lyrics `[instrumental]`. 3 candidates (seeds 3000-3002, run `r_20261126_093124_ab46`), FLAC in `outputs/music/`. Whisper check on each (cf_whisper, en) returned only no-speech hallucinations ("Thank you." x3, "We'll be right back." x3): no words detected; wordless humming not ruled out, Tahir listens.
+- Film re-assembled with candidate 1 (none chosen yet): QA pass, -14.6 LUFS, -1.7 dBTP.
+
 ### Re-plan (time left ~11.5 h; SPEC §1 order: pipeline -> evidence/docs -> ceiling -> API/worker -> frontend -> deploy)
 1. **Now (Tahir, ~20 min):** watch both films (phone + headphones), `uv run tizita choose music N --reason "..."`, then `uv run tizita run --stage assemble --stage qa`.
 2. **GPU (optional, needs Tahir's OK):** no Kaggle runner/executor exists yet (adapters `kaggle_wan22`/`kaggle_ace` are `null`). Building runner + executor + kernel is ~2-3 h with real risk. Recommendation: **skip Wan**; try ACE-Step only if Tahir wants real music, time-boxed to 90 min, else the pad stays (documented as degradation).
@@ -112,8 +118,8 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 6. Tahir: test 2 (3+ people) with the cut that has his chosen music -> DESIGN.md -> `git tag test2-near-final`; report, walkthrough, submit.
 
 ### Open TODO(Tahir) (new)
-- Watch the rough cut; `tizita choose music N --reason`. Music is a synth pad (3 chords: 1 G major, 2 E minor, 3 Cmaj7), not ACE-Step.
-- Decide: Kaggle ACE-Step (time-boxed) or keep the pad. Wan i2v recommended cut.
+- Watch the cut; `tizita choose music N --reason`. Music is now 3 ACE-Step instrumental candidates (HF Space).
+- Wan i2v recommended cut (no Kaggle runner).
 - Publishing the films: they are not in git. Upload `outputs/final/<key>/film_*.mp4` where you post them (or say if you want a GitHub release made).
 
 ## Next session prompt

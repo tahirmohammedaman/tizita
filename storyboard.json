@@ -124,7 +124,7 @@
   ],
   "voice": {
     "provider_pref": "gemini_tts",
-    "voice_name": "Kore",
+    "voice_name": "Achird",
     "style_instruction": "warm, quiet, a little shy, like telling a story to someone close",
     "pace_wps_limit": 2.3
   },

@@ -32,7 +32,7 @@ providers:
     quota_pool: "gemini-free:flash"
     model: gemini-3.8-flash            # catalogue ok 2026-11-25 (503 'high demand' on first smoke)
     verified: true
-    env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3]  # separate projects = separate quotas; rotated on 429
+    env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3, GEMINI_API_KEY_4, GEMINI_API_KEY_5, GEMINI_API_KEY_6]  # separate projects = separate quotas; rotated on 429
     accepts_private_media: false        # free tier: inputs may be used to improve Google products
     licence: Gemini API Additional Terms (free tier)
     cost_basis: gemini.flash_text
@@ -44,7 +44,7 @@ providers:
     quota_pool: "gemini-free:flash-3.5"
     model: gemini-3.5-flash             # answered while 3.8 returned 503 (2026-11-25)
     verified: true
-    env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3]
+    env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3, GEMINI_API_KEY_4, GEMINI_API_KEY_5, GEMINI_API_KEY_6]
     accepts_private_media: false
     licence: Gemini API Additional Terms (free tier)
     cost_basis: gemini.flash_text
@@ -56,7 +56,7 @@ providers:
     quota_pool: "gemini-free:flash-lite"
     model: gemini-3.5-flash-lite       # 3.8 has no lite text id (catalogue 2026-11-25)
     verified: true
-    env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3]  # separate projects = separate quotas; rotated on 429
+    env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3, GEMINI_API_KEY_4, GEMINI_API_KEY_5, GEMINI_API_KEY_6]  # separate projects = separate quotas; rotated on 429
     accepts_private_media: false
     licence: Gemini API Additional Terms (free tier)
     cost_basis: gemini.flash_lite_text
@@ -129,7 +129,7 @@ providers:
     model: gemini-3.8-flash-tts         # verified 2026-11-25 (catalogue + live call)
     verified: true
     params: { voice_name: Kore, style_mode: none }   # 'prefix' makes the model read the style aloud
-    env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3]  # separate projects = separate quotas; rotated on 429
+    env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3, GEMINI_API_KEY_4, GEMINI_API_KEY_5, GEMINI_API_KEY_6]  # separate projects = separate quotas; rotated on 429
     accepts_private_media: false
     licence: Gemini API Additional Terms (free tier); prebuilt voices
     cost_basis: gemini.flash_tts
@@ -356,7 +356,7 @@ providers:
     capability: asr
     tier: free_hosted
     quota_pool: "gemini-free:flash"
-    env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3]  # separate projects = separate quotas; rotated on 429
+    env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3, GEMINI_API_KEY_4, GEMINI_API_KEY_5, GEMINI_API_KEY_6]  # separate projects = separate quotas; rotated on 429
   cf_whisper:
     label: Whisper large-v3-turbo (Workers AI)
     adapter: cf_workers_ai
@@ -389,7 +389,7 @@ providers:
 
 chains:
   text:       [gemini_flash, gemini_flash_35, gemini_flash_lite, cf_text, groq_text, openrouter_text, gemini_paid_text, storyboard_manual]
-  tts:        [gemini_tts, mms_tts_space, mms_tts_local, gemini_tts_paid, previous_take]
+  tts:        [gemini_tts, gemini_tts_paid, previous_take, mms_tts_space, mms_tts_local]   # local voices last: previous_take always answers first, so no mid-film voice change; local-first profile reorders
   image:      [cf_flux2_klein, hf_flux, cf_flux1_schnell, local_flux, fal_image, previous_keyframe]
   image_edit: [cf_flux2_klein, hf_flux, local_flux, fal_image, previous_keyframe]
   i2v:        [kaggle_wan22, hf_wan_space, local_wan, fal_i2v, kenburns]

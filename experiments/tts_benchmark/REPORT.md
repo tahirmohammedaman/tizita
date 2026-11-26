@@ -70,6 +70,10 @@ after Arabic-script output on another clip. Here the hint was set, and s07 still
 - **Tigrinya (0.39):** the worst median. Part of this is the **translation**: the s01 draft begins
   with a word in **Arabic script** (`كتريا`), and s03 carries a bracketed gloss `(መንዳቢ)` that the
   voice reads out. These were left as drafted and not removed after seeing the scores.
+  Correction (26 Nov, afternoon): a character scan also found a stray **Hebrew** letter inside a word
+  in s03 (U+05DC) and a **Syriac** letter in s07 (U+072C). So 3 of the 5 Tigrinya lines (s01, s03,
+  s07) contain non-Ethiopic letters. Do not use these lines for native ratings without saying so.
+  How much each fault adds to the CER was not measured.
 
 ### 4. Availability was a result too
 `gemini-3.5-flash` returned HTTP 503 on every audio request tried (11 items, three attempts each,

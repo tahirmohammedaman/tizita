@@ -4,19 +4,20 @@
     "s03: i2v -> Ken Burns",
     "s06: i2v -> Ken Burns",
     "s10: i2v -> Ken Burns",
-    "music: none chosen yet, using candidate 1"
+    "music: none chosen yet, using candidate 1",
+    "narration: trimmed TTS end-of-take noise on 11 takes"
   ],
   "loudnorm_pass1": {
-    "input_i": "-17.61",
-    "input_lra": "9.60",
-    "input_thresh": "-28.77",
-    "input_tp": "-1.22",
+    "input_i": "-19.30",
+    "input_lra": "8.20",
+    "input_thresh": "-29.81",
+    "input_tp": "-1.13",
     "normalization_type": "dynamic",
-    "output_i": "-15.58",
-    "output_lra": "6.40",
-    "output_thresh": "-26.56",
+    "output_i": "-15.34",
+    "output_lra": "6.70",
+    "output_thresh": "-25.74",
     "output_tp": "-2.00",
-    "target_offset": "1.58"
+    "target_offset": "1.34"
   },
   "models": [
     "Voice: gemini-3.8-flash-tts",

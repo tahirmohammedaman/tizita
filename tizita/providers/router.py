@@ -304,8 +304,10 @@ class Router:
             atomic_write_bytes(path, result.data)
             result.output_path = path
             out_path, out_sha = self.project.rel(path), sha256_bytes(result.data)
-        list_price = p.est_cost_usd(req)
-        actual = list_price if p.tier == "paid" else 0.0
+        list_price = p.measured_cost_usd(req, result)
+        # the paid guard must not count an unmeasurable paid call as free
+        billed = p.est_cost_usd(req) if list_price is None else list_price
+        actual = billed if p.tier == "paid" else 0.0
         self._spent += actual
         self.runlog.record(
             **self._base_line(p, req, attempt, result.params_used or None),
@@ -319,7 +321,9 @@ class Router:
             gpu_seconds=result.gpu_seconds,
             queue_ms=result.queue_ms,
             metrics=result.metrics,
-            cost_list_price_usd=round(list_price, 6) if p.cost_basis else None,
+            cost_list_price_usd=(
+                round(list_price, 6) if p.cost_basis and list_price is not None else None
+            ),
             cost_actual_usd=round(actual, 6),
         )
 

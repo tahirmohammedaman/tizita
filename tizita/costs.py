@@ -12,6 +12,7 @@ from collections import defaultdict
 from collections.abc import Iterable
 from pathlib import Path
 
+from tizita.pricing import RATED_UNITS, rated_cost
 from tizita.runlog import iter_runs
 from tizita.util import atomic_write_text
 
@@ -35,7 +36,15 @@ def list_price(line: dict, prices: dict) -> float | None:
     if not basis:
         # local CPU and deterministic providers have no price list: nothing would be billed
         return 0.0 if line.get("tier") in ("local", "deterministic") else None
-    if basis != FREE_BASIS and (prices.get(basis) or {}).get("usd") is None:
+    entry = prices.get(basis) or {}
+    if entry.get("unit") in RATED_UNITS:
+        # recomputed here from the logged usage: old lines stored 0.0 before the rates existed
+        if line.get("status") != "ok":
+            return 0.0
+        return rated_cost(
+            entry, line.get("model"), line.get("params") or {}, line.get("metrics") or {}
+        )
+    if basis != FREE_BASIS and entry.get("usd") is None:
         return None
     if line.get("status") != "ok":
         return 0.0
@@ -121,8 +130,11 @@ def render(lines: list[dict], events: list[dict], prices: dict, pools: dict[str,
         "",
         f"**Actual spend: ${total['actual_usd']:.2f}.** List-price equivalent of the priced calls: "
         f"${total['list_usd']:.4f}. **{total['unpriced']} of {total['calls']} calls have no "
-        "list price** (`usd: null` in `config/pricing.yaml`, or no entry), so that figure is a "
-        "partial estimate, not the cost of the film on a paid tier.",
+        "list price** (no published or applicable rate in `config/pricing.yaml`, or the usage was "
+        "not logged), so that figure is a partial estimate, not the cost of the film on a paid "
+        "tier. Rates are applied to the logged usage and are lower bounds where usage is missing: "
+        "TTS counts output audio only, FLUX counts output tiles (and steps) only, not reference "
+        "images, and Gemini text omits any thinking tokens (not logged).",
         "",
         "Latencies are wall-clock seconds of successful calls (nearest-rank percentiles). "
         '"GPU min" is "not logged" where a provider reports no GPU time, including the hosted '

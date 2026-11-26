@@ -148,24 +148,29 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 - Ceiling A run: `tizita exp tts-benchmark`, `experiments/tts_benchmark/REPORT.md`, EXP-14. New `gemini_asr` adapter (flash-lite; 3.5-flash 503'd on all audio). 15 TTS calls, no quota error. Whisper fails on this Amharic audio; trimming the noise burst did not help.
 - Open: native ratings (`ratings_template.csv`, Tahir may rate Amharic himself and say he is the rater); Tahir's decisions on the two test-2 requests.
 
+## Done Thu 26 Nov ~15:00-15:15 EAT
+- PR #29: Ceiling A report now records that 3 of 5 Tigrinya lines (s01, s03, s07) have non-Ethiopic letters.
+- PR #30: each rotated Gemini key 429 gets its own runs.jsonl line (`metrics.rotated_key`, name only). Earlier rotations are not backfilled.
+- PR #31: published list prices (read 26 Nov), applied to logged usage (`tizita/pricing.py`). $0.1021 on priced calls, 53 of 351 unknown, actual $0.00. Unknown: gemini-3.5-flash (not on the page), both ASR paths (usage not logged), hosted music Space.
+- `make clean-clone-test` PASS at `131c950`.
+- Walkthrough rehearsal in `~/tizita-rehearsal` (separate clone, `.env` copied; delete when done): removed one word from s01 `text_am`. Plan: 1 TTS call plus local rebuilds, music and images cached. `make film` took 60 s; `r_20261126_120740_b6ca`: s01 `gemini_tts` ok, attempt 1, no rotation. Take 3.92 s → 2.75 s; QA pass; films in `outputs/final/8866b418aa9e741b/` there. Its 2 runs.jsonl lines stay in that clone (not in the main log or COSTS).
+- Gotcha: the English subtitle is a separate field; editing only `text_am` leaves it unchanged.
+- Not exercised: the quota-exhausted path (`previous_take`). Check the new line's `provider` after any live edit.
+
 ## Next session prompt
 
 ```
 Model: Sonnet · Effort: medium (final checks and support; no new subsystem unless Tahir asks)
-Read CLAUDE.md, docs/PROGRESS.md (Status and the two 26 Nov afternoon sections), docs/AUDIT.md.
+Read CLAUDE.md, docs/PROGRESS.md (Status, the 26 Nov afternoon sections), docs/AUDIT.md.
 
-DEADLINE Thu 26 Nov 23:59 EAT (aim to submit 21:00). Done: M6 evidence, M9 docs, test 2 notes + tag
-test2-near-final, Ceiling A (experiments/tts_benchmark/REPORT.md). Film: outputs/final/469e11c10902a93f/.
-Scope, in order, only what Tahir asks for:
- 1. Walkthrough rehearsal copy: separate clone with .env copied (never printed); edit one narration
-    line; plan; make film. Check the new runs.jsonl line says gemini_tts: on quota the chain reuses
-    previous_take and the edit is not heard.
- 2. Log a runs.jsonl line for each rotated Gemini key 429 (gemini_text.call_rotating); add a test.
- 3. List prices in config/pricing.yaml from the providers' pages (source URL + date); `tizita costs`.
- 4. Check Tahir's edits (DESIGN, ETHICS, FAILURES, EXPERIMENTS, ratings_template.csv) against the
-    logs; add native ratings to REPORT.md only if a named rater filled them; update docs/AUDIT.md.
- 5. Animation (friend's test-2 request) only if Tahir asks: propose a time box and quota first.
-    No Kaggle runner exists; the hosted Wan Space adapter is null and untested.
+DEADLINE Thu 26 Nov 23:59 EAT (aim to submit 21:00). Done: M6, M9, test 2 + tag, Ceiling A, rotated-key
+logging, list prices, walkthrough rehearsal (~/tizita-rehearsal). Film: outputs/final/469e11c10902a93f/.
+Scope, only what Tahir asks for:
+ 1. Check Tahir's edits (DESIGN, ETHICS, FAILURES, EXPERIMENTS, ethics/consents.yaml,
+    experiments/tts_benchmark/ratings_template.csv) against the logs; add native ratings to REPORT.md
+    only if a named rater filled them (note the faulty Tigrinya lines); update docs/AUDIT.md.
+ 2. Animation only if Tahir asks: propose a time box and quota first. No Kaggle runner exists; the
+    hosted Wan Space adapter is null and untested.
 Never write Tahir's notes, decisions, reflections, report or post.
 Acceptance: `make test lint` green; `make clean-clone-test` PASS; one PR per change, CI green.
 Stop for Tahir: GPU/quota spend, publishing films (GitHub release), anything outward-facing.

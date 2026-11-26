@@ -361,13 +361,16 @@ providers:
 
   # ---------------------------------------------------------------- asr (benchmark only)
   gemini_asr:
-    label: Gemini 3.8 Flash (audio in)
-    adapter: null
-    lands_in: M6
+    label: Gemini 3.5 Flash (audio in)
+    adapter: gemini_asr
     capability: asr
     tier: free_hosted
-    quota_pool: "gemini-free:flash"
+    quota_pool: "gemini-free:flash-3.5"
+    model: gemini-3.5-flash
     env_any: [GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3, GEMINI_API_KEY_4, GEMINI_API_KEY_5, GEMINI_API_KEY_6]  # separate projects = separate quotas; rotated on 429
+    accepts_private_media: false
+    licence: Gemini API Additional Terms (free tier)
+    cost_basis: gemini.flash_text
   cf_whisper:
     label: Whisper large-v3-turbo (Workers AI)
     adapter: cf_workers_ai

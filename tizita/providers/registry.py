@@ -13,6 +13,7 @@ from tizita.util import Project
 ADAPTERS = {
     "gemini_text": "tizita.providers.gemini_text:GeminiText",
     "gemini_tts": "tizita.providers.gemini_tts:GeminiTTS",
+    "gemini_asr": "tizita.providers.gemini_asr:GeminiASR",
     "cf_workers_ai": "tizita.providers.cf_workers_ai:CloudflareAI",
     "openai_compat": "tizita.providers.openai_compat:OpenAICompat",
     "mms_tts": "tizita.providers.mms_tts:MMSTTS",

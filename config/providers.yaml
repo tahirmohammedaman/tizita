@@ -389,7 +389,7 @@ providers:
 
 chains:
   text:       [gemini_flash, gemini_flash_35, gemini_flash_lite, cf_text, groq_text, openrouter_text, gemini_paid_text, storyboard_manual]
-  tts:        [gemini_tts, mms_tts_space, mms_tts_local, gemini_tts_paid, previous_take]
+  tts:        [gemini_tts, gemini_tts_paid, previous_take]   # no cross-voice fallback: a different voice mid-film breaks consistency (mms_tts_* only via --provider tts=...)
   image:      [cf_flux2_klein, hf_flux, cf_flux1_schnell, local_flux, fal_image, previous_keyframe]
   image_edit: [cf_flux2_klein, hf_flux, local_flux, fal_image, previous_keyframe]
   i2v:        [kaggle_wan22, hf_wan_space, local_wan, fal_i2v, kenburns]

@@ -126,7 +126,7 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 - Wan i2v recommended cut (no Kaggle runner).
 - Publishing the films: they are not in git. Upload `outputs/final/<key>/film_*.mp4` where you post them (or say if you want a GitHub release made).
 
-## Done Thu 26 Nov ~13:20-14:15 EAT: M6 evidence + M9 docs
+## Done Thu 26 Nov ~13:20-13:45 EAT: M6 evidence + M9 docs
 - `tizita costs` (`tizita/costs.py`) writes root `COSTS.md` (SPEC §17 location, not docs/). `make clean-clone-test` passes: 0 model calls, QA forced on the freshly rendered films. No pipeline fix was needed.
 - Bug fixed (PR #22): end card said "Music: ace-step-jam)"; label said ACE-Step 1.5. `assemble` is v2; **current films: `outputs/final/469e11c10902a93f/`** (77.2 s, -14.6 LUFS, -1.7 dBTP).
 - EXPERIMENTS 13 entries; `experiments/measure/measure.py` re-runs the FFmpeg ones. Correction: the AAC PNS overshoot only happens with the untrimmed TTS noise burst; the -2 dBTP target is what keeps QA green.

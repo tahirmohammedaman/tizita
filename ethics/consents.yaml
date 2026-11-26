@@ -17,47 +17,47 @@
   person: "older brother 1"
   relation: brother
   scope: [story, likeness]
-  recorded_on: null          # TODO(Tahir)
+  recorded_on: 2026-11-26   # shared 2026-11-25 evening; each person said yes ~09:00 EAT on 2026-11-26 (per Tahir)
   method: "written (family group chat)"
   evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
-  words_approved: null       # TODO(Tahir): did they see the narration text?
+  words_approved: true       # saw the storyboard, v1 radio cut and the rewritten Amharic text on 2026-11-26 (per Tahir)
 - id: C-002
   person: "older brother 2"
   relation: brother
   scope: [story, likeness]
-  recorded_on: null          # TODO(Tahir)
+  recorded_on: 2026-11-26   # shared 2026-11-25 evening; each person said yes ~09:00 EAT on 2026-11-26 (per Tahir)
   method: "written (family group chat)"
   evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
-  words_approved: null       # TODO(Tahir): did they see the narration text?
+  words_approved: true       # saw the storyboard, v1 radio cut and the rewritten Amharic text on 2026-11-26 (per Tahir)
 - id: C-003
   person: "older sister 1"
   relation: sister
   scope: [story, likeness]
-  recorded_on: null          # TODO(Tahir)
+  recorded_on: 2026-11-26   # shared 2026-11-25 evening; each person said yes ~09:00 EAT on 2026-11-26 (per Tahir)
   method: "written (family group chat)"
   evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
-  words_approved: null       # TODO(Tahir): did they see the narration text?
+  words_approved: true       # saw the storyboard, v1 radio cut and the rewritten Amharic text on 2026-11-26 (per Tahir)
 - id: C-004
   person: "older sister 2"
   relation: sister
   scope: [story, likeness]
-  recorded_on: null          # TODO(Tahir)
+  recorded_on: 2026-11-26   # shared 2026-11-25 evening; each person said yes ~09:00 EAT on 2026-11-26 (per Tahir)
   method: "written (family group chat)"
   evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
-  words_approved: null       # TODO(Tahir): did they see the narration text?
+  words_approved: true       # saw the storyboard, v1 radio cut and the rewritten Amharic text on 2026-11-26 (per Tahir)
 - id: C-005
   person: "mother"
   relation: mother
   scope: [story, likeness]
-  recorded_on: null          # TODO(Tahir)
+  recorded_on: 2026-11-26   # shared 2026-11-25 evening; each person said yes ~09:00 EAT on 2026-11-26 (per Tahir)
   method: "written (family group chat)"
   evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
-  words_approved: null       # TODO(Tahir): did they see the narration text?
+  words_approved: true       # saw the storyboard, v1 radio cut and the rewritten Amharic text on 2026-11-26 (per Tahir)
 - id: C-006
   person: "father"
   relation: father
   scope: [story, likeness]
-  recorded_on: null          # TODO(Tahir)
+  recorded_on: 2026-11-26   # shared 2026-11-25 evening; each person said yes ~09:00 EAT on 2026-11-26 (per Tahir)
   method: "written (family group chat)"
   evidence_sha256: null      # TODO(Tahir): hash of the private evidence file, or leave null if verbal
-  words_approved: null       # TODO(Tahir): did they see the narration text?
+  words_approved: true       # saw the storyboard, v1 radio cut and the rewritten Amharic text on 2026-11-26 (per Tahir)

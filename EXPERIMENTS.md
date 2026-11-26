@@ -26,6 +26,8 @@ Format (SPEC §12.1): **Hypothesis → Change → Result (numbers + evidence) �
 | 12 | Synth pad or generated score? | ACE-Step, candidate 1 |
 | 13 | What does editing one narration line cost? | 1 model call, 0 GPU minutes |
 | 14 | Can an ASR round trip judge TTS in four languages? | Not with one transcriber |
+| 15 | Does a stricter image-edit prompt fix the family's notes? | Yes: v2 (head count, seats, ages) |
+| 16 | Is Wan 2.2 at 720p worth twice the price of 480p? | 480p for 10 shots; s03 kept at 720p |
 
 ---
 

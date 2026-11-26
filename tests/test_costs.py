@@ -41,3 +41,13 @@ def test_render_and_inject_replace_only_the_generated_section():
     out = costs.inject(doc, body)
     assert out.startswith("head\n") and out.endswith("tail\n") and "old" not in out
     assert costs.inject(out, body) == out
+
+
+def test_provider_inference_time_fills_gpu_column_when_no_gpu_seconds():
+    ok = {**_line("wan", None), "metrics": {"inference_ms": 90000}}
+    failed = {**_line("wan", None, status="error"), "metrics": {"inference_ms": 60000}}
+    bare = _line("img", "p.img")
+    body = costs.render([ok, failed, bare], [], PRICES, {})
+    assert "1.5 (provider)" in body
+    row = costs.summarise([bare], PRICES, lambda r: ())[0]
+    assert row["inference_min"] == 0

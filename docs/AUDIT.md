@@ -45,16 +45,16 @@ Each criterion from the brief ("How your work is assessed"), the evidence, and a
 
 | Asked | Evidence | Status |
 |---|---|---|
-| FAILURES.md: quota, consistency, language; tried; resolved | FAILURES F-01 to F-19 (reviewed by Tahir, all kept), `logs/failures_auto.jsonl` | ok |
+| FAILURES.md: quota, consistency, language; tried; resolved | FAILURES F-01 to F-19 (reviewed by Tahir, all kept), each tagged with what it led to (code, config, CI or process); `logs/failures_auto.jsonl` | ok |
 
 ## Measurement (5)
 
 | Asked | Evidence | Status |
 |---|---|---|
 | Latency per stage | COSTS (generated) | ok |
-| GPU minutes per stage | no own GPU job ran, and the hosted Space reports no GPU time | **gap** (stated in COSTS) |
+| GPU minutes per stage | COSTS: provider-reported inference time for the WaveSpeed calls (shots 7.7 min, keyframes 2.7 min); free tiers report none; no own GPU job ran | partial (provider-reported, not our own GPU time) |
 | List-price cost equivalent | COSTS; published rates (read 26 Nov) applied to logged usage, lower bounds where usage is missing. Still unknown: gemini-3.5-flash (not on the pricing page), both ASR paths (usage not logged), the hosted music Space | partial |
-| Frontier comparison "where you had access" | none run | not done |
+| Frontier comparison "where you had access" | COSTS "Frontier comparison": Gemini vs open models on the same inputs for TTS (EXP-09), ASR (EXP-14) and text (EXP-10); no frontier image or video model | ok for the three tasks with access |
 
 ## Consent, labelling and licences (5)
 

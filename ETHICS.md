@@ -75,7 +75,8 @@ Not used, listed because the plan named them: Wan 2.2 TI2V-5B (card: Apache-2.0)
 - **When posting:** switch on the platform's AI-content label and say in the post that voice,
   pictures and music are AI-generated.
   Platform: **YouTube**, with its AI-generated (altered or synthetic) content label switched on.
-  <!-- TODO(Tahir): confirm after posting that the label shows on the published video. -->
+  Posted 26 Nov 2026 (vertical cut): <https://www.youtube.com/shorts/NuHwauQU1EY>. The label was
+  switched on after publishing; Tahir confirmed that it shows on the published video.
 - **Provenance marks:** no step is designed to remove watermarks or provenance metadata, and
   generated takes, images and score files are kept as received. **The 11 Gemini narration WAVs
   carry a C2PA chunk** (checked 26 Nov; the adapter now keeps Gemini's WAV byte for byte, FAILURES

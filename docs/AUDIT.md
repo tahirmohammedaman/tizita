@@ -62,7 +62,7 @@ Each criterion from the brief ("How your work is assessed"), the evidence, and a
 |---|---|---|
 | Consent for every real person shown or voiced | no real person is shown or voiced; story consent from 6 family members in `ethics/consents.yaml`; the children's parents agreed to the mention (ETHICS) | ok |
 | Licences checked | ETHICS table, read 26 Nov | ok |
-| Labelling plan | ETHICS (YouTube with its AI label); end card | ok; label on the published video to be confirmed after posting; C2PA is in the narration WAVs, not in the MP4 (stated, not claimed) |
+| Labelling plan | ETHICS (YouTube with its AI label); end card | ok; posted on [YouTube](https://www.youtube.com/shorts/NuHwauQU1EY), label confirmed showing by Tahir (26 Nov); C2PA is in the narration WAVs, not in the MP4 (stated, not claimed) |
 
 ## Report (30, written by Tahir)
 

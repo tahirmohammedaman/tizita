@@ -522,10 +522,24 @@ def choose_reference(ref: str, n: int) -> None:
     console.print(f"[green]{ref}: candidate {n} is now the golden reference[/]")
 
 
-@choose_app.command("music", context_settings=_PASSTHROUGH)
-def choose_music() -> None:
-    """tizita choose music <N> --reason '…'"""
-    _pending("choose music", "M4")
+@choose_app.command("music")
+def choose_music(
+    n: int,
+    reason: str = typer.Option(..., "--reason", help="why this candidate (kept in the storyboard)"),
+) -> None:
+    """tizita choose music <N> --reason '…': pick music candidate N (1-based)."""
+    from tizita.util import atomic_write_text
+
+    project = _project()
+    path, sb = _load(project, None)
+    m = sb["music"]
+    if not 1 <= n <= m["candidates"]:
+        console.print(f"[red]N must be 1..{m['candidates']}[/]")
+        raise typer.Exit(1)
+    m["chosen"] = n - 1
+    m["chosen_reason"] = reason
+    atomic_write_text(path, json.dumps(sb, indent=2, ensure_ascii=False) + "\n")
+    console.print(f"[green]music: candidate {n} chosen[/] ({reason})")
 
 
 @gpu_app.command("export", context_settings=_PASSTHROUGH)

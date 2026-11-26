@@ -66,3 +66,21 @@ def test_providers_lists_chains(project, monkeypatch):
     res = runner.invoke(app, ["providers", "--capability", "image"])
     assert res.exit_code == 0, res.output
     assert "cf_flux2_klein" in res.output and "profile free" in res.output
+
+
+def test_choose_music_records_index_and_reason(tmp_path, monkeypatch):
+    import json
+    import shutil
+    from pathlib import Path
+
+    repo = Path(__file__).resolve().parent.parent
+    shutil.copytree(repo / "config", tmp_path / "config")
+    shutil.copytree(repo / "schema", tmp_path / "schema")
+    shutil.copy(repo / "tests" / "fixtures" / "storyboard_good.json", tmp_path / "storyboard.json")
+    monkeypatch.setenv("TIZITA_ROOT", str(tmp_path))
+    n = json.loads((tmp_path / "storyboard.json").read_text())["music"]["candidates"]
+    assert runner.invoke(app, ["choose", "music", str(n + 1), "--reason", "x"]).exit_code == 1
+    r = runner.invoke(app, ["choose", "music", "2", "--reason", "warmest under the voice"])
+    assert r.exit_code == 0, r.output
+    m = json.loads((tmp_path / "storyboard.json").read_text())["music"]
+    assert m["chosen"] == 1 and m["chosen_reason"] == "warmest under the voice"

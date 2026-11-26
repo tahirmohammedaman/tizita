@@ -31,7 +31,18 @@ class Outcome:
 
 
 def _handlers() -> dict[str, Callable[[Ctx, Any, str], Outcome]]:
-    from tizita.stages import keyframes, narration, radio_cut, references, subtitles, timing
+    from tizita.stages import (
+        assemble,
+        keyframes,
+        music,
+        narration,
+        qa,
+        radio_cut,
+        references,
+        shots,
+        subtitles,
+        timing,
+    )
 
     return {
         "narration": narration.run,
@@ -40,6 +51,10 @@ def _handlers() -> dict[str, Callable[[Ctx, Any, str], Outcome]]:
         "radio_cut": radio_cut.run,
         "references": references.run,
         "keyframes": keyframes.run,
+        "shots": shots.run,
+        "music": music.run,
+        "assemble": assemble.run,
+        "qa": qa.run,
     }
 
 

@@ -1,6 +1,6 @@
 # Progress log (agent-maintained)
 
-## Status: M2 done + storyboard v2 + male-voice radio cut v4 merged; M3 (references, keyframes) next (Thu 26 Nov 2026, DEADLINE 23:59 EAT)
+## Status: M3 (references + keyframes) done; next = compressed M4/M5 (Ken Burns cut first). Thu 26 Nov 2026, DEADLINE 23:59 EAT
 
 ### Done in M2
 - **feat/narration (PR #5):** `tizita run [--stage] [--unit] [--force] [--upgrade-fallbacks]` (`dag.execute`: skips cached units, prunes superseded artifacts, manifest with `is_fallback`/`primary_provider`, §7.4 summary line); stages `narration` (seed = `seed_base` + shot index), `timing` (§10.1 slots, advice when outside 60–90 s), `subtitles` (SRT + 9x16/16x9 ASS). `.env.example` now uses exactly the `.env` names (no aliases). **Gemini key rotation**: `GEMINI_API_KEY_1..3` via `env_any`, next key on 429/quota before the router's circuit sees an error.
@@ -79,6 +79,12 @@
 ### Next
 M3 References + keyframes (prompt below). Needs the real storyboard promoted first.
 
+### Done Thu 26 Nov (M3, PR feat/references: references + keyframes in one PR, two commits)
+- `references` stage (4 candidates/ref at 512x512, contact sheet `<key>_sheet.jpg`, resumes without re-spending), `tizita choose reference <ref> <N>` (N 1-based, stored 0-based), `keyframes` stage (golden refs via `input_image_0..3`, character + wardrobe blocks in the prompt, CLIP/DINO gate with up to 3 re-seeds `seed+(n-1)*1000`, sidecar json), `Outcome.candidates` recorded in the manifest. `tizita/stages/images.py` holds the shared helpers. CI `plan --check` now covers references + keyframes.
+- Tahir's picks: car 4, youngest 2, older 3, mother 4, father 3, child 2 (after one regeneration round with his notes: hijab mother, 1990 boxy dark blue-black sedan, no green, style_block "deep greens" -> "deep indigo blues"). Keyframes s01/s03/s04/s07/s09 redone once (prompts rewritten), others approved by Tahir.
+- Found: the klein ref path (`input_image_0..3`) works. CF filter rejected a prompt naming "Mercedes-Benz" (HTTP 400, code 3030). Neurons: dashboard showed klein 2.71k for ~28 images at 512x512 (about 100 each, read 26 Nov 11:12); total today then 2.5k of 10k. CLIP scene-vs-portrait ~0.55 so threshold set to 0.5 (was 0.75); s01 scores: 0.5575/0.5448/0.563 across 3 seeds.
+- Not done: HF image fallback adapter and local FLUX adapter (no adapter yet, chain falls to schnell which has no ref conditioning); upload repaint path is coded in the keyframes stage but untested (no upload shot). Do these only if CF quota fails.
+
 ### Done Thu 26 Nov (after M2)
 - Storyboard v2 merged (PR #9): 11 shots (sisters at night, parents by day, nephew on lap), refs `ref_father`, `ref_child` added (6 refs total, 4 sheet candidates each), Amharic rewritten (Gemini 3.5 Flash draft, Flash-Lite critique, hand edits; Tahir approved: "nothing to correct"). Credits: "Story: Tahir Mohammedaman", "Narration voice, images and music: AI-generated".
 - Male voice `Achird` (PR #10). TTS chain: gemini_tts, gemini_tts_paid, previous_take, then local MMS (never reached in free profile, so no mid-film voice change). Gemini keys 1-6 rotate on 429; a stale open circuit (`.state/circuits.json`) blocks keys until its `open_until`: delete the entry after adding keys.
@@ -88,32 +94,31 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 ## Next session prompt
 
 ```
-Model: Sonnet · Effort: medium (image calls are mostly plumbing; effort high only if the klein ref path misbehaves)
-Read CLAUDE.md, docs/PROGRESS.md, then SPEC §6, §7.2 (image rows), §11.2.
+Model: Opus · Effort: medium (assembly + GPU plumbing under a hard deadline; high only if the Kaggle runner gets stuck)
+Read CLAUDE.md, docs/PROGRESS.md, then SPEC §9, §10, §7.2 (i2v/music rows), §12.1 items 6-7.
 
-Goal: M3 References + keyframes. Branches: feat/references (stage, 4 candidates per ref -> golden pick,
-`tizita choose reference <ref> <N>`), then feat/keyframes (stage, CLIP gate, upload repaint, HF/local adapters).
-One PR each, CI job `ci` green, merge with --merge (do NOT delete the branch yourself while a merge is pending: it closed PR #8).
-DEADLINE is Thu 26 Nov 23:59 EAT: keep it lean; Ken Burns on all keyframes is the fallback if i2v time runs out.
+DEADLINE Thu 26 Nov 23:59 EAT. The original M4 "overnight batch" no longer fits. Re-plan (SPEC §1 priority order):
+ A. FIRST, a guaranteed final cut: `shots` stage = deterministic Ken Burns clip per keyframe (ffmpeg, pure builder in
+    tizita/ffmpeg/graphs.py + golden test, kenburns params already in storyboard motion.kenburns, ~5 s fixed, H.264
+    -preset veryfast -crf 18), then `assemble` (9x16 + 16x9, subtitles, narration, transitions) and `qa`. Both MP4s must pass QA.
+ B. Music: simplest thing that works. synth_pad exists; ACE-Step on Kaggle only if Tahir OKs the quota. Candidates ->
+    `tizita choose music N --reason` (currently a stub in tizita/cli.py, `choose_music`; `choose reference` is the pattern).
+ C. Optional, only if time remains and Tahir OKs `tizita plan`: <=3 i2v hero shots (Wan 2.2 TI2V-5B on Kaggle, 480p).
+ Remaining after that: M6 evidence, M7 API/frontend (cut line: pages 1-4), M8 deploy, M9 docs+audit. Keep docs for last
+ but do not skip: README, ARCHITECTURE, ETHICS table, FAILURES/EXPERIMENTS from real run_ids.
 
-State: storyboard.json = real story, 11 shots, 6 refs (family_car_ref object + 5 fictional text-only people).
-Tag test1-radio-cut is on main (test 1 done by family). Consents are method-only; no photos are used, no real_person refs.
+State: main has M3 merged. storyboard.json = 11 shots, 6 golden refs chosen (sheet.chosen is a 0-based index), keyframes
+in outputs/keyframes/<shot>/<key>.jpg (JPEG from klein, 576x1024) + sidecar .json (CLIP/DINO per attempt). Older
+versions of s01/s03/s04/s07/s09 are in outputs/keyframes_prev/. Radio cut v4 = outputs/radio_cut/ (77.2 s).
+Reuse: dag.build_units/execute + stages/__init__.handlers (add `shots`, `assemble`, `qa`, `music`), Outcome.candidates
+(multi-candidate artifacts), ffmpeg/graphs.py builders, radio_cut stage as the model for an ffmpeg stage.
 
-Reuse (don't rebuild): dag.build_units (references/keyframes fields + UpRef chosen declared), dag.execute +
-stages/__init__.handlers (add `references`, `keyframes`), Router.call capability image/image_edit (chains in
-config/providers.yaml), cf_workers_ai adapter (FLUX.2 klein is multipart; refs go in input_image_0..3; returns JPEG),
-local_clip adapter for the CLIP gate, Request.private_media + consent gate.
-
-Facts: klein 4B ok (~7-10 s, 512x512, 4 steps); schnell has no seed/size (1024^2). Neurons per image UNKNOWN: read the
-CF dashboard and note it in PROGRESS. Max 3 attempts/unit, retry seed = seed + (n-1)*1000. ~24 ref candidates + 11 keyframes.
-The ref path (input_image_0..3) has never been exercised: test it on one unit first.
-Keyframe prompts for people must carry style.character_defaults + the ref's wardrobe from style.characters.
-
-Acceptance: `uv run tizita plan --stage references --stage keyframes` lists units; candidates exist in outputs/references/<ref>/.
-STOP: send Tahir each ref's candidate sheet with SendUserFile (he has no file access), wait for picks like
-"car 2, brother 1, mother 3, youngest 2, father 1, child 4", apply `tizita choose reference`. Then generate all keyframes,
-print the CLIP score table, send the keyframes to Tahir for the faces/hands check (SPEC §18.1).
-make test lint green; extend `plan --check` in CI only for stages with committed outputs.
-Also pending from Tahir: consent dates/evidence/words_approved; per-person quotes for test 1 (optional); DESIGN.md logline is final.
-Stop and ask before spending quota if CF neurons look exhausted.
+Pre-conditions for Tahir: none for A. For B/C: OK to use Kaggle GPU (Kaggle weekly quota unknown, check the settings page).
+Acceptance: `uv run tizita run --stage shots --stage assemble --stage qa` then `jq . outputs/final/*/qa.json | head -40`
+shows both films with duration 60-90 s, audio loudness in range, no missing frames; `make test lint` green.
+STOP and wait for Tahir: before any Kaggle launch; after the rough cut (phone + headphones watch, then
+`tizita choose music N`); test 2 with 3+ people after the near-final cut (SPEC 18.1).
+Quirks: klein flags brand names (HTTP 400 code 3030, "Mercedes" got blocked) so describe, don't name; CF neurons ~100 per
+512x512 klein image (dashboard, 26 Nov); CLIP gate threshold is 0.5 (scene-vs-portrait CLIP is ~0.55, DINO near 0:
+the gate is weak, human check is the real one).
 ```

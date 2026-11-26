@@ -548,6 +548,7 @@ def execute(
             seed=unit.seed,
             fields=unit.fields,
             upstream=shas,
+            candidates=[Artifact(project.rel(c), sha256_file(c)) for c in res.candidates or []],
         )
         manifest.save()
         fresh.add(unit.id)

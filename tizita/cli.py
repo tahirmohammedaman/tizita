@@ -37,6 +37,8 @@ gpu_app = typer.Typer(help="GPU batches: export / import / status (SPEC §9).", 
 exp_app = typer.Typer(help="Ceiling experiments (SPEC §12).", no_args_is_help=True)
 motion_app = typer.Typer(help="Ceiling B: blind motion A/B.", no_args_is_help=True)
 app.add_typer(models_app, name="models")
+choose_app = typer.Typer(help="Pick a candidate (reference, music).", no_args_is_help=True)
+app.add_typer(choose_app, name="choose")
 app.add_typer(gpu_app, name="gpu")
 app.add_typer(exp_app, name="exp")
 exp_app.add_typer(motion_app, name="motion-ab")
@@ -501,10 +503,29 @@ def approve() -> None:
     _pending("approve", "M3")
 
 
-@app.command(context_settings=_PASSTHROUGH)
-def choose() -> None:
+@choose_app.command("reference")
+def choose_reference(ref: str, n: int) -> None:
+    """tizita choose reference <ref> <N>: pick candidate N (1-based) as the golden reference."""
+    from tizita.util import atomic_write_text
+
+    project = _project()
+    path, sb = _load(project, None)
+    r = next((x for x in sb["references"] if x["id"] == ref), None)
+    if r is None:
+        console.print(f"[red]unknown reference {ref}[/]")
+        raise typer.Exit(1)
+    if not 1 <= n <= r["sheet"]["candidates"]:
+        console.print(f"[red]N must be 1..{r['sheet']['candidates']}[/]")
+        raise typer.Exit(1)
+    r["sheet"]["chosen"] = n - 1
+    atomic_write_text(path, json.dumps(sb, indent=2, ensure_ascii=False) + "\n")
+    console.print(f"[green]{ref}: candidate {n} is now the golden reference[/]")
+
+
+@choose_app.command("music", context_settings=_PASSTHROUGH)
+def choose_music() -> None:
     """tizita choose music <N> --reason '…'"""
-    _pending("choose", "M4")
+    _pending("choose music", "M4")
 
 
 @gpu_app.command("export", context_settings=_PASSTHROUGH)

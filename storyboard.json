@@ -10,28 +10,28 @@
     "intent": "Evoke quiet nostalgia, personal growth, and warm familial pride."
   },
   "style": {
-    "style_block": "warm painterly illustration, visible gouache and oil brush texture, soft golden-hour light, gentle film grain, muted earthy palette with warm ochres and deep greens, cinematic composition, subject centred for vertical framing",
+    "style_block": "warm painterly illustration, visible gouache and oil brush texture, soft golden-hour light, gentle film grain, muted earthy palette with warm ochres and deep indigo blues, cinematic composition, subject centred for vertical framing",
     "character_defaults": "Ethiopian, warm brown skin tones, natural features, everyday contemporary clothing",
-    "negative": "text, letters, watermark, logo, extra fingers, deformed hands, pale skin, western stock-photo look",
+    "negative": "text, letters, watermark, logo, extra fingers, deformed hands, pale skin, western stock-photo look, green tint, moldy, dusty, dirty interior",
     "seed_base": 1000,
     "characters": {
       "youngest_sibling": {
-        "description": "A gentle young Ethiopian adult with soft eyes and natural curly hair.",
+        "description": "A gentle young Ethiopian adult man with soft eyes and short, non-curly, neatly cut dark hair.",
         "wardrobe": "Warm knit dark brown sweater over a simple collared shirt.",
         "reference_id": "ref_youngest_sibling"
       },
       "older_brother": {
-        "description": "A tall older Ethiopian brother with calm, reassuring facial features.",
+        "description": "A younger Ethiopian brother in his twenties, slightly dark skin, calm, reassuring facial features, short hair.",
         "wardrobe": "Casual navy denim jacket over a grey t-shirt.",
         "reference_id": "ref_older_brother"
       },
       "mother": {
-        "description": "A middle-aged Ethiopian mother with a warm, caring facial expression.",
-        "wardrobe": "Soft cream-colored traditional woven shawl over everyday clothing.",
+        "description": "A middle-aged Ethiopian mother with a warm, caring facial expression, wearing a proper hijab.",
+        "wardrobe": "Soft cream-colored hijab covering her hair fully, modest long everyday dress.",
         "reference_id": "ref_mother"
       },
       "father": {
-        "description": "An elderly Ethiopian father with a gentle, weathered face and short grey hair.",
+        "description": "An elderly Ethiopian father with a gentle, weathered face, deeper dark brown skin and short cut grey hair.",
         "wardrobe": "Tweed-style jacket over a plain shirt.",
         "reference_id": "ref_father"
       },
@@ -49,10 +49,10 @@
       "real_person": false,
       "consent_id": null,
       "photos": [],
-      "description": "Interior of a cozy vintage family sedan with worn fabric seats and warm dashboard illumination.",
+      "description": "A well-kept 1990 compact German luxury sedan with a boxy, upright 1980s body, dark blue-black paint, clean grey-beige seats, warm dashboard glow, dark blue night tones, no green tint, not dusty or moldy.",
       "sheet": {
         "candidates": 4,
-        "chosen": null,
+        "chosen": 3,
         "seed": 1300
       }
     },
@@ -62,10 +62,10 @@
       "real_person": false,
       "consent_id": null,
       "photos": [],
-      "description": "A gentle young Ethiopian adult with soft eyes and natural curly hair.",
+      "description": "A gentle young Ethiopian adult man with soft eyes and short, non-curly, neatly cut dark hair.",
       "sheet": {
         "candidates": 4,
-        "chosen": null,
+        "chosen": 1,
         "seed": 1400
       }
     },
@@ -75,10 +75,10 @@
       "real_person": false,
       "consent_id": null,
       "photos": [],
-      "description": "A tall older Ethiopian brother with calm, reassuring facial features.",
+      "description": "A younger Ethiopian brother in his twenties, slightly dark skin, calm, reassuring facial features, short hair.",
       "sheet": {
         "candidates": 4,
-        "chosen": null,
+        "chosen": 2,
         "seed": 1500
       }
     },
@@ -88,10 +88,10 @@
       "real_person": false,
       "consent_id": null,
       "photos": [],
-      "description": "A middle-aged Ethiopian mother with a warm, caring facial expression.",
+      "description": "A middle-aged Ethiopian mother with a warm, caring facial expression, wearing a proper hijab.",
       "sheet": {
         "candidates": 4,
-        "chosen": null,
+        "chosen": 3,
         "seed": 1600
       }
     },
@@ -101,10 +101,10 @@
       "real_person": false,
       "consent_id": null,
       "photos": [],
-      "description": "An elderly Ethiopian father with a gentle, weathered face and short grey hair.",
+      "description": "An elderly Ethiopian father with a gentle, weathered face, deeper dark brown skin and short cut grey hair.",
       "sheet": {
         "candidates": 4,
-        "chosen": null,
+        "chosen": 2,
         "seed": 1500
       }
     },
@@ -117,7 +117,7 @@
       "description": "A small Ethiopian child of about four with a round face and bright eyes.",
       "sheet": {
         "candidates": 4,
-        "chosen": null,
+        "chosen": 1,
         "seed": 1600
       }
     }
@@ -172,7 +172,7 @@
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "Young Ethiopian boy sitting quietly in the rear car seat looking forward between front headrests, warm interior glow, soft evening sunlight.",
+        "prompt": "Inside the dark blue-black sedan, seen from the back seat: a young Ethiopian man seated in the rear seat on the left, fully inside the car, looking forward between the two front headrests through the windshield, warm interior glow, soft evening sunlight.",
         "seed": 1001,
         "candidates": 1,
         "approved": false
@@ -250,7 +250,7 @@
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "Young Ethiopian adult sitting nervous in the driver's seat on a quiet empty suburban road, cool dusk lighting.",
+        "prompt": "A young Ethiopian man sitting nervous in the driver's seat of the dark blue-black sedan, fully inside the car, on a quiet empty suburban road, cool dusk lighting. The car paint is the same dark blue-black. No flags, no text, no signs.",
         "seed": 1003,
         "candidates": 1,
         "approved": false
@@ -288,7 +288,7 @@
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "Extreme close-up of tense young hands gripping steering wheel tight at ten-and-two position, dusk shadows across dashboard.",
+        "prompt": "Close-up of one person's two hands gripping the steering wheel at ten-and-two, anatomically correct hands with five fingers each, dusk shadows across the dashboard. Only one person in the car, no passenger, no other people.",
         "seed": 1004,
         "candidates": 1,
         "approved": false
@@ -402,7 +402,7 @@
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "Exterior view of car headlights cutting through dark asphalt street at night, warm yellow streetlamps casting long bokeh lights.",
+        "prompt": "Exterior view of the dark blue-black sedan driving on a dark street at night, headlights cutting through the asphalt, warm yellow streetlamps with long bokeh. The driver is only a small dim silhouette seated fully inside behind the closed windows; nobody is outside or leaning out of the car.",
         "seed": 1007,
         "candidates": 1,
         "approved": false
@@ -445,7 +445,7 @@
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "Daytime, soft bright light through the windows of a family sedan: the young driver at the wheel glancing warmly at his elderly father in the front passenger seat, his mother smiling in the back seat, busy street outside.",
+        "prompt": "Daytime, soft bright light through the windows of a dark blue-black boxy 1990 German sedan: the young driver at the wheel glancing warmly at his elderly father in the front passenger seat, his mother smiling in the back seat, busy street outside.",
         "seed": 1008,
         "candidates": 1,
         "approved": false
@@ -486,7 +486,7 @@
       "keyframe": {
         "source": "generate",
         "upload_path": null,
-        "prompt": "A small Ethiopian child sitting on the young driver's lap, tiny hands on the steering wheel, the car parked in a sunlit compound, both smiling, faces softly turned from camera.",
+        "prompt": "Inside the parked dark blue-black sedan in a sunlit compound: the young man sits in the driver's seat, fully inside the car, with the small child sitting on his lap in front of him facing the wheel, the child's tiny hands on the steering wheel, both smiling, faces softly turned from the camera. Nobody outside the car.",
         "seed": 1009,
         "candidates": 1,
         "approved": false

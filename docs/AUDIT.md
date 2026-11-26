@@ -68,7 +68,7 @@ Each criterion from the brief ("How your work is assessed"), the evidence, and a
 
 | Criterion | Evidence ready | Status |
 |---|---|---|
-| Reflection and learning from the audience (10) | test 1 + diff; test 2 pending | **gap** until written |
+| Reflection and learning from the audience (10) | test 1 + diff; test 2 notes in DESIGN (no film change yet) | **gap** until written |
 | Suggested practices tested honestly (10) | candidates in report_outline | **gap** until written |
 | Curiosity beyond the floor (10) | Ceiling A run: `experiments/tts_benchmark/REPORT.md` (4 languages, 2 transcribers, EXP-14). No native ratings; no motion A/B | evidence ready; needs Tahir's written account |
 

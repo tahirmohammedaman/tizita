@@ -280,3 +280,7 @@
 {"ts":"2026-11-26T09:53:14.921Z","type":"qa_result","run_id":"r_20261126_095219_805f","stage":"qa","unit":"project","passed":true,"path":"/home/cyberhelmet/tizita/outputs/final/21334971d0ac71e0/qa.json"}
 {"ts":"2026-11-26T09:53:14.926Z","type":"unit_done","run_id":"r_20261126_095219_805f","stage":"qa","unit":"project","path":"outputs/final/21334971d0ac71e0/qa.json","key":"a79abd6ec9aac62a"}
 {"ts":"2026-11-26T09:53:14.926Z","type":"run_summary","run_id":"r_20261126_095219_805f","calls":0,"cache_hits":0,"fallbacks":0,"ran":["assemble/project","qa/project"],"failed":[],"skipped":[]}
+{"ts":"2026-11-26T10:00:11.282Z","type":"unit_done","run_id":"r_20261126_095926_5cd2","stage":"assemble","unit":"project","path":"outputs/final/7c55427dbba3e420/film_9x16.mp4","key":"7c55427dbba3e420"}
+{"ts":"2026-11-26T10:00:12.271Z","type":"qa_result","run_id":"r_20261126_095926_5cd2","stage":"qa","unit":"project","passed":true,"path":"/home/cyberhelmet/tizita/outputs/final/7c55427dbba3e420/qa.json"}
+{"ts":"2026-11-26T10:00:12.275Z","type":"unit_done","run_id":"r_20261126_095926_5cd2","stage":"qa","unit":"project","path":"outputs/final/7c55427dbba3e420/qa.json","key":"a79abd6ec9aac62a"}
+{"ts":"2026-11-26T10:00:12.275Z","type":"run_summary","run_id":"r_20261126_095926_5cd2","calls":0,"cache_hits":0,"fallbacks":0,"ran":["assemble/project","qa/project"],"failed":[],"skipped":[]}

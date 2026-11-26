@@ -1,6 +1,6 @@
 # Progress log (agent-maintained)
 
-## Status: Ken Burns rough cut done, both films pass QA (feat/assemble). Waiting for Tahir: phone/headphones watch + `tizita choose music N`. Thu 26 Nov 2026, DEADLINE 23:59 EAT
+## Status: near-final cut done (Ken Burns + ACE-Step music 1, TTS tail noise trimmed, QA pass both films). Next = test 2 (Tahir) + M6 evidence + M9 docs. Thu 26 Nov 2026, DEADLINE 23:59 EAT
 
 ### Done in M2
 - **feat/narration (PR #5):** `tizita run [--stage] [--unit] [--force] [--upgrade-fallbacks]` (`dag.execute`: skips cached units, prunes superseded artifacts, manifest with `is_fallback`/`primary_provider`, §7.4 summary line); stages `narration` (seed = `seed_base` + shot index), `timing` (§10.1 slots, advice when outside 60–90 s), `subtitles` (SRT + 9x16/16x9 ASS). `.env.example` now uses exactly the `.env` names (no aliases). **Gemini key rotation**: `GEMINI_API_KEY_1..3` via `env_any`, next key on 429/quota before the router's circuit sees an error.
@@ -121,7 +121,8 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 6. Tahir: test 2 (3+ people) with the cut that has his chosen music -> DESIGN.md -> `git tag test2-near-final`; report, walkthrough, submit.
 
 ### Open TODO(Tahir) (new)
-- Watch the cut; `tizita choose music N --reason`. Music is now 3 ACE-Step instrumental candidates (HF Space).
+- Music chosen 26 Nov ~13:00: candidate 1, "More human-like, and goes well with the intent". Final films: `outputs/final/7c55427dbba3e420/film_{9x16,16x9}.mp4` (run `r_20261126_095926_5cd2`, 77.2 s, -14.6 LUFS, -1.7 dBTP).
+- **Test 2 (SPEC 18.1)**: show the near-final cut to 3+ people, write notes in DESIGN.md, then `git tag test2-near-final && git push origin test2-near-final`.
 - Wan i2v recommended cut (no Kaggle runner).
 - Publishing the films: they are not in git. Upload `outputs/final/<key>/film_*.mp4` where you post them (or say if you want a GitHub release made).
 
@@ -129,27 +130,33 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 
 ```
 Model: Sonnet · Effort: medium (evidence + docs from existing runs; no new ML plumbing)
-Read CLAUDE.md, docs/PROGRESS.md (Re-plan + Findings of 26 Nov), then SPEC §8.3, §12.1, §16, §17.
+Read CLAUDE.md, docs/PROGRESS.md (Status, Findings, Re-plan, Open TODO), then SPEC §8.3, §12.1, §16, §17.
 
-DEADLINE Thu 26 Nov 23:59 EAT. Goal: M6 evidence, then M9 docs (moved before M7, SPEC §1 order).
-First, if `jq .music.chosen storyboard.json` is null, ask Tahir for `tizita choose music N` and stop.
-Then `uv run tizita run --stage assemble --stage qa` (re-renders with the chosen music; ~1 min) and
-commit the qa.json/assemble.json (films are gitignored).
+DEADLINE Thu 26 Nov 23:59 EAT. Goal: M6 evidence, then M9 docs (before M7, SPEC §1 priority order).
+State: near-final cut done on main. outputs/final/7c55427dbba3e420/ (films gitignored; qa.json,
+assemble.json, film.srt committed). Music = ACE-Step candidate 1 (hf_ace_space via victor/ace-step-jam),
+chosen by Tahir. 4 i2v shots are Ken Burns fallbacks; Wan is cut (no Kaggle runner exists).
 Scope:
- 1. `tizita costs` (SPEC §8.3, stub in tizita/cli.py) from runs.jsonl -> docs/COSTS.md.
- 2. `make clean-clone-test`: clone, `make film` with no keys -> 0 model calls, QA pass. Fix what breaks.
- 3. EXPERIMENTS.md: >= 8 entries from REAL measurements only, each with run_ids or the measuring
-    command: AAC PNS vs true peak, grain vs size, CLIP threshold (s01 0.5575/0.5448/0.563), TTS style
-    prefix (2.7 s -> 9-10 s), voice Kore vs Achird, ducking defaults (measure music under voice with
-    ebur128 on stems), klein ref conditioning, Gemini model availability. Untested ones = `planned`.
- 4. FAILURES.md draft from logs/failures_auto.jsonl (Tahir curates).
- 5. Then M9: README (one-command run), ARCHITECTURE (Mermaid; say honestly which adapters are null:
-    kaggle_wan22, kaggle_ace, hf_*), ETHICS licence table, audit vs the brief's criteria.
-Reuse: tizita/stages/{shots,music,assemble,qa,endcard}.py, ffmpeg/graphs.py builders, dag.execute.
-Acceptance: `make test lint` green; clean-clone test 0 calls + QA pass; COSTS.md generated;
-EXPERIMENTS.md entries cite run_ids; PR merged with CI green.
-STOP for Tahir: if he OKs Kaggle ACE-Step (time-box 90 min, needs runner/executor that don't exist);
-test 2 with 3+ people on the cut with chosen music (SPEC 18.1), then `git tag test2-near-final`.
+ 1. `tizita costs` (SPEC §8.3, stub in tizita/cli.py) from runs.jsonl -> docs/COSTS.md (free tiers: show
+    calls, latency, quota pools; $0 actual).
+ 2. `make clean-clone-test`: clone to a temp dir, `make film` with no .env -> 0 model calls, QA pass. Fix
+    what breaks (likely: providers unusable without keys must still leave cached units cached).
+ 3. EXPERIMENTS.md: >= 8 entries, REAL measurements only, each citing run_ids or the measuring command
+    (see PROGRESS Findings): AAC PNS vs true peak; grain vs file size; CLIP threshold (s01 0.5575/
+    0.5448/0.563); TTS style prefix (2.7 s -> 9-10 s); voice Kore vs Achird; TTS end-of-take noise
+    (11/11 takes, trim 0.26-0.36 s); ACE-Step Space availability (1.5 not initialized, v1 repo error,
+    jam ok ~35 s per 83 s track); synth pad vs ACE-Step (Tahir's pick + reason); ducking defaults
+    (measure music under voice with ebur128 on stems). Anything not run = `planned`.
+ 4. FAILURES.md draft from logs/failures_auto.jsonl (Tahir curates; never invent his reflections).
+ 5. M9: README (one-command run, outputs, how to choose music/reference), ARCHITECTURE (Mermaid DAG +
+    provider router; state honestly which adapters are null: kaggle_wan22, kaggle_ace, hf_wan_space,
+    local_*), ETHICS licence table (ACE-Step v1 Apache-2.0, FLUX.2 klein 4B, Gemini TTS terms, MMS
+    CC-BY-NC, Noto OFL; verify each), audit every Assignment 1 criterion -> evidence -> ok/gap.
+Reuse: tizita/stages/{shots,music,assemble,qa,endcard}.py, tizita/audio.py, ffmpeg/graphs.py, dag.execute.
+Acceptance: `make test lint` green; clean-clone test shows 0 calls + QA pass; docs/COSTS.md generated;
+EXPERIMENTS.md entries cite run_ids; one PR per feature (feat/costs, docs/evidence, docs/m9), CI green.
+STOP for Tahir: test 2 notes (he writes DESIGN.md and tags test2-near-final); any TODO(Tahir) text
+(reflections, consents, native ratings). If time remains after M9: M7 API + frontend pages 1-4 only.
 Quirks: AAC needs `-aac_pns 0`; grain 3 max; ffmpeg chains end with fps=24,settb=AVTB; never commit
-films (~90 MB); i2v shots are Ken Burns fallbacks (primary kaggle_wan22) and show as upgradable.
+films (~90 MB); music FLAC is exempt from the 5 MB pre-commit hook; HF Spaces move: re-check before use.
 ```

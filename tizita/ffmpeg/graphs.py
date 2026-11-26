@@ -296,15 +296,27 @@ def assemble_cmd(
     return args
 
 
-def narration_track_graph(starts_s: list[float], total_s: float, audio: dict[str, Any]) -> str:
-    """Narration inputs 0..n-1: each take pre-normalised and delayed to its slot start, mixed and
-    padded to the film length. Output [narr]."""
+def narration_track_graph(
+    starts_s: list[float],
+    total_s: float,
+    audio: dict[str, Any],
+    ends_s: list[float | None] | None = None,
+) -> str:
+    """Narration inputs 0..n-1: each take cut at its speech end (drops the TTS end-of-take noise
+    burst), pre-normalised, delayed to its slot start, mixed and padded to the film length.
+    Output [narr]."""
     rate = audio["final"]["rate"]
+    ends = ends_s or [None] * len(starts_s)
     parts = []
     for i, s in enumerate(starts_s):
         ms = round(s * 1000)
+        cut = (
+            f"atrim=end={_f(ends[i])},afade=t=out:st={_f(max(0, ends[i] - 0.03))}:d=0.03,"
+            if ends[i]
+            else ""
+        )
         parts.append(
-            f"[{i}:a]aresample={rate},aformat=channel_layouts=stereo,"
+            f"[{i}:a]{cut}aresample={rate},aformat=channel_layouts=stereo,"
             f"loudnorm=I={audio['working_lufs']}:TP=-1.5:LRA=11,adelay={ms}|{ms}[n{i}]"
         )
     n = len(starts_s)
@@ -317,12 +329,17 @@ def narration_track_graph(starts_s: list[float], total_s: float, audio: dict[str
 
 
 def narration_track_cmd(
-    narration: list[str], starts_s: list[float], total_s: float, out: str, audio: dict
+    narration: list[str],
+    starts_s: list[float],
+    total_s: float,
+    out: str,
+    audio: dict,
+    ends_s: list[float | None] | None = None,
 ) -> list[str]:
     args = list(BASE)
     for p in narration:
         args += ["-i", p]
-    g = narration_track_graph(starts_s, total_s, audio)
+    g = narration_track_graph(starts_s, total_s, audio, ends_s)
     return [*args, "-filter_complex", g, "-map", "[narr]", "-c:a", "pcm_s16le", out]
 
 

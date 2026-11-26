@@ -43,3 +43,6 @@ ethics/evidence/
 # rendered films: ~90 MB per render, kept out of git history (qa.json, assemble.json, film.srt
 # are committed); publish the films as release assets instead
 outputs/final/**/*.mp4
+
+# local listening previews (not pipeline artifacts)
+previews/

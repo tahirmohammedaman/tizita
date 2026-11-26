@@ -2,27 +2,27 @@
   "entries": {
     "assemble/project": {
       "candidates": [],
-      "created_at": "2026-11-26T14:18:38.121Z",
+      "created_at": "2026-11-26T14:26:35.097Z",
       "field_hashes": {
-        "assembly": "d9f7724b5fb5aa95",
+        "assembly": "2a8429a5a69d50a7",
         "end_card": "00ece5454e33b692",
         "music.chosen": "5feceb66ffc86f38",
         "shots.music_cue": "1f1f21cd714b5ef6"
       },
       "is_fallback": false,
-      "key": "c765af02771aed27",
-      "path": "outputs/final/c765af02771aed27/film_9x16.mp4",
+      "key": "19b3245fe35fc434",
+      "path": "outputs/final/19b3245fe35fc434/film_9x16.mp4",
       "primary_provider": null,
       "provider": {
         "model": null,
         "name": "ffmpeg",
         "params": {}
       },
-      "run_id": "r_20261126_141749_584d",
+      "run_id": "r_20261126_142549_0147",
       "seed": null,
-      "sha256": "c20849accd44ebb501c0f7038de0b021c2ed66d3e79a0553353f9435b6046097",
+      "sha256": "d0b687547daf1d0dcee2e8e4db0d423e865a189110d447d63ac101606e5345ee",
       "stage": "assemble",
-      "stage_version": 3,
+      "stage_version": 4,
       "unit": "project",
       "upstream": {
         "music/project": "c0a81c82163faec1193a9d021a7c612f3ac216a1f1ad6cac6579f11cecf36cda",
@@ -841,21 +841,21 @@
     },
     "qa/project": {
       "candidates": [],
-      "created_at": "2026-11-26T14:18:39.559Z",
+      "created_at": "2026-11-26T14:26:36.451Z",
       "field_hashes": {},
       "is_fallback": false,
-      "key": "3810f2b673696c47",
-      "path": "outputs/final/c765af02771aed27/qa.json",
+      "key": "38727073cce82e44",
+      "path": "outputs/final/19b3245fe35fc434/qa.json",
       "primary_provider": null,
       "provider": null,
-      "run_id": "r_20261126_141838_c570",
+      "run_id": "r_20261126_142635_eede",
       "seed": null,
-      "sha256": "9a3be49943d3145fe31abbd6a71caa1f4ee356dcd7c8bbbc6a61749aea47a9e5",
+      "sha256": "bd483b588bb5754d7d5ce61e502d78afc495d6fa5958f9e8d02f9808ea4cf868",
       "stage": "qa",
       "stage_version": 2,
       "unit": "project",
       "upstream": {
-        "assemble/project": "c20849accd44ebb501c0f7038de0b021c2ed66d3e79a0553353f9435b6046097"
+        "assemble/project": "d0b687547daf1d0dcee2e8e4db0d423e865a189110d447d63ac101606e5345ee"
       }
     },
     "radio_cut/project": {

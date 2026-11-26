@@ -384,3 +384,10 @@
 {"ts":"2026-11-26T14:18:39.558Z","type":"qa_result","run_id":"r_20261126_141838_c570","stage":"qa","unit":"project","passed":true,"path":"/home/cyberhelmet/tizita/outputs/final/c765af02771aed27/qa.json"}
 {"ts":"2026-11-26T14:18:39.583Z","type":"unit_done","run_id":"r_20261126_141838_c570","stage":"qa","unit":"project","path":"outputs/final/c765af02771aed27/qa.json","key":"3810f2b673696c47"}
 {"ts":"2026-11-26T14:18:39.583Z","type":"run_summary","run_id":"r_20261126_141838_c570","calls":0,"cache_hits":0,"fallbacks":0,"ran":["qa/project"],"failed":[],"skipped":[]}
+{"ts":"2026-11-26T14:24:48.839Z","type":"plan","run_id":null,"summary":{"units":47,"counts":{"cached":47},"to_run":0,"est_latency_s":0,"est_gpu_min":0},"dirty":[]}
+{"ts":"2026-11-26T14:25:20.723Z","type":"plan","run_id":null,"summary":{"units":47,"counts":{"cached":45,"dirty":2},"to_run":2,"est_latency_s":105.0,"est_gpu_min":0.0},"dirty":["assemble/project: dirty stage_version 3→4, assembly","qa/project: dirty upstream assemble/project"]}
+{"ts":"2026-11-26T14:26:35.124Z","type":"unit_done","run_id":"r_20261126_142549_0147","stage":"assemble","unit":"project","path":"outputs/final/19b3245fe35fc434/film_9x16.mp4","key":"19b3245fe35fc434"}
+{"ts":"2026-11-26T14:26:35.124Z","type":"run_summary","run_id":"r_20261126_142549_0147","calls":0,"cache_hits":0,"fallbacks":0,"ran":["assemble/project"],"failed":[],"skipped":[]}
+{"ts":"2026-11-26T14:26:36.451Z","type":"qa_result","run_id":"r_20261126_142635_eede","stage":"qa","unit":"project","passed":true,"path":"/home/cyberhelmet/tizita/outputs/final/19b3245fe35fc434/qa.json"}
+{"ts":"2026-11-26T14:26:36.476Z","type":"unit_done","run_id":"r_20261126_142635_eede","stage":"qa","unit":"project","path":"outputs/final/19b3245fe35fc434/qa.json","key":"38727073cce82e44"}
+{"ts":"2026-11-26T14:26:36.476Z","type":"run_summary","run_id":"r_20261126_142635_eede","calls":0,"cache_hits":0,"fallbacks":0,"ran":["qa/project"],"failed":[],"skipped":[]}

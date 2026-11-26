@@ -275,3 +275,8 @@
 {"ts":"2026-11-26T09:34:31.101Z","type":"run_summary","run_id":"r_20261126_093341_540b","calls":0,"cache_hits":0,"fallbacks":0,"ran":["assemble/project","qa/project"],"failed":[],"skipped":[]}
 {"ts":"2026-11-26T09:35:32.298Z","type":"plan","run_id":null,"summary":{"units":43,"counts":{"cached":43},"to_run":0,"est_latency_s":0,"est_gpu_min":0},"dirty":[]}
 {"ts":"2026-11-26T09:35:38.548Z","type":"plan","run_id":null,"summary":{"units":1,"counts":{"cached":1},"to_run":0,"est_latency_s":0,"est_gpu_min":0},"dirty":[]}
+{"ts":"2026-11-26T09:52:21.328Z","type":"degraded","run_id":"r_20261126_095219_805f","stage":"assemble","unit":"project","reason":"music not chosen"}
+{"ts":"2026-11-26T09:53:13.524Z","type":"unit_done","run_id":"r_20261126_095219_805f","stage":"assemble","unit":"project","path":"outputs/final/21334971d0ac71e0/film_9x16.mp4","key":"21334971d0ac71e0"}
+{"ts":"2026-11-26T09:53:14.921Z","type":"qa_result","run_id":"r_20261126_095219_805f","stage":"qa","unit":"project","passed":true,"path":"/home/cyberhelmet/tizita/outputs/final/21334971d0ac71e0/qa.json"}
+{"ts":"2026-11-26T09:53:14.926Z","type":"unit_done","run_id":"r_20261126_095219_805f","stage":"qa","unit":"project","path":"outputs/final/21334971d0ac71e0/qa.json","key":"a79abd6ec9aac62a"}
+{"ts":"2026-11-26T09:53:14.926Z","type":"run_summary","run_id":"r_20261126_095219_805f","calls":0,"cache_hits":0,"fallbacks":0,"ran":["assemble/project","qa/project"],"failed":[],"skipped":[]}

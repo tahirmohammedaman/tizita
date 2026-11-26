@@ -109,6 +109,9 @@ M3 References + keyframes (prompt below). Needs the real storyboard promoted fir
 - Caption changed to acoustic-only (no "synth pads"). Tags add "<bpm> BPM, <key>, instrumental, no vocals"; lyrics `[instrumental]`. 3 candidates (seeds 3000-3002, run `r_20261126_093124_ab46`), FLAC in `outputs/music/`. Whisper check on each (cf_whisper, en) returned only no-speech hallucinations ("Thank you." x3, "We'll be right back." x3): no words detected; wordless humming not ruled out, Tahir listens.
 - Film re-assembled with candidate 1 (none chosen yet): QA pass, -14.6 LUFS, -1.7 dBTP.
 
+- **Gemini TTS end-of-take noise** (Tahir heard a "ssshhh" between lines): every take ends with a ~0.16 s burst at -3..-7 dBFS (with a 30 ms digital-zero gap, identical pattern in all 11 takes) after the speech has decayed. Our adapter only wraps Gemini's PCM in a WAV header, so the noise is in Gemini's output. Fix: `tizita/audio.py: speech_end_s` + `narration_track_graph(ends_s=...)` cut each take in the quiet run before the burst (0.26-0.36 s removed, 30 ms fade). Takes unchanged (no new TTS calls). The radio cut v4 still has the burst (not re-rendered).
+- Music previews (narration + ducked music, burst fixed) for listening: `previews/music_preview_{1,2,3}.m4a` (gitignored).
+
 ### Re-plan (time left ~11.5 h; SPEC §1 order: pipeline -> evidence/docs -> ceiling -> API/worker -> frontend -> deploy)
 1. **Now (Tahir, ~20 min):** watch both films (phone + headphones), `uv run tizita choose music N --reason "..."`, then `uv run tizita run --stage assemble --stage qa`.
 2. **GPU (optional, needs Tahir's OK):** no Kaggle runner/executor exists yet (adapters `kaggle_wan22`/`kaggle_ace` are `null`). Building runner + executor + kernel is ~2-3 h with real risk. Recommendation: **skip Wan**; try ACE-Step only if Tahir wants real music, time-boxed to 90 min, else the pad stays (documented as degradation).

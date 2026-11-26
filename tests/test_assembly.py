@@ -245,3 +245,21 @@ def test_hf_ace_space_jam_decodes_data_uri_and_puts_tempo_in_tags(monkeypatch):
     assert res.data == b"RIFFxxxx" and res.ext == "wav" and res.seed_used == 3001
     assert seen["prompt"] == "warm cello, 68 BPM, G Major, instrumental, no vocals"
     assert seen["lyrics"] == "[instrumental]" and seen["seed"] == 3001 and seen["infer_step"] == 8
+
+
+def test_speech_end_finds_silence_before_tts_noise_burst():
+    from tizita.audio import speech_end_s
+
+    speech, quiet = [-15.0] * 200, [-70.0] * 30
+    burst = [-6.0, -6.0, -6.0, -7.0, -120.0, -120.0, -120.0, -6.0, -5.0, -3.0]  # as measured
+    assert speech_end_s(speech + quiet + burst) == 2.15  # quiet starts 2.0 s, keep half
+    assert speech_end_s(speech + quiet) is None  # clean take
+    assert speech_end_s(speech + [-70.0] * 3 + burst) is None  # 30 ms dip = a pause, not end
+    assert speech_end_s(speech + quiet + [-10.0] * 60) is None  # long or softer = speech
+    assert speech_end_s(speech + quiet + [-14.0] * 20) is None  # a short final word
+
+
+def test_narration_track_trims_each_take_at_speech_end():
+    g = narration_track_graph([0.4, 7.4], 20, ASM["audio"], [3.2, None]).split(";")
+    assert g[0].startswith("[0:a]atrim=end=3.2,afade=t=out:st=3.17:d=0.03,aresample=48000")
+    assert g[1].startswith("[1:a]aresample=48000")

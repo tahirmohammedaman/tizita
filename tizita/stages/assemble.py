@@ -11,6 +11,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
+from tizita.audio import wav_speech_end_s
 from tizita.cache import provider_ident
 from tizita.dag import PROJECT
 from tizita.ffmpeg import graphs as G
@@ -104,7 +105,12 @@ def run(ctx: Ctx, unit, key: str) -> Outcome:
     audio = {**cfg["audio"], "music": cfg["music_mix"]}
     track, pre, mix = work / "narration.wav", work / "premix.wav", work / "mix.wav"
     rel = lambda p: str(p.relative_to(root))  # noqa: E731
-    _ff(G.narration_track_cmd(narr, starts, total, rel(track), audio), root, "narration track")
+    ends = [wav_speech_end_s(root / n) for n in narr]
+    if any(ends):
+        degraded.append(f"narration: trimmed TTS end-of-take noise on {sum(map(bool, ends))} takes")
+    _ff(
+        G.narration_track_cmd(narr, starts, total, rel(track), audio, ends), root, "narration track"
+    )
     _ff(G.duck_mix_cmd(rel(track), rel(music), total, rel(pre), audio), root, "duck mix")
     final = {**cfg["audio"]["final"], "tp": cfg["master"]["tp"]}
     r = _ff(G.loudnorm_measure_cmd(rel(pre), final), root, "loudnorm pass 1")

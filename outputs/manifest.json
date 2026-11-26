@@ -2,7 +2,7 @@
   "entries": {
     "assemble/project": {
       "candidates": [],
-      "created_at": "2026-11-26T09:34:30.115Z",
+      "created_at": "2026-11-26T09:53:13.516Z",
       "field_hashes": {
         "assembly": "d9f7724b5fb5aa95",
         "end_card": "00ece5454e33b692",
@@ -18,9 +18,9 @@
         "name": "ffmpeg",
         "params": {}
       },
-      "run_id": "r_20261126_093341_540b",
+      "run_id": "r_20261126_095219_805f",
       "seed": null,
-      "sha256": "71af61800216e597655320488ad8126cd7b33c48901c74c57dba14d4ad65827c",
+      "sha256": "a241072d5c9bacc0f360dbf554492f94ead64ec4fa5877296292f843acea96ea",
       "stage": "assemble",
       "stage_version": 1,
       "unit": "project",
@@ -842,21 +842,21 @@
     },
     "qa/project": {
       "candidates": [],
-      "created_at": "2026-11-26T09:34:31.098Z",
+      "created_at": "2026-11-26T09:53:14.921Z",
       "field_hashes": {},
       "is_fallback": false,
-      "key": "d1a5c3acb877ec1e",
+      "key": "a79abd6ec9aac62a",
       "path": "outputs/final/21334971d0ac71e0/qa.json",
       "primary_provider": null,
       "provider": null,
-      "run_id": "r_20261126_093341_540b",
+      "run_id": "r_20261126_095219_805f",
       "seed": null,
-      "sha256": "04e807e3679ba527c51143a786714af589ac75efc8b27048c90d6dde6d361a71",
+      "sha256": "615b6ff232e9ff39223627c252f223ba37ac9d6fe39fef315fef0bef7132c2e5",
       "stage": "qa",
       "stage_version": 1,
       "unit": "project",
       "upstream": {
-        "assemble/project": "71af61800216e597655320488ad8126cd7b33c48901c74c57dba14d4ad65827c"
+        "assemble/project": "a241072d5c9bacc0f360dbf554492f94ead64ec4fa5877296292f843acea96ea"
       }
     },
     "radio_cut/project": {

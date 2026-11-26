@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+import time
 
 from tizita.providers.base import Provider, Request, Result
 from tizita.providers.errors import (
@@ -30,7 +31,9 @@ _SPENT: set[str] = set()
 def call_rotating(provider: Provider, fn):
     """Run `fn(client)` with the provider's keys in order. A 429/quota on one key (one Google
     project = its own free quota) moves to the next key; when all are spent, the last error
-    propagates so the router's circuit/fallback takes over. Key *names* only are ever logged."""
+    propagates so the router's circuit/fallback takes over. Each key given up on for another one
+    is noted in `provider.rotated`, so it gets its own runs.jsonl line (the last error is logged
+    by the router anyway). Key *names* only are ever logged."""
     from google.genai import errors
 
     names = provider.api_keys()
@@ -38,7 +41,11 @@ def call_rotating(provider: Provider, fn):
     if len(live) == len(names) and _SPENT.issuperset(names):
         _SPENT.clear()
     last: ProviderError | None = None
+    gave_up: tuple[str, ProviderError, int] | None = None
     for name in live:
+        if gave_up:
+            provider.rotated.append(gave_up)
+        t0 = time.monotonic()
         try:
             return fn(gemini_client(provider.env, name))
         except errors.APIError as e:
@@ -46,6 +53,7 @@ def call_rotating(provider: Provider, fn):
             if isinstance(err, RateLimited | QuotaExhausted):
                 _SPENT.add(name)
                 last = err
+                gave_up = (name, err, int((time.monotonic() - t0) * 1000))
                 continue
             raise err from e
     assert last is not None

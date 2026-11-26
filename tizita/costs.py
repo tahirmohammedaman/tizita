@@ -169,7 +169,12 @@ def render(lines: list[dict], events: list[dict], prices: dict, pools: dict[str,
                 f"| {message} |"
             )
     else:
-        out.append("None logged. Gemini key rotation absorbs a 429 before it reaches the log.")
+        out.append("None logged.")
+    out += [
+        "",
+        "A rotated Gemini key (429, next key tried) has had its own line only since the "
+        "afternoon of 26 Nov 2026; earlier rotations are not in the log.",
+    ]
     rate = f"{100 * cache['hits'] / seen:.0f}%" if seen else "—"
     out += [
         "",

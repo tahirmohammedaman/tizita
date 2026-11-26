@@ -9,7 +9,7 @@ from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any
 
-from tizita.providers.errors import Unavailable
+from tizita.providers.errors import ProviderError, Unavailable
 
 CAPABILITIES = ("text", "tts", "image", "image_edit", "i2v", "music", "embed", "asr")
 TIERS = ("free_hosted", "local", "paid", "deterministic")
@@ -85,6 +85,8 @@ class Provider:
         self.params: dict = cfg.get("params") or {}
         self.cost_basis: str | None = cfg.get("cost_basis")
         self._list_price: dict | None = None
+        # (key name, error, latency ms) per key given up on mid-call; the router logs and clears it
+        self.rotated: list[tuple[str, ProviderError, int]] = []
 
     # -- configuration -------------------------------------------------
     def missing_env(self) -> list[str]:

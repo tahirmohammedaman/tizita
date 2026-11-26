@@ -63,6 +63,8 @@ Calls that draw on the same free allowance. Deterministic and local calls use no
 |---|---|---|---|---|
 | 2026-11-26T07:03:09.050Z | `r_20261126_070255_0908` | gemini_tts | quota_exhausted | RESOURCE_EXHAUSTED You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: |
 
+A rotated Gemini key (429, next key tried) has had its own line only since the afternoon of 26 Nov 2026; earlier rotations are not in the log.
+
 ### Cache
 
 Over 53 `tizita run` invocations in `logs/events.jsonl`: 112 unit cache hits and 169 units generated (40% hit rate). Run summaries do not split hits by stage.

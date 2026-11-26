@@ -114,6 +114,7 @@ def test_gemini_key_rotation_moves_to_next_key_on_quota():
         return "ok"
 
     assert call_rotating(p, fn) == "ok" and used == ["a", "b"]
+    assert [(name, e.status) for name, e, _ in p.rotated] == [("K1", 429)]
     gemini_text._SPENT.clear()
     q = GeminiText(
         "g",

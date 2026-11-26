@@ -280,3 +280,48 @@ def test_private_media_emits_one_privacy_notice_per_run(mk, project):
     r.call(q)
     notices = [e for e in r.bus.captured if e["type"] == "privacy_notice"]
     assert len(notices) == 1 and "Cloudflare" in notices[0]["message"]
+
+
+class RotatingFake(Fake):
+    """Goes through the real `call_rotating`; the first `spent` keys answer 429."""
+
+    def __init__(self, spent):
+        super().__init__("a")
+        self.cfg["env_any"] = ["K1", "K2"]
+        self.env = {"K1": "v1", "K2": "v2"}
+        self.spent = spent
+        self.seen = 0
+
+    def call(self, req):
+        from google.genai import errors
+
+        from tizita.providers.gemini_text import call_rotating
+
+        def fn(_client):
+            self.seen += 1
+            if self.seen <= self.spent:
+                body = {"error": {"status": "RESOURCE_EXHAUSTED", "message": "per day"}}
+                raise errors.ClientError(429, body)
+            return Result(model=self.model, data=b"img", ext="png")
+
+        return call_rotating(self, fn)
+
+
+@pytest.mark.parametrize(
+    "spent,expected",
+    [
+        (1, [("a", "error", "K1"), ("a", "ok", None)]),
+        (2, [("a", "error", "K1"), ("a", "fallback_triggered", None), ("b", "ok", None)]),
+    ],
+)
+def test_each_rotated_key_gets_its_own_runlog_line(mk, project, spent, expected):
+    from tizita.providers import gemini_text
+
+    gemini_text._SPENT.clear()
+    a = RotatingFake(spent)
+    r = mk(a, Fake("b"))
+    r.call(req(project))
+    gemini_text._SPENT.clear()
+    got = [(x["provider"], x["status"], x["metrics"].get("rotated_key")) for x in lines(project)]
+    assert got == expected
+    assert "v1" not in project.runs.read_text() and not a.rotated

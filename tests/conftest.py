@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 from tizita.cache import Artifact, Manifest
-from tizita.dag import build_units, manifest_path_for, resolve_upstream, unit_key
+from tizita.dag import STAGE_VERSIONS, build_units, manifest_path_for, resolve_upstream, unit_key
 from tizita.util import Project, sha256_bytes
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -44,7 +44,7 @@ def materialize(sb: dict, project: Project, provider: dict | None = None) -> Man
             stage=unit.stage,
             unit=unit.unit,
             key=key,
-            stage_version=1,
+            stage_version=STAGE_VERSIONS[unit.stage],
             artifact=Artifact(project.rel(path), sha256_bytes(data)),
             provider=prov,
             seed=unit.seed,

@@ -28,7 +28,7 @@ STAGE_VERSIONS: dict[str, int] = {
     "keyframes": 1,
     "shots": 1,
     "music": 1,
-    "assemble": 1,
+    "assemble": 2,  # 2: end card model credit no longer truncated
     "qa": 1,
 }
 

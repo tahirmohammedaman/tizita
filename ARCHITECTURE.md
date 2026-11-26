@@ -237,7 +237,7 @@ the graph string. Parameters come from `config/assembly.yaml`. Exports use `-pre
    master), both in one FFmpeg pass. H.264 High, yuv420p, `+faststart`, 24 fps CFR.
 7. **QA** (`stages/qa.py`): ffprobe (duration, resolution, fps, codecs) and `ebur128` (−14 ± 1 LUFS,
    true peak ≤ −1 dBTP) → `outputs/final/<key>/qa.json`. A failed check fails the unit, so
-   `make film` exits non-zero. Current result: both films 77.2 s, −14.6 LUFS, −1.7 dBTP, pass.
+   `make film` exits non-zero. Current result: both films 78.8 s, −14.6 LUFS, −1.7 dBTP, pass.
 
 The rendered MP4s are gitignored (≈ 90 MB each render); `qa.json`, `assemble.json` and `film.srt`
 are committed as evidence.

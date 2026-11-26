@@ -12,7 +12,6 @@
 #   words_approved: true
 #
 # Recorded 2026-11-26 from Tahir's statement in chat (consent given in the family group chat after they saw the storyboard and the v1 radio cut): all siblings and both parents consented to the story and to their (fictional, painterly) references.
-# TODO(Tahir): fill recorded_on / method / evidence_sha256 / words_approved for each entry; the agent does not know them.
 - id: C-001
   person: "older brother 1"
   relation: brother

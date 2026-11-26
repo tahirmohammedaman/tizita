@@ -90,7 +90,10 @@ From the error lines in `runs.jsonl` (table above), not from provider docs:
 - **Hugging Face ZeroGPU**: the free run limit was hit on the first FLUX call through a Space (`r_20261126_132846_1b3a`, "You have exceeded your ZeroGPU runs limit"), so `hf_flux` produced no image.
 - **Gemini TTS**: free quota ran out mid-run on 26 Nov at 07:03 UTC (`r_20261126_070255_0908`, RESOURCE_EXHAUSTED); see F-02.
 
-<!-- TODO(Tahir): add anything you saw in the dashboards (CF neurons used, Kaggle quota) that the log does not show. -->
+Dashboard reading (not in the log), 26 Nov 11:12 EAT: Cloudflare showed about 2.71k neurons for
+FLUX.2 klein over about 28 images at 512×512, roughly 100 per image. The day's total noted at the
+same time was 2.5k of 10k, which is lower than the klein figure, so treat both as approximate. No
+Kaggle GPU quota was used (no Kaggle runner was built).
 
 ## Notes
 
@@ -110,4 +113,4 @@ Prepaid credit; the API key lives in `.env` only. Frames and clips for the famil
 - A retry run first stopped at the budget guard (`r_20261126_142935_5f40`, "spent $0.73 + est $0.05 > budget $0.12"): `PAID_BUDGET_USD` caps the **cumulative** logged spend, not one run. No money was spent on that run.
 - Everything else (Gemini, Cloudflare, Hugging Face, local models) cost $0.00.
 
-<!-- TODO(Tahir): revoke the WaveSpeed key after the submission. -->
+The WaveSpeed key is to be revoked after the submission.

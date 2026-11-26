@@ -27,7 +27,7 @@ Each criterion from the brief ("How your work is assessed"), the evidence, and a
 
 | Asked | Evidence | Status |
 |---|---|---|
-| Audience and intent before generating | DESIGN, timestamped 25 Nov 18:42, before the first film image (26 Nov). Smoke-test images with unrelated prompts ran earlier. The wording started as agent-assumed defaults in `interview/answers.yaml`; the logline is empty | partial: TODO(Tahir) |
+| Audience and intent before generating | DESIGN, timestamped 25 Nov 18:42, before the first film image (26 Nov), with the logline. Smoke-test images with unrelated prompts ran earlier. The wording started as agent-assumed defaults in `interview/answers.yaml`; the report states the same audience and intent | ok |
 | Test 1 (radio cut), 3+ people | DESIGN: 6 family members; paraphrased, no verbatim quotes; one combined row | partial |
 | Test 2 (near-final), 3+ people | DESIGN: two sisters, both parents and a friend, paraphrased; tag `test2-near-final`; seven requested changes with decisions | ok |
 | Storyboard visibly changed by feedback | test 1: `git diff d483076 004855b -- storyboard.json`; test 2: `git diff test2-near-final main -- storyboard.json` (s01–s06, s08, s11 frames, s04 line, references, animation) | ok |
@@ -39,13 +39,13 @@ Each criterion from the brief ("How your work is assessed"), the evidence, and a
 |---|---|---|
 | 10+ logged experiments with hypotheses | EXPERIMENTS EXP-01 to 16 | ok (several are small single comparisons, and say so) |
 | Comparisons backed by evidence | run_ids; `experiments/measure/` with saved results | ok |
-| Reasons for each choice | "Decision" in each entry | partial: Tahir has not confirmed them |
+| Reasons for each choice | "Decision" in each entry, confirmed by Tahir on 26 Nov | ok |
 
 ## Troubleshooting and persistence (10)
 
 | Asked | Evidence | Status |
 |---|---|---|
-| FAILURES.md: quota, consistency, language; tried; resolved | FAILURES F-01 to F-19, `logs/failures_auto.jsonl` | partial until Tahir curates it |
+| FAILURES.md: quota, consistency, language; tried; resolved | FAILURES F-01 to F-19 (reviewed by Tahir, all kept), `logs/failures_auto.jsonl` | ok |
 
 ## Measurement (5)
 
@@ -60,17 +60,17 @@ Each criterion from the brief ("How your work is assessed"), the evidence, and a
 
 | Asked | Evidence | Status |
 |---|---|---|
-| Consent for every real person shown or voiced | no real person is shown or voiced; story consent from 6 family members in `ethics/consents.yaml` | ok; one TODO about the children mentioned |
+| Consent for every real person shown or voiced | no real person is shown or voiced; story consent from 6 family members in `ethics/consents.yaml`; the children's parents agreed to the mention (ETHICS) | ok |
 | Licences checked | ETHICS table, read 26 Nov | ok |
-| Labelling plan | ETHICS; end card | ok; platform TODO; C2PA is in the narration WAVs, not in the MP4 (stated, not claimed) |
+| Labelling plan | ETHICS (YouTube with its AI label); end card | ok; label on the published video to be confirmed after posting; C2PA is in the narration WAVs, not in the MP4 (stated, not claimed) |
 
 ## Report (30, written by Tahir)
 
 | Criterion | Evidence ready | Status |
 |---|---|---|
-| Reflection and learning from the audience (10) | test 1 + diff; test 2 notes and the rendered changes in DESIGN | **gap** until written |
-| Suggested practices tested honestly (10) | candidates in report_outline | **gap** until written |
-| Curiosity beyond the floor (10) | Ceiling A run: `experiments/tts_benchmark/REPORT.md` (4 languages, 2 transcribers, EXP-14). Native comments: Amharic only, three named listeners (EXP-08); no motion A/B | evidence ready; needs Tahir's written account |
+| Reflection and learning from the audience (10) | REPORT sections 1–2; test 1 + diff; test 2 changes in DESIGN | written |
+| Suggested practices tested honestly (10) | REPORT sections 4–5 | written |
+| Curiosity beyond the floor (10) | REPORT section 6; `experiments/tts_benchmark/REPORT.md` (4 languages, 2 transcribers, EXP-14). Native comments: Amharic only, three named listeners (EXP-08); no motion A/B | written |
 
 ## Not built (from SPEC, not from the brief's criteria)
 
@@ -79,8 +79,7 @@ frontend pages and deployment (`tizita serve` and `worker` are stubs).
 
 ## Biggest risks, in order of points at stake
 
-1. Report not yet written (30).
-2. The motion depends on a paid API whose key must be revoked after submission; a clean clone
+1. The motion depends on a paid API whose key must be revoked after submission; a clean clone
    rebuilds from committed clips and makes no paid call.
-3. Ceiling A has native comments for Amharic only (three named listeners, no numeric scores), and
+2. Ceiling A has native comments for Amharic only (three named listeners, no numeric scores), and
    Oromo and Tigrinya rest on one same-vendor transcriber.

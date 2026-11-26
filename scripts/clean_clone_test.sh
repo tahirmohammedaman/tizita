@@ -46,8 +46,6 @@ echo "model calls (new runs.jsonl lines): $calls"
 run uv run --quiet python - <<'PY'
 import json, pathlib, sys
 
-manifest = json.loads(pathlib.Path("outputs/manifest.json").read_text())
-text = json.dumps(manifest)
 qa_files = sorted(pathlib.Path("outputs/final").glob("*/qa.json"))
 if len(qa_files) != 1:
     sys.exit(f"FAIL: expected one qa.json, found {len(qa_files)}")

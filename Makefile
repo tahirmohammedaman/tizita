@@ -38,7 +38,7 @@ smoke: ## one call per configured provider
 models: ## default downloads (SPEC §19); optional: tizita models download --only <name>
 	$(TIZITA) models download
 
-clean-clone-test: ## clone to /tmp, make film with committed cache, expect 0 model calls
+clean-clone-test: ## clone HEAD, make film with no .env: 0 model calls + QA pass
 	bash scripts/clean_clone_test.sh
 
 serve: ## showcase API
